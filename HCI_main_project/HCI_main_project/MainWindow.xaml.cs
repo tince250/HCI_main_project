@@ -1,5 +1,7 @@
-﻿using System;
+﻿using HCI_main_project.Models;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +22,30 @@ namespace HCI_main_project
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        TripagoContext dbContext;
+        public MainWindow(TripagoContext tripagoContext)
         {
+            this.dbContext = tripagoContext;
+            this.dbContext.Database.EnsureCreated();
+
             InitializeComponent();
+
+            Console.WriteLine("Adding some authors into database...");
+            User user = new User
+            {
+                Email = "user@gmail.com",
+                FirstName = "tina",
+                LastName = "miha",
+                Password = "123",
+                Role = UserRole.TRAVELER
+            };
+            this.dbContext.Users.Add(user);
+            this.dbContext.SaveChanges();
+
+            foreach (User user1 in this.dbContext.Users)
+            {
+                Trace.WriteLine(user1.FirstName);
+            }
         }
     }
 }
