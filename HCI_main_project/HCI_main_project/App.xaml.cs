@@ -1,4 +1,5 @@
 ﻿using HCI_main_project.Models;
+using HCI_main_project.View;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -34,8 +35,10 @@ namespace HCI_main_project
         }
         private void OnStartup(object sender, StartupEventArgs e)
         {
-            var mainWindow = serviceProvider.GetService<MainWindow>();
-            mainWindow.Show();
+            //var mainWindow = serviceProvider.GetService<MainWindow>();
+            //mainWindow.Show();
+            var win = new RegisterWindow();
+            win.Show();
         }
     }
 }
