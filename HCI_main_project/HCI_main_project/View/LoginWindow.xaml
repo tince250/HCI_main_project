@@ -1,0 +1,54 @@
+﻿<Window x:Class="HCI_main_project.View.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HCI_main_project.View"
+        mc:Ignorable="d"
+        Title="LoginWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Image Grid.Row="0" Grid.Column="0" Margin="0, 60">
+            <Image.Source>
+                <BitmapImage UriSource="C:\Users\HP\Desktop\SIIT_6.Semestar\HCI\HCI_main_project\HCI_main_project\HCI_main_project\Resources\register.jpg" />
+            </Image.Source>
+        </Image>
+
+            
+
+            <Grid Grid.Column="1" VerticalAlignment="Center" Margin="40, 10, 40, 50">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition Height="65"/>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="55"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Style="{StaticResource Title}" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                    Welcome
+                </TextBlock>
+                <Separator Grid.Row="1" Margin="50,0" Background="{StaticResource OrangeColor}" BorderBrush="{StaticResource OrangeColor}"/>
+
+                <Label Grid.Row="2" Content="Username:" VerticalContentAlignment="Bottom" FontSize="20"/>
+                <TextBox
+                    Grid.Row="3"
+                    VerticalAlignment="Top"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                </TextBox>
+
+
+                <Label Grid.Row="4" Content="Password:" VerticalContentAlignment="Bottom" FontSize="20"/>
+                <PasswordBox
+                    Grid.Row="5"
+                    Style="{StaticResource MaterialDesignOutlinedPasswordBox}" />
+
+
+            </Grid>
+    </Grid>
+</Window>
