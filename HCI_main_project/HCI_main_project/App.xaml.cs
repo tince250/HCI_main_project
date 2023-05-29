@@ -37,7 +37,7 @@ namespace HCI_main_project
         {
             //var mainWindow = serviceProvider.GetService<MainWindow>();
             //mainWindow.Show();
-            var win = new RegisterWindow();
+            var win = new LoginWindow();
             win.Show();
         }
     }

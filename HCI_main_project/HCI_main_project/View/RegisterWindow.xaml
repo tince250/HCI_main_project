@@ -18,7 +18,7 @@
             </Image.Source>
         </Image>
 
-        <Grid Grid.Column="1" VerticalAlignment="Center" Margin="40, 0">
+        <Grid Grid.Column="1" VerticalAlignment="Center" Margin="50, 0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="75"/>
                 <RowDefinition Height="20"/>
@@ -86,7 +86,7 @@
                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                 Style="{StaticResource MaterialDesignRaisedButton}"
                 ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
-                Background="{StaticResource OrangeColor}"
+                Background="{StaticResource ButtonLightBlueColor}"
                 Foreground="{StaticResource WhiteColor}">
 
                 <TextBlock Text="Register" />

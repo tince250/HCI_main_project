@@ -3,9 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:HCI_main_project.View"
+        xmlns:local="clr-namespace:HCI_main_project.View" xmlns:components="clr-namespace:HCI_main_project.Components"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="450" Width="800">
+        Title="LoginWindow" Height="650" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -18,37 +18,68 @@
             </Image.Source>
         </Image>
 
-            
 
-            <Grid Grid.Column="1" VerticalAlignment="Center" Margin="40, 10, 40, 50">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="70"/>
-                    <RowDefinition Height="10"/>
-                    <RowDefinition Height="75"/>
-                    <RowDefinition Height="65"/>
-                    <RowDefinition Height="45"/>
-                    <RowDefinition Height="55"/>
-                </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Style="{StaticResource Title}" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+        <Grid Grid.Column="1" VerticalAlignment="Center" Margin="50, 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="55"/>
+                <RowDefinition MinHeight="20" MaxHeight="40"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Style="{StaticResource Title}" HorizontalAlignment="Center" VerticalAlignment="Bottom">
                     Welcome
-                </TextBlock>
-                <Separator Grid.Row="1" Margin="50,0" Background="{StaticResource OrangeColor}" BorderBrush="{StaticResource OrangeColor}"/>
+            </TextBlock>
+            <Separator Grid.Row="0" VerticalAlignment="Bottom" Margin="50,0" Background="{StaticResource OrangeColor}" BorderBrush="{StaticResource OrangeColor}"/>
 
-                <Label Grid.Row="2" Content="Username:" VerticalContentAlignment="Bottom" FontSize="20"/>
-                <TextBox
-                    Grid.Row="3"
+            <Label Grid.Row="1" Content="Username:" VerticalContentAlignment="Bottom" FontSize="20"/>
+            <TextBox
+                    Grid.Row="2"
                     VerticalAlignment="Top"
-                    Style="{StaticResource MaterialDesignOutlinedTextBox}">
-                </TextBox>
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=Password, ValidatesOnDataErrors=true, NotifyOnValidationError=true}">
+            </TextBox>
 
 
-                <Label Grid.Row="4" Content="Password:" VerticalContentAlignment="Bottom" FontSize="20"/>
-                <PasswordBox
-                    Grid.Row="5"
-                    Style="{StaticResource MaterialDesignOutlinedPasswordBox}" />
+            <Label Grid.Row="3" Content="Password:" VerticalContentAlignment="Bottom" FontSize="20"/>
+            <!--<PasswordBox
+                    PasswordChanged="PasswordBox_PasswordChanged"
+                    Tag="{Binding ValidatesOnDataErrors=True, NotifyOnValidationError=True}"
+                    Grid.Row="4"
+                    Style="{StaticResource MaterialDesignOutlinedPasswordBox}" />-->
+            <components:BindablePasswordBox Grid.Row="4"
+                    Password="{Binding Path=Password, Mode=TwoWay, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" />
+
+            <Button
+                Command="{Binding Path=ChangeUsernameCommand}"
+                Grid.Row="6"
+                Height="60"
+                MinWidth="140"
+                MaxWidth="200"
+                FontSize="20"
+                FontWeight="Bold"
+                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                Style="{StaticResource MaterialDesignRaisedButton}"
+                ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
+                Background="{StaticResource ButtonLightBlueColor}"
+                Foreground="{StaticResource WhiteColor}" VerticalAlignment="Top">
+
+                <TextBlock Text="Login" />
+
+            </Button>
+
+            <StackPanel Grid.Row="7" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label FontWeight="Bold" Content="Don't have an account? " VerticalContentAlignment="Center" FontSize="17"></Label>
+                <Label FontWeight="Bold" Content="Register" VerticalContentAlignment="Center" FontSize="17" Foreground="{StaticResource OrangeColor}"></Label>
+
+            </StackPanel>
 
 
-            </Grid>
+        </Grid>
     </Grid>
 </Window>
