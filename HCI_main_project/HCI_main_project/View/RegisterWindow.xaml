@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:HCI_main_project.View"
+        xmlns:local="clr-namespace:HCI_main_project.View" xmlns:components="clr-namespace:HCI_main_project.Components"
         mc:Ignorable="d"
         Title="RegisterWindow" Height="850" Width="1200">
     <Grid>
@@ -46,34 +46,35 @@
             <TextBox
                     Grid.Row="3"
                     VerticalAlignment="Top"
-                    Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=Name, ValidatesOnDataErrors=true, NotifyOnValidationError=true}">
             </TextBox>
 
             <Label Grid.Row="4" Content="Last name:" VerticalContentAlignment="Bottom" FontSize="20"/>
             <TextBox
                     Grid.Row="5"
                     VerticalAlignment="Top"
-                    Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=LastName, ValidatesOnDataErrors=true, NotifyOnValidationError=true}">
             </TextBox>
 
             <Label Grid.Row="6" Content="Email:" VerticalContentAlignment="Bottom" FontSize="20"/>
             <TextBox
                     Grid.Row="7"
                     VerticalAlignment="Top"
-                    Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=Email, ValidatesOnDataErrors=true, NotifyOnValidationError=true}">
             </TextBox>
 
 
             <Label Grid.Row="8" Content="Password:" VerticalContentAlignment="Bottom" FontSize="20"/>
-            <PasswordBox
-                    Grid.Row="9"
-                    Style="{StaticResource MaterialDesignOutlinedPasswordBox}" />
+            <components:BindablePasswordBox Grid.Row="9"
+                    Password="{Binding Path=Password, Mode=TwoWay, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" />
 
 
             <Label Grid.Row="10" Content="Confirm password:" VerticalContentAlignment="Bottom" FontSize="20"/>
-            <PasswordBox
-                    Grid.Row="11"
-                    Style="{StaticResource MaterialDesignOutlinedPasswordBox}" />
+            <components:BindablePasswordBox Grid.Row="11"
+                    Password="{Binding Path=ConfirmPassword, Mode=TwoWay, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" />
 
 
             <Button

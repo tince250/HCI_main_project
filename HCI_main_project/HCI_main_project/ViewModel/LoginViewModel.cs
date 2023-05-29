@@ -14,14 +14,14 @@ namespace HCI_main_project.ViewModel
     {
         public Boolean _firstLoad = true;
 
-        private string _username;
-        public string Username
+        private string _email;
+        public string Email
         {
-            get => _username;
+            get => _email;
             set
             {
                 _firstLoad = false;
-                SetProperty(ref _username, value);
+                SetProperty(ref _email, value);
             }
         }
 
@@ -45,7 +45,7 @@ namespace HCI_main_project.ViewModel
 
         private void OnLoginClick(object commandParameter)
         {
-            Username = "Walter";
+            Email = "Walter";
         }
 
 
@@ -60,10 +60,10 @@ namespace HCI_main_project.ViewModel
             {
                 string result = null;
                 if (_firstLoad) { return result; }
-                if (columnName == "Username")
+                if (columnName == "Email")
                 {
-                    if (string.IsNullOrEmpty(Username))
-                        result = "Please enter a username";
+                    if (string.IsNullOrEmpty(Email))
+                        result = "Please enter a email";
                 }
                 if (columnName == "Password")
                 {
