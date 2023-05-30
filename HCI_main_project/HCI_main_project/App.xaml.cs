@@ -9,6 +9,8 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Navigation;
 
 namespace HCI_main_project
 {
@@ -18,6 +20,9 @@ namespace HCI_main_project
     public partial class App : Application
     {
         private ServiceProvider serviceProvider;
+
+        private static NavigationService navigator;
+
         public App()
         {
             ServiceCollection services = new ServiceCollection();
@@ -33,12 +38,19 @@ namespace HCI_main_project
 
             services.AddSingleton<MainWindow>();
         }
-        private void OnStartup(object sender, StartupEventArgs e)
+        protected override void OnStartup(StartupEventArgs e)
         {
-            //var mainWindow = serviceProvider.GetService<MainWindow>();
-            //mainWindow.Show();
-            var win = new RegisterWindow();
-            win.Show();
+            base.OnStartup(e);
+            this.StartupUri =
+             new Uri("View/LoginPage.xaml", UriKind.Relative);
+        }
+
+        protected override void OnNavigated(NavigationEventArgs e)
+        {
+            base.OnNavigated(e);
+            Page page = e.Content as Page;
+            if (page != null)
+                ApplicationHelper.NavigationService = page.NavigationService;
         }
     }
 }
