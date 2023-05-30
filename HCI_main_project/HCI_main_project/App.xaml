@@ -20,8 +20,14 @@
             <SolidColorBrush x:Key="ButtonLightBlueColor" Color="#257FBD" />
             <SolidColorBrush x:Key="OrangeColor" Color="#F5AA39"></SolidColorBrush>
             <SolidColorBrush x:Key="MediumBlueColor" Color="#6750A4"/>
+            <SolidColorBrush x:Key="DarkBlueColor" Color="#0A2463"/>
             <SolidColorBrush x:Key="BlackColor" Color="#000000"/>
             <SolidColorBrush x:Key="WhiteColor" Color="#FFFFFF"/>
+
+            <SolidColorBrush x:Key="IconColor_suitcase" Color="#257FBD" />
+            <SolidColorBrush x:Key="IconColor_accom" Color="#FFFFFF" />
+            <SolidColorBrush x:Key="IconColor_attrac" Color="#FFFFFF" />
+            <SolidColorBrush x:Key="IconColor_resta" Color="#FFFFFF" />
 
             <Style x:Key="CRUDButton" TargetType="Button">
                 <Setter Property="Height" Value="40"/>
@@ -34,6 +40,7 @@
                 
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="Themes/Generic.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
