@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -102,11 +103,21 @@ namespace HCI_main_project.ViewModel
                 {
                     if (string.IsNullOrEmpty(Email))
                         result = "Please enter a email";
+                    try
+                    {
+                        MailAddress m = new MailAddress(Email);
+                    }
+                    catch (Exception)
+                    {
+                        result = "Invalid email format";
+                    }
                 }
                 if (columnName == "Password")
                 {
                     if (string.IsNullOrEmpty(Password))
                         result = "Please enter a password";
+                    if (Password.Length < 8)
+                        result = "8 characters or longer";
                 }
                 if (columnName == "ConfirmPassword")
                 {

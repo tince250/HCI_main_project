@@ -1,8 +1,10 @@
 ﻿using HCI_main_project.Commands;
+using HCI_main_project.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -34,18 +36,19 @@ namespace HCI_main_project.ViewModel
                 SetProperty(ref _password, value);
             } 
         }
-        private readonly DelegateCommand _changeUsernameCommand;
-        public ICommand ChangeUsernameCommand => _changeUsernameCommand;
+        private readonly DelegateCommand _switchToRegister;
+        public ICommand SwitchToRegister => _switchToRegister;
 
         public LoginViewModel()
         {
             _firstLoad = true;
-            _changeUsernameCommand = new DelegateCommand(OnLoginClick);
+            _switchToRegister = new DelegateCommand(OnRegisterClick);
         }
 
-        private void OnLoginClick(object commandParameter)
+        private void OnRegisterClick(object commandParameter)
         {
-            Email = "Walter";
+            RegisterPage nextPage = new RegisterPage();
+            ApplicationHelper.NavigationService.Navigate(nextPage);
         }
 
 
@@ -64,11 +67,22 @@ namespace HCI_main_project.ViewModel
                 {
                     if (string.IsNullOrEmpty(Email))
                         result = "Please enter a email";
+
+                    try
+                    {
+                        MailAddress m = new MailAddress(Email);
+                    }
+                    catch (Exception)
+                    {
+                        result = "Invalid email format";
+                    }
                 }
                 if (columnName == "Password")
                 {
                     if (string.IsNullOrEmpty(Password))
                         result = "Please enter a password";
+                    if (Password.Length < 8)
+                        result = "8 characters or longer";
                 }
                 return result;
             }

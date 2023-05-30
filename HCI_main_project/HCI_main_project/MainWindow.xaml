@@ -8,7 +8,7 @@
         Title="MainWindow" Height="768" Width="1024"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
     <Grid>
-        <TextBlock Style="{StaticResource Title}" HorizontalAlignment="Center">
+        <!--<TextBlock Style="{StaticResource Title}" HorizontalAlignment="Center">
             Registration
         </TextBlock>
         <Button
@@ -26,6 +26,6 @@
             
             <TextBlock Text="Add accomodation" />
           
-        </Button>
+        </Button>-->
     </Grid>
 </Window>
