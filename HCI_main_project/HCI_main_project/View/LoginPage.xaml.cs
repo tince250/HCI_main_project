@@ -21,17 +21,18 @@ namespace HCI_main_project.View
     /// </summary>
     public partial class LoginPage : Page
     {
-        public LoginPage()
+        private readonly LoginViewModel viewModel;
+        public LoginPage(LoginViewModel viewModel)
         {
             InitializeComponent();
-            var viewModel = new LoginViewModel();
             DataContext = viewModel;
+            this.viewModel = viewModel;
         }
 
         private void SwitchToRegister(object sender, RoutedEventArgs e)
         {
-            RegisterPage page = new RegisterPage();
-            NavigationService.GetNavigationService(this).Navigate(page);
+            //RegisterPage page = new RegisterPage();
+            //NavigationService.GetNavigationService(this).Navigate(registerPage);
         }
     }
 }

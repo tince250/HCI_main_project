@@ -1,20 +1,55 @@
-﻿using System;
+﻿using HCI_main_project.Commands;
+using HCI_main_project.Model.Services;
+using HCI_main_project.Models;
+using HCI_main_project.View;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace HCI_main_project.ViewModel
 {
     public class RegisterViewModel : ViewModelBase, IDataErrorInfo
     {
         public Boolean _firstLoad = true;
+        private readonly DelegateCommand _registerClickCommand;
+        public ICommand RegisterClickCommand => _registerClickCommand;
+        private readonly IAuthService service;
+        //private readonly LoginPage loginPage;
 
-        public RegisterViewModel() 
+        public RegisterViewModel(IAuthService service) 
         {
             _firstLoad = true;
+            //this.loginPage = loginPage;
+            this.service = service;
+            _registerClickCommand = new DelegateCommand(OnRegisterClick);
+        }
+
+        private void OnRegisterClick(object commandParameter)
+        {
+            try
+            {
+                User newUser = new User
+                {
+                    Email = Email,
+                    FirstName = Name,
+                    LastName = LastName,
+                    Password = Password,
+                    Role = UserRole.TRAVELER
+                };
+                service.Register(newUser);
+                ApplicationHelper.User = service.GetByEmail(Email);
+                //ApplicationHelper.NavigationService.Navigate(loginPage);
+
+            }
+            catch (Exception ex)
+            {
+                // do something
+            }
         }
 
         private string _name;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HCI_main_project.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace HCI_main_project
     public static class ApplicationHelper
     {
         private static NavigationService navigator;
-
+        private static User user { get; set; }
         public static NavigationService NavigationService
         {
             set
@@ -20,6 +21,19 @@ namespace HCI_main_project
             get
             {
                 return navigator;
+            }
+
+        }
+
+        public static User User
+        {
+            set
+            {
+                user = value;
+            }
+            get
+            {
+                return user;
             }
 
         }

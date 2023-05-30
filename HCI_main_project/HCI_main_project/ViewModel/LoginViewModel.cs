@@ -1,4 +1,5 @@
 ﻿using HCI_main_project.Commands;
+using HCI_main_project.Model.Services;
 using HCI_main_project.View;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Navigation;
 
 namespace HCI_main_project.ViewModel
 {
@@ -36,19 +38,30 @@ namespace HCI_main_project.ViewModel
                 SetProperty(ref _password, value);
             } 
         }
-        private readonly DelegateCommand _switchToRegister;
-        public ICommand SwitchToRegister => _switchToRegister;
+        private readonly DelegateCommand _loginClickCommand;
+        public ICommand LoginClickCommand => _loginClickCommand;
 
-        public LoginViewModel()
+        private readonly IAuthService service;
+        private readonly RegisterPage registerPage;
+        public LoginViewModel(IAuthService service, RegisterPage registerPage)
         {
+            this.service = service;
+            this.registerPage = registerPage;
             _firstLoad = true;
-            _switchToRegister = new DelegateCommand(OnRegisterClick);
+            _loginClickCommand = new DelegateCommand(OnLoginClick);
         }
 
-        private void OnRegisterClick(object commandParameter)
+        private void OnLoginClick(object commandParameter)
         {
-            RegisterPage nextPage = new RegisterPage();
-            ApplicationHelper.NavigationService.Navigate(nextPage);
+            try
+            {
+                ApplicationHelper.User = this.service.Login(Email, Password);
+                ApplicationHelper.NavigationService.Navigate(registerPage);
+            }
+            catch (Exception ex)
+            {
+                // do something
+            }
         }
 
 

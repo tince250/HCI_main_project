@@ -1,7 +1,10 @@
-﻿using HCI_main_project.Models;
+﻿using HCI_main_project.Model.Services;
+using HCI_main_project.Models;
 using HCI_main_project.View;
+using HCI_main_project.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -37,8 +40,13 @@ namespace HCI_main_project
             });
 
             services.AddSingleton<MainWindow>();
+            services.AddSingleton<IAuthService, AuthService>();
+            services.AddSingleton<LoginViewModel>();
+            services.AddSingleton<RegisterViewModel>();
+            services.AddSingleton<LoginPage>();
+            services.AddSingleton<RegisterPage>();
         }
-        protected override void OnStartup(StartupEventArgs e)
+        protected override async void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
             this.StartupUri =
