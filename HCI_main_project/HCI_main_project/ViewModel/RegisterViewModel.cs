@@ -31,6 +31,7 @@ namespace HCI_main_project.ViewModel
         {
             try
             {
+                ErrorHappend = false;
                 User newUser = new User
                 {
                     Email = Email,
@@ -46,8 +47,20 @@ namespace HCI_main_project.ViewModel
             catch (Exception ex)
             {
                 // do something
+                ErrorHappend = true;
             }
         }
+
+        private bool _errorHappend;
+        public bool ErrorHappend
+        {
+            get => _errorHappend;
+            set
+            {
+                SetProperty(ref _errorHappend, value);
+            }
+        }
+
 
         private string _name;
         public string Name

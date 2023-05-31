@@ -18,6 +18,17 @@ namespace HCI_main_project.ViewModel
     {
         public Boolean _firstLoad = true;
 
+        private bool _errorHappend;
+        public bool ErrorHappend
+        {
+            get => _errorHappend;
+            set
+            {
+                SetProperty(ref _errorHappend, value);
+            }
+        }
+
+
         private string _email;
         public string Email
         {
@@ -53,10 +64,12 @@ namespace HCI_main_project.ViewModel
         {
             try
             {
+                ErrorHappend = false;
                 ApplicationHelper.User = this.service.Login(Email, Password);
             }
             catch (Exception ex)
             {
+                ErrorHappend = true;
                 // do something
             }
         }

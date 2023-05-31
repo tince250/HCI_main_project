@@ -15,6 +15,10 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
         <Image Grid.Row="0" Grid.Column="0" Margin="0, 60">
             <Image.Source>
@@ -85,6 +89,32 @@
 
 
         </Grid>
+
+        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Background="{StaticResource OrangeColor}" Margin="20, 10" CornerRadius="25" Opacity="0" Width="400">
+            <Border.Style>
+                <Style TargetType="{x:Type Border}">
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=ErrorHappend}" Value="true"/>
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation 
+                                            Storyboard.TargetProperty="Opacity"
+                                            Duration="0:0:4" From="1" To="0"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiDataTrigger.EnterActions>
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <TextBlock FontSize="18" Foreground="White" TextAlignment="Center" VerticalAlignment="Center">
+                <Run Text="Bad credentials! Please, try again."/>
+            </TextBlock>
+        </Border>
         
     </Grid>
 </Page>
