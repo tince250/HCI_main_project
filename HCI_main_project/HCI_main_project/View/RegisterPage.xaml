@@ -137,7 +137,7 @@
                 </Style>
             </Border.Style>
             <TextBlock FontSize="18" Foreground="White" TextAlignment="Center" VerticalAlignment="Center">
-                <Run Text="Something went wrong! Please, try again."/>
+                <Run Text="User with given email already exists."/>
             </TextBlock>
         </Border>
     </Grid>
