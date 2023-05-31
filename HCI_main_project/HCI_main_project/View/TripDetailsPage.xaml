@@ -5,10 +5,46 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:HCI_main_project.View" xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="850" d:DesignWidth="1000"
       Title="TripDetails">
 
     <Grid>
-        <m:Map CredentialsProvider="Kj3TXYFWtOhdSJsEwaRg~MYtBweETdCEyT2r6ULdioA~AnDgeIBQnE12E3dWCqRoZDwCljaffq0SmrInOH5-FEHBGfLzqbwDBsLm0ewXkMHy" x:Name="myMap"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+
+        <Button
+                Command="{Binding Path=LoginClickCommand}"
+                Grid.Row="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Margin="10"
+                Height="60"
+                MinWidth="140"
+                MaxWidth="200"
+                FontSize="16"
+                FontWeight="Bold"
+                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                Style="{StaticResource MaterialDesignRaisedButton}"
+                ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
+                Background="{StaticResource ButtonLightBlueColor}"
+                Foreground="{StaticResource WhiteColor}">
+
+            <TextBlock Text="&lt;- Go back" />
+
+        </Button>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+        </Grid>
+
+
+        <!--<m:Map Credentialsprovider="Kj3TXYFWtOhdSJsEwaRg~MYtBweETdCEyT2r6ULdioA~AnDgeIBQnE12E3dWCqRoZDwCljaffq0SmrInOH5-FEHBGfLzqbwDBsLm0ewXkMHy" x:Name="myMap"/>-->
     </Grid>
 </Page>

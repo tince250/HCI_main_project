@@ -54,6 +54,7 @@
                 <TextBox
                         Grid.Row="3"
                         VerticalAlignment="Top"
+                        MaxLength="20"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
                         Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=Name, ValidatesOnDataErrors=true, NotifyOnValidationError=true}">
                 </TextBox>
@@ -62,6 +63,7 @@
                 <TextBox
                         Grid.Row="5"
                         VerticalAlignment="Top"
+                        MaxLength="20"                        
                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
                     Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=LastName, ValidatesOnDataErrors=true, NotifyOnValidationError=true}">
                 </TextBox>
@@ -70,6 +72,7 @@
                 <TextBox
                         Grid.Row="7"
                         VerticalAlignment="Top"
+                        MaxLength="20"                    
                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
                     Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=Email, ValidatesOnDataErrors=true, NotifyOnValidationError=true}">
                 </TextBox>

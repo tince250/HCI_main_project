@@ -49,6 +49,7 @@
             <TextBox
                     Grid.Row="2"
                     VerticalAlignment="Top"
+                    MaxLength="20"
                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
                     Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=Email, ValidatesOnDataErrors=true, NotifyOnValidationError=true}">
             </TextBox>

@@ -6,7 +6,7 @@
     <Application.Resources>
 
         <ResourceDictionary>
-            <Style TargetType="{x:Type Window}">
+            <Style TargetType="{x:Type Page}">
                 <Setter Property="FontFamily" Value="./Fonts/#Poppins" />
             </Style>
 
