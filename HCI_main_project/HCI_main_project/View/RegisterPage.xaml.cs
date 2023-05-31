@@ -1,4 +1,6 @@
-﻿using HCI_main_project.ViewModel;
+﻿using HCI_main_project.Components;
+using HCI_main_project.ViewModel;
+using MaterialDesignThemes.Wpf;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -30,7 +32,26 @@ namespace HCI_main_project.View
         public RegisterPage()
         {
             InitializeComponent();
-            DataContext = App.serviceProvider.GetRequiredService<RegisterViewModel>();
+            viewModel = App.serviceProvider.GetRequiredService<RegisterViewModel>();
+            DataContext = viewModel;
+        }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            BindingExpression bindingExpr = textBox.GetBindingExpression(TextBox.TextProperty);
+
+            // Manually trigger the validation
+            bindingExpr.UpdateSource();
+        }
+
+
+        private void PasswordBox_Changed(object sender, RoutedEventArgs e)
+        {
+            BindablePasswordBox passwordBox = (BindablePasswordBox)sender;
+            BindingExpression bindingExpr = passwordBox.GetBindingExpression(BindablePasswordBox.PasswordProperty);
+            bindingExpr.UpdateSource();
+
         }
 
     }

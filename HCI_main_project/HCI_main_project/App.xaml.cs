@@ -50,7 +50,7 @@ namespace HCI_main_project
         {
             base.OnStartup(e);
             this.StartupUri =
-             new Uri("View/TripDetailsPage.xaml", UriKind.Relative);
+             new Uri("View/LoginPage.xaml", UriKind.Relative);
         }
 
         protected override void OnNavigated(NavigationEventArgs e)

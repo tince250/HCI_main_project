@@ -28,6 +28,16 @@ namespace HCI_main_project.ViewModel
             }
         }
 
+        private string _errorMessage;
+        public string ErrorMessage
+        {
+            get => _errorMessage;
+            set
+            {
+                SetProperty(ref _errorMessage, value);
+            }
+        }
+
 
         private string _email;
         public string Email
@@ -65,12 +75,18 @@ namespace HCI_main_project.ViewModel
             try
             {
                 ErrorHappend = false;
-                ApplicationHelper.User = this.service.Login(Email, Password);
+                if (validate("Email") == null && validate("Password") == null)
+                    ApplicationHelper.User = this.service.Login(Email, Password);
+                else
+                {
+                    ErrorMessage = "Check your inputs.";
+                    ErrorHappend = true;
+                }
             }
             catch (Exception ex)
             {
+                ErrorMessage = "Bad credentials. Please, try again.";
                 ErrorHappend = true;
-                // do something
             }
         }
 
@@ -84,31 +100,38 @@ namespace HCI_main_project.ViewModel
         {
             get
             {
-                string result = null;
-                if (_firstLoad) { return result; }
-                if (columnName == "Email")
-                {
-                    if (string.IsNullOrEmpty(Email))
-                        result = "Please enter a email";
-
-                    try
-                    {
-                        MailAddress m = new MailAddress(Email);
-                    }
-                    catch (Exception)
-                    {
-                        result = "Invalid email format";
-                    }
-                }
-                if (columnName == "Password")
-                {
-                    if (string.IsNullOrEmpty(Password))
-                        result = "Please enter a password";
-                    if (Password.Length < 8)
-                        result = "8 characters or longer";
-                }
-                return result;
+                return validate(columnName);
             }
+        }
+
+        private string validate(string columnName)
+        {
+            string result = null;
+            if (_firstLoad) { return result; }
+            if (columnName == "Email")
+            {
+                if (string.IsNullOrEmpty(Email))
+                    result = "Please enter a email";
+
+                try
+                {
+                    MailAddress m;
+                    if (!string.IsNullOrEmpty(Email))
+                        m = new MailAddress(Email);
+                }
+                catch (Exception)
+                {
+                    result = "Invalid email format";
+                }
+            }
+            if (columnName == "Password")
+            {
+                if (string.IsNullOrEmpty(Password))
+                    result = "Please enter a password";
+                if (!string.IsNullOrEmpty(Password) && Password.Length < 8)
+                    result = "8 characters or longer";
+            }
+            return result;
         }
 
         #endregion

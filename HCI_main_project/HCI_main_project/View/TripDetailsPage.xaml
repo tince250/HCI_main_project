@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:HCI_main_project.View" xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
       mc:Ignorable="d" 
-      d:DesignHeight="850" d:DesignWidth="1000"
+      d:DesignHeight="650" d:DesignWidth="800"
       Title="TripDetails">
 
     <Grid>
@@ -42,9 +42,23 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
+            <m:Map Grid.Column="1"  CredentialsProvider="Kj3TXYFWtOhdSJsEwaRg~MYtBweETdCEyT2r6ULdioA~AnDgeIBQnE12E3dWCqRoZDwCljaffq0SmrInOH5-FEHBGfLzqbwDBsLm0ewXkMHy" x:Name="myMap"/>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition Height="1.4*"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="Podunavlje" FontSize="40" TextAlignment="Center"/>
+                <Separator Grid.Row="0" VerticalAlignment="Bottom" Margin="50,0" Background="{StaticResource OrangeColor}" BorderBrush="{StaticResource OrangeColor}"/>
+                <Label Grid.Row="1" VerticalAlignment="Bottom" Content="Trip description:" FontSize="24" Margin="20, 10, 20, 0" FontWeight="Bold"/>
+                <TextBlock Margin="20, 0" TextWrapping="WrapWithOverflow" Grid.Row="2" Height="Auto" VerticalAlignment="Stretch">Lorem ipsum dolor sit amet consectetur. Viverra aliquam sed enim massa pulvinar sed cursus eget purus. Purus orci integer ipsum cursus quisque dignissim massa. Ut vestibulum libero nunc sodales enim urna. Vivamus turpis tempus eleifend netus potenti facilisis sed ornare.</TextBlock>
+               
+            </Grid>
+
         </Grid>
 
 
-        <!--<m:Map Credentialsprovider="Kj3TXYFWtOhdSJsEwaRg~MYtBweETdCEyT2r6ULdioA~AnDgeIBQnE12E3dWCqRoZDwCljaffq0SmrInOH5-FEHBGfLzqbwDBsLm0ewXkMHy" x:Name="myMap"/>-->
     </Grid>
 </Page>

@@ -30,15 +30,15 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="55"/>
                     <RowDefinition Height="20"/>
-                    <RowDefinition Height="32"/>
+                    <RowDefinition Height="40"/>
                     <RowDefinition Height="55"/>
-                    <RowDefinition Height="32"/>
+                    <RowDefinition Height="40"/>
                     <RowDefinition Height="55"/>
-                    <RowDefinition Height="32"/>
+                    <RowDefinition Height="40"/>
                     <RowDefinition Height="55"/>
-                    <RowDefinition Height="32"/>
+                    <RowDefinition Height="40"/>
                     <RowDefinition Height="55"/>
-                    <RowDefinition Height="32"/>
+                    <RowDefinition Height="40"/>
                     <RowDefinition Height="55"/>
                     <RowDefinition MinHeight="20" MaxHeight="40"/>
                     <RowDefinition />
@@ -56,7 +56,8 @@
                         VerticalAlignment="Top"
                         MaxLength="20"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                        Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=Name, ValidatesOnDataErrors=true, NotifyOnValidationError=true}">
+                        Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=Name, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"
+                        LostFocus="TextBox_LostFocus">
                 </TextBox>
 
                 <Label Grid.Row="4" Content="Last name:" VerticalContentAlignment="Bottom" FontSize="20"/>
@@ -65,7 +66,8 @@
                         VerticalAlignment="Top"
                         MaxLength="20"                        
                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                    Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=LastName, ValidatesOnDataErrors=true, NotifyOnValidationError=true}">
+                    Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=LastName, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"
+                     LostFocus="TextBox_LostFocus">
                 </TextBox>
 
                 <Label Grid.Row="6" Content="Email:" VerticalContentAlignment="Bottom" FontSize="20"/>
@@ -74,18 +76,21 @@
                         VerticalAlignment="Top"
                         MaxLength="20"                    
                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     LostFocus="TextBox_LostFocus"
                     Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=Email, ValidatesOnDataErrors=true, NotifyOnValidationError=true}">
                 </TextBox>
 
 
                 <Label Grid.Row="8" Content="Password:" VerticalContentAlignment="Bottom" FontSize="20"/>
                 <components:BindablePasswordBox Grid.Row="9"
-                        Password="{Binding Path=Password, Mode=TwoWay, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" />
+                        Password="{Binding Path=Password, Mode=TwoWay, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"
+                                                 LostFocus="PasswordBox_Changed"/>
 
 
                 <Label Grid.Row="10" Content="Confirm password:" VerticalContentAlignment="Bottom" FontSize="20"/>
                 <components:BindablePasswordBox Grid.Row="11"
-                        Password="{Binding Path=ConfirmPassword, Mode=TwoWay, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" />
+                        Password="{Binding Path=ConfirmPassword, Mode=TwoWay, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" 
+                                                LostFocus="PasswordBox_Changed"/>
 
 
                 <Button
@@ -140,7 +145,7 @@
                 </Style>
             </Border.Style>
             <TextBlock FontSize="18" Foreground="White" TextAlignment="Center" VerticalAlignment="Center">
-                <Run Text="User with given email already exists."/>
+                <Run Text="{Binding Path=ErrorMessage}"/>
             </TextBlock>
         </Border>
     </Grid>

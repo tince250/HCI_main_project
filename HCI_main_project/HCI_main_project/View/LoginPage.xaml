@@ -51,13 +51,15 @@
                     VerticalAlignment="Top"
                     MaxLength="20"
                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                    Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=Email, ValidatesOnDataErrors=true, NotifyOnValidationError=true}">
+                    Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=Email, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"
+                LostFocus="TextBox_LostFocus">
             </TextBox>
 
 
             <Label Grid.Row="3" Content="Password:" VerticalContentAlignment="Bottom" FontSize="20"/>
             <components:BindablePasswordBox Grid.Row="4"
-                    Password="{Binding Path=Password, Mode=TwoWay, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" />
+                    Password="{Binding Path=Password, Mode=TwoWay, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"
+                                            LostFocus="PasswordBox_Changed"/>
 
             <Button
                 Command="{Binding Path=LoginClickCommand}"
@@ -113,7 +115,7 @@
                 </Style>
             </Border.Style>
             <TextBlock FontSize="18" Foreground="White" TextAlignment="Center" VerticalAlignment="Center">
-                <Run Text="Bad credentials! Please, try again."/>
+                <Run Text="{Binding Path=ErrorMessage}"/>
             </TextBlock>
         </Border>
         
