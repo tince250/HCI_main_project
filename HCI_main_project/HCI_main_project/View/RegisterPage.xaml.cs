@@ -1,4 +1,5 @@
 ﻿using HCI_main_project.ViewModel;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,16 +23,15 @@ namespace HCI_main_project.View
     public partial class RegisterPage : Page
     {
         private readonly RegisterViewModel viewModel;
-        public RegisterPage(RegisterViewModel viewModel)
+
+        //public RegisterPage()
+        //{
+        //}
+        public RegisterPage()
         {
             InitializeComponent();
-            DataContext = viewModel;
-            this.viewModel = viewModel;
+            DataContext = App.serviceProvider.GetRequiredService<RegisterViewModel>();
         }
 
-        private void SwitchToLogin(object sender, RoutedEventArgs e)
-        {
-            //NavigationService.GetNavigationService(this).Navigate(loginPage);
-        }
     }
 }

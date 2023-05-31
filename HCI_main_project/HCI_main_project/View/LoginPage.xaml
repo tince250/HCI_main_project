@@ -3,10 +3,12 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:HCI_main_project.View" xmlns:components="clr-namespace:HCI_main_project.Components"
+      xmlns:local="clr-namespace:HCI_main_project.View" xmlns:components="clr-namespace:HCI_main_project.Components" xmlns:viewModels="clr-namespace:HCI_main_project.ViewModel"
       mc:Ignorable="d" 
-      d:DesignHeight="650" d:DesignWidth="800"
-      Title="LoginPage">
+      d:DesignHeight="850" d:DesignWidth="1000"
+      Title="LoginPage"
+      >
+    
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -72,7 +74,12 @@
 
             <StackPanel Grid.Row="7" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Label FontWeight="Bold" Content="Don't have an account? " VerticalContentAlignment="Center" FontSize="17"></Label>
-                <Label MouseLeftButtonUp="SwitchToRegister" FontWeight="Bold" Content="Register" VerticalContentAlignment="Center" FontSize="17" Foreground="{StaticResource OrangeColor}"></Label>
+         
+                <Label FontWeight="Bold" VerticalContentAlignment="Center" FontSize="17" Foreground="{StaticResource OrangeColor}">
+                    <Hyperlink NavigateUri="RegisterPage.xaml" FontWeight="Bold" FontSize="17" Foreground="{StaticResource OrangeColor}">
+                        Register
+                    </Hyperlink>
+                </Label>
 
             </StackPanel>
 

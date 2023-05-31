@@ -22,7 +22,7 @@ namespace HCI_main_project
     /// </summary>
     public partial class App : Application
     {
-        private ServiceProvider serviceProvider;
+        public static ServiceProvider serviceProvider;
 
         private static NavigationService navigator;
 
@@ -44,7 +44,7 @@ namespace HCI_main_project
             services.AddSingleton<LoginViewModel>();
             services.AddSingleton<RegisterViewModel>();
             services.AddSingleton<LoginPage>();
-            services.AddSingleton<RegisterPage>();
+            //services.AddSingleton<RegisterPage>();
         }
         protected override async void OnStartup(StartupEventArgs e)
         {

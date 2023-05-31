@@ -19,12 +19,10 @@ namespace HCI_main_project.ViewModel
         private readonly DelegateCommand _registerClickCommand;
         public ICommand RegisterClickCommand => _registerClickCommand;
         private readonly IAuthService service;
-        //private readonly LoginPage loginPage;
 
         public RegisterViewModel(IAuthService service) 
         {
             _firstLoad = true;
-            //this.loginPage = loginPage;
             this.service = service;
             _registerClickCommand = new DelegateCommand(OnRegisterClick);
         }
@@ -43,7 +41,6 @@ namespace HCI_main_project.ViewModel
                 };
                 service.Register(newUser);
                 ApplicationHelper.User = service.GetByEmail(Email);
-                //ApplicationHelper.NavigationService.Navigate(loginPage);
 
             }
             catch (Exception ex)

@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:HCI_main_project.View" xmlns:components="clr-namespace:HCI_main_project.Components"
       mc:Ignorable="d" 
-      d:DesignHeight="650" d:DesignWidth="800"
+      d:DesignHeight="850" d:DesignWidth="1000"
       Title="RegisterPage">
 
     <Grid>
@@ -58,7 +58,7 @@
                     Grid.Row="5"
                     VerticalAlignment="Top"
                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=LastName, ValidatesOnDataErrors=true, NotifyOnValidationError=true}">
+                Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=Name, ValidatesOnDataErrors=true, NotifyOnValidationError=true}">
             </TextBox>
 
             <Label Grid.Row="6" Content="Email:" VerticalContentAlignment="Bottom" FontSize="20"/>
@@ -100,8 +100,11 @@
 
             <StackPanel Grid.Row="14" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Label FontWeight="Bold" Content="Already have an account? " VerticalContentAlignment="Center" FontSize="17"></Label>
-                <Label MouseLeftButtonUp="SwitchToLogin" FontWeight="Bold" Content="Log in" VerticalContentAlignment="Center" FontSize="17" Foreground="{StaticResource OrangeColor}"></Label>
-
+                <Label FontWeight="Bold" VerticalContentAlignment="Center" FontSize="17" Foreground="{StaticResource OrangeColor}">
+                    <Hyperlink NavigateUri="LoginPage.xaml" FontWeight="Bold" FontSize="17" Foreground="{StaticResource OrangeColor}">
+                        Login
+                    </Hyperlink>
+                </Label>
             </StackPanel>
 
         </Grid>

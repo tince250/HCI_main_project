@@ -42,11 +42,9 @@ namespace HCI_main_project.ViewModel
         public ICommand LoginClickCommand => _loginClickCommand;
 
         private readonly IAuthService service;
-        private readonly RegisterPage registerPage;
-        public LoginViewModel(IAuthService service, RegisterPage registerPage)
+        public LoginViewModel(IAuthService service)
         {
             this.service = service;
-            this.registerPage = registerPage;
             _firstLoad = true;
             _loginClickCommand = new DelegateCommand(OnLoginClick);
         }
@@ -56,7 +54,6 @@ namespace HCI_main_project.ViewModel
             try
             {
                 ApplicationHelper.User = this.service.Login(Email, Password);
-                ApplicationHelper.NavigationService.Navigate(registerPage);
             }
             catch (Exception ex)
             {
