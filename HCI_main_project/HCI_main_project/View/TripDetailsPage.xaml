@@ -126,6 +126,52 @@
 
         </Grid>
 
+        <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+            <Button
+                Command="{Binding Path=LoginClickCommand}"
+                Grid.Row="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Margin="10"
+                Height="60"
+                MinWidth="140"
+                MaxWidth="200"
+                FontSize="16"
+                FontWeight="Bold"
+               
+                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                Style="{StaticResource MaterialDesignRaisedButton}"
+                ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
+                Background="{StaticResource OrangeColor}"
+                Foreground="{StaticResource WhiteColor}">
+
+                <TextBlock Text="Reserve" />
+
+            </Button>
+
+            <Button
+                Command="{Binding Path=LoginClickCommand}"
+                Grid.Row="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Margin="10"
+                Height="60"
+                MinWidth="140"
+                MaxWidth="200"
+                FontSize="16"
+                FontWeight="Bold"
+               
+                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                Style="{StaticResource MaterialDesignRaisedButton}"
+                ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
+                Background="{StaticResource ButtonLightBlueColor}"
+                Foreground="{StaticResource WhiteColor}">
+
+                <TextBlock Text="Book now" />
+
+            </Button>
+        </StackPanel>
+
 
     </Grid>
 </Page>
