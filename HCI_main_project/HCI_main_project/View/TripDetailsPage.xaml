@@ -13,6 +13,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="5*" />
             <RowDefinition Height="4*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Button
@@ -26,6 +27,7 @@
                 MaxWidth="200"
                 FontSize="16"
                 FontWeight="Bold"
+               
                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                 Style="{StaticResource MaterialDesignRaisedButton}"
                 ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
@@ -54,7 +56,72 @@
                 <Separator Grid.Row="0" VerticalAlignment="Bottom" Margin="50,0" Background="{StaticResource OrangeColor}" BorderBrush="{StaticResource OrangeColor}"/>
                 <Label Grid.Row="1" VerticalAlignment="Bottom" Content="Trip description:" FontSize="24" Margin="20, 10, 20, 0" FontWeight="Bold"/>
                 <TextBlock Margin="20, 0" TextWrapping="WrapWithOverflow" Grid.Row="2" Height="Auto" VerticalAlignment="Stretch">Lorem ipsum dolor sit amet consectetur. Viverra aliquam sed enim massa pulvinar sed cursus eget purus. Purus orci integer ipsum cursus quisque dignissim massa. Ut vestibulum libero nunc sodales enim urna. Vivamus turpis tempus eleifend netus potenti facilisis sed ornare.</TextBlock>
-               
+
+            </Grid>
+
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Content="Attractions:" FontWeight="Bold" VerticalAlignment="Center" FontSize="18" Margin="10 0"/>
+                <Ellipse VerticalAlignment="Center" Width="20" Height="20" Margin="133,0,114,0" Stroke="#257FBD">
+                    <Ellipse.Fill>
+                        <RadialGradientBrush>
+                            <GradientStop Color="#257FBD"/>
+                        </RadialGradientBrush>
+                    </Ellipse.Fill>
+                </Ellipse>
+
+                <Rectangle Grid.Row="1" Margin="10, 0, 10, 10" Stroke="#717171"></Rectangle>
+
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Content="Accomodation:" FontWeight="Bold" VerticalAlignment="Center" FontSize="18" Margin="10 0"/>
+                <Ellipse VerticalAlignment="Center" Width="20" Height="20" Margin="168,0,79,0" Stroke="#F5AA39" RenderTransformOrigin="5.12,0.6">
+                    <Ellipse.Fill>
+                        <RadialGradientBrush>
+                            <GradientStop Color="#F5AA39"/>
+                        </RadialGradientBrush>
+                    </Ellipse.Fill>
+                </Ellipse>
+
+                <Rectangle Grid.Row="1" Margin="10, 0, 10, 10" Stroke="#717171"></Rectangle>
+
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Content="Restaurants:" FontWeight="Bold" VerticalAlignment="Center" FontSize="18" Margin="10 0"/>
+                <Ellipse VerticalAlignment="Center" Width="20" Height="20" Margin="147,0,100,0" Stroke="#18B315" RenderTransformOrigin="1.978,0.66">
+                    <Ellipse.Fill>
+                        <RadialGradientBrush>
+                            <GradientStop Color="#18B315"/>
+                        </RadialGradientBrush>
+                    </Ellipse.Fill>
+                </Ellipse>
+
+                <Rectangle Grid.Row="1" Margin="10, 0, 10, 10" Stroke="#717171"></Rectangle>
+
             </Grid>
 
         </Grid>
