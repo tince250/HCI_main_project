@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HCI_main_project.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace HCI_main_project.View
         public TripDetails()
         {
             InitializeComponent();
+            DataContext = new TripDetailsViewModel();
         }
     }
 }

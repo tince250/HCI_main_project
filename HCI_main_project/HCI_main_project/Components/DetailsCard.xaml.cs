@@ -1,4 +1,5 @@
-﻿using HCI_main_project.Models;
+﻿using HCI_main_project.Model.Entities;
+using HCI_main_project.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,14 +22,14 @@ namespace HCI_main_project.Components
     /// </summary>
     public partial class DetailsCard : UserControl
     {
-        public static readonly DependencyProperty AttractionProperty =
-            DependencyProperty.Register("Attraction", typeof(Attraction), typeof(DetailsCard),
+        public static readonly DependencyProperty ContentProperty =
+            DependencyProperty.Register("ContentProperty", typeof(DetailsCardContent), typeof(DetailsCard),
                 new PropertyMetadata(null));
 
-        public Attraction Attraction
+        public DetailsCardContent DetailsContent
         {
-            get { return (Attraction)GetValue(AttractionProperty); }
-            set { SetValue(AttractionProperty, value); }
+            get { return (DetailsCardContent)GetValue(ContentProperty); }
+            set { SetValue(ContentProperty, value); }
         }
 
 

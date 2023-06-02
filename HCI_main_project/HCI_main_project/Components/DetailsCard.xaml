@@ -6,10 +6,10 @@
              xmlns:local="clr-namespace:HCI_main_project.Components" xmlns:MaterialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="850" d:DesignWidth="1000">
-    <MaterialDesign:Card Width="250" Height="100">
+    <MaterialDesign:Card MinWidth="380" MaxWidth="400"  Height="100">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2.5*"/>
+                <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
@@ -19,8 +19,8 @@
                     <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Text="{Binding Path=Attraction.Name}" VerticalAlignment="Center" Margin="10, 0" FontSize="15"/>
-                <TextBlock Grid.Row="1" Text="{Binding Path=Attraction.Address}" VerticalAlignment="Top" Margin="10, 0" FontSize="11"/>
+                <TextBlock Grid.Row="0" Text="{Binding Path=DetailsContent.Name}" VerticalAlignment="Center" Margin="10, 0" FontSize="15"/>
+                <TextBlock Grid.Row="1" Text="{Binding Path=DetailsContent.Description}" VerticalAlignment="Top" Margin="10, 0" FontSize="11"/>
 
             </Grid>
 
