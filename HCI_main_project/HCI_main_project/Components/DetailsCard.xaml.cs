@@ -23,11 +23,11 @@ namespace HCI_main_project.Components
     {
         public static readonly DependencyProperty AttractionProperty =
             DependencyProperty.Register("Attraction", typeof(Attraction), typeof(DetailsCard),
-                new PropertyMetadata(new Attraction()));
+                new PropertyMetadata(null));
 
-        public string Attraction
+        public Attraction Attraction
         {
-            get { return (string)GetValue(AttractionProperty); }
+            get { return (Attraction)GetValue(AttractionProperty); }
             set { SetValue(AttractionProperty, value); }
         }
 
