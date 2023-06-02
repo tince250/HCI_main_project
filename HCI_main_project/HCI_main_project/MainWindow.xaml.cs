@@ -1,4 +1,6 @@
 ﻿using HCI_main_project.Models;
+using MaterialDesignExtensions.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -25,27 +27,15 @@ namespace HCI_main_project
         TripagoContext dbContext;
         public MainWindow(TripagoContext tripagoContext)
         {
-            this.dbContext = tripagoContext;
-            this.dbContext.Database.EnsureCreated();
-
             InitializeComponent();
 
-            Console.WriteLine("Adding some authors into database...");
-            User user = new User
-            {
-                Email = "user@gmail.com",
-                FirstName = "tina",
-                LastName = "miha",
-                Password = "123",
-                Role = UserRole.TRAVELER
-            };
-            this.dbContext.Users.Add(user);
-            this.dbContext.SaveChanges();
+            // Set the DataContext of the AddRestaurantPage to the restaurant object
+            AddRestaurantPage addRestaurantPage = new AddRestaurantPage(tripagoContext.Restaurants.Include(r => r.Address).FirstOrDefault(r => r.Id == 8));
 
-            foreach (User user1 in this.dbContext.Users)
-            {
-                Trace.WriteLine(user1.FirstName);
-            }
+            // Set the content of the Frame to the AddRestaurantPage
+            Frame.Content = addRestaurantPage;
         }
+
+
     }
 }

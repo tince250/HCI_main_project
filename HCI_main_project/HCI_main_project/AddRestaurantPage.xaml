@@ -1,0 +1,213 @@
+﻿<Page x:Class="HCI_main_project.AddRestaurantPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HCI_main_project"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      xmlns:converters="http://materialdesigninxaml.net/winfx/xaml/themes/converters"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:controls="clr-namespace:HCI_main_project.UserControls"
+      xmlns:viewModels="clr-namespace:HCI_main_project.ViewModels">
+    <StackPanel>
+
+        <Grid>
+            <Button Height="50"
+            MinWidth="170"
+            MaxWidth="250"
+            FontWeight="SemiBold"
+            FontSize="24"
+            materialDesign:ButtonAssist.CornerRadius="25"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+            Style="{StaticResource MaterialDesignRaisedButton}"
+            Background="{StaticResource BackButtonColor}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="top"
+            Margin="15,5,0,0"
+            Foreground="{StaticResource WhiteColor}">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon  Kind="ArrowLeft" Width="30" Height="30" Style="{DynamicResource StepperNumberIcon}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="-10,0,0,0" />
+                    <TextBlock  Text="Go back" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,4"/>
+                </StackPanel>
+            </Button>
+            <TextBlock Style="{StaticResource Title}" HorizontalAlignment="Center" Margin="0,25,0,0" VerticalAlignment="Bottom">Add restaurant</TextBlock>
+
+        </Grid>
+        <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical" >
+            <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="Auto" Width="500" Margin="0,20,0,0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <StackPanel Width="auto" Height="auto">
+                        <Button Command="{Binding BackButtonRestaurantCommand}">
+                            <materialDesign:PackIcon Kind="Numeric1" Style="{DynamicResource StepperNumberIcon}" />
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFloatingActionDarkButton}">
+                                    <Setter Property="Background" Value="{DynamicResource ButtonLightBlueColor}"/>
+                                    <Setter Property="IsEnabled" Value="False"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsEnabled" Value="False">
+                                            <Setter Property="Opacity" Value="0.8" />
+                                        </Trigger>
+                                        <DataTrigger Binding="{Binding Path=IsFillAddressButtonClicked}" Value="True">
+                                            <Setter Property="Background" Value="{DynamicResource OrangeColor}" />
+                                            <Setter Property="BorderBrush" Value="{DynamicResource OrangeColor}"/>
+                                            <Setter Property="IsEnabled" Value="True"/>
+
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <TextBlock HorizontalAlignment="Center" Text="General info" FontSize="24">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="{DynamicResource ButtonLightBlueColor}"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=IsFillAddressButtonClicked}" Value="True">
+                                            <Setter Property="Foreground" Value="{DynamicResource OrangeColor}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </StackPanel>
+                    <materialDesign:PackIcon>
+                        <materialDesign:PackIcon.Style>
+                            <Style TargetType="materialDesign:PackIcon" BasedOn="{StaticResource StepperArrowIcon}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=IsFillAddressButtonClicked}" Value="True">
+                                        <Setter Property="Foreground" Value="{DynamicResource OrangeColor}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </materialDesign:PackIcon.Style>
+                    </materialDesign:PackIcon>
+                    <StackPanel Width="auto" Height="auto">
+                        <Button IsEnabled="False">
+                            <materialDesign:PackIcon  Kind="Numeric2" Style="{DynamicResource StepperNumberIcon}" />
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFloatingActionDarkButton}">
+                                    <Setter Property="Background" Value="{DynamicResource GrayColor}"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsEnabled" Value="False">
+                                            <Setter Property="Opacity" Value="1" />
+                                            <Setter Property="BorderBrush" Value="{DynamicResource GrayColor}"/>
+                                        </Trigger>
+                                        <DataTrigger Binding="{Binding Path=IsFillAddressButtonClicked}" Value="True">
+                                            <Setter Property="Background" Value="{DynamicResource ButtonLightBlueColor}" />
+                                            <Setter Property="BorderBrush" Value="{DynamicResource ButtonLightBlueColor}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <TextBlock HorizontalAlignment="Center" Text="Address info" FontSize="24">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="{DynamicResource GrayColor}"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=IsFillAddressButtonClicked}" Value="True">
+                                            <Setter Property="Foreground" Value="{DynamicResource ButtonLightBlueColor}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+
+            <Grid x:Name="controls" VerticalAlignment="Top" Height="Auto" Margin="0,10,0,0">
+                <controls:NameAndPhotoFormControl DataContext="{Binding NameAndPhotoFormViewModel}" x:Name="nameAndPhotoFormControl" Width="500">
+                    <controls:NameAndPhotoFormControl.Style>
+                        <Style TargetType="controls:NameAndPhotoFormControl">
+                            <Setter Property="Visibility" Value="Visible" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding DataContext.IsFillAddressButtonClicked, RelativeSource={RelativeSource AncestorType={x:Type viewModels:AddRestaurantPageViewModel}}}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </controls:NameAndPhotoFormControl.Style>
+                </controls:NameAndPhotoFormControl>
+
+                <Grid HorizontalAlignment="Stretch" Margin="0,0,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsFillAddressButtonClicked}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+                    <controls:AddressFormControl DataContext="{Binding AddressFormViewModel}" x:Name="addressFormControl" Grid.Column="0" Margin="15,0,15,0"/>
+                </Grid>
+
+            </Grid>
+
+            <StackPanel Margin="0,-10,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
+
+                <Button Height="50"
+            MinWidth="170"
+            MaxWidth="250"
+            FontWeight="SemiBold"
+            FontSize="24"
+            materialDesign:ButtonAssist.CornerRadius="25"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+            Background="{StaticResource ButtonLightBlueColor}"
+            HorizontalAlignment="Left"
+            Margin="15,15,5,10"
+            Foreground="{StaticResource WhiteColor}" Command="{Binding BackButtonRestaurantCommand}">
+                    <Button.Style>
+                        
+                        <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedLightButton}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsFillAddressButtonClicked}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <TextBlock  Text="Back" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,4"/>
+                </Button>
+
+                <Button Height="50"
+            MinWidth="170"
+            MaxWidth="250"
+            FontWeight="SemiBold"
+            FontSize="24"
+            materialDesign:ButtonAssist.CornerRadius="25"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+            Background="{StaticResource OrangeColor}"
+            Margin="15,15,5,10"
+            Foreground="{StaticResource WhiteColor}">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedLightButton}">
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource OrangeColor}"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsFillAddressButtonClicked}" Value="True">
+                                    <Setter Property="HorizontalAlignment" Value="Right" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsFillAddressButtonClicked}" Value="True">
+                                    <Setter Property="Command" Value="{Binding AddRestaurantCommand}" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsFillAddressButtonClicked}" Value="False">
+                                    <Setter Property="Command" Value="{Binding FillAddressButtonRestaurantCommand}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <TextBlock  Text="{Binding Path=NextButtonText}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,4"/>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</Page>

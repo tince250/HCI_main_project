@@ -15,5 +15,17 @@ namespace HCI_main_project.Models
         public int PostalCode { get; set; }
         public string Street { get; set; }
         public int StreetNumber { get; set; }
+
+        public Address()
+        {
+
+        }
+        public Address(string city, int postalCode, string street, int streetNumber)
+        {
+            City = city;
+            PostalCode = postalCode;
+            Street = street;
+            StreetNumber = streetNumber;
+        }
     }
 }

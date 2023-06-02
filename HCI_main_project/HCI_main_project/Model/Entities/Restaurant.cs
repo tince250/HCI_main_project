@@ -18,5 +18,16 @@ namespace HCI_main_project.Models
         [ForeignKey("Address")]
         public int AddressId { get; set; }
         public virtual Address Address { get; set; }
+
+        public Restaurant()
+        {
+
+        }
+        public Restaurant(string name, string image, Address address)
+        {
+            Name = name;
+            Image = image;
+            Address = address;
+        }
     }
 }

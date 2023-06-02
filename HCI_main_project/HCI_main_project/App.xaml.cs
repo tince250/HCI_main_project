@@ -1,4 +1,7 @@
-﻿using HCI_main_project.Models;
+﻿using HCI_main_project.Model.Services;
+using HCI_main_project.Models;
+using HCI_main_project.UserControls;
+using HCI_main_project.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -16,13 +19,16 @@ namespace HCI_main_project
     /// </summary>
     public partial class App : Application
     {
-        private ServiceProvider serviceProvider;
+        public static ServiceProvider serviceProvider;
+
         public App()
         {
             ServiceCollection services = new ServiceCollection();
             ConfigureServices(services);
             serviceProvider = services.BuildServiceProvider();
         }
+
+        [STAThread]
         private void ConfigureServices(ServiceCollection services)
         {
             services.AddDbContext<TripagoContext>(options =>
@@ -31,11 +37,20 @@ namespace HCI_main_project
             });
 
             services.AddSingleton<MainWindow>();
+            services.AddSingleton<IRestaurantService, RestaurantService>();
+            services.AddTransient<AddRestaurantPage>();
+            services.AddTransient<AddressFormControl>();
+            services.AddTransient<NameAndPhotoFormControl>();
+            services.AddTransient<AddressFormViewModel>();
+            services.AddTransient<AddRestaurantPageViewModel>();
+            services.AddTransient<NameAndPhotoFormViewModel>();
         }
         private void OnStartup(object sender, StartupEventArgs e)
         {
             var mainWindow = serviceProvider.GetService<MainWindow>();
             mainWindow.Show();
         }
+
+        
     }
 }
