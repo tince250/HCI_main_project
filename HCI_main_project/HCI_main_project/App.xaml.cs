@@ -1,4 +1,5 @@
 ﻿using HCI_main_project.Models;
+using HCI_main_project.Pages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -16,7 +17,7 @@ namespace HCI_main_project
     /// </summary>
     public partial class App : Application
     {
-        private ServiceProvider serviceProvider;
+        public ServiceProvider serviceProvider;
         public App()
         {
             ServiceCollection services = new ServiceCollection();

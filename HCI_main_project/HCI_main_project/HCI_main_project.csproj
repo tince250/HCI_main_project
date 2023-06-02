@@ -9,6 +9,8 @@
 
   <ItemGroup>
     <None Remove="Fonts\poppinsr.ttf" />
+    <None Remove="Images\cele.jfif" />
+    <None Remove="Images\hram.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +28,15 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.5" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Attractions\cele.jfif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Tours\hram.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

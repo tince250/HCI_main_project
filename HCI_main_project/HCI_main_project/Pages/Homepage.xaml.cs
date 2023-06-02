@@ -1,5 +1,10 @@
-﻿using System;
+﻿using HCI_main_project.Models;
+using HCI_main_project.ViewModel;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +25,18 @@ namespace HCI_main_project.Pages
     /// </summary>
     public partial class Homepage : Page
     {
+        //public ObservableCollection<Tour> Tours { get; set; }
+        
+
+        //public Homepage() { }
         public Homepage()
         {
             InitializeComponent();
+            DataContext = new HomepageViewModel();
+            
+            
         }
+
+        
     }
 }

@@ -27,11 +27,18 @@
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
+                            <!--<Setter Property="Background" TargetName="Outline" Value="white"/>-->
+                            <!--<Setter Property="Background" TargetName="Grid" Value="white"/>
+                            <Setter Property="Foreground" TargetName="Label" Value="#257FBD"/>
+                            <Setter Property="Foreground" TargetName="Icon" Value="#257FBD"/>-->
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Trigger>
+
+                        <Trigger Property="IsChecked" Value="True">
                             <Setter Property="Background" TargetName="Outline" Value="white"/>
                             <Setter Property="Background" TargetName="Grid" Value="white"/>
                             <Setter Property="Foreground" TargetName="Label" Value="#257FBD"/>
                             <Setter Property="Foreground" TargetName="Icon" Value="#257FBD"/>
-                            <Setter Property="Cursor" Value="Hand"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

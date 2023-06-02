@@ -4,13 +4,25 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:HCI_main_project.Pages"
+      xmlns:model="clr-namespace:HCI_main_project.Models"
       xmlns:root="clr-namespace:HCI_main_project"
+      xmlns:conv="clr-namespace:HCI_main_project.Converters"
       xmlns:custom="clr-namespace:HCI_main_project.User_Controls"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Homepage"
       Background="White">
+
+    <!--<Page.Resources>
+        <DataTemplate DataType="{x:Type model:Tour}">
+            <custom:SquareCard/>
+        </DataTemplate>
+    </Page.Resources>-->
+
+    <Page.Resources>
+        <conv:TourToSquareCardConverter x:Key="TourToSquareCardConverter" />
+    </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250" />
@@ -23,12 +35,12 @@
 
         <Border Padding="10" Background="{StaticResource ButtonLightBlueColor}" CornerRadius="0,10,0,0">
             <StackPanel Background="{StaticResource ButtonLightBlueColor}" >
-                <TextBlock Text="Tripago" Foreground="White" FontSize="24" FontWeight="Bold"/>
+                <TextBlock Text="Tripago" Foreground="White" FontSize="28" FontWeight="Bold" Margin="8"/>
 
-                <root:NavbarItem IsSelected="True" Kind="BagSuitcase" Background="{StaticResource ButtonLightBlueColor}" Foreground="{StaticResource WhiteColor}"  Text="Tours" Margin="0, 20, 0, 0"/>
-                <root:NavbarItem  Kind="Ticket" Background="{StaticResource ButtonLightBlueColor}" Foreground="{StaticResource WhiteColor}" Text="Attractions" Margin="0, 10, 0, 0"/>
-                <root:NavbarItem  Kind="Bed" Background="{StaticResource ButtonLightBlueColor}" Foreground="{StaticResource WhiteColor}"  Text="Accommodation" Margin="0, 10, 0, 0"/>
-                <root:NavbarItem  Kind="Silverware" Background="{StaticResource ButtonLightBlueColor}" Foreground="{StaticResource WhiteColor}"  Text="Restaurants" Margin="0, 10, 0, 0"/>
+                <root:NavbarItem x:Name="ToursNavItem" Command="{Binding navItemSelectedCommand}" CommandParameter="ToursNavItem" IsChecked="True" Kind="BagSuitcase" Background="{StaticResource ButtonLightBlueColor}" Foreground="{StaticResource WhiteColor}"  Text="Tours" Margin="0, 20, 0, 0"/>
+                <root:NavbarItem x:Name="AttractionsNavItem" Command="{Binding navItemSelectedCommand}" CommandParameter="AttractionsNavItem" Kind="Ticket" Background="{StaticResource ButtonLightBlueColor}" Foreground="{StaticResource WhiteColor}" Text="Attractions" Margin="0, 10, 0, 0"/>
+                <root:NavbarItem x:Name="AccommodationNavItem" Command="{Binding navItemSelectedCommand}" CommandParameter="AccommodationNavItem" Kind="Bed" Background="{StaticResource ButtonLightBlueColor}" Foreground="{StaticResource WhiteColor}"  Text="Accommodation" Margin="0, 10, 0, 0"/>
+                <root:NavbarItem x:Name="RestaurantsNavItem" Command="{Binding navItemSelectedCommand}" CommandParameter="RestaurantsNavItem" Kind="Silverware" Background="{StaticResource ButtonLightBlueColor}" Foreground="{StaticResource WhiteColor}"  Text="Restaurants" Margin="0, 10, 0, 0"/>
             </StackPanel>
         </Border>
         <Border Grid.Row="1" Grid.Column="0" Padding="10" Background="{StaticResource ButtonLightBlueColor}" CornerRadius="0,0,10,0">
@@ -48,6 +60,77 @@
             </StackPanel>
         </Border>
 
-        <ContentControl Grid.RowSpan="2" Grid.Column="1"/>
+        <Grid Grid.Column="1" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" FontWeight="Medium" FontSize="36" Margin="30,10,0,0" Foreground="{StaticResource DarkBlueColor}">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=ToursNavItem, Path=IsChecked}" Value="True">
+                                    <Setter Property="Text" Value="Tours"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=AttractionsNavItem, Path=IsChecked}" Value="True">
+                                    <Setter Property="Text" Value="Attractions"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=AccommodationNavItem, Path=IsChecked}" Value="True">
+                                    <Setter Property="Text" Value="Accommodation"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=RestaurantsNavItem, Path=IsChecked}" Value="True">
+                                    <Setter Property="Text" Value="Restaurants"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <Separator
+                    Height="10"
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                      Margin="30,3,30,0"
+                      Style="{StaticResource MaterialDesignDarkSeparator}">
+                    <Separator.Template>
+                        <ControlTemplate TargetType="Separator">
+                            <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="0,3,0,0"/>
+                        </ControlTemplate>
+                    </Separator.Template>
+                </Separator>
+            </Grid>
+            <ScrollViewer 
+                      Grid.Row="1"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled">
+                <ItemsControl ItemsSource="{Binding Objects}" >
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" Width="Auto" Height="Auto" Margin="10,0,10,10"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemContainerStyle>
+                        <Style>
+                            <Setter Property="Control.Margin" Value="20"/>
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <ContentControl Content="{Binding Converter={StaticResource TourToSquareCardConverter}}"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
+        
     </Grid>
 </Page>

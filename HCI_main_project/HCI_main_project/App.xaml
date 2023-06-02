@@ -22,6 +22,7 @@
             <SolidColorBrush x:Key="MediumBlueColor" Color="#6750A4"/>
             <SolidColorBrush x:Key="DarkBlueColor" Color="#0A2463"/>
             <SolidColorBrush x:Key="BlackColor" Color="#000000"/>
+            <SolidColorBrush x:Key="GrayColor" Color="#585858"/>
             <SolidColorBrush x:Key="WhiteColor" Color="#FFFFFF"/>
 
             <SolidColorBrush x:Key="IconColor_suitcase" Color="#257FBD" />

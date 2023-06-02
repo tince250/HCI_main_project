@@ -31,16 +31,52 @@ namespace HCI_main_project
             InitializeComponent();
 
             Console.WriteLine("Adding some authors into database...");
-            User user = new User
-            {
-                Email = "user@gmail.com",
-                FirstName = "tina",
-                LastName = "miha",
-                Password = "123",
-                Role = UserRole.TRAVELER
-            };
-            this.dbContext.Users.Add(user);
-            this.dbContext.SaveChanges();
+            //User user = new User
+            //{
+            //    Email = "user@gmail.com",
+            //    FirstName = "tina",
+            //    LastName = "miha",
+            //    Password = "123",
+            //    Role = UserRole.AGENT
+            //};
+            //this.dbContext.Users.Add(user);
+            //this.dbContext.SaveChanges();
+
+            //this.dbContext.Tours.Add(new Tour
+            //{
+            //    Name = "Krstarenje Dunavom sa posetom Petrovaradinu",
+            //    Description = "",
+            //    From = new DateTime(2023, 6, 1),
+            //    To = new DateTime(2023, 6, 5),
+            //    Image = "petrovaradin.jpg",
+            //    Price = 20,
+            //    TravelAgentId = 1
+            //});
+
+            //this.dbContext.Tours.Add(new Tour
+            //{
+            //    Name = "Obilazak Hrama Svetog Save",
+            //    Description = "",
+            //    From = new DateTime(2023, 7, 1),
+            //    To = new DateTime(2023, 7, 5),
+            //    Image = "hram.jpg",
+            //    Price = 25,
+            //    TravelAgentId = 1
+            //});
+
+            //this.dbContext.Attractions.Add(new Attraction
+            //{
+            //    Name = "Cele Kula, Muzej Nis",
+            //    Image = new byte[0],
+            //    Address = new Address
+            //    {
+            //        Street = "Bozidarska",
+            //        StreetNumber = 4,
+            //        City = "Nis",
+            //        PostalCode = 18000
+            //    }
+            //});
+            //this.dbContext.SaveChanges();
 
             foreach (User user1 in this.dbContext.Users)
             {
