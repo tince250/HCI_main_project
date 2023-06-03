@@ -36,21 +36,25 @@ namespace HCI_main_project
         {
             services.AddDbContext<TripagoContext>(options =>
             {
-                options.UseSqlite("Data Source = Tripago.db");
+                options.UseLazyLoadingProxies().
+                UseSqlite("Data Source = Tripago.db");
             });
 
             services.AddSingleton<MainWindow>();
             services.AddSingleton<IAuthService, AuthService>();
             services.AddSingleton<LoginViewModel>();
             services.AddSingleton<RegisterViewModel>();
+            services.AddSingleton<TripDetailsViewModel>();
             services.AddSingleton<LoginPage>();
             //services.AddSingleton<RegisterPage>();
         }
         protected override async void OnStartup(StartupEventArgs e)
         {
-            base.OnStartup(e);
-            this.StartupUri =
-             new Uri("View/TripDetailsPage.xaml", UriKind.Relative);
+            //base.OnStartup(e);
+            //this.StartupUri =
+            // new Uri("View/TripDetailsPage.xaml", UriKind.Relative);
+            var mainWindow = serviceProvider.GetService<MainWindow>();
+            mainWindow.Show();
         }
 
         protected override void OnNavigated(NavigationEventArgs e)

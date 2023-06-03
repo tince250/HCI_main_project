@@ -57,11 +57,11 @@
                     <RowDefinition Height="5*"/>
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0" Orientation="Vertical">
-                    <TextBlock Grid.Row="0" Text="Podunavlje" FontSize="40" TextAlignment="Center"/>
+                    <TextBlock Grid.Row="0" Text="{Binding Path=Tour.Name}" FontSize="40" TextAlignment="Center"/>
                     <Separator Grid.Row="0" Margin="50,0" Background="{StaticResource OrangeColor}" BorderBrush="{StaticResource OrangeColor}"/>
                 </StackPanel>
                 <Label Grid.Row="1" VerticalAlignment="Center" Content="Trip description:" FontSize="24" Margin="20, 0, 20, 0" FontWeight="Bold"/>
-                <TextBlock Margin="20, 0" TextWrapping="WrapWithOverflow" Grid.Row="2" Height="Auto" VerticalAlignment="Stretch">Lorem ipsum dolor sit amet consectetur. Viverra aliquam sed enim massa pulvinar sed cursus eget purus. Purus orci integer ipsum cursus quisque dignissim massa. Ut vestibulum libero nunc sodales enim urna. Vivamus turpis tempus eleifend netus potenti facilisis sed ornare.</TextBlock>
+                <TextBlock Margin="20, 0" Text="{Binding Path=Tour.Description}" TextWrapping="WrapWithOverflow" Grid.Row="2" Height="Auto" VerticalAlignment="Stretch"></TextBlock>
 
             </Grid>
 
@@ -217,8 +217,8 @@
                         <Grid>
                             <ScrollViewer 
                                   Grid.Row="1"
-                                  VerticalScrollBarVisibility="Visible"
-                                  HorizontalScrollBarVisibility="Disabled"
+                                  VerticalScrollBarVisibility="Auto"
+                                  HorizontalScrollBarVisibility="Auto"
                                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                 <ItemsControl ItemsSource="{Binding Restaurants}" >
                                     <ItemsControl.ItemsPanel>

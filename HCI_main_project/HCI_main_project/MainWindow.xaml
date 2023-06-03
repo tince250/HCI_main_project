@@ -6,8 +6,11 @@
         xmlns:local="clr-namespace:HCI_main_project"
         mc:Ignorable="d"
         Title="MainWindow" Height="768" Width="1024"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        WindowState="Maximized"
+        >
     <Grid>
+        <Frame Source="/View/TripDetailsPage.xaml" />
         <!--<TextBlock Style="{StaticResource Title}" HorizontalAlignment="Center">
             Registration
         </TextBlock>

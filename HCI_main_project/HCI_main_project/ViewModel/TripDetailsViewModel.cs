@@ -40,10 +40,51 @@ namespace HCI_main_project.ViewModel
             }
         }
 
-        public TripDetailsViewModel()
+        private Tour _tour;
+        public Tour Tour
         {
-            ObservableCollection < object > o = new ObservableCollection<object>();
-            o.Add(new Attraction { Address = new Address { City = "Belgrade", Street = "Ljutice Bogdana", StreetNumber = 24}, Name = "Sava's Monestry" });
+            get { return _tour; }
+            set
+            {
+                SetProperty(ref _tour, value);
+            }
+        }
+
+        private TripagoContext _dbContext;
+
+        public TripDetailsViewModel(TripagoContext dbContext)
+        {
+            _dbContext = dbContext;
+            SetTour(1);
+            SetAttractions();
+            SetAccommodations();
+            SetRestaurants();
+        }
+
+        private void SetTour(int tourId)
+        {
+            this.Tour = _dbContext.Tours.First(c => c.Id == tourId);
+        }
+
+        private void SetAttractions()
+        {
+            this.Attractions = new ObservableCollection<object>(this.Tour.TourAttractions.Select(tourAttraction => tourAttraction.Attraction).ToList());
+        }
+
+        private void SetAccommodations()
+        {
+            this.Accommodations = new ObservableCollection<object>(this.Tour.TourAccommodations.Select(tourAccommodation=> tourAccommodation.Accommodation).ToList());
+        }
+
+        private void SetRestaurants()
+        {
+            this.Restaurants = new ObservableCollection<object>(this.Tour.TourRestaurants.Select(tourRestaurants=> tourRestaurants.Restaurant).ToList());
+        }
+
+        private void setMockUp()
+        {
+            ObservableCollection<object> o = new ObservableCollection<object>();
+            o.Add(new Attraction { Address = new Address { City = "Belgrade", Street = "Ljutice Bogdana", StreetNumber = 24 }, Name = "Sava's Monestry" });
             o.Add(new Attraction { Address = new Address { City = "Belgrade", Street = "Ljutice Bogdana", StreetNumber = 24 }, Name = "Kalemegdan" });
             o.Add(new Attraction { Address = new Address { City = "Belgrade", Street = "Ljutice Bogdana", StreetNumber = 24 }, Name = "Marakana" });
 
@@ -54,8 +95,8 @@ namespace HCI_main_project.ViewModel
             Accommodations = o2;
 
             ObservableCollection<object> o3 = new ObservableCollection<object>();
-            o3.Add(new Accommodation { Address = new Address { City = "Belgrade", Street = "Ljutice Bogdana", StreetNumber = 24 }, Name = "Banjalucki cevapi" });
-            o3.Add(new Accommodation { Address = new Address { City = "Belgrade", Street = "Ljutice Bogdana", StreetNumber = 24 }, Name = "Sushi bar" });
+            o3.Add(new Restaurant { Address = new Address { City = "Belgrade", Street = "Ljutice Bogdana", StreetNumber = 24 }, Name = "Banjalucki cevapi" });
+            o3.Add(new Restaurant { Address = new Address { City = "Belgrade", Street = "Ljutice Bogdana", StreetNumber = 24 }, Name = "Sushi bar" });
 
             Restaurants = o3;
         }
