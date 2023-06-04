@@ -48,7 +48,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <m:Map Margin="0, 0, 20, 0" Grid.Column="1" Center="44.0165, 21.0059" ZoomLevel="6.3" CredentialsProvider="Kj3TXYFWtOhdSJsEwaRg~MYtBweETdCEyT2r6ULdioA~AnDgeIBQnE12E3dWCqRoZDwCljaffq0SmrInOH5-FEHBGfLzqbwDBsLm0ewXkMHy" x:Name="myMap">
+            <m:Map Margin="0, 0, 20, 0" Grid.Column="1" Mode="AerialWithLabels" Center="44.0165, 21.0059" ZoomLevel="6.3" CredentialsProvider="Kj3TXYFWtOhdSJsEwaRg~MYtBweETdCEyT2r6ULdioA~AnDgeIBQnE12E3dWCqRoZDwCljaffq0SmrInOH5-FEHBGfLzqbwDBsLm0ewXkMHy" x:Name="myMap">
                 <m:Pushpin m:MapLayer.Position="{Binding Location}"/>
             </m:Map>
 
