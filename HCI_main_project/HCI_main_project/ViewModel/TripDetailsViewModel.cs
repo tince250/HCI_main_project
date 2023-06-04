@@ -1,4 +1,5 @@
 ﻿using HCI_main_project.Models;
+using Microsoft.Maps.MapControl.WPF;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,6 +11,16 @@ namespace HCI_main_project.ViewModel
 {
     class TripDetailsViewModel : ViewModelBase
     {
+        private Location _location;
+        public Location Location
+        {
+            get { return _location; }
+            set
+            {
+                SetProperty(ref _location, value);
+            }
+        }
+
         private ObservableCollection<object> _attractions;
         public ObservableCollection<object> Attractions
         {
@@ -64,6 +75,7 @@ namespace HCI_main_project.ViewModel
         private void SetTour(int tourId)
         {
             this.Tour = _dbContext.Tours.First(c => c.Id == tourId);
+            this.Location = new Location(this.Tour.Latitude, this.Tour.Longitude);
         }
 
         private void SetAttractions()

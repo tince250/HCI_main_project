@@ -11,24 +11,5 @@
         >
     <Grid>
         <Frame Source="/View/TripDetailsPage.xaml" />
-        <!--<TextBlock Style="{StaticResource Title}" HorizontalAlignment="Center">
-            Registration
-        </TextBlock>
-        <Button
-            Height="60"
-            MinWidth="170"
-            MaxWidth="250"
-            FontSize="20"
-            FontWeight="Bold"
-            materialDesign:ButtonAssist.CornerRadius="25"
-            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-            Style="{StaticResource MaterialDesignRaisedButton}"
-            ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
-            Background="{StaticResource OrangeColor}"
-            Foreground="{StaticResource WhiteColor}">
-            
-            <TextBlock Text="Add accomodation" />
-          
-        </Button>-->
     </Grid>
 </Window>
