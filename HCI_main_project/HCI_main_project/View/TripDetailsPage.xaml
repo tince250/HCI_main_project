@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:HCI_main_project.View" xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF" xmlns:conv="clr-namespace:HCI_main_project.Converters"
       mc:Ignorable="d" 
       d:DesignHeight="650" d:DesignWidth="800"
-      Title="TripDetails">
+      Title="TripDetails"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
 
     <Page.Resources>
         <conv:TourToDetailsCardConverter x:Key="TourToDetailsCardConverter" />
@@ -31,7 +32,7 @@
                 MaxWidth="200"
                 FontSize="16"
                 FontWeight="Bold"
-               
+                materialDesign:ButtonAssist.CornerRadius="25"
                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                 Style="{StaticResource MaterialDesignRaisedButton}"
                 ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
@@ -48,8 +49,8 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <m:Map Margin="0, 0, 20, 0" Grid.Column="1" Mode="AerialWithLabels" Center="44.0165, 21.0059" ZoomLevel="6.3" CredentialsProvider="Kj3TXYFWtOhdSJsEwaRg~MYtBweETdCEyT2r6ULdioA~AnDgeIBQnE12E3dWCqRoZDwCljaffq0SmrInOH5-FEHBGfLzqbwDBsLm0ewXkMHy" x:Name="myMap">
-                <m:Pushpin m:MapLayer.Position="{Binding Location}"/>
+            <m:Map x:Name="map" Margin="0, 0, 20, 0" Grid.Column="1" Mode="AerialWithLabels" Center="{Binding Location}" ZoomLevel="11.5" CredentialsProvider="Kj3TXYFWtOhdSJsEwaRg~MYtBweETdCEyT2r6ULdioA~AnDgeIBQnE12E3dWCqRoZDwCljaffq0SmrInOH5-FEHBGfLzqbwDBsLm0ewXkMHy">
+                <!--<m:Pushpin m:MapLayer.Position="{Binding Location}"/>-->
             </m:Map>
 
             <Grid>
@@ -260,7 +261,7 @@
                 MaxWidth="200"
                 FontSize="16"
                 FontWeight="Bold"
-               
+                materialDesign:ButtonAssist.CornerRadius="25"
                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                 Style="{StaticResource MaterialDesignRaisedButton}"
                 ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
@@ -282,7 +283,7 @@
                 MaxWidth="200"
                 FontSize="16"
                 FontWeight="Bold"
-               
+                materialDesign:ButtonAssist.CornerRadius="25"               
                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                 Style="{StaticResource MaterialDesignRaisedButton}"
                 ToolTip="MaterialDesignRaisedDarkButton with Round Corners"

@@ -6,7 +6,9 @@
       xmlns:local="clr-namespace:HCI_main_project.View" xmlns:components="clr-namespace:HCI_main_project.Components"
       mc:Ignorable="d" 
       d:DesignHeight="850" d:DesignWidth="1000"
-      Title="RegisterPage">
+      Title="RegisterPage"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+>
 
     <Grid>
 
@@ -101,6 +103,7 @@
                     MaxWidth="200"
                     FontSize="20"
                     FontWeight="Bold"
+                    materialDesign:ButtonAssist.CornerRadius="25"                                    
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
