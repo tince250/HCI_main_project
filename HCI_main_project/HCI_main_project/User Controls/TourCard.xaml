@@ -118,7 +118,8 @@
                         materialDesign:ButtonAssist.CornerRadius="18"
                         Style="{StaticResource MaterialDesignRaisedLightButton}"
                         Background="{StaticResource ButtonLightBlueColor}"
-                        Foreground="{StaticResource WhiteColor}"/>
+                        Foreground="{StaticResource WhiteColor}"
+                        Click="Button_Click"/>
                 </Grid>
                 <Border Grid.Column="0"
         CornerRadius="12"

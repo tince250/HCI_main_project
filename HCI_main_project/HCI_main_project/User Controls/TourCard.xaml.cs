@@ -1,4 +1,5 @@
 ﻿using HCI_main_project.Models;
+using HCI_main_project.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -38,6 +39,13 @@ namespace HCI_main_project.User_Controls
         {
             InitializeComponent();
             DataContext = this;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ApplicationHelper.TourId = this.Tour.Id;
+            TripDetailsPage detailsPage = new TripDetailsPage();
+            ApplicationHelper.NavigationService.Navigate(detailsPage);
         }
     }
 }

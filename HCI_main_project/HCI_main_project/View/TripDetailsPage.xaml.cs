@@ -23,10 +23,10 @@ namespace HCI_main_project.View
     /// <summary>
     /// Interaction logic for TripDetails.xaml
     /// </summary>
-    public partial class TripDetails : Page
+    public partial class TripDetailsPage : Page
     {
         private TripDetailsViewModel viewModel;
-        public TripDetails()
+        public TripDetailsPage()
         {
             InitializeComponent();
             this.viewModel = App.serviceProvider.GetRequiredService<TripDetailsViewModel>();

@@ -66,7 +66,7 @@ namespace HCI_main_project.ViewModel
         public TripDetailsViewModel(TripagoContext dbContext)
         {
             _dbContext = dbContext;
-            SetTour(1);
+            SetTour(ApplicationHelper.TourId);
             SetAttractions();
             SetAccommodations();
             SetRestaurants();

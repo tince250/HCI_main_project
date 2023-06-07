@@ -11,7 +11,19 @@ namespace HCI_main_project
     public static class ApplicationHelper
     {
         private static NavigationService navigator;
+
+        
         private static User user { get; set; }
+
+        private static int tourId;
+
+        public static int TourId
+        {
+            get { return tourId; }
+            set { tourId = value; }
+        }
+
+
         public static NavigationService NavigationService
         {
             set

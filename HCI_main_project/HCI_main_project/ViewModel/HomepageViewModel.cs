@@ -82,11 +82,13 @@ namespace HCI_main_project.ViewModel
 
         public ICommand navItemSelectedCommand { get; }
         public ICommand toggleFilterPaneCommand { get; }
+        public ICommand openTourDetailsCommand { get; }
 
         public HomepageViewModel()
         {
             this.navItemSelectedCommand = new NavItemSelectedCommand(this);
             this.toggleFilterPaneCommand = new ToggleFilterPaneCommand(this);
+            this.openTourDetailsCommand = new OpenTourDetailsCommand(this);
             //var app = (App)Application.Current;
             this.dbContext = App.serviceProvider.GetService<TripagoContext>();
             SetTours();

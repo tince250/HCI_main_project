@@ -12,6 +12,8 @@
     <None Remove="Images\cele.jfif" />
     <None Remove="Images\hram.jpg" />
     <None Remove="Images\Tours\petrovaradin.jpg" />
+    <None Remove="Resources\login.jpg" />
+    <None Remove="Resources\register.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,7 +46,12 @@
     <Resource Include="Images\Tours\petrovaradin.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Folder Include="Resources\" />
+    <Resource Include="Resources\login.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\register.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>
