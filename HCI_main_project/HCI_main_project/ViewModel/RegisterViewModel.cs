@@ -13,7 +13,7 @@ using System.Windows.Input;
 
 namespace HCI_main_project.ViewModel
 {
-    public class RegisterViewModel : ViewModelBase, IDataErrorInfo
+    public class RegisterViewModel : ViewModelBaseS, IDataErrorInfo
     {
         private readonly string[] FIELDS = { "Name", "LastName", "Email", "Password", "ConfirmPassword" };
         public Boolean _firstLoad = true;

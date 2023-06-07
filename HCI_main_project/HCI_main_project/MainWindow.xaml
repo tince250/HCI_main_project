@@ -11,7 +11,7 @@
         >
     <Grid>
 
-        <Frame Source="/Pages/Homepage.xaml" />
+        <Frame Source="/View/LoginPage.xaml" />
 
         <!--<TextBlock Style="{StaticResource Title}" HorizontalAlignment="Center">
             Registration

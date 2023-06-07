@@ -87,8 +87,8 @@ namespace HCI_main_project.ViewModel
         {
             this.navItemSelectedCommand = new NavItemSelectedCommand(this);
             this.toggleFilterPaneCommand = new ToggleFilterPaneCommand(this);
-            var app = (App)Application.Current;
-            this.dbContext = app.serviceProvider.GetService<TripagoContext>();
+            //var app = (App)Application.Current;
+            this.dbContext = App.serviceProvider.GetService<TripagoContext>();
             SetTours();
         }
 

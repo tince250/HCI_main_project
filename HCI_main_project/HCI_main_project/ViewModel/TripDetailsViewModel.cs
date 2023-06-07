@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HCI_main_project.ViewModel
 {
-    class TripDetailsViewModel : ViewModelBase
+    class TripDetailsViewModel : ViewModelBaseS
     {
         private Location _location;
         public Location Location
