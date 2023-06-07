@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Maps.MapControl.WPF;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -17,6 +18,8 @@ namespace HCI_main_project.Models
         public DateTime From { get; set; }
         public DateTime To { get; set; }
         public byte[] Image { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
 
         [ForeignKey("TravelAgent")]
         public int TravelAgentId { get; set; }
