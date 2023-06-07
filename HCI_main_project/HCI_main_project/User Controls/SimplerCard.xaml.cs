@@ -25,7 +25,9 @@ namespace HCI_main_project.User_Controls
         public SimpleCardContent CardContent
         {
             get { return (SimpleCardContent)GetValue(CardContentProperty); }
-            set { SetValue(CardContentProperty, value);}
+            set {
+                SetValue(CardContentProperty, value);
+            }
         }
 
         public static readonly DependencyProperty CardContentProperty =

@@ -11,6 +11,7 @@
     <None Remove="Fonts\poppinsr.ttf" />
     <None Remove="Images\cele.jfif" />
     <None Remove="Images\hram.jpg" />
+    <None Remove="Images\Tours\petrovaradin.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,6 +36,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\Tours\hram.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Tours\petrovaradin.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

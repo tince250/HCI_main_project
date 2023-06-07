@@ -26,7 +26,7 @@
                 </Grid.RowDefinitions>
                 <Image
               Height="220"
-              Source="../Images/cele.jfif"
+              Source="../Images/Attractions/cele.jfif"
               Stretch="UniformToFill" />
                 <StackPanel
               Grid.Row="1"
@@ -36,7 +36,7 @@
                     <TextBlock
                         Name="Name"
                 Margin="0"
-                FontSize="22"
+                FontSize="23"
                         FontWeight="Medium"
                 Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
                 Text="{Binding CardContent.Name}"
@@ -56,7 +56,7 @@
                             Height="25"
                             Foreground="{StaticResource GrayColor}"
                             Kind="Location"/>
-                    <TextBlock FontSize="16" Margin="5,0,0,0"  Foreground="{StaticResource GrayColor}"
+                    <TextBlock FontSize="18" Margin="5,0,0,0"  Foreground="{StaticResource GrayColor}"
                                TextTrimming="CharacterEllipsis"
                                TextWrapping="NoWrap"
                                Width="260">

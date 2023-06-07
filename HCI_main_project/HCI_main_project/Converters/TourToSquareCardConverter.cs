@@ -3,6 +3,7 @@ using HCI_main_project.Models;
 using HCI_main_project.User_Controls;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,8 @@ namespace HCI_main_project.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+   
+
             if (value is Tour tour)
             {
                 if (tour != null)

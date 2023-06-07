@@ -33,10 +33,37 @@ namespace HCI_main_project.Pages
         {
             InitializeComponent();
             DataContext = new HomepageViewModel();
-            
-            
         }
 
-        
+        private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CardsList.Items.Filter = SearchObjects;
+        }
+
+        private bool SearchObjects(object obj)
+        {
+            if (obj is Tour tour)
+            {
+                return tour.Name.Contains(searchBox.Text, StringComparison.OrdinalIgnoreCase);
+            }
+
+            if (obj is Attraction attraction)
+            {
+                return attraction.Name.Contains(searchBox.Text, StringComparison.OrdinalIgnoreCase);
+            }
+
+            if (obj is Accommodation accommodation)
+            {
+                return accommodation.Name.Contains(searchBox.Text, StringComparison.OrdinalIgnoreCase);
+            }
+
+            if (obj is Restaurant restaurant)
+            {
+                return restaurant.Name.Contains(searchBox.Text, StringComparison.OrdinalIgnoreCase);
+            }
+
+            return false;
+
+        }
     }
 }

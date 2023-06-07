@@ -4,6 +4,8 @@
     xmlns:local="clr-namespace:HCI_main_project" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
 
 
+    
+
     <Style TargetType="{x:Type local:NavbarItem}">
         <Setter Property="Template">
             <Setter.Value>
@@ -19,9 +21,9 @@
                             </Grid.ColumnDefinitions>
 
                             <!--<Image Source="{TemplateBinding Icon}" VerticalAlignment="Center"/>-->
-                            <materialDesign:PackIcon Name="Icon" Kind="{TemplateBinding Kind}" FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,3,0,0" Width="40" Height="30"/>
+                            <materialDesign:PackIcon Name="Icon" Kind="{TemplateBinding Kind}" FontSize="55" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,3,0,0" Width="40" Height="30"/>
 
-                            <Label Name="Label" Grid.Column="1" Content="{TemplateBinding Text}" Foreground="{TemplateBinding Foreground}" FontSize="20" FontWeight="Medium" Margin="7,0,0,0"/>
+                            <Label Name="Label" Grid.Column="1" Content="{TemplateBinding Text}" Foreground="{TemplateBinding Foreground}" FontSize="22" FontWeight="Medium" Margin="7,0,0,0"/>
                         </Grid>
                     </Border>
 

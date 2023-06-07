@@ -35,7 +35,7 @@
                     <TextBlock
                         Name="Name"
                 Margin="0"
-                FontSize="22"
+                FontSize="23"
                         FontWeight="Medium"
                 Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
                 Text="{Binding Tour.Name}"
@@ -54,7 +54,7 @@
                             Height="25"
                             Foreground="{StaticResource GrayColor}"
                             Kind="Calendar" />
-                    <TextBlock FontSize="16" Margin="7,0,0,0"  Foreground="{StaticResource GrayColor}">
+                    <TextBlock FontSize="18" Margin="7,0,0,0"  Foreground="{StaticResource GrayColor}">
                         <TextBlock.Text>
                             <MultiBinding StringFormat="{}from {0:dd.MM.yyyy}. to {1:dd.MM.yyyy}.">
                                 <Binding Path="Tour.From" />
@@ -116,7 +116,7 @@
                         FontSize="18"
                         Height="40"
                         materialDesign:ButtonAssist.CornerRadius="18"
-                        Style="{StaticResource MaterialDesignFlatButton}"
+                        Style="{StaticResource MaterialDesignRaisedLightButton}"
                         Background="{StaticResource ButtonLightBlueColor}"
                         Foreground="{StaticResource WhiteColor}"/>
                 </Grid>
