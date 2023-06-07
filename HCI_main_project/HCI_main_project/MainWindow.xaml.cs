@@ -1,4 +1,5 @@
 ﻿using HCI_main_project.Models;
+using HCI_main_project.View;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,6 +15,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Navigation;
+
 
 namespace HCI_main_project
 {
@@ -25,12 +28,14 @@ namespace HCI_main_project
         TripagoContext dbContext;
         public MainWindow(TripagoContext tripagoContext)
         {
-            this.dbContext = tripagoContext;
-            this.dbContext.Database.EnsureCreated();
+            //this.dbContext = tripagoContext;
+            //this.dbContext.Database.EnsureCreated();
 
             InitializeComponent();
+           
 
-            Console.WriteLine("Adding some authors into database...");
+            // Console.WriteLine("Adding some authors into database...");
+            //Console.WriteLine("Adding some authors into database...");
             //User user = new User
             //{
             //    Email = "user@gmail.com",
@@ -77,11 +82,15 @@ namespace HCI_main_project
             //    }
             //});
             //this.dbContext.SaveChanges();
+            //    Role = UserRole.TRAVELER
+            //};
+            //this.dbContext.Users.Add(user);
+            //this.dbContext.SaveChanges();
 
-            foreach (User user1 in this.dbContext.Users)
-            {
-                Trace.WriteLine(user1.FirstName);
-            }
+            //foreach (User user1 in this.dbContext.Users)
+            //{
+            //    Trace.WriteLine(user1.FirstName);
+            //}
         }
     }
 }
