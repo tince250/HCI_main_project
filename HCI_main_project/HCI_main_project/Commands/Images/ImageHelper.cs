@@ -9,7 +9,7 @@ namespace HCI_main_project.Commands
 {
     public class ImageHelper
     {
-       public static string save(ImageBrush imgBrush, string type, string file, bool edit = false)
+       public static string Save(ImageBrush imgBrush, string type, string file, bool edit = false)
         {
             string filename = "";
             if (imgBrush != null)
@@ -27,6 +27,14 @@ namespace HCI_main_project.Commands
             string destinationPath = Path.Combine(destinationFolder, filename);
             File.Copy(file, destinationPath, overwrite: true);
             return filename;
+        }
+
+        public static void RemoveOld(string type, string filename)
+        {
+            string baseDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
+            string destinationFolder = Path.Combine(baseDirectory, "Resources\\" + type);
+            string destinationPath = Path.Combine(destinationFolder, filename);
+            File.Delete(destinationPath);
         }
 
         public static void SetSuccessfullyAddedImage(NameAndPhotoFormViewModel nameAndPhotoFormViewModel, string file)

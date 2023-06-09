@@ -35,7 +35,7 @@ namespace HCI_main_project.Commands
                     int.Parse(_addRestaurantPageViewModel.AddressFormViewModel.StreetNo)
                     );
 
-                string filename = ImageHelper.save(_addRestaurantPageViewModel.NameAndPhotoFormViewModel.ImageRectangle.Fill as ImageBrush,
+                string filename = ImageHelper.Save(_addRestaurantPageViewModel.NameAndPhotoFormViewModel.ImageRectangle.Fill as ImageBrush,
                     "Restaurants", _addRestaurantPageViewModel.NameAndPhotoFormViewModel.File);
 
 

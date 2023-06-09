@@ -24,7 +24,10 @@ namespace HCI_main_project.Commands
             {
                 _addRestaurantPageViewModel.IsFillAddressButtonClicked = true;
                 _addRestaurantPageViewModel.NameAndPhotoFormControl.Visibility = Visibility.Collapsed;
-                _addRestaurantPageViewModel.NextButtonText = "Create restaurant";
+                if (_addRestaurantPageViewModel.SelectedRestaurant == null)
+                    _addRestaurantPageViewModel.NextButtonText = "Create restaurant";
+                else
+                    _addRestaurantPageViewModel.NextButtonText = "Update restaurant";
             }
             catch (Exception ex)
             {
