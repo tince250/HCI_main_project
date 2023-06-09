@@ -33,6 +33,7 @@ namespace HCI_main_project.ViewModel
             try
             {
                 ErrorHappend = false;
+                RegisterSuccess = false;
                 User newUser = new User
                 {
                     Email = Email,
@@ -45,7 +46,9 @@ namespace HCI_main_project.ViewModel
                 if (validateAll())
                 {
                     service.Register(newUser);
-                    ApplicationHelper.User = service.GetByEmail(Email);
+                    //ApplicationHelper.User = service.GetByEmail(Email);
+                    ErrorMessage = "Account registered successfully. Please login.";
+                    RegisterSuccess = true;
                 }
                 else
                 {
@@ -67,6 +70,16 @@ namespace HCI_main_project.ViewModel
             set
             {
                 SetProperty(ref _errorHappend, value);
+            }
+        }
+
+        private bool _registerSuccess;
+        public bool RegisterSuccess
+        {
+            get => _registerSuccess;
+            set
+            {
+                SetProperty(ref _registerSuccess, value);
             }
         }
 

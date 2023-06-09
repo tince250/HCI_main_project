@@ -35,8 +35,8 @@
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="65"/>
                 <RowDefinition Height="65"/>
-                <RowDefinition Height="45"/>
                 <RowDefinition Height="55"/>
+                <RowDefinition Height="65"/>
                 <RowDefinition MinHeight="20" MaxHeight="40"/>
                 <RowDefinition Height="60"/>
                 <RowDefinition/>
@@ -59,7 +59,7 @@
             </TextBox>
 
 
-            <Label Grid.Row="3" Content="Password:" VerticalContentAlignment="Bottom" FontSize="20"/>
+            <Label Grid.Row="3" Content="Password:" VerticalContentAlignment="Bottom" FontSize="22"/>
             <components:BindablePasswordBox Grid.Row="4"
                     Password="{Binding Path=Password, Mode=TwoWay, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"
                                             LostFocus="PasswordBox_Changed"/>
