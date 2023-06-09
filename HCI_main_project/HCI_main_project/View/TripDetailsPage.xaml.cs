@@ -1,4 +1,5 @@
-﻿using HCI_main_project.Models;
+﻿using HCI_main_project.Components;
+using HCI_main_project.Models;
 using HCI_main_project.ViewModel;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.DependencyInjection;
@@ -79,6 +80,11 @@ namespace HCI_main_project.View
                 Pin.Background = new SolidColorBrush(Color.FromRgb(232, 170, 42));
                 this.map.Children.Add(Pin);
             }
+        }
+
+        private void openDialog(object sender, RoutedEventArgs e)
+        {
+            mainGrid.Children.Add(new ReserveDialog());
         }
     }
 }
