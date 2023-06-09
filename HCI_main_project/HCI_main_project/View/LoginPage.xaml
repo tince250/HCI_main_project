@@ -52,7 +52,8 @@
                     Grid.Row="2"
                     VerticalAlignment="Top"
                     MaxLength="20"
-                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                FontSize="22"
+                    Style="{StaticResource CustomMaterialDesignFloatingHintTextBox}"
                     Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=Email, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"
                 LostFocus="TextBox_LostFocus">
             </TextBox>
@@ -67,9 +68,9 @@
                 Command="{Binding Path=LoginClickCommand}"
                 Grid.Row="6"
                 Height="60"
-                MinWidth="140"
-                MaxWidth="200"
-                FontSize="20"
+                MinWidth="170"
+                FontSize="24"
+                MaxWidth="250"
                 FontWeight="Bold"
                 materialDesign:ButtonAssist.CornerRadius="25"                
                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"

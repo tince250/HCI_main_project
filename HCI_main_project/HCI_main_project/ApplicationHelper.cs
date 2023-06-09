@@ -37,7 +37,7 @@ namespace HCI_main_project
 
         }
 
-        public static User User
+        public static User? User
         {
             set
             {

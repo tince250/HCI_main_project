@@ -57,7 +57,8 @@
               IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
               Style="{StaticResource MaterialDesignFlatButton}"
               Foreground="{StaticResource WhiteColor}"
-              Background="{StaticResource DarkBlueColor}">
+              Background="{StaticResource DarkBlueColor}"
+              Command="{Binding logoutCommand}">
                     <TextBlock  Text="Log out" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,4"/>
                 </Button>
             </StackPanel>
