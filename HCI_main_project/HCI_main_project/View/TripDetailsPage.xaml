@@ -16,9 +16,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="5*" />
-            <RowDefinition Height="4*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="9*" />
+            <!--<RowDefinition Height="4*"/>-->
         </Grid.RowDefinitions>
 
         <Button
@@ -43,213 +42,7 @@
 
         </Button>
 
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-
-            <m:Map x:Name="map" Margin="0, 0, 20, 0" Grid.Column="1" Mode="AerialWithLabels" Center="{Binding Location}" ZoomLevel="11.5" CredentialsProvider="Kj3TXYFWtOhdSJsEwaRg~MYtBweETdCEyT2r6ULdioA~AnDgeIBQnE12E3dWCqRoZDwCljaffq0SmrInOH5-FEHBGfLzqbwDBsLm0ewXkMHy">
-                <!--<m:Pushpin m:MapLayer.Position="{Binding Location}"/>-->
-            </m:Map>
-
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1.7*"/>
-                    <RowDefinition Height="1.5*"/>
-                    <RowDefinition Height="5*"/>
-                </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0" Orientation="Vertical">
-                    <TextBlock Grid.Row="0" Text="{Binding Path=Tour.Name}" FontSize="40" TextAlignment="Center"/>
-                    <Separator Grid.Row="0" Margin="50,0" Background="{StaticResource OrangeColor}" BorderBrush="{StaticResource OrangeColor}"/>
-                </StackPanel>
-                <Label Grid.Row="1" VerticalAlignment="Center" Content="Trip description:" FontSize="24" Margin="20, 0, 20, 0" FontWeight="Bold"/>
-                <TextBlock Margin="20, 0" Text="{Binding Path=Tour.Description}" TextWrapping="WrapWithOverflow" Grid.Row="2" Height="Auto" VerticalAlignment="Stretch"></TextBlock>
-
-            </Grid>
-
-        </Grid>
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition Height="3*"/>
-                </Grid.RowDefinitions>
-
-                <StackPanel Grid.Row="0" Orientation="Horizontal">
-                    <Label Content="Attractions:" FontWeight="Bold" VerticalAlignment="Center" FontSize="18" Margin="10 0"/>
-                    <Ellipse VerticalAlignment="Center" Width="20" Height="20" Stroke="#257FBD">
-                        <Ellipse.Fill>
-                            <RadialGradientBrush>
-                                <GradientStop Color="#257FBD"/>
-                            </RadialGradientBrush>
-                        </Ellipse.Fill>
-                    </Ellipse>
-                </StackPanel>
-
-
-                <Border Grid.Row="1" Margin="10, 0, 10, 10" BorderBrush="#717171" BorderThickness="1">
-
-                    <Border.Background>
-
-                        <RadialGradientBrush>
-                            <GradientStop Color="White"/>
-                        </RadialGradientBrush>
-                    </Border.Background>
-
-                        <Grid>
-                        
-                            <ScrollViewer Grid.Column="0" Grid.Row="0"
-                                  VerticalScrollBarVisibility="Auto"
-                                  HorizontalScrollBarVisibility="Auto"
-                                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                <ItemsControl ItemsSource="{Binding Attractions}" >
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <WrapPanel HorizontalAlignment="Center" Orientation="Vertical" />
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-                                    <ItemsControl.ItemContainerStyle>
-                                        <Style>
-                                            <Setter Property="Control.Margin" Value="20"/>
-                                        </Style>
-                                    </ItemsControl.ItemContainerStyle>
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <ContentControl HorizontalAlignment="Center" Content="{Binding Converter={StaticResource TourToDetailsCardConverter}}"/>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </ScrollViewer>
-                        </Grid>
-                    <!--</StackPanel>-->
-
-                </Border>
-
-            </Grid>
-
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition Height="3*"/>
-                </Grid.RowDefinitions>
-
-                <StackPanel Grid.Row="0" Orientation="Horizontal">
-                    <Label Content="Accommodations:" FontWeight="Bold" VerticalAlignment="Center" FontSize="18" Margin="10 0"/>
-                    <Ellipse VerticalAlignment="Center" Width="20" Height="20" Stroke="#F5AA39">
-                        <Ellipse.Fill>
-                            <RadialGradientBrush>
-                                <GradientStop Color="#F5AA39"/>
-                            </RadialGradientBrush>
-                        </Ellipse.Fill>
-                    </Ellipse>
-                </StackPanel>
-
-                <Border Grid.Row="1" Margin="10, 0, 10, 10" BorderBrush="#717171" BorderThickness="1">
-
-                    <Border.Background>
-
-                        <RadialGradientBrush>
-                            <GradientStop Color="White"/>
-                        </RadialGradientBrush>
-                    </Border.Background>
-
-                        <Grid>
-                            <ScrollViewer 
-                                  Grid.Row="1"
-                                  VerticalScrollBarVisibility="Auto"
-                                  HorizontalScrollBarVisibility="Auto"
-                                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                <ItemsControl ItemsSource="{Binding Accommodations}" >
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <WrapPanel HorizontalAlignment="Center" Orientation="Vertical" />
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-                                    <ItemsControl.ItemContainerStyle>
-                                        <Style>
-                                            <Setter Property="Control.Margin" Value="20"/>
-                                        </Style>
-                                    </ItemsControl.ItemContainerStyle>
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <ContentControl Content="{Binding Converter={StaticResource TourToDetailsCardConverter}}"/>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </ScrollViewer>
-                        </Grid>
-
-                </Border>
-
-
-            </Grid>
-
-            <Grid Grid.Column="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition Height="3*"/>
-                </Grid.RowDefinitions>
-
-                <StackPanel Grid.Row="0" Orientation="Horizontal">
-                    <Label Content="Restaurants:" FontWeight="Bold" VerticalAlignment="Center" FontSize="18" Margin="10 0"/>
-                    <Ellipse VerticalAlignment="Center" Width="20" Height="20" Stroke="#18B315">
-                        <Ellipse.Fill>
-                            <RadialGradientBrush>
-                                <GradientStop Color="#18B315"/>
-                            </RadialGradientBrush>
-                        </Ellipse.Fill>
-                    </Ellipse>
-                </StackPanel>
-
-                <Border Grid.Row="1" Margin="10, 0, 10, 10" BorderBrush="#717171" BorderThickness="1">
-
-                    <Border.Background>
-
-                        <RadialGradientBrush>
-                            <GradientStop Color="White"/>
-                        </RadialGradientBrush>
-                    </Border.Background>
-
-                        <Grid>
-                            <ScrollViewer 
-                                  Grid.Row="1"
-                                  VerticalScrollBarVisibility="Auto"
-                                  HorizontalScrollBarVisibility="Auto"
-                                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                <ItemsControl ItemsSource="{Binding Restaurants}" >
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <WrapPanel HorizontalAlignment="Center" Orientation="Vertical" />
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-                                    <ItemsControl.ItemContainerStyle>
-                                        <Style>
-                                            <Setter Property="Control.Margin" Value="20"/>
-                                        </Style>
-                                    </ItemsControl.ItemContainerStyle>
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <ContentControl Content="{Binding Converter={StaticResource TourToDetailsCardConverter}}"/>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </ScrollViewer>
-                        </Grid>
-
-                </Border>
-
-            </Grid>
-
-        </Grid>
-
-        <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+        <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
             <Button
                 Command="{Binding Path=LoginClickCommand}"
                 Grid.Row="0"
@@ -295,6 +88,235 @@
             </Button>
         </StackPanel>
 
+        <ScrollViewer Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Height="400">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
 
+                    <!--<m:Map x:Name="map" Margin="0, 0, 20, 0" Grid.Column="1" Mode="AerialWithLabels" Center="{Binding Location}" ZoomLevel="11.5" CredentialsProvider="Kj3TXYFWtOhdSJsEwaRg~MYtBweETdCEyT2r6ULdioA~AnDgeIBQnE12E3dWCqRoZDwCljaffq0SmrInOH5-FEHBGfLzqbwDBsLm0ewXkMHy">
+                        <m:Pushpin m:MapLayer.Position="{Binding Location}"/>
+                    </m:Map>-->
+                    <Image Margin="0, 0, 20, 0" Grid.Column="1"  Width="Auto">
+                        <Image.Source>
+                            <BitmapImage UriSource="../Images/Tours/hram.jpg" />
+                        </Image.Source>
+                    </Image>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="1.5*"/>
+                            <RowDefinition Height="5*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Orientation="Vertical">
+                            <TextBlock Grid.Row="0" Text="{Binding Path=Tour.Name}" TextWrapping="WrapWithOverflow" Height="Auto" VerticalAlignment="Stretch" FontSize="40" TextAlignment="Center"/>
+                            <Separator Grid.Row="0" Margin="50,0" Background="{StaticResource OrangeColor}" BorderBrush="{StaticResource OrangeColor}"/>
+                        </StackPanel>
+                        <Label Grid.Row="1" VerticalAlignment="Center" Content="Trip description:" FontSize="24" Margin="20, 0, 20, 0" FontWeight="Bold"/>
+                        <ScrollViewer Margin="20, 0" Grid.Row="2">
+                            <TextBlock FontSize="18" Text="{Binding Path=Tour.Description}" TextWrapping="WrapWithOverflow" Height="Auto" VerticalAlignment="Stretch"></TextBlock>
+                        </ScrollViewer>
+                    </Grid>
+
+                </Grid>
+
+                <Grid Grid.Row="1" Height="Auto">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.7*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="220"/>
+                            <RowDefinition Height="220"/>
+                            <RowDefinition Height="220"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="3*"/>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                <Label Content="Attractions:" FontWeight="Bold" VerticalAlignment="Center" FontSize="18" Margin="10 0"/>
+                                <Ellipse VerticalAlignment="Center" Width="20" Height="20" Stroke="#257FBD">
+                                    <Ellipse.Fill>
+                                        <RadialGradientBrush>
+                                            <GradientStop Color="#257FBD"/>
+                                        </RadialGradientBrush>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                            </StackPanel>
+
+
+                            <Border Grid.Row="1" Margin="10, 0, 10, 10" BorderBrush="#717171" BorderThickness="1">
+
+                                <Border.Background>
+
+                                    <RadialGradientBrush>
+                                        <GradientStop Color="White"/>
+                                    </RadialGradientBrush>
+                                </Border.Background>
+
+                                <Grid>
+
+                                    <ScrollViewer Grid.Column="0" Grid.Row="0"
+                                                  VerticalScrollBarVisibility="Auto"
+                                                  HorizontalScrollBarVisibility="Auto"
+                                                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                        <ItemsControl ItemsSource="{Binding Attractions}" >
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <WrapPanel HorizontalAlignment="Center" Orientation="Vertical" />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemContainerStyle>
+                                                <Style>
+                                                    <Setter Property="Control.Margin" Value="20"/>
+                                                </Style>
+                                            </ItemsControl.ItemContainerStyle>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <ContentControl HorizontalAlignment="Center" Content="{Binding Converter={StaticResource TourToDetailsCardConverter}}"/>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </ScrollViewer>
+                                </Grid>
+                                <!--</StackPanel>-->
+
+                            </Border>
+
+                        </Grid>
+
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="3*"/>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                <Label Content="Accommodations:" FontWeight="Bold" VerticalAlignment="Center" FontSize="18" Margin="10 0"/>
+                                <Ellipse VerticalAlignment="Center" Width="20" Height="20" Stroke="#F5AA39">
+                                    <Ellipse.Fill>
+                                        <RadialGradientBrush>
+                                            <GradientStop Color="#F5AA39"/>
+                                        </RadialGradientBrush>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                            </StackPanel>
+
+                            <Border Grid.Row="1" Margin="10, 0, 10, 10" BorderBrush="#717171" BorderThickness="1">
+
+                                <Border.Background>
+
+                                    <RadialGradientBrush>
+                                        <GradientStop Color="White"/>
+                                    </RadialGradientBrush>
+                                </Border.Background>
+
+                                <Grid>
+                                    <ScrollViewer 
+                                                  Grid.Row="1"
+                                                  VerticalScrollBarVisibility="Auto"
+                                                  HorizontalScrollBarVisibility="Auto"
+                                                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                        <ItemsControl ItemsSource="{Binding Accommodations}" >
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <WrapPanel HorizontalAlignment="Center" Orientation="Vertical" />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemContainerStyle>
+                                                <Style>
+                                                    <Setter Property="Control.Margin" Value="20"/>
+                                                </Style>
+                                            </ItemsControl.ItemContainerStyle>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <ContentControl Content="{Binding Converter={StaticResource TourToDetailsCardConverter}}"/>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </ScrollViewer>
+                                </Grid>
+
+                            </Border>
+
+
+                        </Grid>
+
+                        <Grid Grid.Row="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="3*"/>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                <Label Content="Restaurants:" FontWeight="Bold" VerticalAlignment="Center" FontSize="18" Margin="10 0"/>
+                                <Ellipse VerticalAlignment="Center" Width="20" Height="20" Stroke="#18B315">
+                                    <Ellipse.Fill>
+                                        <RadialGradientBrush>
+                                            <GradientStop Color="#18B315"/>
+                                        </RadialGradientBrush>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                            </StackPanel>
+
+                            <Border Grid.Row="1" Margin="10, 0, 10, 10" BorderBrush="#717171" BorderThickness="1">
+
+                                <Border.Background>
+
+                                    <RadialGradientBrush>
+                                        <GradientStop Color="White"/>
+                                    </RadialGradientBrush>
+                                </Border.Background>
+
+                                <Grid>
+                                    <ScrollViewer 
+                                                  Grid.Row="1"
+                                                  VerticalScrollBarVisibility="Auto"
+                                                  HorizontalScrollBarVisibility="Auto"
+                                                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                        <ItemsControl ItemsSource="{Binding Restaurants}" >
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <WrapPanel HorizontalAlignment="Center" Orientation="Vertical" />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemContainerStyle>
+                                                <Style>
+                                                    <Setter Property="Control.Margin" Value="20"/>
+                                                </Style>
+                                            </ItemsControl.ItemContainerStyle>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <ContentControl Content="{Binding Converter={StaticResource TourToDetailsCardConverter}}"/>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </ScrollViewer>
+                                </Grid>
+
+                            </Border>
+
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Column="1" Margin="10, 49, 20, 10" Height="600">
+                        <m:Map x:Name="map" Padding="10, 49, 20, 160" Grid.Column="1" Mode="AerialWithLabels" Center="{Binding Location}" ZoomLevel="11.5" CredentialsProvider="Kj3TXYFWtOhdSJsEwaRg~MYtBweETdCEyT2r6ULdioA~AnDgeIBQnE12E3dWCqRoZDwCljaffq0SmrInOH5-FEHBGfLzqbwDBsLm0ewXkMHy">
+                            <m:Pushpin m:MapLayer.Position="{Binding Location}"/>
+                        </m:Map>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Page>

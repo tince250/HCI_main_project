@@ -19,8 +19,8 @@
                     <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Text="{Binding Path=DetailsContent.Name}" VerticalAlignment="Center" Margin="10, 0" FontSize="15"/>
-                <TextBlock Grid.Row="1" Text="{Binding Path=DetailsContent.Description}" VerticalAlignment="Top" Margin="10, 0" FontSize="11"/>
+                <TextBlock Grid.Row="0" Text="{Binding Path=DetailsContent.Name}" VerticalAlignment="Center" Margin="10, 0" FontSize="20"/>
+                <TextBlock Grid.Row="1" Text="{Binding Path=DetailsContent.Description}" VerticalAlignment="Top" Margin="10, 0" FontSize="16"/>
 
             </Grid>
 
