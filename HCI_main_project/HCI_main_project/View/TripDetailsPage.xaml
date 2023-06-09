@@ -21,7 +21,7 @@
         </Grid.RowDefinitions>
 
         <Button
-                Command="{Binding Path=LoginClickCommand}"
+                Command="{Binding Path=backCommand}"
                 Grid.Row="0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
