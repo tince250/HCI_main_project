@@ -22,7 +22,7 @@ namespace HCI_main_project.Commands
             {
                 _addRestaurantPageViewModel.IsFillAddressButtonClicked = false;
                 _addRestaurantPageViewModel.NameAndPhotoFormControl.Visibility = Visibility.Visible;
-                _addRestaurantPageViewModel.NextButtonText = "Fill address";
+                _addRestaurantPageViewModel.NextButtonText = "Fill address info";
             }
             catch (Exception ex)
             {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HCI_main_project.Model.DTOs;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -26,6 +27,14 @@ namespace HCI_main_project.Models
             PostalCode = postalCode;
             Street = street;
             StreetNumber = streetNumber;
+        }
+
+        public Address(AddressDTO addressDTO)
+        {
+            City = addressDTO.City;
+            PostalCode = 21400;
+            Street = addressDTO.Street;
+            StreetNumber = addressDTO.StreetNumber;
         }
     }
 }

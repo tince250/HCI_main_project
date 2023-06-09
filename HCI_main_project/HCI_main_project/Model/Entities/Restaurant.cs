@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HCI_main_project.Model.DTOs;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -28,6 +29,13 @@ namespace HCI_main_project.Models
             Name = name;
             Image = image;
             Address = address;
+        }
+
+        public Restaurant(RestaurantDTO restaurantDTO)
+        {
+            Name = restaurantDTO.Name;
+            Image = restaurantDTO.Image;
+            Address = new Address(restaurantDTO.Address);
         }
     }
 }

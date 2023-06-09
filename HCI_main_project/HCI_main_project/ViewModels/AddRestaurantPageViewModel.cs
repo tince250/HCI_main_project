@@ -1,6 +1,7 @@
 ﻿using HCI_main_project.Commands;
 using HCI_main_project.Models;
 using HCI_main_project.UserControls;
+using MaterialDesignThemes.Wpf;
 using System.Windows.Input;
 
 namespace HCI_main_project.ViewModels
@@ -9,6 +10,11 @@ namespace HCI_main_project.ViewModels
     {
         public NameAndPhotoFormViewModel NameAndPhotoFormViewModel { get; set; }
         public AddressFormViewModel AddressFormViewModel { get; set; }
+
+        private Snackbar _snackBarPositive;
+        private Snackbar _snackBarNegative;
+
+        public Restaurant SelectedRestaurant { get; }
 
         private NameAndPhotoFormControl _nameAndPhotoFormControl;
         public NameAndPhotoFormControl NameAndPhotoFormControl
@@ -55,21 +61,50 @@ namespace HCI_main_project.ViewModels
             }
         }
 
+        private bool _isPageForEdit;
+        public bool IsPageForEdit
+        {
+            get { return _isPageForEdit; }
+            set
+            {
+                _isPageForEdit = value;
+                OnPropertyChanged(nameof(IsPageForEdit));
+            }
+        }
+
+        public void ShowPositiveSnackBar()
+        {
+            _snackBarPositive.MessageQueue.Enqueue("You have successfully created restaurant!");
+        }
+
+        public void ShowNegativeSnackBar(string message)
+        {
+            _snackBarNegative.MessageQueue.Enqueue(message);
+        }
+
         public ICommand BackButtonRestaurantCommand { get; }
         public ICommand FillAddressButtonRestaurantCommand { get; }
 
         public ICommand AddRestaurantCommand { get;  }
-
-        public AddRestaurantPageViewModel(NameAndPhotoFormControl nameAndPhotoFormControl, AddressFormControl addressFormControl, Restaurant selectedRestaurant = null)
+        public ICommand EditRestaurantCommand { get;  }
+        public AddRestaurantPageViewModel(NameAndPhotoFormControl nameAndPhotoFormControl, AddressFormControl addressFormControl, Snackbar snackBarPositive, Snackbar snackBarNegative, Restaurant selectedRestaurant = null)
         {
             _nameAndPhotoFormControl = nameAndPhotoFormControl;
             _addressFormControl = addressFormControl;
-            NameAndPhotoFormViewModel = new NameAndPhotoFormViewModel(nameAndPhotoFormControl.imageRectangle, selectedRestaurant);
-            AddressFormViewModel = new AddressFormViewModel(selectedRestaurant);
-            NextButtonText = "Fill address";
+            _snackBarPositive = snackBarPositive;
+            _snackBarNegative = snackBarNegative;
+            NextButtonText = "Fill address info";
+            SelectedRestaurant = selectedRestaurant;
+
+            IsPageForEdit = selectedRestaurant == null ? false : true;
+
+            NameAndPhotoFormViewModel = new NameAndPhotoFormViewModel(nameAndPhotoFormControl.imageRectangle, nameAndPhotoFormControl.nameTextBox, selectedRestaurant);
+            AddressFormViewModel = new AddressFormViewModel(selectedRestaurant, addressFormControl.streetTextBox, addressFormControl.streetNoTextBox, addressFormControl.cityTextBox);
+            
             BackButtonRestaurantCommand = new BackButtonRestaurantCommand(this);
             FillAddressButtonRestaurantCommand = new FillAddressButtonRestaurantCommand(this);
             AddRestaurantCommand = new AddRestaurantCommand(this);
+            EditRestaurantCommand = new EditRestaurantCommand(this);
         }
     }
 }

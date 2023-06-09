@@ -23,12 +23,12 @@ namespace HCI_main_project
     /// <summary>
     /// Interaction logic for AddRestaurantPage.xaml
     /// </summary>
-    public partial class AddRestaurantPage : Page
+    public partial class AddEditRestaurantPage : Page
     {
-        public AddRestaurantPage(Restaurant restaurant = null)
+        public AddEditRestaurantPage(Restaurant restaurant = null)
         {
             InitializeComponent();
-            DataContext = new AddRestaurantPageViewModel(nameAndPhotoFormControl, addressFormControl, restaurant);
+            DataContext = new AddRestaurantPageViewModel(nameAndPhotoFormControl, addressFormControl, snackBarPositive, snackBarNegative, restaurant);
         }
     }
 }

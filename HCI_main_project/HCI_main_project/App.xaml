@@ -3,10 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:HCI_main_project"
              Startup="OnStartup"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+             xmlns:controls="clr-namespace:HCI_main_project.UserControls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:converters="clr-namespace:HCI_main_project.Converters">
     <Application.Resources>
-
         <ResourceDictionary>
+            <converters:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
+
             <Style TargetType="{x:Type Window}">
                 <Setter Property="FontFamily" Value="./Fonts/#Poppins" />
             </Style>
@@ -21,7 +24,22 @@
             <Style x:Key="FieldLabel" TargetType="Label">
                 <Setter Property="FontSize" Value="24"/>
                 <Setter Property="FontWeight" Value="Regular"/>
-                <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+
+            <Style x:Key="ChangeableColorFieldLabel" TargetType="Label" BasedOn="{StaticResource FieldLabel}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(controls:OnFocusLabelColorChange.IsEnabled)}"
+                             Value="True">
+                        <Setter Property="Foreground" Value="#3e92cc"></Setter>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="ErrorFieldTextBlock" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="22"/>
+                <Setter Property="FontWeight" Value="Regular"/>
+                <Setter Property="Foreground" Value="#A8201A"/>
             </Style>
             <Style x:Key="GeneralFieldLabel" TargetType="Label">
                 <Setter Property="FontSize" Value="30"/>
@@ -29,8 +47,8 @@
                 <Setter Property="VerticalContentAlignment" Value="Bottom"/>
                 <Setter Property="Foreground" Value="#257FBD"/>
             </Style>
-            
-            
+
+
             <Style x:Key="StepperNumberIcon" TargetType="materialDesign:PackIcon">
                 <Setter Property="Width" Value="40"/>
                 <Setter Property="Height" Value="40"/>
@@ -54,6 +72,7 @@
             <SolidColorBrush x:Key="BlackColor" Color="#000000"/>
             <SolidColorBrush x:Key="WhiteColor" Color="#FFFFFF"/>
             <SolidColorBrush x:Key="GrayColor" Color="#E7E7E7"/>
+            <SolidColorBrush x:Key="DarkerGrayColor" Color="#D5D5D5"/>
             <SolidColorBrush x:Key="BackButtonColor" Color="#3e92cc"/>
 
             <Style x:Key="CRUDButton" TargetType="Button">
@@ -63,11 +82,59 @@
                 <Setter Property="IsEnabled" Value="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
             </Style>
 
+            <Style x:Key="CustomMaterialDesignFloatingHintTextBox" TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
+                <Setter Property="Validation.ErrorTemplate">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <StackPanel>
+                                <AdornedElementPlaceholder x:Name="textBox"/>
+                                <Grid Width="490" Margin="0,0,10,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition SharedSizeGroup="textBox"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border BorderBrush="#A8201A" BorderThickness="0,0,0,0">
+                                        <Rectangle  Fill="#FFFFFF" />
+                                    </Border>
+                                    <TextBlock Text="{Binding [0].ErrorContent}"
+                                               TextWrapping="Wrap"
+                                           Foreground="#A8201A"
+                                           FontSize="19"
+                                               FontWeight="Medium"
+                                           Margin="5,2,0,0"
+                                           Height="Auto"/>
+                                </Grid>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+
+            <Style x:Key="PositiveSnackBar" TargetType="{x:Type materialDesign:Snackbar}">
+                <Setter Property="Background" Value="#F5AA39" />
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="BorderBrush" Value="#F5AA39" />
+                <Setter Property="FontSize" Value="24" />
+            </Style>
+
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignExtensions;component/Themes/Generic.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignExtensions;component/Themes/MaterialDesignLightTheme.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="DeepPurple" SecondaryColor="Lime" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary>
+                    <!-- primary -->
+                    <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="#3e92cc"/>
+                    <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="#FFFFFF"/>
+                    <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#3e92cc"/>
+                    <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="#FFFFFF"/>
+                    <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="#3e92cc"/>
+                    <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="#FFFFFF"/>
+                    <!-- accent -->
+                    <SolidColorBrush x:Key="SecondaryHueMidBrush" Color="#F5AA39"/>
+                    <SolidColorBrush x:Key="SecondaryHueMidForegroundBrush" Color="#FFFFFF"/>
+                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

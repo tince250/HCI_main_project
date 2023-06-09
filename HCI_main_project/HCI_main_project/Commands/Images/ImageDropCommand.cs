@@ -24,17 +24,24 @@ namespace HCI_main_project.Commands
                 if (parameter is DragEventArgs e && e.Data.GetDataPresent(DataFormats.FileDrop))
                 {
                     string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-                    foreach (string file in files)
+
+                    if (files.Length != 1)
                     {
-                        string filename = System.IO.Path.GetFileName(file);
-                        FileInfo fileInfo = new FileInfo(filename);
-                        _nameAndPhotoFormViewModel.IsUploaded = Visibility.Hidden;
-                        ImageBrush imgBrush = new ImageBrush();
-                        imgBrush.ImageSource = new BitmapImage(new Uri(file, UriKind.Absolute));
-                        _nameAndPhotoFormViewModel.ImageRectangle.Fill = imgBrush;
-                        _nameAndPhotoFormViewModel.ButtonText = "Upload other image";
-                        _nameAndPhotoFormViewModel.File = file;
+                        ImageHelper.SetErrorImage(_nameAndPhotoFormViewModel);
+                        ImageHelper.SetMoreThanOneFileError(_nameAndPhotoFormViewModel);
+                        return;
                     }
+
+                    string file = files[0];
+                    string filename = System.IO.Path.GetFileName(file);
+
+                    if (!_nameAndPhotoFormViewModel.ValidateImage(new FileInfo(file))) 
+                    {
+                        ImageHelper.SetErrorImage(_nameAndPhotoFormViewModel);
+                        return;
+                    }
+
+                    ImageHelper.SetSuccessfullyAddedImage(_nameAndPhotoFormViewModel, file);
                 }
             }
             catch (Exception ex)

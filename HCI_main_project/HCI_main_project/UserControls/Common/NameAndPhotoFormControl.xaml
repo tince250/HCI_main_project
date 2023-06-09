@@ -1,0 +1,124 @@
+﻿<UserControl x:Class="HCI_main_project.UserControls.NameAndPhotoFormControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HCI_main_project.UserControls"
+             xmlns:commands="clr-namespace:HCI_main_project.Commands"
+             xmlns:rules="clr-namespace:HCI_main_project.ValidationRules"
+             mc:Ignorable="d" 
+             d:DesignHeight="900" d:DesignWidth="1600"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+    <ScrollViewer VerticalScrollBarVisibility="Visible">
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" VerticalAlignment="Center" Height="Auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" VerticalAlignment="Center" Margin="0, 10, 0, 50">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="65"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="350"/>
+                    <RowDefinition Height="55"/>
+                </Grid.RowDefinitions>
+
+
+                <Label Grid.Row="0" Content="Restaurant name"
+                       Style="{DynamicResource ChangeableColorFieldLabel}"
+                       local:OnFocusLabelColorChange.IsEnabled="{Binding ElementName=nameTextBox, Path=IsFocused}"/>
+                    <TextBox
+                    x:Name="nameTextBox"
+                        Grid.Row="1"
+                        MaxLength="25"
+                        VerticalAlignment="Top"
+                        FontSize="24"
+                        Style="{StaticResource CustomMaterialDesignFloatingHintTextBox}"
+                        materialDesign:HintAssist.FloatingScale="0.72"
+                        materialDesign:HintAssist.HelperTextFontSize="18">
+                        
+                        <TextBox.Text>
+                        <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <rules:NameValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <Label Grid.Row="3" Content="Restaurant image"
+                       Style="{DynamicResource ChangeableColorFieldLabel}"
+                      ></Label>
+                <Grid Grid.Row="4">
+                    <Rectangle 
+                           AllowDrop="True" 
+                           commands:DropBehavior.DropCommand="{Binding ImageDropCommand}"
+                           x:Name="imageRectangle"
+                           RadiusX="10"
+                           RadiusY="10"
+                           StrokeDashArray="10"
+                           StrokeThickness="1"
+                           StrokeDashCap="Round"
+                           Margin="0,0,0,10">
+                            <Rectangle.Style>
+                                <Style TargetType="Rectangle">
+                                    <Setter Property="Fill" Value="WhiteSmoke" />
+                                    <Setter Property="Stroke" Value="#000000"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsImageValid}" Value="False">
+                                            <Setter Property="Fill" Value="#FFEEEE" />
+                                            <Setter Property="Stroke" Value="#A8201A"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Rectangle.Style>
+                        </Rectangle>
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,10,0,0">
+                            <StackPanel.Style>
+                                <Style TargetType="StackPanel">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsImageValid}" Value="False">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </StackPanel.Style>
+                        <materialDesign:PackIcon Visibility="{Binding IsUploaded}" Opacity="0.5" Kind="FileUploadOutline" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="50"/>
+                        <TextBlock Text="Drop image for upload" Visibility="{Binding IsUploaded}" Opacity="0.5"  FontSize="20" FontWeight="SemiBold"/>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,10,0,0">
+                            <StackPanel.Style>
+                                <Style TargetType="StackPanel">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsImageValid}" Value="False">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </StackPanel.Style>
+                            <materialDesign:PackIcon Opacity="0.9" Foreground="#A8201A" Kind="AlertOutline" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="50"/>
+                            <TextBlock Text="{Binding ImageValidationError}" Width="400" TextAlignment="Center" TextWrapping="Wrap" Foreground="#A8201A" Opacity="0.9"  FontSize="19" FontWeight="SemiBold"/>
+                    </StackPanel>
+
+                    </Grid>
+                <Button Grid.Row="5" Foreground="Black"  Content="{Binding ButtonText}" Command="{Binding UploadImageCommand}"  Height="55" FontSize="24" Background="#E7E7E7" FontWeight="Regular">
+                    <Button.Resources>
+                        <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="#FFF0F0F0 " />
+                        <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="#FF000000" />
+                        <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#FFF0F0F0" />
+                        <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="#FFFFFFFF" />
+                        <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="#FF003E6E " />
+                        <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="#FFFFFFFF" />
+                    </Button.Resources>
+                </Button>
+            </Grid>
+        </Grid>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

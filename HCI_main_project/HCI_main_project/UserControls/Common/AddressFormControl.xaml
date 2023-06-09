@@ -1,0 +1,132 @@
+﻿<UserControl x:Class="HCI_main_project.UserControls.AddressFormControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HCI_main_project.UserControls"
+             xmlns:rules="clr-namespace:HCI_main_project.ValidationRules"
+             mc:Ignorable="d" 
+             d:DesignHeight="900
+" d:DesignWidth="1600"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+
+    <Grid>
+        <Grid VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" Margin="20,0,20,0" VerticalAlignment="Center" Height="Auto" Width="500">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="65"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="65"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="65"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Content="Type the address yourself..." VerticalAlignment="Top" Style="{StaticResource GeneralFieldLabel}">
+                </Label>
+
+                <Grid Grid.Row="1" VerticalAlignment="Center">
+                    <Label Grid.Column="0" Content="Street" 
+                                           Style="{DynamicResource ChangeableColorFieldLabel}"
+                                       local:OnFocusLabelColorChange.IsEnabled="{Binding ElementName=streetTextBox, Path=IsFocused}"/>
+                </Grid>
+
+                <Grid Grid.Row="2" VerticalAlignment="Center">
+                    <TextBox
+                    x:Name="streetTextBox"
+                    Grid.Column="0"
+                    MaxLength="25"
+                    VerticalAlignment="Top"
+                    FontSize="24"
+                    Style="{StaticResource CustomMaterialDesignFloatingHintTextBox}"
+                    materialDesign:HintAssist.FloatingScale="0.72"
+                    materialDesign:HintAssist.HelperTextFontSize="18">
+                        <TextBox.Text>
+                            <Binding Path="Street" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <rules:StreetValidationRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </Grid>
+
+
+                <Label Grid.Row="4" Content="Street no" 
+                            Style="{DynamicResource ChangeableColorFieldLabel}"
+                            local:OnFocusLabelColorChange.IsEnabled="{Binding ElementName=streetNoTextBox, Path=IsFocused}"/>
+
+                <TextBox x:Name="streetNoTextBox"
+                    Grid.Row="5"
+                    MaxLength="25"
+                    VerticalAlignment="Top"
+                    FontSize="24"
+                    Style="{StaticResource CustomMaterialDesignFloatingHintTextBox}"
+                    materialDesign:HintAssist.FloatingScale="0.72"
+                    materialDesign:HintAssist.HelperTextFontSize="18">
+                    <TextBox.Text>
+                        <Binding Path="StreetNo" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <rules:StreetNumberValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+
+                <Label Grid.Row="7" Content="City"
+                                Style="{DynamicResource ChangeableColorFieldLabel}"
+                            local:OnFocusLabelColorChange.IsEnabled="{Binding ElementName=cityTextBox, Path=IsFocused}"/>
+                <TextBox Grid.Row="8"
+                        x:Name="cityTextBox"
+                            MaxLength="25"
+                            VerticalAlignment="Top"
+                            FontSize="24"
+                            Style="{StaticResource CustomMaterialDesignFloatingHintTextBox}"
+                            materialDesign:HintAssist.FloatingScale="0.72"
+                            materialDesign:HintAssist.HelperTextFontSize="18">
+                    <TextBox.Text>
+                        <Binding Path="City" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <rules:CityValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+            </Grid>
+
+            <Grid Grid.Column="1" Margin="0,5,0,-5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" BorderBrush="#257FBD" BorderThickness="2,0,0,0" HorizontalAlignment="Center"/>
+                <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource GeneralFieldLabel}" Content="OR"/>
+                <Border Grid.Row="2" BorderBrush="#257FBD" BorderThickness="2,0,0,0"  HorizontalAlignment="Center"/>
+            </Grid>
+
+            <Grid Grid.Column="2" Margin="20,0,20,0" Height="Auto" Width="500">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="pin the address on map." VerticalAlignment="Top" Style="{StaticResource GeneralFieldLabel}">
+                </Label>
+                <Image Source="../../Resources/err1.png" />
+            </Grid>
+        </Grid>
+    </Grid>
+
+
+
+</UserControl>

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace HCI_main_project.ViewModels
 {
@@ -42,9 +43,20 @@ namespace HCI_main_project.ViewModels
             }
         }
 
-        public AddressFormViewModel(Restaurant selectedRestaurant)
+        private TextBox _streetTextBox, _streetNoTextBox, _cityTextBox;
+        public bool IsFormValid()
+        {
+            return !Validation.GetHasError(_streetTextBox) && Street != "" && Street != null
+                && !Validation.GetHasError(_streetNoTextBox) && StreetNo != "" && StreetNo != null 
+                && !Validation.GetHasError(_cityTextBox) && City != "" && City != null;
+        }
+
+        public AddressFormViewModel(Restaurant selectedRestaurant, TextBox streetTextBox, TextBox streetNoTextBox, TextBox cityTextBox)
         {
             FillFieldsWithPreviousData(selectedRestaurant);
+            _streetTextBox = streetTextBox;
+            _streetNoTextBox = streetNoTextBox; 
+            _cityTextBox = cityTextBox;
         }
 
         private void FillFieldsWithPreviousData(Restaurant restaurant)
@@ -52,6 +64,8 @@ namespace HCI_main_project.ViewModels
             if (restaurant == null)
                 return;
             City = restaurant.Address.City;
+            StreetNo = restaurant.Address.StreetNumber.ToString();
+            Street = restaurant.Address.Street;
         }
     }
 }

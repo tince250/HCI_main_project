@@ -11,7 +11,13 @@ namespace HCI_main_project.Model.DTOs
     {
         public string Name { get; set; }
         public string Image { get; set; }
-        public Address Address { get; set; }
+        public AddressDTO Address { get; set; }
 
+        public RestaurantDTO(string name, string image, AddressDTO address)
+        {
+            Name = name;
+            Image = image;
+            Address = address;
+        }
     }
 }

@@ -29,11 +29,11 @@ namespace HCI_main_project
         {
             InitializeComponent();
 
-            // Set the DataContext of the AddRestaurantPage to the restaurant object
-            AddRestaurantPage addRestaurantPage = new AddRestaurantPage(tripagoContext.Restaurants.Include(r => r.Address).FirstOrDefault(r => r.Id == 8));
-
+            // Set the DataContext of the AddRestaurantPage to the restaurant object tripagoContext.Restaurants.Include(r => r.Address).FirstOrDefault(r => r.Id == 8)
+            AddEditRestaurantPage addEditRestaurantPage = new AddEditRestaurantPage(tripagoContext.Restaurants.Include(r => r.Address).FirstOrDefault(r => r.Id == 13));
+            //AddEditRestaurantPage addEditRestaurantPage = new AddEditRestaurantPage();
             // Set the content of the Frame to the AddRestaurantPage
-            Frame.Content = addRestaurantPage;
+            Frame.Content = addEditRestaurantPage;
         }
 
 

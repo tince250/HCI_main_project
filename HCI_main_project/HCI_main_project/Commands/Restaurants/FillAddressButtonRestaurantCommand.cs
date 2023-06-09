@@ -1,6 +1,7 @@
 ﻿using HCI_main_project.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Windows;
 using System.Windows.Media;
@@ -14,6 +15,7 @@ namespace HCI_main_project.Commands
         public FillAddressButtonRestaurantCommand(AddRestaurantPageViewModel addRestaurantPageViewModel)
         {
             _addRestaurantPageViewModel = addRestaurantPageViewModel;
+            _addRestaurantPageViewModel.NameAndPhotoFormViewModel.PropertyChanged += ViewModel_PropertyChanged;
         }
 
         public override void Execute(object? parameter)
@@ -22,12 +24,26 @@ namespace HCI_main_project.Commands
             {
                 _addRestaurantPageViewModel.IsFillAddressButtonClicked = true;
                 _addRestaurantPageViewModel.NameAndPhotoFormControl.Visibility = Visibility.Collapsed;
-                _addRestaurantPageViewModel.NextButtonText = "Add restaurant";
+                _addRestaurantPageViewModel.NextButtonText = "Create restaurant";
             }
             catch (Exception ex)
             {
                 ex.GetType();
             }
+        }
+        private void ViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(_addRestaurantPageViewModel.NameAndPhotoFormViewModel.Name)
+                || e.PropertyName == nameof(_addRestaurantPageViewModel.NameAndPhotoFormViewModel.IsImageValid)
+                || e.PropertyName == nameof(_addRestaurantPageViewModel.NameAndPhotoFormViewModel.File))
+            {
+                OnCanExecuteChanged();
+            }
+        }
+
+        public override bool CanExecute(object? parameter)
+        {
+            return _addRestaurantPageViewModel.NameAndPhotoFormViewModel.IsFormValid();
         }
     }
 }

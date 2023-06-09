@@ -1,4 +1,6 @@
-﻿using HCI_main_project.Models;
+﻿using HCI_main_project.Model.DTOs;
+using HCI_main_project.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -17,9 +19,24 @@ namespace HCI_main_project.Model.Services
             _context = context;
         }
 
-        public void Add(Restaurant restaurant)
+        public void Add(RestaurantDTO restaurantDTO)
         {
-            _context.Restaurants.Add(restaurant);
+            var r = new Restaurant(restaurantDTO);
+            _context.Restaurants.Add(r);
+            _context.SaveChanges();
+        }
+
+        public void Edit(int id, RestaurantDTO restaurantDTO)
+        {
+            Restaurant restaurant = _context.Restaurants.Include(r => r.Address).FirstOrDefault(r => r.Id == 11);
+            restaurant.Address.City = restaurantDTO.Address.City;
+            restaurant.Address.Street = restaurant.Address.Street;
+            restaurant.Address.PostalCode = restaurant.Address.PostalCode;
+            restaurant.Address.StreetNumber = restaurant.Address.StreetNumber;
+
+            restaurant.Name = restaurantDTO.Name;
+            restaurant.Image = restaurantDTO.Image;
+
             _context.SaveChanges();
         }
 
@@ -28,9 +45,6 @@ namespace HCI_main_project.Model.Services
             throw new NotImplementedException();
         }
 
-        public void Edit()
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

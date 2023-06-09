@@ -1,5 +1,6 @@
 ﻿using HCI_main_project.Model.Services;
 using HCI_main_project.Models;
+using HCI_main_project;
 using HCI_main_project.UserControls;
 using HCI_main_project.ViewModels;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+
 
 namespace HCI_main_project
 {
@@ -38,7 +40,7 @@ namespace HCI_main_project
 
             services.AddSingleton<MainWindow>();
             services.AddSingleton<IRestaurantService, RestaurantService>();
-            services.AddTransient<AddRestaurantPage>();
+            services.AddTransient<AddEditRestaurantPage>();
             services.AddTransient<AddressFormControl>();
             services.AddTransient<NameAndPhotoFormControl>();
             services.AddTransient<AddressFormViewModel>();
