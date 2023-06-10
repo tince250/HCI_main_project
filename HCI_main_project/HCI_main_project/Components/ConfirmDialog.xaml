@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="HCI_main_project.Components.ReserveDialog"
+﻿<UserControl x:Class="HCI_main_project.Components.ConfirmDialog"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -34,12 +34,12 @@
                         <BitmapImage UriSource="../Resources/x-icon.jpg" />
                     </Image.Source>
                 </Image>
-                <TextBlock Grid.Row="1" FontSize="28" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="WrapWithOverflow" Height="Auto" VerticalAlignment="Stretch">You are about to <TextBlock Foreground="{Binding Path=IsReservationTitle, Converter={StaticResource TextToColorConverter}}" Text="{Binding Path=IsReservationTitle}"></TextBlock> your spot for <TextBlock TextDecorations="Underline" Text="{Binding Path=Tour.Name}"></TextBlock> tour.</TextBlock>
-                <TextBlock Text="{Binding IsReservationDescription}" Grid.Row="2" FontSize="16" Margin="0 5 0 0" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="WrapWithOverflow" Height="Auto" VerticalAlignment="Stretch" Foreground="#757575"></TextBlock>
+                <TextBlock Grid.Row="1" FontSize="28" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="WrapWithOverflow" Height="Auto" VerticalAlignment="Stretch">You are about to <TextBlock Foreground="{Binding Path=TitleText, Converter={StaticResource TextToColorConverter}}" Text="{Binding Path=TitleText}"></TextBlock> your spot for <TextBlock TextDecorations="Underline" Text="{Binding Path=CurrItem.Name}"></TextBlock><TextBlock Text="{Binding TypeText}"/></TextBlock>
+                <TextBlock Text="{Binding DescriptionText}" Grid.Row="2" FontSize="16" Margin="0 5 0 0" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="WrapWithOverflow" Height="Auto" VerticalAlignment="Stretch" Foreground="#757575"></TextBlock>
 
 
 
-                <ItemsControl Grid.Row="3" ItemsSource="{Binding Tours}" Margin="0, 10">
+                <ItemsControl Grid.Row="3" ItemsSource="{Binding Cards}" Margin="0, 10">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel HorizontalAlignment="Center" Orientation="Vertical" />
@@ -67,7 +67,7 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     Margin="0, 10"
-                    Height="35"
+                    Height="40"
                     Width="Auto"
                     FontSize="16"
                     FontWeight="Bold"
@@ -88,7 +88,7 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     Margin="10, 0"
-                    Height="35"
+                    Height="40"
                     Width="Auto"
                     FontSize="16"
                     FontWeight="Bold"
@@ -99,7 +99,7 @@
                     Background="{StaticResource ButtonLightBlueColor}"
                     Foreground="{StaticResource WhiteColor}">
 
-                        <TextBlock Text="{Binding Path=IsReservationButton}" />
+                        <TextBlock Text="{Binding Path=ButtonText}" />
 
                     </Button>
                 </StackPanel>

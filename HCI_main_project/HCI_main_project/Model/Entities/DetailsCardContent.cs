@@ -32,8 +32,8 @@ namespace HCI_main_project.Model.Entities
 
         public DetailsCardContent(Tour tour)
         {
-            this.Name = "Tour name: " + tour.Name;
-            this.Description = "from " + tour.From.ToString() + " to " + tour.To.ToString();
+            this.Name = tour.Name;
+            this.Description = "from " + tour.From.ToString("dd.MM.yyyy.") + " to " + tour.To.ToString("dd.MM.yyyy.");
         }
     }
 }

@@ -19,12 +19,12 @@ namespace HCI_main_project.Components
     /// <summary>
     /// Interaction logic for ReserveDialog.xaml
     /// </summary>
-    public partial class ReserveDialog : UserControl
+    public partial class ConfirmDialog : UserControl
     {
-        public ReserveDialog(bool isReservation)
+        public ConfirmDialog(DialogType type)
         {
             InitializeComponent();
-            DataContext = new ReserveDialogViewModel(isReservation);
+            DataContext = new ConfirmDialogViewModel(type);
         }
 
         private void closeDialog(object sender, RoutedEventArgs e)
