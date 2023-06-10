@@ -77,13 +77,66 @@ namespace HCI_main_project.ViewModel
             }
         }
 
+        private double minPrice;
 
-        private TripagoContext dbContext;
+        public double MinPrice
+        {
+            get { return minPrice; }
+            set { minPrice = value; }
+        }
+        
+        private double maxPrice;
+
+        public double MaxPrice
+        {
+            get { return maxPrice; }
+            set { maxPrice = value; }
+        }
+
+        private DateTime dateFrom;
+
+        public DateTime DateFrom
+        {
+            get { return dateFrom; }
+            set { dateFrom = value; }
+        }
+        
+        private DateTime dateTo;
+
+        public DateTime DateTo
+        {
+            get { return dateTo; }
+            set { dateTo = value; }
+        }
+
+        private ObservableCollection<String> locations;
+
+        public ObservableCollection<String> Locations
+        {
+            get { return locations; }
+            set { 
+                locations = value;
+                OnPropertyChanged(nameof(Locations));
+            }
+        }
+
+        private string selectedLocation;
+
+        public string SelectedLocation
+        {
+            get { return selectedLocation; }
+            set { selectedLocation = value; }
+        }
+
+
+        public TripagoContext dbContext;
 
         public ICommand navItemSelectedCommand { get; }
         public ICommand toggleFilterPaneCommand { get; }
         public ICommand openTourDetailsCommand { get; }
         public ICommand logoutCommand { get; }
+        public ICommand applyFiltersCommand { get; }
+        public ICommand clearFiltersCommand { get; }
 
         public HomepageViewModel()
         {
@@ -91,9 +144,18 @@ namespace HCI_main_project.ViewModel
             this.toggleFilterPaneCommand = new ToggleFilterPaneCommand(this);
             this.openTourDetailsCommand = new OpenTourDetailsCommand(this);
             this.logoutCommand = new LogoutCommand(this);
+            this.applyFiltersCommand = new ApplyFiltersCommand(this);
+            this.clearFiltersCommand = new ClearFiltersCommand(this);
             //var app = (App)Application.Current;
             this.dbContext = App.serviceProvider.GetService<TripagoContext>();
             SetTours();
+        }
+
+        private void loadLocations()
+        {
+            var cities = new ObservableCollection<string>(this.dbContext.Addresses.Select(a => a.City).Distinct().ToList());
+            cities.Insert(0, "All locations");
+            this.Locations = cities;
         }
 
         public void SetTours()
@@ -114,12 +176,8 @@ namespace HCI_main_project.ViewModel
         {
             
             this.Objects = new ObservableCollection<object>(dbContext.Attractions.Include(r => r.Address).ToList());
-            this.SortOptions = new ObservableCollection<string>
-            {
-                "All attractions"
-            };
-            this.SelectedOption = this.SortOptions[0];
             this.SelectedType = "attractions";
+            loadLocations();
         }
 
         public void SetAccommodation()
@@ -132,40 +190,21 @@ namespace HCI_main_project.ViewModel
                 "Appartments",
                 "Hotels"
             };
-            this.SelectedOption = this.SortOptions[0];
             this.SelectedType = "accommodation";
+            loadLocations();
         }
 
         public void SetRestaurants()
         {
             
             this.Objects = new ObservableCollection<object>(dbContext.Restaurants.ToList());
-            this.SortOptions = new ObservableCollection<string>
-            {
-                "All restaurants"
-            };
-            this.SelectedOption = this.SortOptions[0];
             this.SelectedType = "restaurants";
+            loadLocations();
         }
 
         public void Sort(string criteria)
         {
-            if (Objects.OfType<Tour>().Any())
-            {
-                SortTours(criteria);
-            } 
-            else if (Objects.OfType<Attraction>().Any())
-            {
-                SortAttractions(criteria);
-            } 
-            else if (Objects.OfType<Accommodation>().Any())
-            {
-                SortAccommodation(criteria);
-            } 
-            else if (Objects.OfType<Restaurant>().Any())
-            {
-                SortRestaurants(criteria);
-            }
+            SortTours(criteria);
         }
 
         public void SortTours(string criteria)
@@ -186,68 +225,6 @@ namespace HCI_main_project.ViewModel
             else if (criteria.Equals("Most recent"))
             {
                 this.Objects = new ObservableCollection<object>(dbContext.Tours.OrderBy(t => t.From));
-            }
-        }
-        public void SortAccommodation(string criteria)
-        {
-            if (criteria.Contains("All"))
-            {
-                this.Objects = new ObservableCollection<object>(dbContext.Accommodations.ToList());
-            }
-            else if (criteria.Equals("Most popular"))
-            {
-                this.Objects = new ObservableCollection<object>(dbContext.Tours.OrderByDescending(t => t.TourTravelers.Count));
-            }
-            else if (criteria.Equals("Price lowest"))
-            {
-                this.Objects = new ObservableCollection<object>(dbContext.Tours.OrderBy(t => t.Price));
-
-            }
-            else if (criteria.Equals("Price highest"))
-            {
-                this.Objects = new ObservableCollection<object>(dbContext.Tours.OrderByDescending(t => t.Price));
-            }
-        }
-
-        public void SortAttractions(string criteria)
-        {
-            if (criteria.Contains("All"))
-            {
-                this.Objects = new ObservableCollection<object>(dbContext.Attractions.ToList());
-            }
-            else if (criteria.Equals("Most popular"))
-            {
-                this.Objects = new ObservableCollection<object>(dbContext.Tours.OrderByDescending(t => t.TourTravelers.Count));
-            }
-            else if (criteria.Equals("Price lowest"))
-            {
-                this.Objects = new ObservableCollection<object>(dbContext.Tours.OrderBy(t => t.Price));
-
-            }
-            else if (criteria.Equals("Price highest"))
-            {
-                this.Objects = new ObservableCollection<object>(dbContext.Tours.OrderByDescending(t => t.Price));
-            }
-        }
-        
-        public void SortRestaurants(string criteria)
-        {
-            if (criteria.Contains("All"))
-            {
-                this.Objects = new ObservableCollection<object>(dbContext.Restaurants.ToList());
-            }
-            else if (criteria.Equals("Most popular"))
-            {
-                this.Objects = new ObservableCollection<object>(dbContext.Tours.OrderByDescending(t => t.TourTravelers.Count));
-            }
-            else if (criteria.Equals("Price lowest"))
-            {
-                this.Objects = new ObservableCollection<object>(dbContext.Tours.OrderBy(t => t.Price));
-
-            }
-            else if (criteria.Equals("Price highest"))
-            {
-                this.Objects = new ObservableCollection<object>(dbContext.Tours.OrderByDescending(t => t.Price));
             }
         }
     }

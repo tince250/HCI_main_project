@@ -8,6 +8,7 @@
       xmlns:root="clr-namespace:HCI_main_project"
       xmlns:conv="clr-namespace:HCI_main_project.Converters"
       xmlns:custom="clr-namespace:HCI_main_project.User_Controls"
+      xmlns:rules="clr-namespace:HCI_main_project.ValidationRules"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
       mc:Ignorable="d" 
@@ -118,7 +119,7 @@
                 Margin="0,8,10,0"
                 Width="450"
                 Height="62"
-                materialDesign:HintAssist.Hint="Search..."
+                materialDesign:HintAssist.Hint="Search by name..."
                 TextChanged="searchBox_TextChanged"
                 Text="{Binding SearchText, Mode=OneWay}"
                 >
@@ -136,10 +137,21 @@
                     Foreground="{StaticResource ButtonLightBlueColor}"
                     BorderBrush="{StaticResource ButtonLightBlueColor}"
                     ItemsSource="{Binding SortOptions}"
-                    Style="{StaticResource MaterialDesignOutlinedComboBox}"
                     SelectedItem="{Binding SelectedOption, Mode=TwoWay}"
                     materialDesign:HintAssist.Hint="Sort by"
-                    />
+                    >
+                        <ComboBox.Style>
+                            <Style TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignOutlinedComboBox}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedType}" Value="tours">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ComboBox.Style>
+                        
+                    </ComboBox>
 
                     <ToggleButton
                       Style="{StaticResource MaterialDesignRaisedButton}"
@@ -166,7 +178,7 @@
                     Height="10"
                     Grid.Row="1"
                     Grid.ColumnSpan="2"
-                      Margin="30,8,30,0"
+                      Margin="30,17,30,0"
                       Style="{StaticResource MaterialDesignDarkSeparator}">
                     <Separator.Template>
                         <ControlTemplate TargetType="Separator">
@@ -186,6 +198,7 @@
                         CornerRadius="0,0,10,10"
                         Visibility="Collapsed"
                         Margin="30,-7,30,0"
+                        Padding="5, 5"
                 >
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -193,7 +206,17 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="10" HorizontalAlignment="Left">
+                        <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="15" HorizontalAlignment="Left">
+                            <StackPanel.Style>
+                                <Style TargetType="StackPanel">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding SelectedType}" Value="tours">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </StackPanel.Style>
                             <TextBox
                                 x:Name="priceFromBox"
                                 MaxLength="12"
@@ -211,7 +234,14 @@
                                 Margin="8,3,10,0"
                                 Width="150"
                                 Height="55"
-                                materialDesign:HintAssist.Hint="Min price"/>
+                                materialDesign:HintAssist.Hint="Min price"
+                                >
+                                <Binding Path="MinPrice" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <rules:PriceValidationRule/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox>
                             <TextBlock FontSize="32" FontWeight="Bold" Foreground="Gray" Text="-" VerticalAlignment="Center" Margin="0,3,10,0"/>
 
                             <TextBox
@@ -232,23 +262,105 @@
                                 Width="150"
                                 Height="55"
                                 InputScope="Number"
-                                materialDesign:HintAssist.Hint="Max price"/>
+                                materialDesign:HintAssist.Hint="Max price">
+                                <Binding Path="MaxPrice" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <rules:PriceValidationRule/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox>
 
                             <DatePicker
+                              x:Name="dateFrom"
                               Width="140"
                               Height="55"
                               Margin="30,3,10,0"
                               FontSize="18"
                               materialDesign:HintAssist.Hint="Date from"
-                              Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                              Style="{StaticResource MaterialDesignOutlinedDatePicker}" >
+                                <DatePicker.SelectedDate>
+                                    <Binding Path="DateFrom" UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules>
+                                            <rules:DateValidationRule/>
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </DatePicker.SelectedDate>
+                            </DatePicker>
                             <TextBlock FontSize="32" FontWeight="Bold" Foreground="Gray" Text="-" VerticalAlignment="Center" Margin="0,3,10,0"/>
                             <DatePicker
+                              x:Name="dateTo"
                               Width="140"
                               Height="55"
                               Margin="0,3,10,0"
                               FontSize="18"
                               materialDesign:HintAssist.Hint="Date from"
-                              Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                              Style="{StaticResource MaterialDesignOutlinedDatePicker}" >
+                                <DatePicker.SelectedDate>
+                                    <Binding Path="DateTo" UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules>
+                                            <rules:DateValidationRule/>
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </DatePicker.SelectedDate>
+                            </DatePicker>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="10" HorizontalAlignment="Left">
+                            <StackPanel.Style>
+                                <Style TargetType="StackPanel">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding SelectedType}" Value="tours">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </StackPanel.Style>
+                            <ComboBox
+                                Margin="0,8,10,0"
+                                x:Name="OutlinedComboBoxLocation"
+                                Width="Auto"
+                                Height="55"
+                                FontSize="18"
+                                FontWeight="Medium"
+                                Padding="10,12,10,12"
+                                Background="{StaticResource WhiteColor}"
+                                Foreground="{StaticResource ButtonLightBlueColor}"
+                                BorderBrush="{StaticResource GrayColor}"
+                                ItemsSource="{Binding Locations}"
+                                SelectedItem="{Binding SelectedLocation}"
+                                materialDesign:HintAssist.Hint="Choose location"
+                                Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                                />
+
+                            <ComboBox
+                                Margin="0,8,10,0"
+                                x:Name="AccommodationTypeCB"
+                                Width="Auto"
+                                Height="55"
+                                FontSize="18"
+                                FontWeight="Medium"
+                                Padding="10,12,10,12"
+                                Background="{StaticResource WhiteColor}"
+                                Foreground="{StaticResource ButtonLightBlueColor}"
+                                BorderBrush="{StaticResource GrayColor}"
+                                ItemsSource="{Binding SortOptions}"
+                                SelectedItem="{Binding SelectedOption, Mode=TwoWay}"
+                                materialDesign:HintAssist.Hint="Choose type"
+                                >
+                                <ComboBox.Style>
+                                    <Style TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignOutlinedComboBox}">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding SelectedType}" Value="accommodation">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ComboBox.Style>
+
+                            </ComboBox>
+
                         </StackPanel>
 
                         <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right"  Margin="10">
@@ -257,13 +369,14 @@
                         Margin="0,0,8,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
-                        Content="Clear all"
+                        Content="Clear filters"
                         FontSize="18"
                         Height="40"
                         materialDesign:ButtonAssist.CornerRadius="18"
                         Style="{StaticResource MaterialDesignRaisedLightButton}"
-                        Background="{StaticResource OrangeColor}"
-                        Foreground="{StaticResource WhiteColor}"/>
+                        Background="{StaticResource LightGrayColor}"
+                        Foreground="{StaticResource WhiteColor}"
+                        Command="{Binding clearFiltersCommand}"/>
                             
                             <Button
                         Grid.Column="1"
@@ -276,7 +389,8 @@
                         materialDesign:ButtonAssist.CornerRadius="18"
                         Style="{StaticResource MaterialDesignRaisedLightButton}"
                         Background="{StaticResource ButtonLightBlueColor}"
-                        Foreground="{StaticResource WhiteColor}"/>
+                        Foreground="{StaticResource WhiteColor}"
+                        Command="{Binding applyFiltersCommand}"/>
                         
                         </StackPanel>
                     </Grid>
