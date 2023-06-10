@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:HCI_main_project.Pages"
       xmlns:model="clr-namespace:HCI_main_project.Models"
+      xmlns:viewmodel="clr-namespace:HCI_main_project.ViewModel"
       xmlns:root="clr-namespace:HCI_main_project"
       xmlns:conv="clr-namespace:HCI_main_project.Converters"
       xmlns:custom="clr-namespace:HCI_main_project.User_Controls"
@@ -24,8 +25,7 @@
 
     <Page.Resources>
         <conv:TourToSquareCardConverter x:Key="TourToSquareCardConverter" />
-
-        
+        <!--<conv:DataContextConverter x:Key="DataContextConverter" />-->
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -196,10 +196,22 @@
                         BorderBrush="LightGray"
                         BorderThickness="3 0 3 3"
                         CornerRadius="0,0,10,10"
-                        Visibility="Collapsed"
+                        
                         Margin="30,-7,30,0"
                         Padding="5, 5"
+                        
                 >
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ExpandFilters}" Value="true">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -220,13 +232,11 @@
                             <TextBox
                                 x:Name="priceFromBox"
                                 MaxLength="12"
-                                materialDesign:TextBlockAssist.AutoToolTip="True"
                                 VerticalAlignment="Top"
                                 FontSize="18"
                                 Style="{StaticResource CustomMaterialDesignFloatingHintTextBox}"
                                 materialDesign:HintAssist.FloatingScale="0.72"
                                 materialDesign:HintAssist.HelperTextFontSize="18"
-                                materialDesign:TextFieldAssist.IncludeSpellingSuggestions="True"
                                 materialDesign:TextFieldAssist.HasTrailingIcon="True"
                                 materialDesign:TextFieldAssist.TrailingIcon="Euro"
                                 materialDesign:TextFieldAssist.TrailingIconSize="22"
@@ -236,7 +246,7 @@
                                 Height="55"
                                 materialDesign:HintAssist.Hint="Min price"
                                 >
-                                <Binding Path="MinPrice" UpdateSourceTrigger="PropertyChanged">
+                                <Binding Path="MinPrice" UpdateSourceTrigger="PropertyChanged" TargetNullValue=''>
                                     <Binding.ValidationRules>
                                         <rules:PriceValidationRule/>
                                     </Binding.ValidationRules>
@@ -263,7 +273,7 @@
                                 Height="55"
                                 InputScope="Number"
                                 materialDesign:HintAssist.Hint="Max price">
-                                <Binding Path="MaxPrice" UpdateSourceTrigger="PropertyChanged">
+                                <Binding Path="MaxPrice" UpdateSourceTrigger="PropertyChanged"  TargetNullValue=''>
                                     <Binding.ValidationRules>
                                         <rules:PriceValidationRule/>
                                     </Binding.ValidationRules>
@@ -279,7 +289,7 @@
                               materialDesign:HintAssist.Hint="Date from"
                               Style="{StaticResource MaterialDesignOutlinedDatePicker}" >
                                 <DatePicker.SelectedDate>
-                                    <Binding Path="DateFrom" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding Path="DateFrom" UpdateSourceTrigger="PropertyChanged" TargetNullValue=''>
                                         <Binding.ValidationRules>
                                             <rules:DateValidationRule/>
                                         </Binding.ValidationRules>
@@ -296,7 +306,7 @@
                               materialDesign:HintAssist.Hint="Date from"
                               Style="{StaticResource MaterialDesignOutlinedDatePicker}" >
                                 <DatePicker.SelectedDate>
-                                    <Binding Path="DateTo" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding Path="DateTo" UpdateSourceTrigger="PropertyChanged" TargetNullValue=''>
                                         <Binding.ValidationRules>
                                             <rules:DateValidationRule/>
                                         </Binding.ValidationRules>
@@ -325,7 +335,7 @@
                                 FontWeight="Medium"
                                 Padding="10,12,10,12"
                                 Background="{StaticResource WhiteColor}"
-                                Foreground="{StaticResource ButtonLightBlueColor}"
+                                Foreground="{StaticResource BlackColor}"
                                 BorderBrush="{StaticResource GrayColor}"
                                 ItemsSource="{Binding Locations}"
                                 SelectedItem="{Binding SelectedLocation}"
@@ -342,7 +352,7 @@
                                 FontWeight="Medium"
                                 Padding="10,12,10,12"
                                 Background="{StaticResource WhiteColor}"
-                                Foreground="{StaticResource ButtonLightBlueColor}"
+                                Foreground="{StaticResource BlackColor}"
                                 BorderBrush="{StaticResource GrayColor}"
                                 ItemsSource="{Binding SortOptions}"
                                 SelectedItem="{Binding SelectedOption, Mode=TwoWay}"

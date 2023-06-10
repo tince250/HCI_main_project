@@ -24,18 +24,25 @@ namespace HCI_main_project.Commands
             if (this.homepageViewModel.SelectedType.Equals("tours"))
             {
                 this.homepageViewModel.SortTours(this.homepageViewModel.SelectedOption);
+                this.homepageViewModel.MinPrice = null;
+                this.homepageViewModel.MaxPrice = null;
+                this.homepageViewModel.DateFrom = null;
+                this.homepageViewModel.DateTo = null;
             }
             else if (this.homepageViewModel.SelectedType.Equals("attractions"))
             {
                 this.homepageViewModel.Objects = new ObservableCollection<object>(this.homepageViewModel.dbContext.Attractions.ToList());
+                this.homepageViewModel.SelectedLocation = null;
             }
             else if (this.homepageViewModel.SelectedType.Equals("accommodation"))
             {
                 this.homepageViewModel.Objects = new ObservableCollection<object>(this.homepageViewModel.dbContext.Accommodations.ToList());
+                this.homepageViewModel.SelectedLocation = null;
             }
             else if (this.homepageViewModel.SelectedType.Equals("restaurants"))
             {
                 this.homepageViewModel.Objects = new ObservableCollection<object>(this.homepageViewModel.dbContext.Restaurants.ToList());
+                this.homepageViewModel.SelectedLocation = null;
             }
         }
     }

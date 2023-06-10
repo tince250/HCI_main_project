@@ -33,6 +33,12 @@ namespace HCI_main_project.Commands
         private void applyAddressFilters()
         {
             string chosenCity = this.homepageViewModel.SelectedLocation;
+
+            if (chosenCity == null)
+            {
+                return;
+            }
+
             ObservableCollection<object> Objects = this.homepageViewModel.Objects;
 
             if (chosenCity.Contains("All"))
@@ -43,15 +49,15 @@ namespace HCI_main_project.Commands
 
             if (this.homepageViewModel.SelectedType.Equals("attractions"))
             {
-                this.homepageViewModel.Objects = new ObservableCollection<object>(this.homepageViewModel.dbContext.Attractions.Where(a => a.Address.City.Equals(chosenCity)).ToList());
+                this.homepageViewModel.Objects = new ObservableCollection<object>(this.homepageViewModel.Objects.OfType<Attraction>().Where(a => a.Address.City.Equals(chosenCity)).ToList());
             }
             else if (this.homepageViewModel.SelectedType.Equals("accommodation"))
             {
-                this.homepageViewModel.Objects = new ObservableCollection<object>(this.homepageViewModel.dbContext.Accommodations.Where(a => a.Address.City.Equals(chosenCity)).ToList());
+                this.homepageViewModel.Objects = new ObservableCollection<object>(this.homepageViewModel.Objects.OfType<Accommodation>().Where(a => a.Address.City.Equals(chosenCity)).ToList());
             }
             else if (this.homepageViewModel.SelectedType.Equals("restaurants"))
             {
-                this.homepageViewModel.Objects = new ObservableCollection<object>(this.homepageViewModel.dbContext.Restaurants.Where(r => r.Address.City.Equals(chosenCity)).ToList());
+                this.homepageViewModel.Objects = new ObservableCollection<object>(this.homepageViewModel.Objects.OfType<Restaurant>().Where(r => r.Address.City.Equals(chosenCity)).ToList());
             }
         }
 
@@ -76,30 +82,30 @@ namespace HCI_main_project.Commands
             bool applyPriceFilter = false;
             bool applyDateFilter = false;
 
-            if (this.homepageViewModel.MinPrice != 0 && this.homepageViewModel.MaxPrice != 0)
+            if (this.homepageViewModel.MinPrice != null && this.homepageViewModel.MaxPrice != null)
             {
                 applyPriceFilter = true;
             }
 
-            if (this.homepageViewModel.DateFrom != this.homepageViewModel.DateTo)
+            if (this.homepageViewModel.DateFrom != null && this.homepageViewModel.DateTo != null)
             {
                 applyDateFilter = true;
             }
 
             if (applyPriceFilter && !applyDateFilter)
             {
-                this.homepageViewModel.Objects = new ObservableCollection<object>(this.homepageViewModel.dbContext.Tours.Where(t => t.Price <= this.homepageViewModel.MaxPrice && t.Price >= this.homepageViewModel.MinPrice).ToList());
+                this.homepageViewModel.Objects = new ObservableCollection<object>(this.homepageViewModel.Objects.OfType<Tour>().Where(t => t.Price <= this.homepageViewModel.MaxPrice && t.Price >= this.homepageViewModel.MinPrice).ToList());
             }
 
             if (!applyPriceFilter && applyDateFilter)
             {
-                this.homepageViewModel.Objects = new ObservableCollection<object>(this.homepageViewModel.dbContext.Tours.Where(t => t.From >= this.homepageViewModel.DateFrom && t.To <= this.homepageViewModel.DateTo).ToList());
+                this.homepageViewModel.Objects = new ObservableCollection<object>(this.homepageViewModel.Objects.OfType<Tour>().Where(t => t.From >= this.homepageViewModel.DateFrom && t.To <= this.homepageViewModel.DateTo).ToList());
 
             }
 
             if (applyPriceFilter && applyDateFilter)
             {
-                this.homepageViewModel.Objects = new ObservableCollection<object>(this.homepageViewModel.dbContext.Tours.Where(t => (t.Price <= this.homepageViewModel.MaxPrice && t.Price >= this.homepageViewModel.MinPrice) && (t.From >= this.homepageViewModel.DateFrom && t.To <= this.homepageViewModel.DateTo)).ToList());
+                this.homepageViewModel.Objects = new ObservableCollection<object>(this.homepageViewModel.Objects.OfType<Tour>().Where(t => (t.Price <= this.homepageViewModel.MaxPrice && t.Price >= this.homepageViewModel.MinPrice) && (t.From >= this.homepageViewModel.DateFrom && t.To <= this.homepageViewModel.DateTo)).ToList());
 
             }
         }

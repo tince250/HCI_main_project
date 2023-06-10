@@ -19,10 +19,7 @@ namespace HCI_main_project.Commands
 
         public override void Execute(object? parameter)
         {
-            if (parameter is FrameworkElement element)
-            {
-                element.Visibility = (element.Visibility == Visibility.Visible) ? Visibility.Collapsed : Visibility.Visible;
-            }
+            this.homepageViewModel.ExpandFilters = !this.homepageViewModel.ExpandFilters;
         }
     }
 }

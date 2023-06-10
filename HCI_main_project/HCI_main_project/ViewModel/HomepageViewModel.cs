@@ -11,10 +11,14 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
+using System.Collections;
+using System.Windows.Data;
+using System.Windows.Controls;
 
 namespace HCI_main_project.ViewModel
 {
-    public class HomepageViewModel: ViewModelBase
+    public class HomepageViewModel: ViewModelBase, INotifyDataErrorInfo
     {
         private ObservableCollection<object> objects;
         public ObservableCollection<object> Objects
@@ -53,6 +57,18 @@ namespace HCI_main_project.ViewModel
             }
         }
 
+        private bool expandFilters;
+
+        public bool ExpandFilters
+        {
+            get { return expandFilters; }
+            set { 
+                expandFilters = value;
+                OnPropertyChanged(nameof(ExpandFilters));
+            }
+        }
+
+
         private string searchText;
 
         public string SearchText
@@ -77,36 +93,52 @@ namespace HCI_main_project.ViewModel
             }
         }
 
-        private double minPrice;
+        private double? minPrice;
 
-        public double MinPrice
+        public double? MinPrice
         {
             get { return minPrice; }
-            set { minPrice = value; }
+            set {
+                minPrice = value;
+                ValidatePriceRange();
+                OnPropertyChanged(nameof(MinPrice));
+            }
         }
         
-        private double maxPrice;
+        private double? maxPrice;
 
-        public double MaxPrice
+        public double? MaxPrice
         {
             get { return maxPrice; }
-            set { maxPrice = value; }
+            set { 
+                maxPrice = value;
+                ValidatePriceRange();
+                OnPropertyChanged(nameof(MaxPrice));
+            }
         }
 
-        private DateTime dateFrom;
+        private DateTime? dateFrom;
 
-        public DateTime DateFrom
+        public DateTime? DateFrom
         {
             get { return dateFrom; }
-            set { dateFrom = value; }
+            set { 
+                dateFrom = value;
+                ValidateDateRange();
+                OnPropertyChanged(nameof(DateFrom));
+            }
         }
         
-        private DateTime dateTo;
+        private DateTime? dateTo;
 
-        public DateTime DateTo
+        public DateTime? DateTo
         {
             get { return dateTo; }
-            set { dateTo = value; }
+            set { 
+                dateTo = value;
+                ValidateDateRange();
+                OnPropertyChanged(nameof(DateTo));
+            }
         }
 
         private ObservableCollection<String> locations;
@@ -120,14 +152,16 @@ namespace HCI_main_project.ViewModel
             }
         }
 
-        private string selectedLocation;
+        private string? selectedLocation;
 
-        public string SelectedLocation
+        public string? SelectedLocation
         {
             get { return selectedLocation; }
-            set { selectedLocation = value; }
+            set { 
+                selectedLocation = value;
+                OnPropertyChanged(nameof(SelectedLocation));
+            }
         }
-
 
         public TripagoContext dbContext;
 
@@ -161,45 +195,63 @@ namespace HCI_main_project.ViewModel
         public void SetTours()
         {
             this.Objects = new ObservableCollection<object>(dbContext.Tours.ToList());
-            this.SortOptions = new ObservableCollection<string>
+            if (this.SelectedType != "tours")
             {
-                "Most popular",
-                "Price lowest",
-                "Price highest",
-                "Most recent"
-            };
-            this.SelectedOption = this.SortOptions[0];
-            this.SelectedType = "tours";
+                this.SortOptions = new ObservableCollection<string>
+                {
+                    "Most popular",
+                    "Price lowest",
+                    "Price highest",
+                    "Most recent"
+                };
+                this.SelectedOption = this.SortOptions[0];
+                this.SelectedType = "tours";
+                this.ExpandFilters = false;
+            }
+            
         }
 
         public void SetAttractions()
         {
             
             this.Objects = new ObservableCollection<object>(dbContext.Attractions.Include(r => r.Address).ToList());
-            this.SelectedType = "attractions";
-            loadLocations();
+            if (this.SelectedType != "attractions")
+            {
+                this.SelectedType = "attractions";
+                this.ExpandFilters = false;
+                loadLocations();
+            }
+            
         }
 
         public void SetAccommodation()
         {
            
             this.Objects = new ObservableCollection<object>(dbContext.Accommodations.ToList());
-            this.SortOptions = new ObservableCollection<string>
+            if (this.SelectedType != "accommodation")
             {
-                "All accommodation",
-                "Appartments",
-                "Hotels"
-            };
-            this.SelectedType = "accommodation";
-            loadLocations();
+                this.SortOptions = new ObservableCollection<string>
+                {
+                    "All accommodation",
+                    "Appartments",
+                    "Hotels"
+                };
+                this.SelectedType = "accommodation";
+                this.ExpandFilters = false;
+                loadLocations();
+            }
         }
 
         public void SetRestaurants()
         {
             
             this.Objects = new ObservableCollection<object>(dbContext.Restaurants.ToList());
-            this.SelectedType = "restaurants";
-            loadLocations();
+            if (this.SelectedType != "restaurants")
+            {
+                this.SelectedType = "restaurants";
+                this.ExpandFilters = false;
+                loadLocations();
+            }
         }
 
         public void Sort(string criteria)
@@ -225,6 +277,70 @@ namespace HCI_main_project.ViewModel
             else if (criteria.Equals("Most recent"))
             {
                 this.Objects = new ObservableCollection<object>(dbContext.Tours.OrderBy(t => t.From));
+            }
+        }
+
+        private Dictionary<string, List<string>> errors = new Dictionary<string, List<string>>();
+
+        public bool HasErrors => errors.Count > 0;
+
+        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+        public IEnumerable GetErrors(string? propertyName)
+        {
+            if (errors.ContainsKey(propertyName))
+            {
+                return errors[propertyName];
+            }
+
+            return null;
+        }
+
+        private void ValidateDateRange()
+        {
+            if (DateFrom > DateTo)
+            {
+                AddValidationError(nameof(MinPrice), "'Date from' cannot be greater than the 'Date to' field.");
+            }
+            else
+            {
+                RemoveValidationError(nameof(MinPrice));
+            }
+        }
+
+        public bool PriceHasCustomErrors { get; set; }
+
+        private void ValidatePriceRange()
+        {
+            if (MinPrice > MaxPrice)
+            {
+                AddValidationError(nameof(MinPrice), "Minimum price cannot be greater than the maximum price.");
+            }
+            else
+            {
+                RemoveValidationError(nameof(MinPrice));
+            }
+        }
+
+        private void AddValidationError(string propertyName, string errorMessage)
+        {
+            if (!errors.ContainsKey(propertyName))
+            {
+                errors[propertyName] = new List<string>();
+            }
+
+            if (!errors[propertyName].Contains(errorMessage))
+            {
+                errors[propertyName].Add(errorMessage);
+                ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+            }
+        }
+
+        private void RemoveValidationError(string propertyName)
+        {
+            if (errors.ContainsKey(propertyName))
+            {
+                errors.Remove(propertyName);
+                ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
             }
         }
     }
