@@ -109,6 +109,37 @@
                 </Setter>
             </Style>
 
+            <Style x:Key="CustomRadioButtonStyle" TargetType="RadioButton">
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="RadioButton">
+                            <BulletDecorator Background="Transparent">
+                                <BulletDecorator.Bullet>
+                                    <Grid Width="20" Height="20" VerticalAlignment="Center">
+                                        <Ellipse x:Name="Circle" Fill="white" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="1"/>
+                                        <Ellipse x:Name="InnerCircle" Fill="{TemplateBinding Background}" Width="10" Height="10" Margin="3"/>
+                                    </Grid>
+                                </BulletDecorator.Bullet>
+                                <ContentPresenter HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" RecognizesAccessKey="True"/>
+                            </BulletDecorator>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter TargetName="InnerCircle" Property="Fill" Value="#F5AA39"/>
+                                    <!-- Set the desired color here -->
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="Circle" Property="Stroke" Value="#3e92cc"/>
+                                    <!-- Set the desired color here -->
+                                </Trigger>
+                                <!-- Add more triggers as needed -->
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+
 
             <Style x:Key="PositiveSnackBar" TargetType="{x:Type materialDesign:Snackbar}">
                 <Setter Property="Background" Value="#F5AA39" />

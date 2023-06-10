@@ -33,7 +33,8 @@ namespace HCI_main_project
             // Set the DataContext of the AddRestaurantPage to the restaurant object tripagoContext.Restaurants.Include(r => r.Address).FirstOrDefault(r => r.Id == 8)
             //AddEditRestaurantPage addEditRestaurantPage = new AddEditRestaurantPage(tripagoContext.Restaurants.Include(r => r.Address).FirstOrDefault(r => r.Id == 11));
             //AddEditRestaurantPage addEditRestaurantPage = new AddEditRestaurantPage();
-            AddEditAttractionPage addEditAttractionPage = new AddEditAttractionPage(tripagoContext.Attractions.Include(r => r.Address).FirstOrDefault(r => r.Id == 1));
+            //AddEditAttractionPage addEditAttractionPage = new AddEditAttractionPage(tripagoContext.Attractions.Include(r => r.Address).FirstOrDefault(r => r.Id == 1));
+            AddEditAccommodationPage addEditAttractionPage = new AddEditAccommodationPage();
             // Set the content of the Frame to the AddRestaurantPage
             Frame.Content = addEditAttractionPage;
         }

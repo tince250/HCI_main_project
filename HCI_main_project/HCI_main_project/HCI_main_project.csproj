@@ -31,6 +31,7 @@
 
   <ItemGroup>
     <Folder Include="Resources\Attractions\" />
+    <Folder Include="Resources\Accommodations\" />
     <Folder Include="Resources\Restaurants\" />
   </ItemGroup>
 
