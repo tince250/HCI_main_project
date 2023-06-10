@@ -151,26 +151,93 @@ namespace HCI_main_project.ViewModels
                 && IsImageValid && File != "" && File != null;
         }
 
-        public NameAndPhotoFormViewModel(Rectangle imageRectangle, TextBox nameTextBox, Restaurant selectedRestaurant = null)
+        private string _nameLabel;
+        public string NameLabel
+        {
+            get { return _nameLabel; }
+            set
+            {
+                _nameLabel = value;
+                OnPropertyChanged(nameof(NameLabel));
+            }
+        }
+
+        private string _imageLabel;
+        public string ImageLabel
+        {
+            get { return _imageLabel; }
+            set
+            {
+                _imageLabel = value;
+                OnPropertyChanged(nameof(ImageLabel));
+            }
+        }
+
+        public void SetLabelContents(string type)
+        {
+            if (type == "Restaurant")
+            {
+                NameLabel = "Restaurant name";
+                ImageLabel = "Restaurant image";
+                ButtonText = "Upload image of restaurant";
+            } else if (type == "Attraction") {
+                NameLabel = "Attraction name";
+                ImageLabel = "Attraction image";
+                ButtonText = "Upload image of attraction";
+            }
+            else if (type == "Accommodation")
+            {
+                NameLabel = "Accommodation name";
+                ImageLabel = "Accommodation image";
+                ButtonText = "Upload image of accommodation";
+            }
+            else { 
+                NameLabel = "Trip name";
+                ImageLabel = "Trip image";
+                ButtonText = "Upload image of trip";
+            }
+        }
+
+        private object _objectForEdit;
+
+        public NameAndPhotoFormViewModel(Rectangle imageRectangle, TextBox nameTextBox, object objectForEdit = null)
         {
             IsUploaded = Visibility.Visible;
             _imageRectangle = imageRectangle;
             _nameTextBox = nameTextBox;
-            ButtonText = "Upload image of restaurant";
             ImageDropCommand = new ImageDropCommand(this);
             UploadImageCommand = new UploadImageCommand(this);
             IsImageValid = true;
-            Trace.WriteLine(File);
-            FillFieldsWithPreviousData(selectedRestaurant);
+            _objectForEdit = objectForEdit;
+            FillFieldsWithPreviousData();
         }
 
-        private void FillFieldsWithPreviousData(Restaurant restaurant)
+        private void FillFieldsWithPreviousData()
         {
-            if (restaurant == null)
+            if (_objectForEdit == null)
                 return;
-            Name = restaurant.Name;
+            string image;
+            if (_objectForEdit is Restaurant)
+            {
+                Name = ((Restaurant)_objectForEdit).Name;
+                image = "Restaurants\\" + ((Restaurant)_objectForEdit).Image;
+            }
+            else if (_objectForEdit is Attraction)
+            {
+                Name = ((Attraction)_objectForEdit).Name;
+                image = "Attractions\\" + ((Attraction)_objectForEdit).Image;
+            }
+            else if (_objectForEdit is Accommodation)
+            {
+                Name = ((Accommodation)_objectForEdit).Name;
+                image = "Accommodations\\" + ((Accommodation)_objectForEdit).Image;
+            } else
+            {
+                Name = ((Tour)_objectForEdit).Name;
+                image = "Tours\\" + ((Tour)_objectForEdit).Image;
+            }
 
-            string file = System.IO.Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "Resources\\Restaurants\\"+restaurant.Image);
+            string file = System.IO.Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "Resources\\"+image);
             IsUploaded = Visibility.Hidden;
             ImageBrush imgBrush = new ImageBrush();
             imgBrush.ImageSource = new BitmapImage(new Uri(file, UriKind.Absolute));

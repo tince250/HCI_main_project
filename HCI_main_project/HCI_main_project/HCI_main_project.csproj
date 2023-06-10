@@ -30,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Resources\Attractions\" />
     <Folder Include="Resources\Restaurants\" />
   </ItemGroup>
 

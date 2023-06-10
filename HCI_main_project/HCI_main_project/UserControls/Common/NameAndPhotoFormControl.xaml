@@ -29,7 +29,7 @@
                 </Grid.RowDefinitions>
 
 
-                <Label Grid.Row="0" Content="Restaurant name"
+                <Label Grid.Row="0" Content="{Binding Path=NameLabel}"
                        Style="{DynamicResource ChangeableColorFieldLabel}"
                        local:OnFocusLabelColorChange.IsEnabled="{Binding ElementName=nameTextBox, Path=IsFocused}"/>
                     <TextBox
@@ -50,7 +50,7 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <Label Grid.Row="3" Content="Restaurant image"
+                    <Label Grid.Row="3" Content="{Binding Path=ImageLabel}"
                        Style="{DynamicResource ChangeableColorFieldLabel}"
                       ></Label>
                 <Grid Grid.Row="4">

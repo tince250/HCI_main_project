@@ -35,7 +35,7 @@
                 </Label>
 
                 <Grid Grid.Row="1" VerticalAlignment="Center">
-                    <Label Grid.Column="0" Content="Street" 
+                    <Label Grid.Column="0" Content="{Binding Path=StreetLabel}"
                                            Style="{DynamicResource ChangeableColorFieldLabel}"
                                        local:OnFocusLabelColorChange.IsEnabled="{Binding ElementName=streetTextBox, Path=IsFocused}"/>
                 </Grid>
@@ -61,7 +61,7 @@
                 </Grid>
 
 
-                <Label Grid.Row="4" Content="Street no" 
+                <Label Grid.Row="4" Content="{Binding Path=StreetNoLabel}"
                             Style="{DynamicResource ChangeableColorFieldLabel}"
                             local:OnFocusLabelColorChange.IsEnabled="{Binding ElementName=streetNoTextBox, Path=IsFocused}"/>
 
@@ -82,7 +82,7 @@
                     </TextBox.Text>
                 </TextBox>
 
-                <Label Grid.Row="7" Content="City"
+                <Label Grid.Row="7" Content="{Binding Path=CityLabel}"
                                 Style="{DynamicResource ChangeableColorFieldLabel}"
                             local:OnFocusLabelColorChange.IsEnabled="{Binding ElementName=cityTextBox, Path=IsFocused}"/>
                 <TextBox Grid.Row="8"

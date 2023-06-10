@@ -1,4 +1,5 @@
 ﻿using HCI_main_project.Commands;
+using HCI_main_project.Commands.Attractions;
 using HCI_main_project.Models;
 using HCI_main_project.UserControls;
 using MaterialDesignThemes.Wpf;
@@ -6,15 +7,11 @@ using System.Windows.Input;
 
 namespace HCI_main_project.ViewModels
 {
-    public class AddRestaurantPageViewModel : ViewModelBase
+    public class AddAttractionPageViewModel : ViewModelBase
     {
         public NameAndPhotoFormViewModel NameAndPhotoFormViewModel { get; set; }
         public AddressFormViewModel AddressFormViewModel { get; set; }
-
-        private Snackbar _snackBarPositive;
-        private Snackbar _snackBarNegative;
-
-        public Restaurant SelectedRestaurant { get; }
+        public Attraction SelectedAttraction { get; }
 
         private NameAndPhotoFormControl _nameAndPhotoFormControl;
         public NameAndPhotoFormControl NameAndPhotoFormControl
@@ -72,40 +69,28 @@ namespace HCI_main_project.ViewModels
             }
         }
 
-        public void ShowPositiveSnackBar()
-        {
-            _snackBarPositive.MessageQueue.Enqueue("You have successfully created restaurant!");
-        }
+        public ICommand BackButtonAttractionCommand { get; }
+        public ICommand FillAddressButtonAttractionCommand { get; }
 
-        public void ShowNegativeSnackBar(string message)
-        {
-            _snackBarNegative.MessageQueue.Enqueue(message);
-        }
-
-        public ICommand BackButtonRestaurantCommand { get; }
-        public ICommand FillAddressButtonRestaurantCommand { get; }
-
-        public ICommand AddRestaurantCommand { get;  }
-        public ICommand EditRestaurantCommand { get;  }
-        public AddRestaurantPageViewModel(NameAndPhotoFormControl nameAndPhotoFormControl, AddressFormControl addressFormControl, Snackbar snackBarPositive, Snackbar snackBarNegative, Restaurant selectedRestaurant = null)
+        public ICommand AddAttractionCommand { get; }
+        public ICommand EditAttractionCommand { get; }
+        public AddAttractionPageViewModel(NameAndPhotoFormControl nameAndPhotoFormControl, AddressFormControl addressFormControl, Attraction selectedAttraction = null)
         {
             _nameAndPhotoFormControl = nameAndPhotoFormControl;
             _addressFormControl = addressFormControl;
-            _snackBarPositive = snackBarPositive;
-            _snackBarNegative = snackBarNegative;
             NextButtonText = "Fill address info";
-            SelectedRestaurant = selectedRestaurant;
+            SelectedAttraction = selectedAttraction;
 
-            IsPageForEdit = selectedRestaurant == null ? false : true;
+            IsPageForEdit = selectedAttraction == null ? false : true;
 
-            NameAndPhotoFormViewModel = new NameAndPhotoFormViewModel(nameAndPhotoFormControl.imageRectangle, nameAndPhotoFormControl.nameTextBox, selectedRestaurant);
-            NameAndPhotoFormViewModel.SetLabelContents("Restaurant");
-            AddressFormViewModel = new AddressFormViewModel(selectedRestaurant, addressFormControl.streetTextBox, addressFormControl.streetNoTextBox, addressFormControl.cityTextBox);
-            AddressFormViewModel.SetLabelContents("Restaurant");
-            BackButtonRestaurantCommand = new BackButtonRestaurantCommand(this);
-            FillAddressButtonRestaurantCommand = new FillAddressButtonRestaurantCommand(this);
-            AddRestaurantCommand = new AddRestaurantCommand(this);
-            EditRestaurantCommand = new EditRestaurantCommand(this);
+            NameAndPhotoFormViewModel = new NameAndPhotoFormViewModel(nameAndPhotoFormControl.imageRectangle, nameAndPhotoFormControl.nameTextBox, selectedAttraction);
+            NameAndPhotoFormViewModel.SetLabelContents("Attraction");
+            AddressFormViewModel = new AddressFormViewModel(selectedAttraction, addressFormControl.streetTextBox, addressFormControl.streetNoTextBox, addressFormControl.cityTextBox);
+            AddressFormViewModel.SetLabelContents("Attraction");
+            BackButtonAttractionCommand = new BackButtonAttractionCommand(this);
+            FillAddressButtonAttractionCommand = new FillAddressButtonAttractionCommand(this);
+            AddAttractionCommand = new AddAttractionCommand(this);
+            EditAttractionCommand = new EditAttractionCommand(this);
         }
     }
 }

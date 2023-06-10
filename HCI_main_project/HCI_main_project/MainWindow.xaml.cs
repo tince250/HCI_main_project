@@ -1,4 +1,5 @@
 ﻿using HCI_main_project.Models;
+using HCI_main_project.Pages;
 using MaterialDesignExtensions.Model;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -30,10 +31,11 @@ namespace HCI_main_project
             InitializeComponent();
 
             // Set the DataContext of the AddRestaurantPage to the restaurant object tripagoContext.Restaurants.Include(r => r.Address).FirstOrDefault(r => r.Id == 8)
-            AddEditRestaurantPage addEditRestaurantPage = new AddEditRestaurantPage(tripagoContext.Restaurants.Include(r => r.Address).FirstOrDefault(r => r.Id == 11));
+            //AddEditRestaurantPage addEditRestaurantPage = new AddEditRestaurantPage(tripagoContext.Restaurants.Include(r => r.Address).FirstOrDefault(r => r.Id == 11));
             //AddEditRestaurantPage addEditRestaurantPage = new AddEditRestaurantPage();
+            AddEditAttractionPage addEditAttractionPage = new AddEditAttractionPage(tripagoContext.Attractions.Include(r => r.Address).FirstOrDefault(r => r.Id == 1));
             // Set the content of the Frame to the AddRestaurantPage
-            Frame.Content = addEditRestaurantPage;
+            Frame.Content = addEditAttractionPage;
         }
 
 

@@ -29,7 +29,6 @@ namespace HCI_main_project.Commands
         {
             try
             {
-                //Trace.WriteLine(_addRestaurantPageViewModel.NameAndPhotoFormControl.vM);
                 AddressDTO address = new AddressDTO(_addRestaurantPageViewModel.AddressFormViewModel.City, 20000,
                     _addRestaurantPageViewModel.AddressFormViewModel.Street,
                     int.Parse(_addRestaurantPageViewModel.AddressFormViewModel.StreetNo)

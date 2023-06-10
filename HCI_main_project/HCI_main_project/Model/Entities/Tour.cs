@@ -16,7 +16,7 @@ namespace HCI_main_project.Models
         public string Description { get; set; }
         public DateTime From { get; set; }
         public DateTime To { get; set; }
-        public byte[] Image { get; set; }
+        public string Image { get; set; }
 
         [ForeignKey("TravelAgent")]
         public int TravelAgentId { get; set; }

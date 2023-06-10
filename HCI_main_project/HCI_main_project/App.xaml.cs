@@ -40,6 +40,7 @@ namespace HCI_main_project
 
             services.AddSingleton<MainWindow>();
             services.AddSingleton<IRestaurantService, RestaurantService>();
+            services.AddSingleton<IAttractionService, AttractionService>();
             services.AddTransient<AddEditRestaurantPage>();
             services.AddTransient<AddressFormControl>();
             services.AddTransient<NameAndPhotoFormControl>();

@@ -30,9 +30,9 @@ namespace HCI_main_project.Model.Services
         {
             Restaurant restaurant = _context.Restaurants.Include(r => r.Address).FirstOrDefault(r => r.Id == 11);
             restaurant.Address.City = restaurantDTO.Address.City;
-            restaurant.Address.Street = restaurant.Address.Street;
-            restaurant.Address.PostalCode = restaurant.Address.PostalCode;
-            restaurant.Address.StreetNumber = restaurant.Address.StreetNumber;
+            restaurant.Address.Street = restaurantDTO.Address.Street;
+            restaurant.Address.PostalCode = restaurantDTO.Address.PostalCode;
+            restaurant.Address.StreetNumber = restaurantDTO.Address.StreetNumber;
 
             restaurant.Name = restaurantDTO.Name;
             restaurant.Image = restaurantDTO.Image;

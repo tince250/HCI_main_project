@@ -43,6 +43,60 @@ namespace HCI_main_project.ViewModels
             }
         }
 
+        private string _streetLabel;
+        public string StreetLabel
+        {
+            get { return _streetLabel; }
+            set
+            {
+                _streetLabel = value;
+                OnPropertyChanged(nameof(StreetLabel));
+            }
+        }
+
+        private string _streetNoLabel;
+        public string StreetNoLabel
+        {
+            get { return _streetNoLabel; }
+            set
+            {
+                _streetNoLabel = value;
+                OnPropertyChanged(nameof(StreetNoLabel));
+            }
+        }
+
+        private string _cityLabel;
+        public string CityLabel
+        {
+            get { return _cityLabel; }
+            set
+            {
+                _cityLabel = value;
+                OnPropertyChanged(nameof(CityLabel));
+            }
+        }
+
+        public void SetLabelContents(string type)
+        {
+            if (type == "Restaurant") {
+                StreetLabel = "Restaurant street";
+                StreetNoLabel = "Restaurant street number";
+                CityLabel = "Restaurant city";
+            }
+            else if (type == "Attraction")
+            {
+                StreetLabel = "Attraction street";
+                StreetNoLabel = "Attraction street number";
+                CityLabel = "Attraction city";
+            }
+            else
+            {
+                StreetLabel = "Accommodation street";
+                StreetNoLabel = "Accommodation street number";
+                CityLabel = "Accommodation city";
+            }
+        }
+
         private TextBox _streetTextBox, _streetNoTextBox, _cityTextBox;
         public bool IsFormValid()
         {
@@ -51,21 +105,38 @@ namespace HCI_main_project.ViewModels
                 && !Validation.GetHasError(_cityTextBox) && City != "" && City != null;
         }
 
-        public AddressFormViewModel(Restaurant selectedRestaurant, TextBox streetTextBox, TextBox streetNoTextBox, TextBox cityTextBox)
+        private object _objectForEdit;
+
+        public AddressFormViewModel(object objectForEdit, TextBox streetTextBox, TextBox streetNoTextBox, TextBox cityTextBox)
         {
-            FillFieldsWithPreviousData(selectedRestaurant);
+            _objectForEdit = objectForEdit;
             _streetTextBox = streetTextBox;
             _streetNoTextBox = streetNoTextBox; 
             _cityTextBox = cityTextBox;
+            FillFieldsWithPreviousData();
         }
 
-        private void FillFieldsWithPreviousData(Restaurant restaurant)
+        private void FillFieldsWithPreviousData()
         {
-            if (restaurant == null)
+            if (_objectForEdit == null)
                 return;
-            City = restaurant.Address.City;
-            StreetNo = restaurant.Address.StreetNumber.ToString();
-            Street = restaurant.Address.Street;
+            if (_objectForEdit is Restaurant)
+            {
+                City = ((Restaurant)_objectForEdit).Address.City;
+                StreetNo = ((Restaurant)_objectForEdit).Address.StreetNumber.ToString();
+                Street = ((Restaurant)_objectForEdit).Address.Street;
+            } else if (_objectForEdit is Attraction)
+            {
+                City = ((Attraction)_objectForEdit).Address.City;
+                StreetNo = ((Attraction)_objectForEdit).Address.StreetNumber.ToString();
+                Street = ((Attraction)_objectForEdit).Address.Street;
+            } else
+            {
+                City = ((Accommodation)_objectForEdit).Address.City;
+                StreetNo = ((Accommodation)_objectForEdit).Address.StreetNumber.ToString();
+                Street = ((Accommodation)_objectForEdit).Address.Street;
+            }
+            
         }
     }
 }
