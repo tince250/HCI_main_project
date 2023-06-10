@@ -37,5 +37,7 @@ namespace HCI_main_project.Models
             Image = restaurantDTO.Image;
             Address = new Address(restaurantDTO.Address);
         }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
     }
 }

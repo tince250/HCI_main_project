@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="HCI_main_project.Components.DetailsCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HCI_main_project.Components" xmlns:MaterialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="850" d:DesignWidth="1000">
+    <MaterialDesign:Card MinWidth="380" MaxWidth="400"  Height="100" BorderThickness="1" BorderBrush="#717171">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Text="{Binding Path=DetailsContent.Name}" VerticalAlignment="Center" Margin="10, 0" FontSize="15"/>
+                <TextBlock Grid.Row="1" Text="{Binding Path=DetailsContent.Description}" VerticalAlignment="Top" Margin="10, 0" FontSize="11"/>
+
+            </Grid>
+
+            <Image Grid.Row="0" Grid.Column="1">
+                <Image.Source>
+                    <BitmapImage UriSource="C:\Users\HP\Desktop\SIIT_6.Semestar\HCI\HCI_main_project\HCI_main_project\HCI_main_project\Resources\register.jpg" />
+                </Image.Source>
+            </Image>
+        </Grid>
+    </MaterialDesign:Card>
+</UserControl>

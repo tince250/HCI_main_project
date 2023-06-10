@@ -36,5 +36,10 @@ namespace HCI_main_project.Models
             Street = addressDTO.Street;
             StreetNumber = addressDTO.StreetNumber;
         }
+
+        public string AddressStr()
+        {
+            return Street + " " + StreetNumber + ", " + City;
+        }
     }
 }

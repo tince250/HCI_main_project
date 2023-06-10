@@ -1,4 +1,5 @@
 ﻿using HCI_main_project.Models;
+using HCI_main_project.View;
 using HCI_main_project.Pages;
 using MaterialDesignExtensions.Model;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Navigation;
+
 
 namespace HCI_main_project
 {
@@ -28,6 +31,9 @@ namespace HCI_main_project
         TripagoContext dbContext;
         public MainWindow(TripagoContext tripagoContext)
         {
+            this.dbContext = tripagoContext;
+            this.dbContext.Database.EnsureCreated();
+
             InitializeComponent();
 
             // Set the DataContext of the AddRestaurantPage to the restaurant object tripagoContext.Restaurants.Include(r => r.Address).FirstOrDefault(r => r.Id == 8)
@@ -40,5 +46,10 @@ namespace HCI_main_project
         }
 
 
+            foreach (User user1 in this.dbContext.Users)
+            {
+                Trace.WriteLine(user1.FirstName);
+            }
+        }
     }
 }

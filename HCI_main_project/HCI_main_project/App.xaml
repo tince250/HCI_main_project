@@ -8,9 +8,7 @@
              xmlns:converters="clr-namespace:HCI_main_project.Converters">
     <Application.Resources>
         <ResourceDictionary>
-            <converters:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
-
-            <Style TargetType="{x:Type Window}">
+            <Style TargetType="{x:Type Page}">
                 <Setter Property="FontFamily" Value="./Fonts/#Poppins" />
             </Style>
 
@@ -69,11 +67,19 @@
             <SolidColorBrush x:Key="ButtonLightBlueColor" Color="#257FBD" />
             <SolidColorBrush x:Key="OrangeColor" Color="#F5AA39"></SolidColorBrush>
             <SolidColorBrush x:Key="MediumBlueColor" Color="#6750A4"/>
+            <SolidColorBrush x:Key="DarkBlueColor" Color="#0A2463"/>
             <SolidColorBrush x:Key="BlackColor" Color="#000000"/>
+            <SolidColorBrush x:Key="GrayColor" Color="#585858"/>
+            <SolidColorBrush x:Key="LightGrayColor" Color="#BBBBBB"/>
             <SolidColorBrush x:Key="WhiteColor" Color="#FFFFFF"/>
             <SolidColorBrush x:Key="GrayColor" Color="#E7E7E7"/>
             <SolidColorBrush x:Key="DarkerGrayColor" Color="#D5D5D5"/>
             <SolidColorBrush x:Key="BackButtonColor" Color="#3e92cc"/>
+
+            <SolidColorBrush x:Key="IconColor_suitcase" Color="#257FBD" />
+            <SolidColorBrush x:Key="IconColor_accom" Color="#FFFFFF" />
+            <SolidColorBrush x:Key="IconColor_attrac" Color="#FFFFFF" />
+            <SolidColorBrush x:Key="IconColor_resta" Color="#FFFFFF" />
 
             <Style x:Key="CRUDButton" TargetType="Button">
                 <Setter Property="Height" Value="40"/>
@@ -152,6 +158,9 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignExtensions;component/Themes/Generic.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignExtensions;component/Themes/MaterialDesignLightTheme.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="DeepPurple" SecondaryColor="Lime" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="Themes/Generic.xaml" />
                 <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="DeepPurple" SecondaryColor="Lime" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary>
