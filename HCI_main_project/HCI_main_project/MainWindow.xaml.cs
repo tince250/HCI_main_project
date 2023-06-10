@@ -31,8 +31,8 @@ namespace HCI_main_project
         TripagoContext dbContext;
         public MainWindow(TripagoContext tripagoContext)
         {
-            this.dbContext = tripagoContext;
-            this.dbContext.Database.EnsureCreated();
+            /*this.dbContext = tripagoContext;
+            this.dbContext.Database.EnsureCreated();*/
 
             InitializeComponent();
 
@@ -40,16 +40,10 @@ namespace HCI_main_project
             //AddEditRestaurantPage addEditRestaurantPage = new AddEditRestaurantPage(tripagoContext.Restaurants.Include(r => r.Address).FirstOrDefault(r => r.Id == 11));
             //AddEditRestaurantPage addEditRestaurantPage = new AddEditRestaurantPage();
             //AddEditAttractionPage addEditAttractionPage = new AddEditAttractionPage(tripagoContext.Attractions.Include(r => r.Address).FirstOrDefault(r => r.Id == 1));
-            AddEditAccommodationPage addEditAttractionPage = new AddEditAccommodationPage();
+            //AddEditAccommodationPage addEditAttractionPage = new AddEditAccommodationPage();
             // Set the content of the Frame to the AddRestaurantPage
-            Frame.Content = addEditAttractionPage;
+            //Frame.Content = addEditAttractionPage;
         }
 
-
-            foreach (User user1 in this.dbContext.Users)
-            {
-                Trace.WriteLine(user1.FirstName);
-            }
-        }
     }
 }

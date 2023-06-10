@@ -24,10 +24,6 @@ namespace HCI_main_project.Models
 
         public Attraction() { }
 
-        public Attraction()
-        {
-
-        }
         public Attraction(string name, string image, Address address)
         {
             Name = name;

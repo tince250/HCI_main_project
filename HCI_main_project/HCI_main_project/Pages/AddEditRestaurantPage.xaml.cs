@@ -25,10 +25,10 @@ namespace HCI_main_project
     /// </summary>
     public partial class AddEditRestaurantPage : Page
     {
-        public AddEditRestaurantPage(Restaurant restaurant = null)
+        public AddEditRestaurantPage()
         {
             InitializeComponent();
-            DataContext = new AddRestaurantPageViewModel(nameAndPhotoFormControl, addressFormControl, snackBarPositive, snackBarNegative, restaurant);
+            DataContext = new AddRestaurantPageViewModel(nameAndPhotoFormControl, addressFormControl, snackBarPositive, snackBarNegative, null);
         }
     }
 }

@@ -5,13 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HCI_main_project"
         mc:Ignorable="d"
+        
         Title="MainWindow" Height="768" Width="1024"
         WindowState="Maximized"
         WindowStartupLocation="CenterScreen"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
     <Grid>
 
-        <Frame Source="/Pages/Homepage.xaml" NavigationUIVisibility="Hidden"/>
+        <!--<Frame Source="/Pages/Homepage.xaml" NavigationUIVisibility="Hidden"/>-->
 
         <!--<TextBlock Style="{StaticResource Title}" HorizontalAlignment="Center">
             Registration
@@ -36,6 +37,6 @@
             x:Name="Frame"
             Margin="0,15,0,0"
             NavigationUIVisibility="Hidden"
-            Source="./AddRestaurantPage.xaml" />
+            Source="/Pages/AddEditRestaurantPage.xaml" />
     </Grid>
 </Window>

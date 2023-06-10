@@ -22,10 +22,10 @@ namespace HCI_main_project.Pages
     /// </summary>
     public partial class AddEditAccommodationPage : Page
     {
-        public AddEditAccommodationPage(Accommodation accommodation = null)
+        public AddEditAccommodationPage()
         {
             InitializeComponent();
-            DataContext = new AddAccommodationPageViewModel(accommodationTypeControl, nameAndPhotoFormControl, addressFormControl, accommodation);
+            DataContext = new AddAccommodationPageViewModel(accommodationTypeControl, nameAndPhotoFormControl, addressFormControl, null);
         }
     }
 }
