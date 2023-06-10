@@ -2,7 +2,8 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
              xmlns:local="clr-namespace:HCI_main_project.UserControls"
              xmlns:rules="clr-namespace:HCI_main_project.ValidationRules"
              mc:Ignorable="d" 
@@ -123,6 +124,8 @@
                 <Label Grid.Row="0" Content="pin the address on map." VerticalAlignment="Top" Style="{StaticResource GeneralFieldLabel}">
                 </Label>
                 <Image Source="../../Resources/err1.png" />
+                <m:Map x:Name="map" MouseDoubleClick="MyMap_PointerPressedOverride" Grid.Row="2"  Mode="AerialWithLabels" ZoomLevel="11.5" CredentialsProvider="Kj3TXYFWtOhdSJsEwaRg~MYtBweETdCEyT2r6ULdioA~AnDgeIBQnE12E3dWCqRoZDwCljaffq0SmrInOH5-FEHBGfLzqbwDBsLm0ewXkMHy">
+                </m:Map>
             </Grid>
         </Grid>
     </Grid>
