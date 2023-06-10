@@ -84,7 +84,7 @@ namespace HCI_main_project.ViewModel
                 }
                 else
                 {
-                    ErrorMessage = "Check your inputs.";
+                    ErrorMessage = "Check your inputs and try again.";
                     ErrorHappend = true;
                 }
             }

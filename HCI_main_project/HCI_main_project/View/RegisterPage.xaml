@@ -57,6 +57,7 @@
                         Grid.Row="3"
                         VerticalAlignment="Top"
                         MaxLength="20"
+                    KeyDown="OnKeyDownHandler"
                     FontSize="22"
                     Style="{StaticResource CustomMaterialDesignFloatingHintTextBox}"
                         Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=Name, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"
@@ -69,6 +70,7 @@
                         VerticalAlignment="Top"
                         MaxLength="20"                        
                         FontSize="22"
+                        KeyDown="OnKeyDownHandler"
                         Style="{StaticResource CustomMaterialDesignFloatingHintTextBox}"                
                     Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=LastName, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"
                      LostFocus="TextBox_LostFocus">
@@ -80,6 +82,7 @@
                         VerticalAlignment="Top"
                         MaxLength="20"                    
                          FontSize="22"
+                        KeyDown="OnKeyDownHandler"
                     Style="{StaticResource CustomMaterialDesignFloatingHintTextBox}"
                      LostFocus="TextBox_LostFocus"
                     Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=Email, ValidatesOnDataErrors=true, NotifyOnValidationError=true}">
@@ -87,13 +90,13 @@
 
 
                 <Label Grid.Row="8" Content="Password:" VerticalContentAlignment="Bottom" FontSize="20"/>
-                <components:BindablePasswordBox Grid.Row="9"
+                <components:BindablePasswordBox Grid.Row="9" KeyDown="OnKeyDownHandler"
                         Password="{Binding Path=Password, Mode=TwoWay, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"
                                                  LostFocus="PasswordBox_Changed"/>
 
 
                 <Label Grid.Row="10" Content="Confirm password:" VerticalContentAlignment="Bottom" FontSize="20"/>
-                <components:BindablePasswordBox Grid.Row="11"
+                <components:BindablePasswordBox Grid.Row="11" KeyDown="OnKeyDownHandler"
                         Password="{Binding Path=ConfirmPassword, Mode=TwoWay, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" 
                                                 LostFocus="PasswordBox_Changed"/>
 

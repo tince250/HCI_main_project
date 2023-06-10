@@ -7,10 +7,8 @@
       mc:Ignorable="d" 
       d:DesignHeight="850" d:DesignWidth="1000"
       Title="LoginPage"
-      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
 
-      >
-    
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -53,6 +51,7 @@
                     VerticalAlignment="Top"
                     MaxLength="20"
                 FontSize="22"
+                KeyDown="OnKeyDownHandler"
                     Style="{StaticResource CustomMaterialDesignFloatingHintTextBox}"
                     Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=Email, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"
                 LostFocus="TextBox_LostFocus">
@@ -60,7 +59,7 @@
 
 
             <Label Grid.Row="3" Content="Password:" VerticalContentAlignment="Bottom" FontSize="22"/>
-            <components:BindablePasswordBox Grid.Row="4"
+            <components:BindablePasswordBox Grid.Row="4" KeyDown="OnKeyDownHandler"
                     Password="{Binding Path=Password, Mode=TwoWay, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"
                                             LostFocus="PasswordBox_Changed"/>
 

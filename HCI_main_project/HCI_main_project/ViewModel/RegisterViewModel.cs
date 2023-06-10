@@ -52,13 +52,16 @@ namespace HCI_main_project.ViewModel
                 }
                 else
                 {
-                    ErrorMessage = "Check your inputs.";
+                    ErrorMessage = "Check your inputs and try again.";
                     ErrorHappend = true;
                 }
             }
             catch (Exception ex)
             {
-                ErrorMessage = "User with given email already exists.";
+                if (ex.Message == "User with given email already exists.")
+                    ErrorMessage = ex.Message;
+                else
+                    ErrorMessage = "Check your inputs and try again.";
                 ErrorHappend = true;
             }
         }

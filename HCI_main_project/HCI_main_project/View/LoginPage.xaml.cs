@@ -28,7 +28,8 @@ namespace HCI_main_project.View
         public LoginPage()
         {
             InitializeComponent();
-            DataContext = App.serviceProvider.GetRequiredService<LoginViewModel>();
+            viewModel = App.serviceProvider.GetRequiredService<LoginViewModel>();
+            DataContext = viewModel;
         }
 
         private void TextBox_LostFocus(object sender, RoutedEventArgs e)
@@ -47,6 +48,15 @@ namespace HCI_main_project.View
             BindingExpression bindingExpr = passwordBox.GetBindingExpression(BindablePasswordBox.PasswordProperty);
             bindingExpr.UpdateSource();
 
+        }
+
+        private void OnKeyDownHandler(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                if (viewModel.LoginClickCommand.CanExecute(null))
+                    viewModel.LoginClickCommand.Execute(null);
+            }
         }
     }
 }
