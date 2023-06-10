@@ -21,15 +21,18 @@ namespace HCI_main_project.Components
     /// </summary>
     public partial class ConfirmDialog : UserControl
     {
+        private ConfirmDialogViewModel viewModel;
         public ConfirmDialog(DialogType type)
         {
             InitializeComponent();
-            DataContext = new ConfirmDialogViewModel(type);
+            this.viewModel = new ConfirmDialogViewModel(type);
+            DataContext = this.viewModel;
         }
 
         private void closeDialog(object sender, RoutedEventArgs e)
         {
-            this.Visibility = Visibility.Collapsed;
+            //this.Visibility = Visibility.Collapsed;
+            this.viewModel.Visibility = Visibility.Collapsed;
         }
     }
 }

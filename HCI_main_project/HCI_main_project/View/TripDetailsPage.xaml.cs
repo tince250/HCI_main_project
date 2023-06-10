@@ -84,12 +84,12 @@ namespace HCI_main_project.View
 
         private void openReservationDialog(object sender, RoutedEventArgs e)
         {
-            mainGrid.Children.Add(new ConfirmDialog(DialogType.DELETE_TOUR));
+            mainGrid.Children.Add(new ConfirmDialog(DialogType.RESERVE_TOUR));
         }
 
         private void openBookingDialog(object sender, RoutedEventArgs e)
         {
-            mainGrid.Children.Add(new ConfirmDialog(DialogType.DELETE_ACCOMMODATION));
+            mainGrid.Children.Add(new ConfirmDialog(DialogType.BOOK_TOUR));
         }
     }
 }

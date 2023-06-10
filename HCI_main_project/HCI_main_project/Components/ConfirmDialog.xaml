@@ -8,6 +8,7 @@
              BorderThickness="0"
              HorizontalAlignment="Stretch"
              VerticalAlignment="Stretch"
+             Visibility="{Binding Visibility}"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:conv="clr-namespace:HCI_main_project.Converters">
 
 
@@ -34,7 +35,13 @@
                         <BitmapImage UriSource="../Resources/x-icon.jpg" />
                     </Image.Source>
                 </Image>
-                <TextBlock Grid.Row="1" FontSize="28" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="WrapWithOverflow" Height="Auto" VerticalAlignment="Stretch">You are about to <TextBlock Foreground="{Binding Path=TitleText, Converter={StaticResource TextToColorConverter}}" Text="{Binding Path=TitleText}"></TextBlock> your spot for <TextBlock TextDecorations="Underline" Text="{Binding Path=CurrItem.Name}"></TextBlock><TextBlock Text="{Binding TypeText}"/></TextBlock>
+                <TextBlock Grid.Row="1" FontSize="28" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="WrapWithOverflow" Height="Auto" VerticalAlignment="Stretch">
+                    <TextBlock Text="{Binding TitleStartText}"></TextBlock>
+                    <TextBlock Foreground="{Binding Path=TitleText, Converter={StaticResource TextToColorConverter}}" Text="{Binding Path=TitleText}"></TextBlock>
+                    <TextBlock Text="{Binding TitleMiddleText}"></TextBlock>
+                    <TextBlock TextDecorations="Underline" Text="{Binding Path=Item.Name}"></TextBlock>
+                    <TextBlock Text="{Binding TypeText}"/>
+                </TextBlock>
                 <TextBlock Text="{Binding DescriptionText}" Grid.Row="2" FontSize="16" Margin="0 5 0 0" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="WrapWithOverflow" Height="Auto" VerticalAlignment="Stretch" Foreground="#757575"></TextBlock>
 
 
@@ -57,14 +64,26 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
                 <!--<local:DetailsCard Grid.Row="3" Margin="0, 20"></local:DetailsCard>-->
-                
-                
-                
-                <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right">
+
+
+                <!--<Border Grid.Row="4" VerticalAlignment="Center" CornerRadius="15" Margin="10, 0" HorizontalAlignment="Left" Height="30" Width="30" Background="Green">
+                    <Border.Style>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=IsDone}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <materialDesign:PackIcon Kind="CheckboxMarkedOutline" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Border>-->
+                <StackPanel Grid.Row="4" Orientation="Horizontal"  HorizontalAlignment="Right">
                     <Button
                     Click="closeDialog"
                     Grid.Row="0"
-                    HorizontalAlignment="Left"
+                    HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     Margin="0, 10"
                     Height="40"
@@ -83,9 +102,9 @@
 
                     </Button>
                     <Button
-                    Command="{Binding Path=LoginClickCommand}"
+                    Command="{Binding Path=reserveCommand}"
                     Grid.Row="0"
-                    HorizontalAlignment="Left"
+                    HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     Margin="10, 0"
                     Height="40"
