@@ -45,7 +45,7 @@
 
             <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
                 <Button
-                    Click="openDialog"
+                    Click="openReservationDialog"
                     Grid.Row="0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
@@ -67,7 +67,7 @@
                 </Button>
 
                 <Button
-                    Command="{Binding Path=LoginClickCommand}"
+                    Click="openBookingDialog"
                     Grid.Row="0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"

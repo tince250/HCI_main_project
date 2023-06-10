@@ -21,13 +21,13 @@ namespace HCI_main_project.Components
     /// </summary>
     public partial class ReserveDialog : UserControl
     {
-        public ReserveDialog()
+        public ReserveDialog(bool isReservation)
         {
             InitializeComponent();
-            DataContext = new ReserveDialogViewModel();
+            DataContext = new ReserveDialogViewModel(isReservation);
         }
 
-        private void closeDialog(object sender, MouseButtonEventArgs e)
+        private void closeDialog(object sender, RoutedEventArgs e)
         {
             this.Visibility = Visibility.Collapsed;
         }

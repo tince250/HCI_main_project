@@ -82,9 +82,14 @@ namespace HCI_main_project.View
             }
         }
 
-        private void openDialog(object sender, RoutedEventArgs e)
+        private void openReservationDialog(object sender, RoutedEventArgs e)
         {
-            mainGrid.Children.Add(new ReserveDialog());
+            mainGrid.Children.Add(new ReserveDialog(true));
+        }
+
+        private void openBookingDialog(object sender, RoutedEventArgs e)
+        {
+            mainGrid.Children.Add(new ReserveDialog(false));
         }
     }
 }

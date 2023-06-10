@@ -13,7 +13,9 @@
 
     <UserControl.Resources>
         <conv:TourToDetailsCardConverter x:Key="TourToDetailsCardConverter" />
+        <conv:TextToColorConverter x:Key="TextToColorConverter" />
     </UserControl.Resources>
+    
 
     <Grid>
         <Rectangle Fill="Gray" Opacity=".5" MouseDown="closeDialog"/>
@@ -32,9 +34,8 @@
                         <BitmapImage UriSource="../Resources/x-icon.jpg" />
                     </Image.Source>
                 </Image>
-                <TextBlock Grid.Row="1" FontSize="28" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="WrapWithOverflow" Height="Auto" VerticalAlignment="Stretch">You are about to <TextBlock Foreground="{StaticResource OrangeColor}" Text="{Binding Path=IsReservationTitle}"></TextBlock> your spot for <TextBlock TextDecorations="Underline" Text="{Binding Path=Tour.Name}"></TextBlock> tour.</TextBlock>
-                <TextBlock Grid.Row="2" FontSize="16" Margin="0 5 0 0" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="WrapWithOverflow" Height="Auto" VerticalAlignment="Stretch" Foreground="#757575">By reserving a tour, your spot is secured and you can pay uppon arrival.
-                            Please review tour details before finalizing your reservation:</TextBlock>
+                <TextBlock Grid.Row="1" FontSize="28" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="WrapWithOverflow" Height="Auto" VerticalAlignment="Stretch">You are about to <TextBlock Foreground="{Binding Path=IsReservationTitle, Converter={StaticResource TextToColorConverter}}" Text="{Binding Path=IsReservationTitle}"></TextBlock> your spot for <TextBlock TextDecorations="Underline" Text="{Binding Path=Tour.Name}"></TextBlock> tour.</TextBlock>
+                <TextBlock Text="{Binding IsReservationDescription}" Grid.Row="2" FontSize="16" Margin="0 5 0 0" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="WrapWithOverflow" Height="Auto" VerticalAlignment="Stretch" Foreground="#757575"></TextBlock>
 
 
 
@@ -61,7 +62,7 @@
                 
                 <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button
-                    Command="{Binding Path=LoginClickCommand}"
+                    Click="closeDialog"
                     Grid.Row="0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"

@@ -31,6 +31,16 @@ namespace HCI_main_project.ViewModel
             }
         }
 
+        private string _isReservationDescription;
+        public string IsReservationDescription
+        {
+            get => _isReservationDescription;
+            set
+            {
+                SetProperty(ref _isReservationDescription, value);
+            }
+        }
+
         private Tour _tour;
         public Tour Tour
         {
@@ -58,12 +68,14 @@ namespace HCI_main_project.ViewModel
             if (isReservation)
             {
                 this.IsReservationButton = "Confirm reservation";
-                this.IsReservationTitle = "reservation";
+                this.IsReservationTitle = "reserve";
+                this.IsReservationDescription = "By reserving a tour, your spot is secured and you can pay uppon arrival.\r\nPlease review tour details before finalizing your reservation:";
             }
             else
             {
                 this.IsReservationTitle = "book";
                 this.IsReservationButton = "Confirm booking";
+                this.IsReservationDescription = "By booking a tour, your spot is secured and payment is processed now.\r\nPlease review tour details before finalizing your booking:";
             }
             this.dbContex = App.serviceProvider.GetService<TripagoContext>();
             this.Tour = this.dbContex.Tours.First(c => c.Id == ApplicationHelper.TourId);
