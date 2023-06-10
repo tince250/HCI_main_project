@@ -31,7 +31,7 @@ namespace HCI_main_project.Model.Services
             User ?user = _context.Users.FirstOrDefault(u => u.Email == email);
             if (user == null || user.Password != password) 
             {
-                throw new Exception("Bad credentials.");
+                throw new Exception("Bad credentials.Please try again.");
             }
             return user;
         }

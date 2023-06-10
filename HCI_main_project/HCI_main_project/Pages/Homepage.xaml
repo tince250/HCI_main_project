@@ -13,7 +13,8 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Homepage"
-      Background="White">
+      Background="White"
+      PreviewKeyDown="OnKeyDownHandler">
 
     <!--<Page.Resources>
         <DataTemplate DataType="{x:Type model:Tour}">
@@ -157,8 +158,6 @@
                         Kind="Filter"
                         Margin="0"/>
                     </ToggleButton>
-                    
-                    
 
                 </StackPanel>
 

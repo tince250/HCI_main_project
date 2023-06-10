@@ -90,7 +90,10 @@ namespace HCI_main_project.ViewModel
             }
             catch (Exception ex)
             {
-                ErrorMessage = "Bad credentials. Please, try again.";
+                if (ex.Message == "Bad credentials.Please try again.")
+                    ErrorMessage = ex.Message;
+                else
+                    ErrorMessage = "Check your inputs and try again.";
                 ErrorHappend = true;
             }
         }

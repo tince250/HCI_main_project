@@ -65,5 +65,13 @@ namespace HCI_main_project.Pages
             return false;
 
         }
+
+        private void OnKeyDownHandler(object sender, KeyEventArgs e)
+        {
+            if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.S)
+            {
+                searchBox.Focus();
+            }
+        }
     }
 }
