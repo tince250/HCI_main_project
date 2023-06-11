@@ -72,7 +72,7 @@ namespace HCI_main_project.Pages
 
         private void openDeleteDialog(object sender, RoutedEventArgs e)
         {
-            mainGrid.Children.Add(new ConfirmDialog(DialogType.DELETE_TOUR));
+            mainGrid.Children.Add(new ConfirmDialog(DialogType.DELETE_TOUR, null));
         }
     }
 }

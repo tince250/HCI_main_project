@@ -13,11 +13,13 @@ namespace HCI_main_project.Commands
     class ReserveTourCommand : CommandBase
     {
         private ConfirmDialogViewModel confirmDialogViewModel;
+        private TripDetailsViewModel tripDetailsViewModel;
         private TripagoContext dbContext;
-        public ReserveTourCommand(ConfirmDialogViewModel confirmDialovViewModel, TripagoContext dbContext)
+        public ReserveTourCommand(ConfirmDialogViewModel confirmDialovViewModel, TripagoContext dbContext, TripDetailsViewModel tripDetailsViewModel)
         {
             this.confirmDialogViewModel = confirmDialovViewModel;
             this.dbContext = dbContext;
+            this.tripDetailsViewModel = tripDetailsViewModel;
         }
 
         public override void Execute(object? parameter)
@@ -39,6 +41,7 @@ namespace HCI_main_project.Commands
                 dbContext.SaveChanges();
             }
             this.confirmDialogViewModel.IsDone = true;
+            this.tripDetailsViewModel.SetButtons();
             Thread.Sleep(3000);
             this.confirmDialogViewModel.Visibility = System.Windows.Visibility.Collapsed;
         }

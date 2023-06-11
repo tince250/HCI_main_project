@@ -30,7 +30,7 @@ namespace HCI_main_project.View
         public TripDetailsPage()
         {
             InitializeComponent();
-            this.viewModel = App.serviceProvider.GetRequiredService<TripDetailsViewModel>();
+            this.viewModel = new TripDetailsViewModel(App.serviceProvider.GetRequiredService<TripagoContext>());
             DataContext = viewModel;
             setPushPins();
         }
@@ -84,12 +84,22 @@ namespace HCI_main_project.View
 
         private void openReservationDialog(object sender, RoutedEventArgs e)
         {
-            mainGrid.Children.Add(new ConfirmDialog(DialogType.RESERVE_TOUR));
+            mainGrid.Children.Add(new ConfirmDialog(DialogType.RESERVE_TOUR, viewModel));
+        }
+
+        private void openCancelDialog(object sender, RoutedEventArgs e)
+        {
+            mainGrid.Children.Add(new ConfirmDialog(DialogType.DELETE_RESERVATION, viewModel));
         }
 
         private void openBookingDialog(object sender, RoutedEventArgs e)
         {
-            mainGrid.Children.Add(new ConfirmDialog(DialogType.BOOK_TOUR));
+            mainGrid.Children.Add(new ConfirmDialog(DialogType.BOOK_TOUR, viewModel));
+        }
+
+        private void openReservationsDialog(object sender, RoutedEventArgs e)
+        {
+            mainGrid.Children.Add(new UsersInTourDialog());
         }
     }
 }
