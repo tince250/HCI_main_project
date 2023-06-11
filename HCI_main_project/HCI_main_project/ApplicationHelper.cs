@@ -23,6 +23,14 @@ namespace HCI_main_project
             set { tourId = value; }
         }
 
+        private static int toDeleteId;
+
+        public static int ToDeleteId
+        {
+            get { return toDeleteId; }
+            set { toDeleteId = value; }
+        }
+
 
         public static NavigationService NavigationService
         {

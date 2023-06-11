@@ -33,15 +33,15 @@
                     <RowDefinition Height="55"/>
                     <RowDefinition Height="20"/>
                     <RowDefinition Height="40"/>
+                    <RowDefinition Height="65"/>
                     <RowDefinition Height="55"/>
-                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="65"/>
                     <RowDefinition Height="55"/>
-                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="65"/>
                     <RowDefinition Height="55"/>
-                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="65"/>
                     <RowDefinition Height="55"/>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="55"/>
+                    <RowDefinition Height="65"/>
                     <RowDefinition MinHeight="20" MaxHeight="40"/>
                     <RowDefinition />
                     <RowDefinition/>
@@ -57,7 +57,9 @@
                         Grid.Row="3"
                         VerticalAlignment="Top"
                         MaxLength="20"
-                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    KeyDown="OnKeyDownHandler"
+                    FontSize="22"
+                    Style="{StaticResource CustomMaterialDesignFloatingHintTextBox}"
                         Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=Name, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"
                         LostFocus="TextBox_LostFocus">
                 </TextBox>
@@ -67,7 +69,9 @@
                         Grid.Row="5"
                         VerticalAlignment="Top"
                         MaxLength="20"                        
-                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                        FontSize="22"
+                        KeyDown="OnKeyDownHandler"
+                        Style="{StaticResource CustomMaterialDesignFloatingHintTextBox}"                
                     Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=LastName, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"
                      LostFocus="TextBox_LostFocus">
                 </TextBox>
@@ -77,20 +81,22 @@
                         Grid.Row="7"
                         VerticalAlignment="Top"
                         MaxLength="20"                    
-                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         FontSize="22"
+                        KeyDown="OnKeyDownHandler"
+                    Style="{StaticResource CustomMaterialDesignFloatingHintTextBox}"
                      LostFocus="TextBox_LostFocus"
                     Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=Email, ValidatesOnDataErrors=true, NotifyOnValidationError=true}">
                 </TextBox>
 
 
                 <Label Grid.Row="8" Content="Password:" VerticalContentAlignment="Bottom" FontSize="20"/>
-                <components:BindablePasswordBox Grid.Row="9"
+                <components:BindablePasswordBox Grid.Row="9" KeyDown="OnKeyDownHandler"
                         Password="{Binding Path=Password, Mode=TwoWay, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"
                                                  LostFocus="PasswordBox_Changed"/>
 
 
                 <Label Grid.Row="10" Content="Confirm password:" VerticalContentAlignment="Bottom" FontSize="20"/>
-                <components:BindablePasswordBox Grid.Row="11"
+                <components:BindablePasswordBox Grid.Row="11" KeyDown="OnKeyDownHandler"
                         Password="{Binding Path=ConfirmPassword, Mode=TwoWay, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" 
                                                 LostFocus="PasswordBox_Changed"/>
 
@@ -133,6 +139,32 @@
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding Path=ErrorHappend}" Value="true"/>
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation 
+                                            Storyboard.TargetProperty="Opacity"
+                                            Duration="0:0:4" From="1" To="0"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiDataTrigger.EnterActions>
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <TextBlock FontSize="18" Foreground="White" TextAlignment="Center" VerticalAlignment="Center">
+                <Run Text="{Binding Path=ErrorMessage}"/>
+            </TextBlock>
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Background="{StaticResource ButtonLightBlueColor}" Margin="20, 10" CornerRadius="25" Opacity="0" Width="400">
+            <Border.Style>
+                <Style TargetType="{x:Type Border}">
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=RegisterSuccess}" Value="true"/>
                             </MultiDataTrigger.Conditions>
                             <MultiDataTrigger.EnterActions>
                                 <BeginStoryboard>

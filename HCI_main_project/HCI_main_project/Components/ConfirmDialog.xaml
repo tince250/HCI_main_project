@@ -1,0 +1,129 @@
+﻿<UserControl x:Class="HCI_main_project.Components.ConfirmDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HCI_main_project.Components"
+             mc:Ignorable="d" 
+             BorderThickness="0"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch"
+             Visibility="{Binding Visibility}"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:conv="clr-namespace:HCI_main_project.Converters">
+
+
+    <UserControl.Resources>
+        <conv:TourToDetailsCardConverter x:Key="TourToDetailsCardConverter" />
+        <conv:TextToColorConverter x:Key="TextToColorConverter" />
+    </UserControl.Resources>
+    
+
+    <Grid>
+        <Rectangle Fill="Gray" Opacity=".5" MouseDown="closeDialog"/>
+
+        <Border Background="White" Height="Auto" Width="550" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid Margin="5" Height="Auto">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Image MouseDown="closeDialog" Grid.Row="0" Width="20" Height="20" HorizontalAlignment="Right">
+                    <Image.Source>
+                        <BitmapImage UriSource="../Resources/x-icon.jpg" />
+                    </Image.Source>
+                </Image>
+                <TextBlock Grid.Row="1" FontSize="28" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="WrapWithOverflow" Height="Auto" VerticalAlignment="Stretch">
+                    <TextBlock Text="{Binding TitleStartText}"></TextBlock>
+                    <TextBlock Foreground="{Binding Path=TitleText, Converter={StaticResource TextToColorConverter}}" Text="{Binding Path=TitleText}"></TextBlock>
+                    <TextBlock Text="{Binding TitleMiddleText}"></TextBlock>
+                    <TextBlock TextDecorations="Underline" Text="{Binding Path=Item.Name}"></TextBlock>
+                    <TextBlock Text="{Binding TypeText}"/>
+                </TextBlock>
+                <TextBlock Text="{Binding DescriptionText}" Grid.Row="2" FontSize="16" Margin="0 5 0 0" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="WrapWithOverflow" Height="Auto" VerticalAlignment="Stretch" Foreground="#757575"></TextBlock>
+
+
+
+                <ItemsControl Grid.Row="3" ItemsSource="{Binding Cards}" Margin="0, 10">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel HorizontalAlignment="Center" Orientation="Vertical" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemContainerStyle>
+                        <Style>
+                            <Setter Property="Control.Margin" Value="20"/>
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <ContentControl HorizontalAlignment="Center" Content="{Binding Converter={StaticResource TourToDetailsCardConverter}}"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <!--<local:DetailsCard Grid.Row="3" Margin="0, 20"></local:DetailsCard>-->
+
+
+                <!--<Border Grid.Row="4" VerticalAlignment="Center" CornerRadius="15" Margin="10, 0" HorizontalAlignment="Left" Height="30" Width="30" Background="Green">
+                    <Border.Style>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=IsDone}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <materialDesign:PackIcon Kind="CheckboxMarkedOutline" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Border>-->
+                <StackPanel Grid.Row="4" Orientation="Horizontal"  HorizontalAlignment="Right">
+                    <Button
+                    Click="closeDialog"
+                    Grid.Row="0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Margin="0, 10"
+                    Height="40"
+                    Width="Auto"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    Padding="20, 0"
+                    materialDesign:ButtonAssist.CornerRadius="25"               
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
+                    Background="#757575"
+                    Foreground="{StaticResource WhiteColor}">
+
+                        <TextBlock Text="Cancel" />
+
+                    </Button>
+                    <Button
+                    Command="{Binding Path=reserveCommand}"
+                    Grid.Row="0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Margin="10, 0"
+                    Height="40"
+                    Width="Auto"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    materialDesign:ButtonAssist.CornerRadius="25"               
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
+                    Background="{StaticResource ButtonLightBlueColor}"
+                    Foreground="{StaticResource WhiteColor}">
+
+                        <TextBlock Text="{Binding Path=ButtonText}" />
+
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+    </Grid>
+</UserControl>
