@@ -22,10 +22,10 @@ namespace HCI_main_project.Components
     public partial class ConfirmDialog : UserControl
     {
         private ConfirmDialogViewModel viewModel;
-        public ConfirmDialog(DialogType type)
+        public ConfirmDialog(DialogType type, TripDetailsViewModel tripDetailsViewModel)
         {
             InitializeComponent();
-            this.viewModel = new ConfirmDialogViewModel(type);
+            this.viewModel = new ConfirmDialogViewModel(type, tripDetailsViewModel);
             DataContext = this.viewModel;
         }
 

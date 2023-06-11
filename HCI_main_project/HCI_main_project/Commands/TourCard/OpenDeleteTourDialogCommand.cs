@@ -22,7 +22,7 @@ namespace HCI_main_project.Commands
         {
             ApplicationHelper.ToDeleteId = tourId;
 
-            var dialog = new ConfirmDialog(DialogType.DELETE_TOUR);
+            var dialog = new HCI_main_project.Components.ConfirmDialog(DialogType.DELETE_TOUR, null);
 
             // Set the row and column span to cover the entire grid
             dialog.SetValue(Grid.RowSpanProperty, ApplicationHelper.HomePageVm.mainGrid.RowDefinitions.Count);

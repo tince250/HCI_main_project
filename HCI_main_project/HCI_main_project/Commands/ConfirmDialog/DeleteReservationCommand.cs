@@ -7,16 +7,16 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace HCI_main_project.Commands
+namespace HCI_main_project.Commands.ConfirmDialog
 {
-    class BookTourCommand : CommandBase
+    internal class DeleteReservationCommand : CommandBase
     {
         private ConfirmDialogViewModel confirmDialogViewModel;
         private TripDetailsViewModel tripDetailsViewModel;
         private TripagoContext dbContext;
-        public BookTourCommand(ConfirmDialogViewModel confirmDialovViewModel, TripagoContext dbContext, TripDetailsViewModel tripDetailsViewModel)
+        public DeleteReservationCommand(ConfirmDialogViewModel confirmDialogViewModel, TripagoContext dbContext, TripDetailsViewModel tripDetailsViewModel)
         {
-            this.confirmDialogViewModel = confirmDialovViewModel;
+            this.confirmDialogViewModel = confirmDialogViewModel;
             this.dbContext = dbContext;
             this.tripDetailsViewModel = tripDetailsViewModel;
         }
@@ -26,27 +26,16 @@ namespace HCI_main_project.Commands
             TourTraveler tourTraveler;
             tourTraveler = dbContext.TourTravelers.FirstOrDefault(c => c.TravelerId == ApplicationHelper.User.Id && c.TourId == ((Tour)confirmDialogViewModel.Item).Id);
 
-            if (tourTraveler == null)
+            if (tourTraveler != null) 
             {
-                tourTraveler = new TourTraveler
-                {
-                    BookingStatus = BookingStatus.BOOKING,
-                    Tour = confirmDialogViewModel.Item as Tour,
-                    TourId = ((Tour)confirmDialogViewModel.Item).Id,
-                    Traveler = ApplicationHelper.User,
-                    TravelerId = ApplicationHelper.User.Id
-                };
-                dbContext.TourTravelers.Add(tourTraveler);
-                dbContext.SaveChanges();
-            } else
-            {
-                tourTraveler.BookingStatus = BookingStatus.BOOKING;
+                dbContext.TourTravelers.Remove(tourTraveler);
                 dbContext.SaveChanges();
             }
             this.confirmDialogViewModel.IsDone = true;
-            this.tripDetailsViewModel.SetButtons();
+            tripDetailsViewModel.SetButtons();
             Thread.Sleep(3000);
             this.confirmDialogViewModel.Visibility = System.Windows.Visibility.Collapsed;
         }
     }
+
 }
