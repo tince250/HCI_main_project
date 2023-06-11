@@ -37,6 +37,6 @@
             x:Name="Frame"
             Margin="0,15,0,0"
             NavigationUIVisibility="Hidden"
-            Source="/Pages/AddEditRestaurantPage.xaml" />
+            Source="/Pages/AddEditTourPage.xaml" />
     </Grid>
 </Window>

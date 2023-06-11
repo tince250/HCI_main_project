@@ -25,7 +25,7 @@ namespace HCI_main_project.Commands.Accommodations
                 _addAccommodationPageViewModel.IsFillGeneralInfoButtonClicked = true;
                 _addAccommodationPageViewModel.AccommodationTypeControl.Visibility = Visibility.Collapsed;
                 _addAccommodationPageViewModel.AddressFormControl.Visibility = Visibility.Visible;
-                _addAccommodationPageViewModel.NextButtonText = "Fill address";
+                _addAccommodationPageViewModel.NextButtonText = "Fill address info";
                 _addAccommodationPageViewModel.BackButtonText = "Back to nzm";
             }
             catch (Exception ex)

@@ -30,7 +30,7 @@ namespace HCI_main_project.ValidationRules
 
                     if (!Regex.IsMatch(stringRep, "^(0|([1-9][0-9]*))(\\.[0-9]+)?$"))
                     {
-                        return new ValidationResult(false, "Invalid characters. Only valid number formats are allowed!");
+                        return new ValidationResult(false, "Invalid characters. Only number formats are allowed!");
                         //this.homepageViewModel.PriceHasCustomErrors = true;
                     }
 
