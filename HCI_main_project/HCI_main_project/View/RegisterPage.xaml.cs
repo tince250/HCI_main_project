@@ -26,9 +26,7 @@ namespace HCI_main_project.View
     {
         private readonly RegisterViewModel viewModel;
 
-        //public RegisterPage()
-        //{
-        //}
+        
         public RegisterPage()
         {
             InitializeComponent();
@@ -52,6 +50,15 @@ namespace HCI_main_project.View
             BindingExpression bindingExpr = passwordBox.GetBindingExpression(BindablePasswordBox.PasswordProperty);
             bindingExpr.UpdateSource();
 
+        }
+
+        private void OnKeyDownHandler(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                if (viewModel.RegisterClickCommand.CanExecute(null))
+                    viewModel.RegisterClickCommand.Execute(null);
+            }
         }
 
     }

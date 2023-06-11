@@ -1,4 +1,6 @@
-﻿using HCI_main_project.Models;
+﻿using HCI_main_project.Commands;
+using HCI_main_project.Components;
+using HCI_main_project.Models;
 using HCI_main_project.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -20,19 +22,20 @@ using System.Windows.Shapes;
 
 namespace HCI_main_project.Pages
 {
-    /// <summary>
-    /// Interaction logic for Homepage.xaml
-    /// </summary>
+
     public partial class Homepage : Page
     {
-        //public ObservableCollection<Tour> Tours { get; set; }
-        
-
-        //public Homepage() { }
+        ICommand setSearchToFocus;
         public Homepage()
         {
+
             InitializeComponent();
-            DataContext = new HomepageViewModel();
+            DataContext = new HomepageViewModel(mainGrid, priceFromBox, priceToBox, dateFrom, dateTo);
+            Loaded += (sender, e) =>
+            {
+                Focus();
+            };
+            this.setSearchToFocus = new FocusSearchCommand(this.DataContext as HomepageViewModel);
         }
 
         private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -64,6 +67,12 @@ namespace HCI_main_project.Pages
 
             return false;
 
+        }
+
+
+        private void openDeleteDialog(object sender, RoutedEventArgs e)
+        {
+            mainGrid.Children.Add(new ConfirmDialog(DialogType.DELETE_TOUR));
         }
     }
 }

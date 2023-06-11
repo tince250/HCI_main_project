@@ -1,4 +1,5 @@
 ﻿using HCI_main_project.Models;
+using HCI_main_project.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,14 @@ namespace HCI_main_project
         {
             get { return tourId; }
             set { tourId = value; }
+        }
+
+        private static int toDeleteId;
+
+        public static int ToDeleteId
+        {
+            get { return toDeleteId; }
+            set { toDeleteId = value; }
         }
 
 
@@ -46,6 +55,20 @@ namespace HCI_main_project
             get
             {
                 return user;
+            }
+
+        }
+
+        private static HomepageViewModel? homePageVm;
+        public static HomepageViewModel? HomePageVm
+        {
+            set
+            {
+                homePageVm = value;
+            }
+            get
+            {
+                return homePageVm;
             }
 
         }

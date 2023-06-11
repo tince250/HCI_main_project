@@ -23,7 +23,7 @@ namespace HCI_main_project.Commands
 
             if (this.homepageViewModel.SelectedType.Equals("tours"))
             {
-                this.homepageViewModel.SortTours(this.homepageViewModel.SelectedOption);
+                this.homepageViewModel.Objects = this.homepageViewModel.SortTours(this.homepageViewModel.SelectedOption, new ObservableCollection<object>(this.homepageViewModel.dbContext.Tours.ToList()));
                 this.homepageViewModel.MinPrice = null;
                 this.homepageViewModel.MaxPrice = null;
                 this.homepageViewModel.DateFrom = null;
