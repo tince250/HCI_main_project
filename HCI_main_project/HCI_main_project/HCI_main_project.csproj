@@ -53,7 +53,9 @@
     <Resource Include="Resources\register.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\x-icon.jpg" />
+    <Resource Include="Resources\x-icon.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

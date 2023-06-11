@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:HCI_main_project.Components" xmlns:MaterialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="850" d:DesignWidth="1000">
-    <MaterialDesign:Card MinWidth="460" MaxWidth="400"  Height="100" BorderThickness="5" BorderBrush="#717171">
-        <Grid>
+    <MaterialDesign:Card MinWidth="460" Height="100" BorderThickness="5" BorderBrush="Gray">
+        <Grid VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="*"/>
@@ -15,8 +15,8 @@
 
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0" Text="{Binding Path=DetailsContent.Name}" VerticalAlignment="Center" Margin="10, 0" FontSize="20"/>
@@ -26,7 +26,7 @@
 
             <Image Grid.Row="0" Grid.Column="1">
                 <Image.Source>
-                    <BitmapImage UriSource="C:\Users\HP\Desktop\SIIT_6.Semestar\HCI\HCI_main_project\HCI_main_project\HCI_main_project\Resources\register.jpg" />
+                    <BitmapImage UriSource="..\Resources\register.jpg" />
                 </Image.Source>
             </Image>
         </Grid>

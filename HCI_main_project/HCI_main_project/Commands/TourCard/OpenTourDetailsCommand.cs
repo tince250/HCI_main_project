@@ -11,20 +11,19 @@ namespace HCI_main_project.Commands
     public class OpenTourDetailsCommand : CommandBase
     {
         private HomepageViewModel homepageViewModel;
+        private int tourId;
 
-        public OpenTourDetailsCommand(HomepageViewModel homepageViewModel)
+        public OpenTourDetailsCommand(HomepageViewModel homepageViewModel, int tourId)
         {
             this.homepageViewModel = homepageViewModel;
+            this.tourId = tourId;
         }
 
         public override void Execute(object? parameter)
         {
-            if (parameter is int id)
-            {
-                ApplicationHelper.TourId = id;
-                TripDetailsPage detailsPage = new TripDetailsPage();
-                ApplicationHelper.NavigationService.Navigate(detailsPage);
-            }
+            ApplicationHelper.TourId = tourId;
+            TripDetailsPage detailsPage = new TripDetailsPage();
+            ApplicationHelper.NavigationService.Navigate(detailsPage);
         }
     }
 }

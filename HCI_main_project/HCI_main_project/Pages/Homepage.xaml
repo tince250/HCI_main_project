@@ -28,7 +28,7 @@
         <conv:TourToSquareCardConverter x:Key="TourToSquareCardConverter" />
         <!--<conv:DataContextConverter x:Key="DataContextConverter" />-->
     </Page.Resources>
-    <Grid>
+    <Grid x:Name="mainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />

@@ -1,6 +1,7 @@
 ﻿using HCI_main_project.Model.Entities;
 using HCI_main_project.Models;
 using HCI_main_project.User_Controls;
+using HCI_main_project.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -23,7 +24,7 @@ namespace HCI_main_project.Converters
                 if (tour != null)
                 {
                     var squareCard = new SquareCard();
-                    squareCard.Tour = tour;
+                    squareCard.DataContext = new TourCardViewModel(ApplicationHelper.HomePageVm, tour);
 
                     return squareCard;
                 }

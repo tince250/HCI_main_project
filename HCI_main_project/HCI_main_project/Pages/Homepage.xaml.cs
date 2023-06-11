@@ -1,4 +1,5 @@
-﻿using HCI_main_project.Models;
+﻿using HCI_main_project.Components;
+using HCI_main_project.Models;
 using HCI_main_project.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -26,7 +27,7 @@ namespace HCI_main_project.Pages
         public Homepage()
         {
             InitializeComponent();
-            DataContext = new HomepageViewModel(priceFromBox, priceToBox, dateFrom, dateTo);
+            DataContext = new HomepageViewModel(mainGrid, priceFromBox, priceToBox, dateFrom, dateTo);
         }
 
         private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -66,6 +67,11 @@ namespace HCI_main_project.Pages
             {
                 searchBox.Focus();
             }
+        }
+
+        private void openDeleteDialog(object sender, RoutedEventArgs e)
+        {
+            mainGrid.Children.Add(new ConfirmDialog(DialogType.DELETE_TOUR));
         }
     }
 }

@@ -21,7 +21,7 @@
     <Grid>
         <Rectangle Fill="Gray" Opacity=".5" MouseDown="closeDialog"/>
 
-        <Border Background="White" Height="Auto" Width="550" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Border Background="White" Height="Auto" Width="620" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="10" Padding="10">
             <Grid Margin="5" Height="Auto">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -37,12 +37,12 @@
                 </Image>
                 <TextBlock Grid.Row="1" FontSize="28" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="WrapWithOverflow" Height="Auto" VerticalAlignment="Stretch">
                     <TextBlock Text="{Binding TitleStartText}"></TextBlock>
-                    <TextBlock Foreground="{Binding Path=TitleText, Converter={StaticResource TextToColorConverter}}" Text="{Binding Path=TitleText}"></TextBlock>
+                    <TextBlock Foreground="{Binding Path=TitleText, Converter={StaticResource TextToColorConverter}}" Text="{Binding Path=TitleText}" FontWeight="Medium"></TextBlock>
                     <TextBlock Text="{Binding TitleMiddleText}"></TextBlock>
                     <TextBlock TextDecorations="Underline" Text="{Binding Path=Item.Name}"></TextBlock>
                     <TextBlock Text="{Binding TypeText}"/>
                 </TextBlock>
-                <TextBlock Text="{Binding DescriptionText}" Grid.Row="2" FontSize="16" Margin="0 5 0 0" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="WrapWithOverflow" Height="Auto" VerticalAlignment="Stretch" Foreground="#757575"></TextBlock>
+                <TextBlock Text="{Binding DescriptionText}" Grid.Row="2" FontSize="19" Margin="0 8 0 0" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="WrapWithOverflow" Height="Auto" VerticalAlignment="Stretch" Foreground="#757575"></TextBlock>
 
 
 
@@ -54,7 +54,6 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemContainerStyle>
                         <Style>
-                            <Setter Property="Control.Margin" Value="20"/>
                         </Style>
                     </ItemsControl.ItemContainerStyle>
                     <ItemsControl.ItemTemplate>
@@ -88,8 +87,7 @@
                     Margin="0, 10"
                     Height="40"
                     Width="Auto"
-                    FontSize="16"
-                    FontWeight="Bold"
+                    FontSize="18"
                     Padding="20, 0"
                     materialDesign:ButtonAssist.CornerRadius="25"               
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
@@ -102,15 +100,15 @@
 
                     </Button>
                     <Button
-                    Command="{Binding Path=reserveCommand}"
+                    Command="{Binding Path=confirmCommand}"
+                    CommandParameter="{Binding Path=confirmCommandParameter}"
                     Grid.Row="0"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     Margin="10, 0"
                     Height="40"
                     Width="Auto"
-                    FontSize="16"
-                    FontWeight="Bold"
+                    FontSize="18"
                     materialDesign:ButtonAssist.CornerRadius="25"               
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource MaterialDesignRaisedButton}"

@@ -167,7 +167,6 @@ namespace HCI_main_project.ViewModel
 
         public ICommand navItemSelectedCommand { get; }
         public ICommand toggleFilterPaneCommand { get; }
-        public ICommand openTourDetailsCommand { get; }
         public ICommand logoutCommand { get; }
         public ICommand applyFiltersCommand { get; }
 
@@ -175,6 +174,9 @@ namespace HCI_main_project.ViewModel
         private TextBox maxPriceTextBox;
         private DatePicker dateFromPicker;
         private DatePicker dateToPicker;
+
+        public Grid mainGrid { get; }
+        public TourCardViewModel TourCardViewModel { get; }
 
         public bool AreFiltersValid()
         {
@@ -189,22 +191,27 @@ namespace HCI_main_project.ViewModel
 
         public ICommand clearFiltersCommand { get; }
 
-        public HomepageViewModel(TextBox minPriceTextBox, TextBox maxPriceTextBox, DatePicker dateFromPicker, DatePicker dateToPicker)
+        public HomepageViewModel(Grid mainGrid, TextBox minPriceTextBox, TextBox maxPriceTextBox, DatePicker dateFromPicker, DatePicker dateToPicker)
         {
             this.minPriceTextBox = minPriceTextBox;
             this.maxPriceTextBox = maxPriceTextBox;
             this.dateFromPicker = dateFromPicker;
             this.dateToPicker = dateToPicker;
 
+            this.mainGrid = mainGrid;
+
+            ApplicationHelper.HomePageVm = this;
+
             this.navItemSelectedCommand = new NavItemSelectedCommand(this);
             this.toggleFilterPaneCommand = new ToggleFilterPaneCommand(this);
-            this.openTourDetailsCommand = new OpenTourDetailsCommand(this);
             this.logoutCommand = new LogoutCommand(this);
             this.applyFiltersCommand = new ApplyFiltersCommand(this);
             this.clearFiltersCommand = new ClearFiltersCommand(this);
             //var app = (App)Application.Current;
             this.dbContext = App.serviceProvider.GetService<TripagoContext>();
             SetTours();
+
+            
         }
 
         private void loadLocations()

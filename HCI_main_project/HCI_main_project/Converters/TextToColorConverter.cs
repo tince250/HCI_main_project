@@ -17,7 +17,7 @@ namespace HCI_main_project.Converters
             if (str == null) return new SolidColorBrush(Colors.Black);
             return str.Equals("reserve") ? new SolidColorBrush(Color.FromRgb(232, 170, 42)) :
                 str.Equals("book") ? new SolidColorBrush(Color.FromRgb(39, 117, 185)) :
-                str.Equals("delete") ? new SolidColorBrush(Colors.Red) :
+                str.Equals("delete") ? new SolidColorBrush(Color.FromRgb(148,38,38)) :
                 new SolidColorBrush(Colors.Black);
         }
 

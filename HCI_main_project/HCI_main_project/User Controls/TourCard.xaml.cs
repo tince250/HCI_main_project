@@ -22,30 +22,9 @@ namespace HCI_main_project.User_Controls
 {
     public partial class SquareCard : UserControl
     {
-
-
-        public Tour Tour
-        {
-            get { return (Tour)GetValue(TourProperty); }
-            set { SetValue(TourProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for Tour.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty TourProperty =
-            DependencyProperty.Register("Tour", typeof(Tour), typeof(SquareCard));
-
-
         public SquareCard()
         {
             InitializeComponent();
-            DataContext = this;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            ApplicationHelper.TourId = this.Tour.Id;
-            TripDetailsPage detailsPage = new TripDetailsPage();
-            ApplicationHelper.NavigationService.Navigate(detailsPage);
         }
     }
 }

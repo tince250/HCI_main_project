@@ -84,7 +84,9 @@
                           Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                             Background="Transparent"
                             BorderBrush="Transparent"
-                          ToolTip="Delete this trip">
+                          ToolTip="Delete this trip"
+                            Command="{Binding openDeleteTourDialogCommand}"
+                            CommandParameter="{Binding Tour}">
                             <materialDesign:PackIcon
                             Width="40"
                             Height="40"
@@ -119,7 +121,7 @@
                         Style="{StaticResource MaterialDesignRaisedLightButton}"
                         Background="{StaticResource ButtonLightBlueColor}"
                         Foreground="{StaticResource WhiteColor}"
-                        Click="Button_Click"/>
+                        Command="{Binding openTourDetailsCommand}"/>
                 </Grid>
                 <Border Grid.Column="0"
         CornerRadius="12"
