@@ -33,7 +33,7 @@
 
             <Image Grid.Row="0" Grid.Column="1">
                 <Image.Source>
-                    <BitmapImage UriSource="..\Resources\register.jpg" />
+                    <BitmapImage UriSource="..\Resources\profile-icon.jpg" />
                 </Image.Source>
             </Image>
         </Grid>
