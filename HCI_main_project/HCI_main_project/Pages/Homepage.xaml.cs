@@ -20,15 +20,9 @@ using System.Windows.Shapes;
 
 namespace HCI_main_project.Pages
 {
-    /// <summary>
-    /// Interaction logic for Homepage.xaml
-    /// </summary>
+
     public partial class Homepage : Page
     {
-        //public ObservableCollection<Tour> Tours { get; set; }
-        
-
-        //public Homepage() { }
         public Homepage()
         {
             InitializeComponent();
