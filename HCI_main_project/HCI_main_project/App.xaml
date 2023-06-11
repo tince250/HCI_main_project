@@ -91,9 +91,11 @@
                     <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#3e92cc"/>
                     <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="#FFFFFF"/>
                     <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="#3e92cc"/>
+                    <SolidColorBrush x:Key="LightestBlueColor" Color="#E1F3FF"/>
                     <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="#FFFFFF"/>
                     <!-- accent -->
                     <SolidColorBrush x:Key="SecondaryHueMidBrush" Color="#F5AA39"/>
+                    <SolidColorBrush x:Key="LightestOrangeColor" Color="#FFF9F0"/>
                     <SolidColorBrush x:Key="SecondaryHueMidForegroundBrush" Color="#FFFFFF"/>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>

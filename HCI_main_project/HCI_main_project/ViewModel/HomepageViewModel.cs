@@ -163,6 +163,15 @@ namespace HCI_main_project.ViewModel
             }
         }
 
+        private string userRole;
+
+        public string LoggedUserRole
+        {
+            get { return userRole; }
+            set { userRole = value; }
+        }
+
+
         public TripagoContext dbContext;
 
         public ICommand navItemSelectedCommand { get; }
@@ -193,6 +202,12 @@ namespace HCI_main_project.ViewModel
 
         public HomepageViewModel(Grid mainGrid, TextBox minPriceTextBox, TextBox maxPriceTextBox, DatePicker dateFromPicker, DatePicker dateToPicker)
         {
+            ApplicationHelper.User = new User();
+            ApplicationHelper.User.Id = 211;
+            ApplicationHelper.User.Role = UserRole.TRAVELER;
+
+            this.LoggedUserRole = ApplicationHelper.User.Role == UserRole.AGENT ? "agent" : "traveler";
+
             this.minPriceTextBox = minPriceTextBox;
             this.maxPriceTextBox = maxPriceTextBox;
             this.dateFromPicker = dateFromPicker;
@@ -213,6 +228,8 @@ namespace HCI_main_project.ViewModel
 
             
         }
+
+
 
         private void loadLocations()
         {
@@ -283,6 +300,89 @@ namespace HCI_main_project.ViewModel
             }
         }
 
+        public void SetHistory()
+        {
+            if (this.LoggedUserRole == "agent")
+                this.Objects = new ObservableCollection<object>(dbContext.Tours.OrderByDescending(t => t.From).ToList());
+            else
+                this.Objects = new ObservableCollection<object>(dbContext.Tours.Where(t => t.TourTravelers.Where(tt => tt.TravelerId == ApplicationHelper.User.Id).ToList().Count > 0).OrderByDescending(t => t.From).ToList());
+            
+            if (this.SelectedType != "history")
+            {
+                this.SelectedType = "history";
+                this.ExpandFilters = false;
+                this.SortOptions = new ObservableCollection<string>
+                {
+                    "Date desc",
+                    "Date asc",
+                    "Price lowest",
+                    "Price highest"
+                };
+                this.SelectedOption = this.SortOptions[0];
+                this.setStatistics();
+            }
+        }
+
+        private string totalIncome;
+
+        public string TotalIncome
+        {
+            get { return totalIncome; }
+            set { 
+                totalIncome = value;
+                OnPropertyChanged(nameof(TotalIncome));
+            }
+        }
+
+        private int totalReservations;
+
+        public int TotalReservations
+        {
+            get { return totalReservations; }
+            set { 
+                totalReservations = value;
+                OnPropertyChanged(nameof(TotalReservations));
+            }
+        }
+
+        private int totalBookings;
+
+        public int TotalBookings
+        {
+            get { return totalBookings; }
+            set { 
+                totalBookings = value;
+                OnPropertyChanged(nameof(TotalBookings));
+
+            }
+        }
+
+
+        private void setStatistics()
+        {
+            var totalInc = 0.0;
+            var totalBook = 0;
+            var totalRes = 0;
+
+            foreach (var tour in this.dbContext.Tours)
+            {
+                //if (tour.From < DateTime.Now)
+                //    totalInc += tour.Price * tour.TourTravelers.Count;
+                //else
+                //    totalInc += tour.Price * tour.TourTravelers.Where(tt => tt.BookingStatus == BookingStatus.BOOKING).ToList().Count;
+
+                totalInc += tour.Price * tour.TourTravelers.Count;
+
+                totalBook += tour.TourTravelers.Where(tt => tt.BookingStatus == BookingStatus.BOOKING).ToList().Count;
+                totalRes += tour.TourTravelers.Where(tt => tt.BookingStatus == BookingStatus.RESERVATION).ToList().Count;
+
+            }
+
+            this.TotalIncome = totalInc + "e";
+            this.TotalBookings = totalBook;
+            this.TotalReservations = totalRes;
+        }
+
         public void Sort(string criteria)
         {
             this.Objects = SortTours(criteria, this.Objects);
@@ -290,6 +390,7 @@ namespace HCI_main_project.ViewModel
 
         public ObservableCollection<object> SortTours(string criteria, ObservableCollection<object> objects)
         {
+
             if (criteria.Equals("Most popular"))
             {
                 return new ObservableCollection<object>(objects.OfType<Tour>().OrderByDescending(t => t.TourTravelers.Count));
@@ -304,6 +405,14 @@ namespace HCI_main_project.ViewModel
                 return new ObservableCollection<object>(objects.OfType<Tour>().OrderByDescending(t => t.Price));
             }
             else if (criteria.Equals("Most recent"))
+            {
+                return new ObservableCollection<object>(objects.OfType<Tour>().OrderByDescending(t => t.From));
+            }
+            else if (criteria.Equals("Date desc"))
+            {
+                return new ObservableCollection<object>(objects.OfType<Tour>().OrderByDescending(t => t.From));
+            }
+            else if (criteria.Equals("Date asc"))
             {
                 return new ObservableCollection<object>(objects.OfType<Tour>().OrderBy(t => t.From));
             }

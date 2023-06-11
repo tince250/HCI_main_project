@@ -19,7 +19,7 @@ namespace HCI_main_project.Converters
         {
    
 
-            if (value is Tour tour)
+            if (value is Tour tour && ApplicationHelper.HomePageVm.SelectedType == "tours")
             {
                 if (tour != null)
                 {
@@ -63,7 +63,16 @@ namespace HCI_main_project.Converters
                 }
             }
 
+            if (value is Tour tourHistory && ApplicationHelper.HomePageVm.SelectedType == "history")
+            {
+                if (tourHistory != null)
+                {
+                    var historyCard = new HistoryCard();
+                    historyCard.DataContext = new HistoryCardViewModel(tourHistory);
 
+                    return historyCard;
+                }
+            }
 
             return null;
         }
