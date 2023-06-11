@@ -1,4 +1,5 @@
-﻿using HCI_main_project.Components;
+﻿using HCI_main_project.Commands;
+using HCI_main_project.Components;
 using HCI_main_project.Models;
 using HCI_main_project.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,14 +25,17 @@ namespace HCI_main_project.Pages
 
     public partial class Homepage : Page
     {
+        ICommand setSearchToFocus;
         public Homepage()
         {
+
             InitializeComponent();
             DataContext = new HomepageViewModel(mainGrid, priceFromBox, priceToBox, dateFrom, dateTo);
             Loaded += (sender, e) =>
             {
                 Focus();
             };
+            this.setSearchToFocus = new FocusSearchCommand(this.DataContext as HomepageViewModel);
         }
 
         private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -65,20 +69,6 @@ namespace HCI_main_project.Pages
 
         }
 
-        private void OnKeyDownHandler(object sender, KeyEventArgs e)
-        {
-            if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.S)
-            {
-                searchBox.Focus();
-            } 
-            else if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.F)
-            {
-                if (this.DataContext is HomepageViewModel vm)
-                {
-                    vm.ExpandFilters = !vm.ExpandFilters;
-                }
-            }
-        }
 
         private void openDeleteDialog(object sender, RoutedEventArgs e)
         {

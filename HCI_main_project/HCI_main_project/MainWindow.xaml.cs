@@ -16,7 +16,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
-
+using HCI_main_project.Pages;
+using HCI_main_project.ViewModel;
 
 namespace HCI_main_project
 {
@@ -91,6 +92,25 @@ namespace HCI_main_project
             //{
             //    Trace.WriteLine(user1.FirstName);
             //}
+        }
+
+        private void OnKeyDownHandler(object sender, KeyEventArgs e)
+        {
+            var page = frame.Content as Homepage;
+            if (page != null)
+            {
+                if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.S)
+                {
+                    page.searchBox.Focus();
+                }
+                else if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.F)
+                {
+                    if (page.DataContext is HomepageViewModel vm)
+                    {
+                        vm.ExpandFilters = !vm.ExpandFilters;
+                    }
+                }
+            }  
         }
     }
 }
