@@ -126,7 +126,7 @@ namespace HCI_main_project.ViewModel
         private TripagoContext dbContex;
         public ICommand confirmCommand { get; }
         public object confirmCommandParameter { get; }
-
+        public string SuccessMessage { get;  }
 
         public ConfirmDialogViewModel(DialogType type)
         {
@@ -144,6 +144,7 @@ namespace HCI_main_project.ViewModel
                     this.TypeText = "tour.";
                     this.ButtonText = "Confirm booking";
                     this.DescriptionText = "By booking a tour, your spot is secured and payment is processed now.\r\nPlease review tour details before finalizing your booking:";
+                    this.SuccessMessage = "Tour booked successfully!";
                     break;
                 case DialogType.RESERVE_TOUR:
                     this.Item = this.dbContex.Tours.First(c => c.Id == ApplicationHelper.TourId);
@@ -155,6 +156,7 @@ namespace HCI_main_project.ViewModel
                     this.TitleMiddleText = " your spot for ";
                     this.TypeText = "tour.";
                     this.DescriptionText = "By reserving a tour, your spot is secured and you can pay uppon arrival.\r\nPlease review tour details before finalizing your reservation:";
+                    this.SuccessMessage = "Tour reserved successfully!";
                     break;
                 case DialogType.DELETE_TOUR:
                     this.Item = this.dbContex.Tours.First(c => c.Id == ApplicationHelper.ToDeleteId);
@@ -165,8 +167,9 @@ namespace HCI_main_project.ViewModel
                     this.ButtonText = "Delete tour";
                     this.TypeText = "tour?";
                     this.DescriptionText = "Deleting is a permanent action, you won’t be able to undo it.\r\nPlease make sure this is the tour you want to delete:";
-                    this.confirmCommand = new DeleteEntityCommand();
+                    this.confirmCommand = new DeleteEntityCommand(this, dbContex);
                     this.confirmCommandParameter = this.Item;
+                    this.SuccessMessage = "Tour deleted successfully!";
                     break;
                 case DialogType.DELETE_ACCOMMODATION:
                     this.Item = this.dbContex.Accommodations.First(c => c.Id == ApplicationHelper.ToDeleteId);
@@ -177,8 +180,9 @@ namespace HCI_main_project.ViewModel
                     this.ButtonText = "Delete accommodation";
                     this.TypeText = "accomodation?";
                     this.DescriptionText = "Deleting is a permanent action, you won’t be able to undo it.\r\nPlease make sure this is the accommodation you want to delete:";
-                    this.confirmCommand = new DeleteEntityCommand();
+                    this.confirmCommand = new DeleteEntityCommand(this, dbContex);
                     this.confirmCommandParameter = this.Item;
+                    this.SuccessMessage = "Accommodation deleted successfully!";
                     break;
                 case DialogType.DELETE_ATTRACTION:
                     this.Item = this.dbContex.Attractions.First(c => c.Id == ApplicationHelper.ToDeleteId);
@@ -189,8 +193,9 @@ namespace HCI_main_project.ViewModel
                     this.ButtonText = "Delete attraction";
                     this.TypeText = "attraction?";
                     this.DescriptionText = "Deleting is a permanent action, you won’t be able to undo it.\r\nPlease make sure this is the attraction you want to delete:";
-                    this.confirmCommand = new DeleteEntityCommand();
+                    this.confirmCommand = new DeleteEntityCommand(this, dbContex);
                     this.confirmCommandParameter = this.Item;
+                    this.SuccessMessage = "Attraction deleted successfully!";
                     break;
                 case DialogType.DELETE_RESTAURANT:
                     this.Item = this.dbContex.Restaurants.First(c => c.Id == ApplicationHelper.ToDeleteId);
@@ -201,8 +206,9 @@ namespace HCI_main_project.ViewModel
                     this.ButtonText = "Delete restaurant";
                     this.TypeText = "restaurant?";
                     this.DescriptionText = "Deleting is a permanent action, you won’t be able to undo it.\r\nPlease make sure this is the restaurant you want to delete:";
-                    this.confirmCommand = new DeleteEntityCommand();
+                    this.confirmCommand = new DeleteEntityCommand(this, dbContex);
                     this.confirmCommandParameter = this.Item;
+                    this.SuccessMessage = "Restaurant deleted successfully!";
                     break;
             }
         }

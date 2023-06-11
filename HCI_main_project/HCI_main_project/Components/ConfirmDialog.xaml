@@ -65,9 +65,10 @@
                 <!--<local:DetailsCard Grid.Row="3" Margin="0, 20"></local:DetailsCard>-->
 
 
-                <!--<Border Grid.Row="4" VerticalAlignment="Center" CornerRadius="15" Margin="10, 0" HorizontalAlignment="Left" Height="30" Width="30" Background="Green">
-                    <Border.Style>
-                        <Style TargetType="{x:Type Border}">
+
+                <StackPanel Orientation="Horizontal" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <StackPanel.Style>
+                        <Style TargetType="{x:Type StackPanel}">
                             <Setter Property="Visibility" Value="Collapsed" />
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding Path=IsDone}" Value="True">
@@ -75,9 +76,14 @@
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
-                    </Border.Style>
-                    <materialDesign:PackIcon Kind="CheckboxMarkedOutline" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                </Border>-->
+                    </StackPanel.Style>
+                    <Border  Background="Green" Padding="5" CornerRadius="50" Margin="10, 0">
+                        
+                            <materialDesign:PackIcon Height="25" Width="25" Kind="Check" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
+                        </Border>
+                    <TextBlock VerticalAlignment="Center"  Text="{Binding SuccessMessage}" FontSize="18" Foreground="Green"/>
+                    </StackPanel>
+                
                 <StackPanel Grid.Row="4" Orientation="Horizontal"  HorizontalAlignment="Right">
                     <Button
                     Click="closeDialog"

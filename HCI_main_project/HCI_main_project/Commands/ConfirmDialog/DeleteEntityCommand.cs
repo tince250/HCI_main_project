@@ -1,4 +1,5 @@
 ﻿using HCI_main_project.Models;
+using HCI_main_project.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,17 @@ using System.Threading.Tasks;
 
 namespace HCI_main_project.Commands
 {
-    public class DeleteEntityCommand : CommandBase
+    class DeleteEntityCommand : CommandBase
     {
+        private ConfirmDialogViewModel confirmDialogVM;
+        private TripagoContext dbContext;
+
+        public DeleteEntityCommand(ConfirmDialogViewModel vm, TripagoContext context)
+        {
+            this.confirmDialogVM = vm;
+            this.dbContext = context;
+        }
+
         public override void Execute(object? parameter)
         {
             if (parameter is Tour tour)
@@ -31,32 +41,36 @@ namespace HCI_main_project.Commands
 
         private void deleteRestaurant(Restaurant restaurant)
         {
-            ApplicationHelper.HomePageVm.dbContext.Restaurants.Remove(restaurant);
-            ApplicationHelper.HomePageVm.dbContext.SaveChanges();
+            this.dbContext.Restaurants.Remove(restaurant);
+            this.dbContext.SaveChanges();
             ApplicationHelper.HomePageVm.Objects.Remove(restaurant);
+            this.confirmDialogVM.IsDone = true;
         }
 
         private void deleteAttraction(Attraction attraction)
         {
-            ApplicationHelper.HomePageVm.dbContext.Attractions.Remove(attraction);
-            ApplicationHelper.HomePageVm.dbContext.SaveChanges();
+            this.dbContext.Attractions.Remove(attraction);
+            this.dbContext.SaveChanges();
             ApplicationHelper.HomePageVm.Objects.Remove(attraction);
+            this.confirmDialogVM.IsDone = true;
         }
 
         private void deleteAccommodation(Accommodation accommodation)
         {
-            ApplicationHelper.HomePageVm.dbContext.Accommodations.Remove(accommodation);
-            ApplicationHelper.HomePageVm.dbContext.SaveChanges();
+            this.dbContext.Accommodations.Remove(accommodation);
+            this.dbContext.SaveChanges();
             ApplicationHelper.HomePageVm.Objects.Remove(accommodation);
+            this.confirmDialogVM.IsDone = true;
         }
 
         private void deleteTour(Tour tour)
         {
             if (tour != null)
             {
-                ApplicationHelper.HomePageVm.dbContext.Tours.Remove(tour);
-                ApplicationHelper.HomePageVm.dbContext.SaveChanges();
+                this.dbContext.Tours.Remove(tour);
+                this.dbContext.SaveChanges();
                 ApplicationHelper.HomePageVm.Objects.Remove(tour);
+                this.confirmDialogVM.IsDone = true;
             }
         }
     }
