@@ -28,6 +28,10 @@ namespace HCI_main_project.Pages
         {
             InitializeComponent();
             DataContext = new HomepageViewModel(mainGrid, priceFromBox, priceToBox, dateFrom, dateTo);
+            Loaded += (sender, e) =>
+            {
+                Focus();
+            };
         }
 
         private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -66,6 +70,13 @@ namespace HCI_main_project.Pages
             if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.S)
             {
                 searchBox.Focus();
+            } 
+            else if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.F)
+            {
+                if (this.DataContext is HomepageViewModel vm)
+                {
+                    vm.ExpandFilters = !vm.ExpandFilters;
+                }
             }
         }
 
