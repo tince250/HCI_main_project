@@ -1,4 +1,5 @@
 ﻿using HCI_main_project.ViewModels;
+using Microsoft.Maps.MapControl.WPF;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 using System;
@@ -50,6 +51,41 @@ namespace HCI_main_project.Model.Services
                 {
                     viewModel.City = city.ToString().Trim();
                 }
+            }
+        }
+
+        public async Task<Location> getLocationByAddress(string address, string locality)
+        {
+            var client = new RestClient("http://dev.virtualearth.net");
+            string uri = "REST/v1/Locations";
+
+            var request = new RestRequest(uri, Method.Get);
+            request.AddParameter("addressLine", address);
+            request.AddParameter("locality", locality);
+            request.AddParameter("countryRegion", "RS");
+            request.AddParameter("userIp", "127.0.0.1");
+            //request.AddParameter("c", "en");
+            request.AddParameter("key", BingMapsApiKey);
+
+
+            var response = await client.ExecuteAsync(request);
+            if (response.IsSuccessful)
+            {
+                var content = JObject.Parse(response.Content);
+                var latitude = content["resourceSets"][0]["resources"][0]["point"]["coordinates"][0];
+                var longitede = content["resourceSets"][0]["resources"][0]["point"]["coordinates"][1];
+                try
+                {
+                    return new Location(Double.Parse(latitude.ToString()), Double.Parse(longitede.ToString()));
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
             }
         }
     }

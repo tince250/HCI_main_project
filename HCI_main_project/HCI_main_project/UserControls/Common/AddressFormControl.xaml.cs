@@ -1,4 +1,5 @@
-﻿using HCI_main_project.Model.Services;
+﻿using Castle.DynamicProxy;
+using HCI_main_project.Model.Services;
 using HCI_main_project.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Maps.MapControl.WPF;
@@ -26,9 +27,11 @@ namespace HCI_main_project.UserControls
     /// </summary>
     public partial class AddressFormControl : UserControl
     {
+        private LocationService service;
         public AddressFormControl()
         {
             InitializeComponent();
+            service = new LocationService();
             map.Center = new Location(44.0165, 21.0059);
             map.ZoomLevel = 6.5;
         }
@@ -42,9 +45,22 @@ namespace HCI_main_project.UserControls
             map.Children.Clear();
             map.Children.Add(pin);
 
-            var locationService = new LocationService();
             AddressFormViewModel viewModel = this.DataContext as AddressFormViewModel;
-            locationService.GetAddress(pinLocation.Latitude, pinLocation.Longitude, viewModel);
+            service.GetAddress(pinLocation.Latitude, pinLocation.Longitude, viewModel);
+        }
+
+        async void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            AddressFormViewModel viewModel = this.DataContext as AddressFormViewModel;
+            string address = viewModel.Street + " " + viewModel.StreetNo;
+            var location = service.getLocationByAddress(address, viewModel.City);
+
+            Pushpin pin = new Pushpin();
+            pin.Location = await location;
+            map.Children.Clear();
+            map.Children.Add(pin);
+            map.Center = (pin.Location);
+            map.ZoomLevel = 15;
         }
     }
 }
