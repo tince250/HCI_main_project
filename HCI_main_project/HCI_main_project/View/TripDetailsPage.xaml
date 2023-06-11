@@ -26,7 +26,7 @@
                     Grid.Row="0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
-                    Margin="10"
+                    Margin="20, 10, 10, 10"
                     Height="60"
                     MinWidth="140"
                     MaxWidth="200"
@@ -44,6 +44,30 @@
             </Button>
 
             <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+
+                <Button
+                    Grid.Row="0"
+                    Click="openReservationsDialog"
+                    Visibility="{Binding ReservationsBtnVisbility}"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Margin="10, 10, 20, 10"                    
+                    Height="60"
+                    MinWidth="140"
+                    MaxWidth="200"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    materialDesign:ButtonAssist.CornerRadius="25"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    ToolTip="Cancel reservation button"
+                    Background="{StaticResource OrangeColor}"
+                    Foreground="White">
+
+                    <TextBlock Text="Reservations" />
+
+                </Button>
+
+
                 <Button
                     Grid.Row="0"
                     Click="openCancelDialog"
@@ -95,7 +119,7 @@
                     Grid.Row="0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
-                    Margin="10"
+                    Margin="10, 10, 20, 10"
                     Height="60"
                     MinWidth="140"
                     MaxWidth="200"

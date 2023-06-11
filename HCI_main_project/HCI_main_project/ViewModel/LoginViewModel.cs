@@ -1,7 +1,9 @@
 ﻿using HCI_main_project.Commands;
 using HCI_main_project.Model.Services;
+using HCI_main_project.Models;
 using HCI_main_project.Pages;
 using HCI_main_project.View;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

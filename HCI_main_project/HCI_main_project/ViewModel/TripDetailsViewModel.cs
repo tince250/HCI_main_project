@@ -15,6 +15,16 @@ namespace HCI_main_project.ViewModel
 {
     public class TripDetailsViewModel : ViewModelBaseS
     {
+        private Visibility _reservationsBtnVisbility;
+        public Visibility ReservationsBtnVisbility
+        {
+            get { return _reservationsBtnVisbility; }
+            set
+            {
+                SetProperty(ref _reservationsBtnVisbility, value);
+            }
+        }
+
         private Visibility _cancelBtnVisbility;
         public Visibility CancelBtnVisibility
         {
@@ -133,26 +143,38 @@ namespace HCI_main_project.ViewModel
 
         public void SetButtons()
         {
-            TourTraveler tourTraveler = _dbContext.TourTravelers.FirstOrDefault(c => c.TravelerId == ApplicationHelper.User.Id && c.TourId == this.Tour.Id);
-            if (tourTraveler == null)
+
+            if (ApplicationHelper.User.Role == UserRole.AGENT)
             {
+                ReservationsBtnVisbility = Visibility.Visible;
                 CancelBtnVisibility = Visibility.Collapsed;
-                ReserveBtnVisibility = Visibility.Visible;
-                BookBtnVisibility = Visibility.Visible;
+                ReserveBtnVisibility = Visibility.Collapsed;
+                BookBtnVisibility = Visibility.Collapsed;
             }
             else
             {
-                if (tourTraveler.BookingStatus == BookingStatus.RESERVATION)
+                ReservationsBtnVisbility = Visibility.Collapsed;
+                TourTraveler tourTraveler = _dbContext.TourTravelers.FirstOrDefault(c => c.TravelerId == ApplicationHelper.User.Id && c.TourId == this.Tour.Id);
+                if (tourTraveler == null)
                 {
-                    CancelBtnVisibility = Visibility.Visible;
-                    ReserveBtnVisibility = Visibility.Collapsed;
+                    CancelBtnVisibility = Visibility.Collapsed;
+                    ReserveBtnVisibility = Visibility.Visible;
                     BookBtnVisibility = Visibility.Visible;
                 }
                 else
                 {
-                    CancelBtnVisibility = Visibility.Visible;
-                    ReserveBtnVisibility = Visibility.Collapsed;
-                    BookBtnVisibility = Visibility.Collapsed;
+                    if (tourTraveler.BookingStatus == BookingStatus.RESERVATION)
+                    {
+                        CancelBtnVisibility = Visibility.Visible;
+                        ReserveBtnVisibility = Visibility.Collapsed;
+                        BookBtnVisibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        CancelBtnVisibility = Visibility.Visible;
+                        ReserveBtnVisibility = Visibility.Collapsed;
+                        BookBtnVisibility = Visibility.Collapsed;
+                    }
                 }
             }
         }
