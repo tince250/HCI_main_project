@@ -31,6 +31,20 @@ namespace HCI_main_project.ViewModel
             }
         }
 
+        private bool _isSearchInFocus = false;
+        public bool IsSearchInFocus
+        {
+            get
+            {
+                return _isSearchInFocus;
+            }
+            set
+            {
+                _isSearchInFocus = value;
+                OnPropertyChanged(nameof(_isSearchInFocus));
+            }
+        }
+
         private string selectedType;
         public string SelectedType
         {
@@ -179,6 +193,8 @@ namespace HCI_main_project.ViewModel
         public ICommand logoutCommand { get; }
         public ICommand applyFiltersCommand { get; }
 
+        public ICommand setSearchToFocus { get; }
+
         private TextBox minPriceTextBox;
         private TextBox maxPriceTextBox;
         private DatePicker dateFromPicker;
@@ -222,6 +238,7 @@ namespace HCI_main_project.ViewModel
             this.logoutCommand = new LogoutCommand(this);
             this.applyFiltersCommand = new ApplyFiltersCommand(this);
             this.clearFiltersCommand = new ClearFiltersCommand(this);
+            this.setSearchToFocus = new FocusSearchCommand(this);
             //var app = (App)Application.Current;
             this.dbContext = App.serviceProvider.GetService<TripagoContext>();
             SetTours();

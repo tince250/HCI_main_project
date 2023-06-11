@@ -8,15 +8,14 @@
       xmlns:viewmodel="clr-namespace:HCI_main_project.ViewModel"
       xmlns:root="clr-namespace:HCI_main_project"
       xmlns:conv="clr-namespace:HCI_main_project.Converters"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       xmlns:custom="clr-namespace:HCI_main_project.User_Controls"
       xmlns:rules="clr-namespace:HCI_main_project.ValidationRules"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-      xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="800"
       Title="Homepage"
-      Background="White"
-      PreviewKeyDown="OnKeyDownHandler">
+      Background="White">
 
     <!--<Page.Resources>
         <DataTemplate DataType="{x:Type model:Tour}">

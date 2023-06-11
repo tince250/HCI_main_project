@@ -26,7 +26,7 @@
                     Grid.Row="0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
-                    Margin="10"
+                    Margin="20, 10, 10, 10"
                     Height="60"
                     MinWidth="140"
                     MaxWidth="200"
@@ -44,8 +44,55 @@
             </Button>
 
             <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+
+                <Button
+                    Grid.Row="0"
+                    Click="openReservationsDialog"
+                    Visibility="{Binding ReservationsBtnVisbility}"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Margin="10, 10, 20, 10"                    
+                    Height="60"
+                    MinWidth="140"
+                    MaxWidth="200"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    materialDesign:ButtonAssist.CornerRadius="25"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    ToolTip="Cancel reservation button"
+                    Background="{StaticResource OrangeColor}"
+                    Foreground="White">
+
+                    <TextBlock Text="Reservations" />
+
+                </Button>
+
+
+                <Button
+                    Grid.Row="0"
+                    Click="openCancelDialog"
+                    Visibility="{Binding CancelBtnVisibility}"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Margin="10"
+                    Height="60"
+                    MinWidth="140"
+                    MaxWidth="200"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    materialDesign:ButtonAssist.CornerRadius="25"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    ToolTip="Cancel reservation button"
+                    Background="#757575"
+                    Foreground="White">
+
+                    <TextBlock Text="Cancel reservation" />
+
+                </Button>
+
                 <Button
                     Click="openReservationDialog"
+                    Visibility="{Binding ReserveBtnVisibility}"
                     Grid.Row="0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
@@ -58,7 +105,7 @@
                     materialDesign:ButtonAssist.CornerRadius="25"
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource MaterialDesignRaisedButton}"
-                    ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
+                    ToolTip="Reserve tour button"
                     Background="{StaticResource OrangeColor}"
                     Foreground="{StaticResource WhiteColor}">
 
@@ -68,10 +115,11 @@
 
                 <Button
                     Click="openBookingDialog"
+                    Visibility="{Binding BookBtnVisibility}"
                     Grid.Row="0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
-                    Margin="10"
+                    Margin="10, 10, 20, 10"
                     Height="60"
                     MinWidth="140"
                     MaxWidth="200"
@@ -80,7 +128,7 @@
                     materialDesign:ButtonAssist.CornerRadius="25"               
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource MaterialDesignRaisedButton}"
-                    ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
+                    ToolTip="Book tour button"
                     Background="{StaticResource ButtonLightBlueColor}"
                     Foreground="{StaticResource WhiteColor}">
 
