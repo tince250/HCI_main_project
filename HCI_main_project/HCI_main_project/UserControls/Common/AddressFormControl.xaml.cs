@@ -33,17 +33,18 @@ namespace HCI_main_project.UserControls
             map.ZoomLevel = 6.5;
         }
 
-        async void MyMap_PointerPressedOverride(object sender, MouseButtonEventArgs e)
+        async void PointerPressed(object sender, MouseButtonEventArgs e)
         {
             Point mousePosition = e.GetPosition(map);
             Location pinLocation = map.ViewportPointToLocation(mousePosition);
             Pushpin pin = new Pushpin();
             pin.Location = pinLocation;
+            map.Children.Clear();
             map.Children.Add(pin);
 
             var locationService = new LocationService();
-            var address = await locationService.GetAddress(pinLocation.Latitude, pinLocation.Latitude);
-            streetTextBox.Text = address;
+            AddressFormViewModel viewModel = this.DataContext as AddressFormViewModel;
+            locationService.GetAddress(pinLocation.Latitude, pinLocation.Longitude, viewModel);
         }
     }
 }

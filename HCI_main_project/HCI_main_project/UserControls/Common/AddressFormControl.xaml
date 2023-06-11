@@ -124,7 +124,7 @@
                 <Label Grid.Row="0" Content="pin the address on map." VerticalAlignment="Top" Style="{StaticResource GeneralFieldLabel}">
                 </Label>
                 <Image Source="../../Resources/err1.png" />
-                <m:Map x:Name="map" MouseDoubleClick="MyMap_PointerPressedOverride" Grid.Row="2"  Mode="AerialWithLabels" ZoomLevel="11.5" CredentialsProvider="Kj3TXYFWtOhdSJsEwaRg~MYtBweETdCEyT2r6ULdioA~AnDgeIBQnE12E3dWCqRoZDwCljaffq0SmrInOH5-FEHBGfLzqbwDBsLm0ewXkMHy">
+                <m:Map x:Name="map" MouseDoubleClick="PointerPressed" Grid.Row="2"  Mode="AerialWithLabels" ZoomLevel="11.5" CredentialsProvider="Kj3TXYFWtOhdSJsEwaRg~MYtBweETdCEyT2r6ULdioA~AnDgeIBQnE12E3dWCqRoZDwCljaffq0SmrInOH5-FEHBGfLzqbwDBsLm0ewXkMHy">
                 </m:Map>
             </Grid>
         </Grid>
