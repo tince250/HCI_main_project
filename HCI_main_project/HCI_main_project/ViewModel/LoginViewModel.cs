@@ -1,5 +1,6 @@
 ﻿using HCI_main_project.Commands;
 using HCI_main_project.Model.Services;
+using HCI_main_project.Pages;
 using HCI_main_project.View;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ using System.Windows.Navigation;
 
 namespace HCI_main_project.ViewModel
 {
-    public class LoginViewModel : ViewModelBase, IDataErrorInfo
+    public class LoginViewModel : ViewModelBaseS, IDataErrorInfo
     {
         public Boolean _firstLoad = true;
 
@@ -76,16 +77,23 @@ namespace HCI_main_project.ViewModel
             {
                 ErrorHappend = false;
                 if (validate("Email") == null && validate("Password") == null)
+                {
                     ApplicationHelper.User = this.service.Login(Email, Password);
+                    Homepage homePage = new Homepage();
+                    ApplicationHelper.NavigationService.Navigate(homePage);
+                }
                 else
                 {
-                    ErrorMessage = "Check your inputs.";
+                    ErrorMessage = "Check your inputs and try again.";
                     ErrorHappend = true;
                 }
             }
             catch (Exception ex)
             {
-                ErrorMessage = "Bad credentials. Please, try again.";
+                if (ex.Message == "Bad credentials.Please try again.")
+                    ErrorMessage = ex.Message;
+                else
+                    ErrorMessage = "Check your inputs and try again.";
                 ErrorHappend = true;
             }
         }

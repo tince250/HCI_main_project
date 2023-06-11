@@ -29,5 +29,11 @@ namespace HCI_main_project.Model.Entities
             this.Name = restaurant.Name;
             this.Description = restaurant.Address.AddressStr();
         }
+
+        public DetailsCardContent(Tour tour)
+        {
+            this.Name = tour.Name;
+            this.Description = "from " + tour.From.ToString("dd.MM.yyyy.") + " to " + tour.To.ToString("dd.MM.yyyy.");
+        }
     }
 }

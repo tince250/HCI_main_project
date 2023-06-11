@@ -20,8 +20,16 @@
             <SolidColorBrush x:Key="ButtonLightBlueColor" Color="#257FBD" />
             <SolidColorBrush x:Key="OrangeColor" Color="#F5AA39"></SolidColorBrush>
             <SolidColorBrush x:Key="MediumBlueColor" Color="#6750A4"/>
+            <SolidColorBrush x:Key="DarkBlueColor" Color="#0A2463"/>
             <SolidColorBrush x:Key="BlackColor" Color="#000000"/>
+            <SolidColorBrush x:Key="GrayColor" Color="#585858"/>
+            <SolidColorBrush x:Key="LightGrayColor" Color="#BBBBBB"/>
             <SolidColorBrush x:Key="WhiteColor" Color="#FFFFFF"/>
+
+            <SolidColorBrush x:Key="IconColor_suitcase" Color="#257FBD" />
+            <SolidColorBrush x:Key="IconColor_accom" Color="#FFFFFF" />
+            <SolidColorBrush x:Key="IconColor_attrac" Color="#FFFFFF" />
+            <SolidColorBrush x:Key="IconColor_resta" Color="#FFFFFF" />
 
             <Style x:Key="CRUDButton" TargetType="Button">
                 <Setter Property="Height" Value="40"/>
@@ -30,10 +38,64 @@
                 <Setter Property="IsEnabled" Value="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
             </Style>
 
+            <Style x:Key="CustomMaterialDesignFloatingHintTextBox" TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
+                <Setter Property="Validation.ErrorTemplate">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <StackPanel>
+                                <AdornedElementPlaceholder x:Name="textBox"/>
+                                <Grid Width="490" Margin="0,0,10,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition SharedSizeGroup="textBox"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border BorderBrush="#A8201A" BorderThickness="0,0,0,0">
+                                        <Rectangle  Fill="#FFFFFF" />
+                                    </Border>
+                                    <TextBlock Text="{Binding [0].ErrorContent}"
+                                               TextWrapping="Wrap"
+                                           Foreground="#A8201A"
+                                           FontSize="19"
+                                               FontWeight="Medium"
+                                           Margin="5,2,0,0"
+                                           Height="Auto"/>
+                                </Grid>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
+            <Style TargetType="{x:Type DatePickerTextBox}">
+                <Setter Property="Control.Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <TextBox x:Name="PART_TextBox"
+             Text="{Binding Path=SelectedDate, StringFormat='dd.MM.yyyy.', 
+             RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
             <ResourceDictionary.MergedDictionaries>
                 
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="Themes/Generic.xaml" />
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="DeepPurple" SecondaryColor="Lime" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary>
+                    <!-- primary -->
+                    <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="#3e92cc"/>
+                    <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="#FFFFFF"/>
+                    <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#3e92cc"/>
+                    <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="#FFFFFF"/>
+                    <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="#3e92cc"/>
+                    <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="#FFFFFF"/>
+                    <!-- accent -->
+                    <SolidColorBrush x:Key="SecondaryHueMidBrush" Color="#F5AA39"/>
+                    <SolidColorBrush x:Key="SecondaryHueMidForegroundBrush" Color="#FFFFFF"/>
+                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

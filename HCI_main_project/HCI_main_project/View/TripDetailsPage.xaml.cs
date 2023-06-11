@@ -1,4 +1,5 @@
-﻿using HCI_main_project.Models;
+﻿using HCI_main_project.Components;
+using HCI_main_project.Models;
 using HCI_main_project.ViewModel;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,10 +24,10 @@ namespace HCI_main_project.View
     /// <summary>
     /// Interaction logic for TripDetails.xaml
     /// </summary>
-    public partial class TripDetails : Page
+    public partial class TripDetailsPage : Page
     {
         private TripDetailsViewModel viewModel;
-        public TripDetails()
+        public TripDetailsPage()
         {
             InitializeComponent();
             this.viewModel = App.serviceProvider.GetRequiredService<TripDetailsViewModel>();
@@ -36,9 +37,9 @@ namespace HCI_main_project.View
 
         private void setPushPins()
         {
+            setAttractionsPushPins();
             setRestaurantPushPins();
             setAccommodationsPushPins();
-            setAttractionsPushPins();
         }
 
         private void setRestaurantPushPins()
@@ -54,13 +55,20 @@ namespace HCI_main_project.View
 
         private void setAttractionsPushPins()
         {
+            MapPolyline routeLine = new MapPolyline();
+            routeLine.Locations = new LocationCollection();
+            routeLine.Stroke = new SolidColorBrush(System.Windows.Media.Colors.Blue);
+            routeLine.StrokeThickness = 4;
+            routeLine.Opacity = 0.7;
             foreach (Attraction attraction in viewModel.Attractions)
             {
                 Pushpin Pin = new Microsoft.Maps.MapControl.WPF.Pushpin();
                 Pin.Location = new Location(attraction.Latitude, attraction.Longitude);
                 Pin.Background = new SolidColorBrush(Color.FromRgb(39, 117, 185));
                 this.map.Children.Add(Pin);
+                routeLine.Locations.Add(Pin.Location);
             }
+            this.map.Children.Add(routeLine);
         }
 
         private void setAccommodationsPushPins()
@@ -72,6 +80,16 @@ namespace HCI_main_project.View
                 Pin.Background = new SolidColorBrush(Color.FromRgb(232, 170, 42));
                 this.map.Children.Add(Pin);
             }
+        }
+
+        private void openReservationDialog(object sender, RoutedEventArgs e)
+        {
+            mainGrid.Children.Add(new ConfirmDialog(DialogType.RESERVE_TOUR));
+        }
+
+        private void openBookingDialog(object sender, RoutedEventArgs e)
+        {
+            mainGrid.Children.Add(new ConfirmDialog(DialogType.BOOK_TOUR));
         }
     }
 }

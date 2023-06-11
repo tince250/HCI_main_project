@@ -1,4 +1,5 @@
-﻿using HCI_main_project.Models;
+﻿using HCI_main_project.Commands;
+using HCI_main_project.Models;
 using Microsoft.Maps.MapControl.WPF;
 using System;
 using System.Collections.Generic;
@@ -6,10 +7,11 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace HCI_main_project.ViewModel
 {
-    class TripDetailsViewModel : ViewModelBase
+    class TripDetailsViewModel : ViewModelBaseS
     {
         private Location _location;
         public Location Location
@@ -62,11 +64,14 @@ namespace HCI_main_project.ViewModel
         }
 
         private TripagoContext _dbContext;
+        public ICommand backCommand { get; }
+
 
         public TripDetailsViewModel(TripagoContext dbContext)
         {
             _dbContext = dbContext;
-            SetTour(1);
+            this.backCommand = new BackToHomeCommand(this);
+            SetTour(ApplicationHelper.TourId);
             SetAttractions();
             SetAccommodations();
             SetRestaurants();

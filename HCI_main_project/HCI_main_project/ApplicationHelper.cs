@@ -1,4 +1,5 @@
 ﻿using HCI_main_project.Models;
+using HCI_main_project.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,27 @@ namespace HCI_main_project
     public static class ApplicationHelper
     {
         private static NavigationService navigator;
+
+        
         private static User user { get; set; }
+
+        private static int tourId;
+
+        public static int TourId
+        {
+            get { return tourId; }
+            set { tourId = value; }
+        }
+
+        private static int toDeleteId;
+
+        public static int ToDeleteId
+        {
+            get { return toDeleteId; }
+            set { toDeleteId = value; }
+        }
+
+
         public static NavigationService NavigationService
         {
             set
@@ -25,7 +46,7 @@ namespace HCI_main_project
 
         }
 
-        public static User User
+        public static User? User
         {
             set
             {
@@ -34,6 +55,20 @@ namespace HCI_main_project
             get
             {
                 return user;
+            }
+
+        }
+
+        private static HomepageViewModel? homePageVm;
+        public static HomepageViewModel? HomePageVm
+        {
+            set
+            {
+                homePageVm = value;
+            }
+            get
+            {
+                return homePageVm;
             }
 
         }

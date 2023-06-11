@@ -9,6 +9,12 @@
 
   <ItemGroup>
     <None Remove="Fonts\poppinsr.ttf" />
+    <None Remove="Images\cele.jfif" />
+    <None Remove="Images\hram.jpg" />
+    <None Remove="Images\Tours\petrovaradin.jpg" />
+    <None Remove="Resources\login.jpg" />
+    <None Remove="Resources\register.jpg" />
+    <None Remove="Resources\x-icon.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,7 +38,24 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <Resource Include="Images\Attractions\cele.jfif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Tours\hram.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Tours\petrovaradin.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\login.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\register.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\x-icon.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

@@ -13,7 +13,7 @@ using System.Windows.Input;
 
 namespace HCI_main_project.ViewModel
 {
-    public class RegisterViewModel : ViewModelBase, IDataErrorInfo
+    public class RegisterViewModel : ViewModelBaseS, IDataErrorInfo
     {
         private readonly string[] FIELDS = { "Name", "LastName", "Email", "Password", "ConfirmPassword" };
         public Boolean _firstLoad = true;
@@ -33,6 +33,7 @@ namespace HCI_main_project.ViewModel
             try
             {
                 ErrorHappend = false;
+                RegisterSuccess = false;
                 User newUser = new User
                 {
                     Email = Email,
@@ -45,17 +46,22 @@ namespace HCI_main_project.ViewModel
                 if (validateAll())
                 {
                     service.Register(newUser);
-                    ApplicationHelper.User = service.GetByEmail(Email);
+                    //ApplicationHelper.User = service.GetByEmail(Email);
+                    ErrorMessage = "Account registered successfully. Please login.";
+                    RegisterSuccess = true;
                 }
                 else
                 {
-                    ErrorMessage = "Check your inputs.";
+                    ErrorMessage = "Check your inputs and try again.";
                     ErrorHappend = true;
                 }
             }
             catch (Exception ex)
             {
-                ErrorMessage = "User with given email already exists.";
+                if (ex.Message == "User with given email already exists.")
+                    ErrorMessage = ex.Message;
+                else
+                    ErrorMessage = "Check your inputs and try again.";
                 ErrorHappend = true;
             }
         }
@@ -67,6 +73,16 @@ namespace HCI_main_project.ViewModel
             set
             {
                 SetProperty(ref _errorHappend, value);
+            }
+        }
+
+        private bool _registerSuccess;
+        public bool RegisterSuccess
+        {
+            get => _registerSuccess;
+            set
+            {
+                SetProperty(ref _registerSuccess, value);
             }
         }
 

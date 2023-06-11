@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="HCI_main_project.User_Controls.NavbarButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HCI_main_project.User_Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="45" d:DesignWidth="400"
+             Background="Transparent"
+             >
+    <Border Padding="10" CornerRadius="10"  Background="{StaticResource ButtonLightBlueColor}">
+        <Grid Background="{StaticResource ButtonLightBlueColor}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="22"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <!--<Image x:Name="IconImage" Source="{Binding Icon}" VerticalAlignment="Center"/>-->
+
+            <Border x:Name="IconContainer" Grid.Column="0">
+                <Image Source="{Binding Icon}" VerticalAlignment="Center"/>
+            </Border>
+            <Label Grid.Column="1" Content="{Binding Text}" Foreground="White" FontSize="20" FontWeight="Medium" Margin="7,0,0,0"/>
+        </Grid>
+    </Border>
+
+</UserControl>

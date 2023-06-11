@@ -47,6 +47,17 @@ namespace HCI_main_project.Converters
                 }
             }
 
+            if (value is Tour tour)
+            {
+                if (tour != null)
+                {
+                    var detailsCard = new DetailsCard();
+                    detailsCard.DetailsContent = new DetailsCardContent(tour);
+
+                    return detailsCard;
+                }
+            }
+
             return null;
         }
 

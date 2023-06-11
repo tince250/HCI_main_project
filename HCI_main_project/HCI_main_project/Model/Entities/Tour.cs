@@ -17,7 +17,8 @@ namespace HCI_main_project.Models
         public string Description { get; set; }
         public DateTime From { get; set; }
         public DateTime To { get; set; }
-        public byte[] Image { get; set; }
+        public string Image { get; set; }
+        public double Price { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
 
