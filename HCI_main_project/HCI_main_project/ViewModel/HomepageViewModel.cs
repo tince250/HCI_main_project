@@ -170,10 +170,32 @@ namespace HCI_main_project.ViewModel
         public ICommand openTourDetailsCommand { get; }
         public ICommand logoutCommand { get; }
         public ICommand applyFiltersCommand { get; }
+
+        private TextBox minPriceTextBox;
+        private TextBox maxPriceTextBox;
+        private DatePicker dateFromPicker;
+        private DatePicker dateToPicker;
+
+        public bool AreFiltersValid()
+        {
+            if (AreFiltersEmptyForReal())
+                return false;
+
+            return !Validation.GetHasError(minPriceTextBox) && !Validation.GetHasError(maxPriceTextBox) && !Validation.GetHasError(dateFromPicker) && !Validation.GetHasError(dateToPicker);
+        }
+        public bool AreFiltersEmptyForReal()
+        {
+            return minPriceTextBox.Text == "" && maxPriceTextBox.Text == "" && !dateFrom.HasValue  && !dateTo.HasValue;        }
+
         public ICommand clearFiltersCommand { get; }
 
-        public HomepageViewModel()
+        public HomepageViewModel(TextBox minPriceTextBox, TextBox maxPriceTextBox, DatePicker dateFromPicker, DatePicker dateToPicker)
         {
+            this.minPriceTextBox = minPriceTextBox;
+            this.maxPriceTextBox = maxPriceTextBox;
+            this.dateFromPicker = dateFromPicker;
+            this.dateToPicker = dateToPicker;
+
             this.navItemSelectedCommand = new NavItemSelectedCommand(this);
             this.toggleFilterPaneCommand = new ToggleFilterPaneCommand(this);
             this.openTourDetailsCommand = new OpenTourDetailsCommand(this);
@@ -256,28 +278,30 @@ namespace HCI_main_project.ViewModel
 
         public void Sort(string criteria)
         {
-            SortTours(criteria);
+            this.Objects = SortTours(criteria, this.Objects);
         }
 
-        public void SortTours(string criteria)
+        public ObservableCollection<object> SortTours(string criteria, ObservableCollection<object> objects)
         {
             if (criteria.Equals("Most popular"))
             {
-                this.Objects = new ObservableCollection<object>(dbContext.Tours.OrderByDescending(t => t.TourTravelers.Count));
+                return new ObservableCollection<object>(objects.OfType<Tour>().OrderByDescending(t => t.TourTravelers.Count));
             }
             else if (criteria.Equals("Price lowest"))
             {
-                this.Objects = new ObservableCollection<object>(dbContext.Tours.OrderBy(t => t.Price));
+                return  new ObservableCollection<object>(objects.OfType<Tour>().OrderBy(t => t.Price));
 
             }
             else if (criteria.Equals("Price highest"))
             {
-                this.Objects = new ObservableCollection<object>(dbContext.Tours.OrderByDescending(t => t.Price));
+                return new ObservableCollection<object>(objects.OfType<Tour>().OrderByDescending(t => t.Price));
             }
             else if (criteria.Equals("Most recent"))
             {
-                this.Objects = new ObservableCollection<object>(dbContext.Tours.OrderBy(t => t.From));
+                return new ObservableCollection<object>(objects.OfType<Tour>().OrderBy(t => t.From));
             }
+
+            return null;
         }
 
         private Dictionary<string, List<string>> errors = new Dictionary<string, List<string>>();

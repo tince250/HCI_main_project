@@ -32,7 +32,7 @@ namespace HCI_main_project.Pages
         public Homepage()
         {
             InitializeComponent();
-            DataContext = new HomepageViewModel();
+            DataContext = new HomepageViewModel(priceFromBox, priceToBox, dateFrom, dateTo);
         }
 
         private void searchBox_TextChanged(object sender, TextChangedEventArgs e)

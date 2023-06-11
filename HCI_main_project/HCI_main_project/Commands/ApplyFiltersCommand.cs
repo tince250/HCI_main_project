@@ -3,9 +3,11 @@ using HCI_main_project.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace HCI_main_project.Commands
 {
@@ -16,12 +18,11 @@ namespace HCI_main_project.Commands
         public ApplyFiltersCommand(HomepageViewModel homepageViewModel)
         {
             this.homepageViewModel = homepageViewModel;
+            this.homepageViewModel.PropertyChanged += ViewModel_PropertyChanged;
         }
 
         public override void Execute(object? parameter)
-        {
-
-            
+        { 
 
             if (this.homepageViewModel.SelectedType.Equals("tours"))
                 applyTourFilters();
@@ -82,32 +83,76 @@ namespace HCI_main_project.Commands
             bool applyPriceFilter = false;
             bool applyDateFilter = false;
 
-            if (this.homepageViewModel.MinPrice != null && this.homepageViewModel.MaxPrice != null)
+            var minPrice = this.homepageViewModel.MinPrice;
+            var maxPrice = this.homepageViewModel.MaxPrice;
+
+            if (this.homepageViewModel.MinPrice != null || this.homepageViewModel.MaxPrice != null)
             {
                 applyPriceFilter = true;
+                if (this.homepageViewModel.MinPrice == null)
+                    minPrice = 0;
+                else if (this.homepageViewModel.MaxPrice == null)
+                    maxPrice = 100000;
             }
 
-            if (this.homepageViewModel.DateFrom != null && this.homepageViewModel.DateTo != null)
+            var dateFrom = this.homepageViewModel.DateFrom;
+            var dateTo = this.homepageViewModel.DateTo;
+
+            if (this.homepageViewModel.DateFrom != null || this.homepageViewModel.DateTo != null)
             {
                 applyDateFilter = true;
+                if (this.homepageViewModel.DateFrom == null)
+                    dateFrom = DateTime.Now;
+                else if (this.homepageViewModel.DateTo == null)
+                    dateTo = DateTime.MaxValue;
             }
 
+            applyAllTourFiltersAndSort(applyPriceFilter, applyDateFilter, minPrice, maxPrice, dateFrom, dateTo);
+        }
+
+        private void applyAllTourFiltersAndSort(bool applyPriceFilter, bool applyDateFilter, double? minPrice, double? maxPrice, DateTime? dateFrom, DateTime? dateTo)
+        {
+            var objects = new ObservableCollection<object>();
             if (applyPriceFilter && !applyDateFilter)
             {
-                this.homepageViewModel.Objects = new ObservableCollection<object>(this.homepageViewModel.Objects.OfType<Tour>().Where(t => t.Price <= this.homepageViewModel.MaxPrice && t.Price >= this.homepageViewModel.MinPrice).ToList());
+                objects = new ObservableCollection<object>(this.homepageViewModel.Objects.OfType<Tour>().Where(t => t.Price <= maxPrice && t.Price >= minPrice).ToList());
             }
-
-            if (!applyPriceFilter && applyDateFilter)
+            else if (!applyPriceFilter && applyDateFilter)
             {
-                this.homepageViewModel.Objects = new ObservableCollection<object>(this.homepageViewModel.Objects.OfType<Tour>().Where(t => t.From >= this.homepageViewModel.DateFrom && t.To <= this.homepageViewModel.DateTo).ToList());
-
-            }
-
-            if (applyPriceFilter && applyDateFilter)
+                objects = new ObservableCollection<object>(this.homepageViewModel.Objects.OfType<Tour>().Where(t => t.From >= dateFrom && t.To <= dateTo).ToList());
+            } else if (applyPriceFilter && applyDateFilter)
             {
-                this.homepageViewModel.Objects = new ObservableCollection<object>(this.homepageViewModel.Objects.OfType<Tour>().Where(t => (t.Price <= this.homepageViewModel.MaxPrice && t.Price >= this.homepageViewModel.MinPrice) && (t.From >= this.homepageViewModel.DateFrom && t.To <= this.homepageViewModel.DateTo)).ToList());
-
+                objects = new ObservableCollection<object>(this.homepageViewModel.Objects.OfType<Tour>().Where(t => (t.Price <= maxPrice && t.Price >= minPrice) && (t.From >= dateFrom && t.To <= dateTo)).ToList());
             }
+
+            if (this.homepageViewModel.SearchText != "")
+                objects = new ObservableCollection<object>(objects.OfType<Tour>().Where(t => t.Name.Contains(this.homepageViewModel.SearchText, StringComparison.OrdinalIgnoreCase)).ToList());
+            
+            if (this.homepageViewModel.SelectedOption != null)
+            {
+                objects = this.homepageViewModel.SortTours(this.homepageViewModel.SelectedOption, objects);
+            }
+            this.homepageViewModel.Objects = objects;
+        }
+
+        private void ViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(homepageViewModel.MinPrice)
+                || e.PropertyName == nameof(homepageViewModel.MaxPrice)
+                || e.PropertyName == nameof(homepageViewModel.DateFrom)
+                || e.PropertyName == nameof(homepageViewModel.DateTo)
+                || e.PropertyName == nameof(homepageViewModel.SelectedType))
+            {
+                OnCanExecuteChanged();
+            }
+        }
+
+        public override bool CanExecute(object? parameter)
+        {
+            if (homepageViewModel.SelectedType != null && homepageViewModel.SelectedType.Equals("tours"))
+                return homepageViewModel.AreFiltersValid();
+            else
+                return true;
         }
     }
 }
