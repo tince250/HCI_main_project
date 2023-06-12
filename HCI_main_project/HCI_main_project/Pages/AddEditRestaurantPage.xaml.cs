@@ -1,6 +1,8 @@
-﻿using HCI_main_project.Models;
+﻿using HCI_main_project.Components;
+using HCI_main_project.Models;
 using HCI_main_project.UserControls;
 using HCI_main_project.ViewModels;
+using HCI_main_project.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -27,8 +29,15 @@ namespace HCI_main_project
     {
         public AddEditRestaurantPage()
         {
+            
             InitializeComponent();
-            DataContext = new AddRestaurantPageViewModel(nameAndPhotoFormControl, addressFormControl, snackBarPositive, snackBarNegative, null);
+            Restaurant tour = App.serviceProvider.GetService<TripagoContext>().Restaurants.FirstOrDefault(t => t.Id == 13);
+            DataContext = new AddRestaurantPageViewModel(nameAndPhotoFormControl, addressFormControl, snackBarPositive, snackBarNegative, tour);
+        }
+
+        private void openGoBackDialog(object sender, RoutedEventArgs e)
+        {
+            this.mainGrid.Children.Add(new ConfirmDialog(DialogType.GO_BACK_CRUD));
         }
     }
 }

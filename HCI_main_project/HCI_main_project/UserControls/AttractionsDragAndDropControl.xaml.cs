@@ -88,13 +88,6 @@ namespace HCI_main_project.UserControls
         private void setMockUp()
         {
             ObservableCollection<Attraction> o = new ObservableCollection<Attraction>();
-            o.Add(new Attraction { Address = new Address { City = "Belgrade", Street = "Ljutice Bogdana", StreetNumber = 24 }, Name = "Sava's Monestry", Id=1 });
-            o.Add(new Attraction { Address = new Address { City = "Belgrade", Street = "Ljutice Bogdana", StreetNumber = 24 }, Name = "Kalemegdan", Id=2 });
-            o.Add(new Attraction { Address = new Address { City = "Belgrade", Street = "Ljutice Bogdana", StreetNumber = 24 }, Name = "Marakana", Id=3 });
-            o.Add(new Attraction { Address = new Address { City = "Belgrade", Street = "Ljutice Bogdana", StreetNumber = 24 }, Name = "Sava's Monestry", Id = 11 });
-            o.Add(new Attraction { Address = new Address { City = "Belgrade", Street = "Ljutice Bogdana", StreetNumber = 24 }, Name = "Kalemegdan", Id = 21 });
-            o.Add(new Attraction { Address = new Address { City = "Belgrade", Street = "Ljutice Bogdana", StreetNumber = 24 }, Name = "Marakana", Id = 31 });
-
             Attractions = o;
         }
         private ObservableCollection<Attraction> _attractions;

@@ -32,7 +32,7 @@ namespace HCI_main_project.Commands.Accommodations
             {
                 AddressDTO address = new AddressDTO(_addAccommodationPageViewModel.AddressFormViewModel.City, 20000,
                     _addAccommodationPageViewModel.AddressFormViewModel.Street,
-                    int.Parse(_addAccommodationPageViewModel.AddressFormViewModel.StreetNo)
+                    _addAccommodationPageViewModel.AddressFormViewModel.StreetNo
                     );
 
                 string filename = ImageHelper.Save(_addAccommodationPageViewModel.NameAndPhotoFormViewModel.ImageRectangle.Fill as ImageBrush,
@@ -41,7 +41,9 @@ namespace HCI_main_project.Commands.Accommodations
                 AccommodationType type = _addAccommodationPageViewModel.AccommodationTypeViewModel.IsHotelSelected ? AccommodationType.HOTEL : AccommodationType.APARTMENT;
 
                 AccommodationDTO accommodation = new AccommodationDTO(_addAccommodationPageViewModel.NameAndPhotoFormViewModel.Name,
-                    filename, type, address);
+                    filename, type, address,
+                    _addAccommodationPageViewModel.AddressFormControl.Latitude,
+                    _addAccommodationPageViewModel.AddressFormControl.Longitude);
                 _accommodationService.Add(accommodation);
             }
             catch (Exception ex)
@@ -55,7 +57,7 @@ namespace HCI_main_project.Commands.Accommodations
                 || e.PropertyName == nameof(_addAccommodationPageViewModel.AddressFormViewModel.StreetNo)
                 || e.PropertyName == nameof(_addAccommodationPageViewModel.AddressFormViewModel.City))
             {
-                CommandManager.InvalidateRequerySuggested();
+                OnCanExecuteChanged();
             }
         }
 

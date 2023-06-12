@@ -30,5 +30,15 @@ namespace HCI_main_project.UserControls
         {
             InitializeComponent();
         }
+
+        private void OnKeyDownHandlerImage(object sender, KeyEventArgs e)
+        {
+            var viewModel = DataContext as NameAndPhotoFormViewModel;
+            if (e.Key == Key.Return)
+            {
+                if (viewModel.UploadImageCommand.CanExecute(null))
+                    viewModel.UploadImageCommand.Execute(null);
+            }
+        }
     }
 }

@@ -32,15 +32,17 @@ namespace HCI_main_project.Commands.Attractions
             {
                 AddressDTO address = new AddressDTO(_addAttractionPageViewModel.AddressFormViewModel.City, 20000,
                     _addAttractionPageViewModel.AddressFormViewModel.Street,
-                    int.Parse(_addAttractionPageViewModel.AddressFormViewModel.StreetNo)
+                    _addAttractionPageViewModel.AddressFormViewModel.StreetNo
                     );
                 ImageHelper.RemoveOld("Attractions", _addAttractionPageViewModel.SelectedAttraction.Image);
                 string filename = ImageHelper.Save(_addAttractionPageViewModel.NameAndPhotoFormViewModel.ImageRectangle.Fill as ImageBrush,
                     "Attractions", _addAttractionPageViewModel.NameAndPhotoFormViewModel.File, false);
 
                 AttractionDTO Attraction = new AttractionDTO(_addAttractionPageViewModel.NameAndPhotoFormViewModel.Name,
-                    filename, address);
-                _attractionService.Edit(11, Attraction);
+                    filename, address,
+                    _addAttractionPageViewModel.AddressFormControl.Latitude,
+                    _addAttractionPageViewModel.AddressFormControl.Longitude);
+                _attractionService.Edit(_addAttractionPageViewModel.SelectedAttraction.Id, Attraction);
             }
             catch (Exception ex)
             {

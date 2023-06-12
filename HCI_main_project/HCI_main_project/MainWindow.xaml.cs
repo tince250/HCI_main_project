@@ -21,6 +21,7 @@ using System.Windows.Shapes;
 using System.Windows.Navigation;
 using HCI_main_project.Pages;
 using HCI_main_project.ViewModel;
+using HCI_main_project.ViewModels;
 
 namespace HCI_main_project
 {
@@ -63,6 +64,118 @@ namespace HCI_main_project
             //        }
             //    }
             //}
+            var addEditRestaurantPage = Frame.Content as AddEditRestaurantPage;
+            if (addEditRestaurantPage != null)
+            {
+               if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.U)
+                {
+                    var vm = addEditRestaurantPage.nameAndPhotoFormControl.DataContext as NameAndPhotoFormViewModel;
+                    if (vm.UploadImageCommand.CanExecute(null) && (addEditRestaurantPage.DataContext as AddRestaurantPageViewModel).NameAndPhotoFormControl.Visibility == Visibility.Visible)
+                        vm.UploadImageCommand.Execute(null);
+                }
+                if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.D2)
+                {
+                    var vm = addEditRestaurantPage.DataContext as AddRestaurantPageViewModel;
+                    if (vm.FillAddressButtonRestaurantCommand.CanExecute(null))
+                        vm.FillAddressButtonRestaurantCommand.Execute(null);
+                }
+                if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.D1)
+                {
+                    var vm = addEditRestaurantPage.DataContext as AddRestaurantPageViewModel;
+                    if (vm.BackButtonRestaurantCommand.CanExecute(null))
+                        vm.BackButtonRestaurantCommand.Execute(null);
+                }
+            }
+            var addEditAttractionsPage = Frame.Content as AddEditAttractionPage;
+            if (addEditAttractionsPage != null)
+            {
+                if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.U)
+                {
+                    var vm = addEditAttractionsPage.nameAndPhotoFormControl.DataContext as NameAndPhotoFormViewModel;
+                    if (vm.UploadImageCommand.CanExecute(null) && (addEditAttractionsPage.DataContext as AddAttractionPageViewModel).NameAndPhotoFormControl.Visibility == Visibility.Visible)
+                        vm.UploadImageCommand.Execute(null);
+                }
+                if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.D2)
+                {
+                    var vm = addEditAttractionsPage.DataContext as AddAttractionPageViewModel;
+                    if (vm.FillAddressButtonAttractionCommand.CanExecute(null))
+                        vm.FillAddressButtonAttractionCommand.Execute(null);
+                }
+                if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.D1)
+                {
+                    var vm = addEditAttractionsPage.DataContext as AddAttractionPageViewModel;
+                    if (vm.BackButtonAttractionCommand.CanExecute(null))
+                        vm.BackButtonAttractionCommand.Execute(null);
+                }
+            }
+            var addEditAccommodationPage = Frame.Content as AddEditAccommodationPage;
+            if (addEditAccommodationPage != null)
+            {
+                if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.U)
+                {
+                    var vm = addEditAccommodationPage.nameAndPhotoFormControl.DataContext as NameAndPhotoFormViewModel;
+                    if (vm.UploadImageCommand.CanExecute(null) && (addEditAccommodationPage.DataContext as AddAccommodationPageViewModel).NameAndPhotoFormControl.Visibility == Visibility.Visible)
+                        vm.UploadImageCommand.Execute(null);
+                }
+                if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.D3)
+                {
+                    var vm = addEditAccommodationPage.DataContext as AddAccommodationPageViewModel;
+                    if (vm.FillAddressButtonAccommodationCommand.CanExecute(null))
+                        vm.FillAddressButtonAccommodationCommand.Execute(null);
+                }
+                if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.D2)
+                {
+                    var vm = addEditAccommodationPage.DataContext as AddAccommodationPageViewModel;
+                    if (vm.FillGeneralInfoButtonAccommodationCommand.CanExecute(null))
+                        vm.FillGeneralInfoButtonAccommodationCommand.Execute(null);
+                }
+                if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.D1)
+                {
+                    var vm = addEditAccommodationPage.DataContext as AddAccommodationPageViewModel;
+                    if (vm.BackToAccommodationTypeButtonAccommodationCommand.CanExecute(null))
+                        vm.BackToAccommodationTypeButtonAccommodationCommand.Execute(null);
+                }
+            }
+            var addEditTourPage = Frame.Content as AddEditTourPage;
+            if (addEditTourPage != null)
+            {
+                if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.U)
+                {
+                    var vm = addEditTourPage.nameAndPhotoFormControl.DataContext as NameAndPhotoFormViewModel;
+                    if (vm.UploadImageCommand.CanExecute(null))
+                        vm.UploadImageCommand.Execute(null);
+                }
+                if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.D5)
+                {
+                    var vm = addEditTourPage.DataContext as AddTourPageViewModel;
+                    if (vm.FillRestaurantsButtonTourCommand.CanExecute(null))
+                        vm.FillRestaurantsButtonTourCommand.Execute(null);
+                }
+                if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.D4)
+                {
+                    var vm = addEditTourPage.DataContext as AddTourPageViewModel;
+                    if (vm.FillAccommodationsButtonTourCommand.CanExecute(null))
+                        vm.FillAccommodationsButtonTourCommand.Execute(null);
+                }
+                if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.D3)
+                {
+                    var vm = addEditTourPage.DataContext as AddTourPageViewModel;
+                    if (vm.FillAttractionsButtonTourCommand.CanExecute(null))
+                        vm.FillAttractionsButtonTourCommand.Execute(null);
+                }
+                if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.D2)
+                {
+                    var vm = addEditTourPage.DataContext as AddTourPageViewModel;
+                    if (vm.FillDetailsButtonTourCommand.CanExecute(null))
+                        vm.FillDetailsButtonTourCommand.Execute(null);
+                }
+                if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.D1)
+                {
+                    var vm = addEditTourPage.DataContext as AddTourPageViewModel;
+                    if (vm.BackToGeneralInfoButtonTourCommand.CanExecute(null))
+                        vm.BackToGeneralInfoButtonTourCommand.Execute(null);
+                }
+            }
         }
 
         // Console.WriteLine("Adding some authors into database...");

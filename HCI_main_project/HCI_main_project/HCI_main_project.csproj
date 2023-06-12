@@ -68,7 +68,6 @@
     <Folder Include="Resources\Attractions\" />
     <Folder Include="Resources\Accommodations\" />
     <Folder Include="Resources\Tours\" />
-    <Folder Include="Resources\Restaurants\" />
   </ItemGroup>
 
 </Project>

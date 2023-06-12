@@ -26,7 +26,7 @@ namespace HCI_main_project.Commands.Accommodations
                 _addAccommodationPageViewModel.AccommodationTypeControl.Visibility = Visibility.Collapsed;
                 _addAccommodationPageViewModel.AddressFormControl.Visibility = Visibility.Visible;
                 _addAccommodationPageViewModel.NextButtonText = "Fill address info";
-                _addAccommodationPageViewModel.BackButtonText = "Back to nzm";
+                _addAccommodationPageViewModel.BackButtonText = "Back to acc. type";
             }
             catch (Exception ex)
             {

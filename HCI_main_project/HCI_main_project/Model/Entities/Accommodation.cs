@@ -47,6 +47,8 @@ namespace HCI_main_project.Models
             Image = accommodationDTO.Image;
             Type = accommodationDTO.Type;
             Address = new Address(accommodationDTO.Address);
+            Latitude = accommodationDTO.Latitude;
+            Longitude = accommodationDTO.Longitude;
         }
     }
 }

@@ -32,7 +32,7 @@ namespace HCI_main_project.Commands.Accommodations
             {
                 AddressDTO address = new AddressDTO(_addAccommodationPageViewModel.AddressFormViewModel.City, 20000,
                     _addAccommodationPageViewModel.AddressFormViewModel.Street,
-                    int.Parse(_addAccommodationPageViewModel.AddressFormViewModel.StreetNo)
+                    _addAccommodationPageViewModel.AddressFormViewModel.StreetNo
                     );
 
                 ImageHelper.RemoveOld("Accommodations", _addAccommodationPageViewModel.SelectedAccommodation.Image);
@@ -43,8 +43,10 @@ namespace HCI_main_project.Commands.Accommodations
                 AccommodationType type = _addAccommodationPageViewModel.AccommodationTypeViewModel.IsHotelSelected ? AccommodationType.HOTEL : AccommodationType.APARTMENT;
 
                 AccommodationDTO accommodation = new AccommodationDTO(_addAccommodationPageViewModel.NameAndPhotoFormViewModel.Name,
-                    filename, type, address);
-                _accommodationService.Edit(1, accommodation);
+                    filename, type, address,
+                    _addAccommodationPageViewModel.AddressFormControl.Latitude,
+                    _addAccommodationPageViewModel.AddressFormControl.Longitude);
+                _accommodationService.Edit(_addAccommodationPageViewModel.SelectedAccommodation.Id, accommodation);
             }
             catch (Exception ex)
             {
@@ -56,8 +58,8 @@ namespace HCI_main_project.Commands.Accommodations
             if (e.PropertyName == nameof(_addAccommodationPageViewModel.AddressFormViewModel.Street)
                 || e.PropertyName == nameof(_addAccommodationPageViewModel.AddressFormViewModel.StreetNo)
                 || e.PropertyName == nameof(_addAccommodationPageViewModel.AddressFormViewModel.City))
-            {
-                CommandManager.InvalidateRequerySuggested();
+            {                
+                OnCanExecuteChanged();
             }
         }
 

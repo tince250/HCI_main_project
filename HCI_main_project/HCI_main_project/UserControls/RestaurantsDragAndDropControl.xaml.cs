@@ -85,20 +85,6 @@ namespace HCI_main_project.UserControls
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void setMockUp()
-        {
-            ObservableCollection<Restaurant> o = new ObservableCollection<Restaurant>();
-            o.Add(new Restaurant { Address = new Address { City = "Belgrade", Street = "Ljutice Bogdana", StreetNumber = 24 }, Name = "Sava's Monestry", Id = 1 });
-            o.Add(new Restaurant { Address = new Address { City = "Belgrade", Street = "Ljutice Bogdana", StreetNumber = 24 }, Name = "Kalemegdan", Id = 2 });
-            o.Add(new Restaurant { Address = new Address { City = "Belgrade", Street = "Ljutice Bogdana", StreetNumber = 24 }, Name = "Marakana", Id = 3 });
-            o.Add(new Restaurant { Address = new Address { City = "Belgrade", Street = "Ljutice Bogdana", StreetNumber = 24 }, Name = "Sava's Monestry", Id = 11 });
-            o.Add(new Restaurant { Address = new Address { City = "Belgrade", Street = "Ljutice Bogdana", StreetNumber = 24 }, Name = "Kalemegdan", Id = 21 });
-            o.Add(new Restaurant { Address = new Address { City = "Belgrade", Street = "Ljutice Bogdana", StreetNumber = 24 }, Name = "Marakana", Id = 31 });
-
-            Restaurants = o;
-
-
-        }
         private ObservableCollection<Restaurant> _restaurants;
         public ObservableCollection<Restaurant> Restaurants
         {

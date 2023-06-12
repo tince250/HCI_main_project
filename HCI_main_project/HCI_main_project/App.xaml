@@ -7,6 +7,11 @@
              xmlns:converters="clr-namespace:HCI_main_project.Converters">
     <Application.Resources>
         <ResourceDictionary>
+
+            <Style x:Key="snackBarModified" BasedOn="{StaticResource {x:Type materialDesign:SnackbarMessage}}" TargetType="{x:Type materialDesign:SnackbarMessage}">
+                <Setter Property="FontSize" Value="24" />
+            </Style>
+            
             <Style x:Key="BiggerToolTipStyle" TargetType="ToolTip">
                 <Setter Property="Template">
                     <Setter.Value>
@@ -163,7 +168,7 @@
                 <Setter Property="Background" Value="#F5AA39" />
                 <Setter Property="Foreground" Value="White" />
                 <Setter Property="BorderBrush" Value="#F5AA39" />
-                <Setter Property="FontSize" Value="24" />
+                <Setter Property="FontSize" Value="34" />
             </Style>
 
             <ResourceDictionary.MergedDictionaries>

@@ -33,7 +33,7 @@ namespace HCI_main_project.Commands.Attractions
             {
                 AddressDTO address = new AddressDTO(_addAttractionPageViewModel.AddressFormViewModel.City, 20000,
                     _addAttractionPageViewModel.AddressFormViewModel.Street,
-                    int.Parse(_addAttractionPageViewModel.AddressFormViewModel.StreetNo)
+                    _addAttractionPageViewModel.AddressFormViewModel.StreetNo
                     );
 
                 string filename = ImageHelper.Save(_addAttractionPageViewModel.NameAndPhotoFormViewModel.ImageRectangle.Fill as ImageBrush,
@@ -41,7 +41,9 @@ namespace HCI_main_project.Commands.Attractions
 
 
                 AttractionDTO attraction = new AttractionDTO(_addAttractionPageViewModel.NameAndPhotoFormViewModel.Name,
-                    filename, address);
+                    filename, address,
+                    _addAttractionPageViewModel.AddressFormControl.Latitude,
+                    _addAttractionPageViewModel.AddressFormControl.Longitude);
                 _attractionService.Add(attraction);
             }
             catch (Exception ex)
@@ -55,7 +57,7 @@ namespace HCI_main_project.Commands.Attractions
                 || e.PropertyName == nameof(_addAttractionPageViewModel.AddressFormViewModel.StreetNo)
                 || e.PropertyName == nameof(_addAttractionPageViewModel.AddressFormViewModel.City))
             {
-                CommandManager.InvalidateRequerySuggested();
+                OnCanExecuteChanged();
             }
         }
 

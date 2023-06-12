@@ -71,6 +71,7 @@ namespace HCI_main_project.ViewModels
 
         public ICommand BackButtonAttractionCommand { get; }
         public ICommand FillAddressButtonAttractionCommand { get; }
+        public ICommand BackCommand { get; }
 
         public ICommand AddAttractionCommand { get; }
         public ICommand EditAttractionCommand { get; }
@@ -80,6 +81,7 @@ namespace HCI_main_project.ViewModels
             _addressFormControl = addressFormControl;
             NextButtonText = "Fill address info";
             SelectedAttraction = selectedAttraction;
+            BackCommand = new BackToHomeCommand(null);
 
             IsPageForEdit = selectedAttraction == null ? false : true;
 

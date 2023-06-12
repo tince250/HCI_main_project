@@ -22,29 +22,14 @@ namespace HCI_main_project.ValidationRules
                     return new ValidationResult(false, "Street number field can not be empty!");
                 }
 
-                if (!int.TryParse(streetNumber, out int numericStreetNumber))
-                {
-                    return new ValidationResult(false, "Invalid characters. Only digits are allowed!");
-                }
-
-                if (numericStreetNumber < 1 || numericStreetNumber > 500)
-                {
-                    return new ValidationResult(false, "Street number must be between 1 and 500!");
-                }
-
                 if (streetNumber.Length < 1 || streetNumber.Length > 10)
                 {
 
                 }
 
-                if (numericStreetNumber <= 0)
+                if (!Regex.IsMatch(streetNumber, @"^[0-9,/-a-zA-Z]+$"))
                 {
-                    return new ValidationResult(false, "Street number can not be less or equal to zero!");
-                }
-
-                if (!Regex.IsMatch(streetNumber, @"^[0-9]+$"))
-                {
-                    return new ValidationResult(false, "Invalid characters. Only digits are allowed!");
+                    return new ValidationResult(false, "Invalid characters. Digits and letters are allowed!");
                 }
             }
             catch (Exception ex)

@@ -28,6 +28,9 @@ namespace HCI_main_project.UserControls
     public partial class AddressFormControl : UserControl
     {
         private LocationService service;
+
+        public double Longitude { get; set; }
+        public double Latitude { get; set; }
         public AddressFormControl()
         {
             InitializeComponent();
@@ -46,6 +49,8 @@ namespace HCI_main_project.UserControls
             map.Children.Add(pin);
 
             AddressFormViewModel viewModel = this.DataContext as AddressFormViewModel;
+            Latitude = pinLocation.Latitude;
+            Longitude = pinLocation.Longitude;
             service.GetAddress(pinLocation.Latitude, pinLocation.Longitude, viewModel);
         }
 

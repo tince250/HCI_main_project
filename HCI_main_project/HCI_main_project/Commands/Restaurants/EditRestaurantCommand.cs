@@ -31,15 +31,17 @@ namespace HCI_main_project.Commands
             {
                 AddressDTO address = new AddressDTO(_addRestaurantPageViewModel.AddressFormViewModel.City, 20000,
                     _addRestaurantPageViewModel.AddressFormViewModel.Street,
-                    int.Parse(_addRestaurantPageViewModel.AddressFormViewModel.StreetNo)
+                    _addRestaurantPageViewModel.AddressFormViewModel.StreetNo
                     );
                 ImageHelper.RemoveOld("Restaurants",_addRestaurantPageViewModel.SelectedRestaurant.Image);
                 string filename = ImageHelper.Save(_addRestaurantPageViewModel.NameAndPhotoFormViewModel.ImageRectangle.Fill as ImageBrush,
                     "Restaurants", _addRestaurantPageViewModel.NameAndPhotoFormViewModel.File, false);
 
                 RestaurantDTO restaurant = new RestaurantDTO(_addRestaurantPageViewModel.NameAndPhotoFormViewModel.Name,
-                    filename, address);
-                _restaurantService.Edit(11, restaurant);
+                    filename, address,
+                    _addRestaurantPageViewModel.AddressFormControl.Latitude,
+                    _addRestaurantPageViewModel.AddressFormControl.Longitude);
+                _restaurantService.Edit(_addRestaurantPageViewModel.SelectedRestaurant.Id, restaurant);
             }
             catch (Exception ex)
             {

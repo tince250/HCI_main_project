@@ -11,9 +11,9 @@ namespace HCI_main_project.Model.DTOs
         public string City { get; set; }
         public int PostalCode { get; set; }
         public string Street { get; set; }
-        public int StreetNumber { get; set; }
+        public string StreetNumber { get; set; }
 
-        public AddressDTO(string city, int postalCode, string street, int streetNumber)
+        public AddressDTO(string city, int postalCode, string street, string streetNumber)
         {
             City = city;
             PostalCode = postalCode;

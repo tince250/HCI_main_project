@@ -57,6 +57,7 @@
                       ></Label>
                 <Grid Grid.Row="4">
                     <Rectangle  ToolTipService.Placement="Mouse"
+                                
                            AllowDrop="True" 
                            commands:DropBehavior.DropCommand="{Binding ImageDropCommand}"
                            x:Name="imageRectangle"

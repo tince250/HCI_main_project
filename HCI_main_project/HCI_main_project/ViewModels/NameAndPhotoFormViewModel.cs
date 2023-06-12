@@ -192,9 +192,9 @@ namespace HCI_main_project.ViewModels
                 ButtonText = "Upload image of accommodation";
             }
             else { 
-                NameLabel = "Trip name";
-                ImageLabel = "Trip image";
-                ButtonText = "Upload image of trip";
+                NameLabel = "Tour name";
+                ImageLabel = "Tour image";
+                ButtonText = "Upload image of tour";
             }
         }
 

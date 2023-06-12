@@ -19,7 +19,8 @@ namespace HCI_main_project.ViewModel
         DELETE_TOUR,
         DELETE_ACCOMMODATION,
         DELETE_ATTRACTION,
-        DELETE_RESTAURANT
+        DELETE_RESTAURANT,
+        GO_BACK_CRUD
     }
     class ConfirmDialogViewModel : ViewModelBaseS
     {
@@ -209,6 +210,19 @@ namespace HCI_main_project.ViewModel
                     this.confirmCommand = new DeleteEntityCommand(this, dbContex);
                     this.confirmCommandParameter = this.Item;
                     this.SuccessMessage = "Restaurant deleted successfully!";
+                    break;
+                case DialogType.GO_BACK_CRUD:
+                    //this.Item = this.dbContex.Restaurants.First(c => c.Id == ApplicationHelper.ToDeleteId);
+                    //this.Cards = new ObservableCollection<object>() { this.Item };
+                    this.TitleText = "go back";
+                    this.TitleStartText = "Are you sure you want to ";
+                    this.TitleMiddleText = "";
+                    this.ButtonText = "Go back to homepage";
+                    this.TypeText = "to homepage?";
+                    this.DescriptionText = "Going back is a permanent action, you won’t be able to undo it.\r\nInput values will be lost.";
+                    this.confirmCommand = new BackToHomeCommand(null);
+                    //this.confirmCommandParameter = this.Item;
+                    //this.SuccessMessage = "Restaurant deleted successfully!";
                     break;
             }
         }

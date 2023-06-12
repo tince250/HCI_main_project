@@ -74,11 +74,13 @@ namespace HCI_main_project.ViewModels
 
         public void ShowPositiveSnackBar()
         {
+            _snackBarPositive.FontSize = 24;
             _snackBarPositive.MessageQueue.Enqueue("You have successfully created restaurant!");
         }
 
         public void ShowNegativeSnackBar(string message)
         {
+            _snackBarPositive.FontSize = 24;
             _snackBarNegative.MessageQueue.Enqueue(message);
         }
 

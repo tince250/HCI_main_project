@@ -98,24 +98,24 @@ namespace HCI_main_project.ViewModel
             this.Restaurants = new ObservableCollection<object>(this.Tour.TourRestaurants.Select(tourRestaurants=> tourRestaurants.Restaurant).ToList());
         }
 
-        private void setMockUp()
-        {
-            ObservableCollection<object> o = new ObservableCollection<object>();
-            o.Add(new Attraction { Address = new Address { City = "Belgrade", Street = "Ljutice Bogdana", StreetNumber = 24 }, Name = "Sava's Monestry" });
-            o.Add(new Attraction { Address = new Address { City = "Belgrade", Street = "Ljutice Bogdana", StreetNumber = 24 }, Name = "Kalemegdan" });
-            o.Add(new Attraction { Address = new Address { City = "Belgrade", Street = "Ljutice Bogdana", StreetNumber = 24 }, Name = "Marakana" });
+        private void setMockUp() { 
+        //{
+        //    ObservableCollection<object> o = new ObservableCollection<object>();
+        //    o.Add(new Attraction { Address = new Address { City = "Belgrade", Street = "Ljutice Bogdana", StreetNumber = 24 }, Name = "Sava's Monestry" });
+        //    o.Add(new Attraction { Address = new Address { City = "Belgrade", Street = "Ljutice Bogdana", StreetNumber = 24 }, Name = "Kalemegdan" });
+        //    o.Add(new Attraction { Address = new Address { City = "Belgrade", Street = "Ljutice Bogdana", StreetNumber = 24 }, Name = "Marakana" });
 
-            Attractions = o;
+        //    Attractions = o;
 
-            ObservableCollection<object> o2 = new ObservableCollection<object>();
-            o2.Add(new Accommodation { Address = new Address { City = "Belgrade", Street = "Ljutice Bogdana", StreetNumber = 24 }, Name = "Hotel Moscow" });
-            Accommodations = o2;
+        //    ObservableCollection<object> o2 = new ObservableCollection<object>();
+        //    o2.Add(new Accommodation { Address = new Address { City = "Belgrade", Street = "Ljutice Bogdana", StreetNumber = 24 }, Name = "Hotel Moscow" });
+        //    Accommodations = o2;
 
-            ObservableCollection<object> o3 = new ObservableCollection<object>();
-            o3.Add(new Restaurant { Address = new Address { City = "Belgrade", Street = "Ljutice Bogdana", StreetNumber = 24 }, Name = "Banjalucki cevapi" });
-            o3.Add(new Restaurant { Address = new Address { City = "Belgrade", Street = "Ljutice Bogdana", StreetNumber = 24 }, Name = "Sushi bar" });
+        //    ObservableCollection<object> o3 = new ObservableCollection<object>();
+        //    o3.Add(new Restaurant { Address = new Address { City = "Belgrade", Street = "Ljutice Bogdana", StreetNumber = 24 }, Name = "Banjalucki cevapi" });
+        //    o3.Add(new Restaurant { Address = new Address { City = "Belgrade", Street = "Ljutice Bogdana", StreetNumber = 24 }, Name = "Sushi bar" });
 
-            Restaurants = o3;
+        //    Restaurants = o3;
         }
 
     }

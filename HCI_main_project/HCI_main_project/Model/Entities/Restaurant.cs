@@ -19,6 +19,8 @@ namespace HCI_main_project.Models
         [ForeignKey("Address")]
         public int AddressId { get; set; }
         public virtual Address Address { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
 
         public Restaurant()
         {
@@ -36,8 +38,8 @@ namespace HCI_main_project.Models
             Name = restaurantDTO.Name;
             Image = restaurantDTO.Image;
             Address = new Address(restaurantDTO.Address);
+            Latitude = restaurantDTO.Latitude;
+            Longitude = restaurantDTO.Longitude;
         }
-        public double Latitude { get; set; }
-        public double Longitude { get; set; }
     }
 }

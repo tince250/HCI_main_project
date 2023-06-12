@@ -8,7 +8,8 @@
       xmlns:controls="clr-namespace:HCI_main_project.UserControls"
       xmlns:viewModels="clr-namespace:HCI_main_project.ViewModels">
 
-    <Grid>
+    <Grid x:Name="mainGrid">
+        <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -26,7 +27,8 @@
             HorizontalAlignment="Left"
             VerticalAlignment="top"
             Margin="15,5,0,0"
-            Foreground="{StaticResource WhiteColor}">
+            Foreground="{StaticResource WhiteColor}"
+                    Click="openGoBackDialog">
                 <Button.ToolTip>
                     <ToolTip Content="Go back to home page" Style="{StaticResource BiggerToolTipStyle}" />
                 </Button.ToolTip>
@@ -35,7 +37,18 @@
                     <TextBlock  Text="Go back" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,4"/>
                 </StackPanel>
             </Button>
-            <TextBlock Style="{StaticResource Title}" HorizontalAlignment="Center" Margin="0,25,0,0" VerticalAlignment="Bottom">Create attraction</TextBlock>
+                <TextBlock HorizontalAlignment="Center" Margin="0,25,0,0" VerticalAlignment="Bottom">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource Title}">
+                            <Setter Property="Text" Value="Create attraction" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsPageForEdit}" Value="True">
+                                    <Setter Property="Text" Value="Edit attraction" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
 
         </Grid>
 
@@ -256,5 +269,6 @@
                 </Button>
             </StackPanel>
         </Grid>
+    </Grid>
     </Grid>
 </Page>

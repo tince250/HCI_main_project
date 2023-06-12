@@ -36,6 +36,8 @@ namespace HCI_main_project.Models
             Name = attractionDTO.Name;
             Image = attractionDTO.Image;
             Address = new Address(attractionDTO.Address);
+            Latitude = attractionDTO.Latitude;
+            Longitude = attractionDTO.Longitude;
         }
     }
 }
