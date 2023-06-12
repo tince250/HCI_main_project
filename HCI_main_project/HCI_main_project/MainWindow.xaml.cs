@@ -50,7 +50,7 @@ namespace HCI_main_project
 
         private void OnKeyDownHandler(object sender, KeyEventArgs e)
         {
-            var page = Frame.Content as Homepage;
+            var page = frame.Content as Homepage;
             if (page != null)
             {
                 if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.S)
@@ -65,7 +65,7 @@ namespace HCI_main_project
                     }
                 }
             }
-            var addEditRestaurantPage = Frame.Content as AddEditRestaurantPage;
+            var addEditRestaurantPage = frame.Content as AddEditRestaurantPage;
             if (addEditRestaurantPage != null)
             {
                if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.U)
@@ -87,7 +87,7 @@ namespace HCI_main_project
                         vm.BackButtonRestaurantCommand.Execute(null);
                 }
             }
-            var addEditAttractionsPage = Frame.Content as AddEditAttractionPage;
+            var addEditAttractionsPage = frame.Content as AddEditAttractionPage;
             if (addEditAttractionsPage != null)
             {
                 if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.U)
@@ -109,7 +109,7 @@ namespace HCI_main_project
                         vm.BackButtonAttractionCommand.Execute(null);
                 }
             }
-            var addEditAccommodationPage = Frame.Content as AddEditAccommodationPage;
+            var addEditAccommodationPage = frame.Content as AddEditAccommodationPage;
             if (addEditAccommodationPage != null)
             {
                 if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.U)
@@ -137,7 +137,7 @@ namespace HCI_main_project
                         vm.BackToAccommodationTypeButtonAccommodationCommand.Execute(null);
                 }
             }
-            var addEditTourPage = Frame.Content as AddEditTourPage;
+            var addEditTourPage = frame.Content as AddEditTourPage;
             if (addEditTourPage != null)
             {
                 if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.U)
@@ -251,7 +251,7 @@ namespace HCI_main_project
 
             if (focusedControl != null)
             {
-                if (Frame.Content is Homepage home)
+                if (frame.Content is Homepage home)
                 {
                     if (isAgent()) 
                         HelpProvider.SetHelpKey((DependencyObject)focusedControl, "Homepage_Tours_Agent");   
@@ -273,6 +273,23 @@ namespace HCI_main_project
                 else if (frame.Content is RegisterPage register)
                 {
                     HelpProvider.SetHelpKey((DependencyObject)focusedControl, "RegisterHelp");
+                }
+
+                else if (frame.Content is AddEditRestaurantPage restaurantPage)
+                {
+                    HelpProvider.SetHelpKey((DependencyObject)focusedControl, "AddRestaurantHelp");
+                }
+                else if (frame.Content is AddEditAttractionPage attractionPage)
+                {
+                    HelpProvider.SetHelpKey((DependencyObject)focusedControl, "AddAttractionHelp");
+                }
+                else if (frame.Content is AddEditAccommodationPage accommodationPage)
+                {
+                    HelpProvider.SetHelpKey((DependencyObject)focusedControl, "AddAccommodationHelp");
+                }
+                else if (frame.Content is AddEditTourPage tourPage)
+                {
+                    HelpProvider.SetHelpKey((DependencyObject)focusedControl, "AddTourHelp");
                 }
 
                 string str = HelpProvider.GetHelpKey((DependencyObject)focusedControl);

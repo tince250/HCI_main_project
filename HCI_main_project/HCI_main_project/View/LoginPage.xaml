@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:HCI_main_project.View" xmlns:components="clr-namespace:HCI_main_project.Components" xmlns:viewModels="clr-namespace:HCI_main_project.ViewModel"
       mc:Ignorable="d" 
+      xmlns:ctr="clr-namespace:HCI_main_project.UserControls"
       d:DesignHeight="850" d:DesignWidth="1000"
       Title="LoginPage"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
@@ -45,8 +46,11 @@
             </TextBlock>
             <Separator Grid.Row="0" VerticalAlignment="Bottom" Margin="50,0" Background="{StaticResource OrangeColor}" BorderBrush="{StaticResource OrangeColor}"/>
 
-            <Label Grid.Row="1" Content="Email:" VerticalContentAlignment="Bottom" FontSize="20"/>
+            <Label Grid.Row="1" Content="Email:" VerticalContentAlignment="Bottom" FontSize="20"
+                   ctr:OnFocusLabelColorChange.IsEnabled="{Binding ElementName=mail, Path=IsFocused}"/>
+            
             <TextBox
+                x:Name="mail"
                     Grid.Row="2"
                     VerticalAlignment="Top"
                     MaxLength="20"
@@ -59,7 +63,7 @@
 
 
             <Label Grid.Row="3" Content="Password:" VerticalContentAlignment="Bottom" FontSize="22"/>
-            <components:BindablePasswordBox Grid.Row="4" KeyDown="OnKeyDownHandler"
+            <components:BindablePasswordBox x:Name="pass" Grid.Row="4" KeyDown="OnKeyDownHandler"
                     Password="{Binding Path=Password, Mode=TwoWay, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"
                                             LostFocus="PasswordBox_Changed"/>
 

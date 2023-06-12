@@ -180,7 +180,7 @@
                                 </Image.Source>
                             </Image>-->
                             <Border.Background>
-                                <ImageBrush Stretch="UniformToFill" ImageSource="../Images/Tours/hram.jpg"/>
+                                <ImageBrush Stretch="UniformToFill" ImageSource="{Binding ImagePath}"/>
                             </Border.Background>
                         </Border>
 
