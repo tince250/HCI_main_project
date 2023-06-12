@@ -90,12 +90,14 @@
                           Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                             Background="Transparent"
                             BorderBrush="Transparent"
-                          ToolTip="Delete this trip">
+                          ToolTip="Delete this trip"
+                            Command="{Binding openDeleteEntityDialogCommand}">
                             <materialDesign:PackIcon
                             Width="40"
                             Height="40"
                             Foreground="{StaticResource DarkBlueColor}"
-                            Kind="TrashCan" />
+                            Kind="TrashCan" 
+                         />
                         </Button>
                         <Button 
                           HorizontalAlignment="Left"

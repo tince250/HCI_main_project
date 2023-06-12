@@ -77,6 +77,18 @@
                 </Setter>
             </Style>
 
+            <Style x:Key="BiggerToolTipStyle" TargetType="ToolTip">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ToolTip">
+                            <Border Background="#D5D5D5" BorderBrush="Black" BorderThickness="1" Padding="5">
+                                <TextBlock Text="{TemplateBinding Content}" FontSize="20" Foreground="#000000" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
             <ResourceDictionary.MergedDictionaries>
                 
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
@@ -91,9 +103,11 @@
                     <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#3e92cc"/>
                     <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="#FFFFFF"/>
                     <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="#3e92cc"/>
+                    <SolidColorBrush x:Key="LightestBlueColor" Color="#E1F3FF"/>
                     <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="#FFFFFF"/>
                     <!-- accent -->
                     <SolidColorBrush x:Key="SecondaryHueMidBrush" Color="#F5AA39"/>
+                    <SolidColorBrush x:Key="LightestOrangeColor" Color="#FFF9F0"/>
                     <SolidColorBrush x:Key="SecondaryHueMidForegroundBrush" Color="#FFFFFF"/>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
