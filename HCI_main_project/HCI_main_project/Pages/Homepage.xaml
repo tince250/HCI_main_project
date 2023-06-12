@@ -79,6 +79,37 @@
                         </Style>
                     </root:NavbarItem.Style>
                 </root:NavbarItem>
+                <Separator
+                    Height="10"
+                     Margin="15,17,15,0"
+                     Style="{StaticResource MaterialDesignDarkSeparator}">
+                    <Separator.Template>
+                        <ControlTemplate TargetType="Separator">
+                            <Border BorderBrush="{StaticResource DarkBlueColor}"
+                                BorderThickness="0,3,0,0"/>
+                        </ControlTemplate>
+                    </Separator.Template>
+                </Separator>
+                <Button 
+                    Height="60"
+                          HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                          Style="{StaticResource MaterialDesignRaisedLightButton}"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                          ToolTip="Open help window"
+                            Command="{Binding openDeleteTourDialogCommand}"
+                            CommandParameter="{Binding Tour}"
+                    Click="Button_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Margin="0,0,0,0"
+                            Width="40"
+                            Height="30"
+                            Foreground="{StaticResource WhiteColor}"
+                            Kind="QuestionMarkCircle" />
+                        <TextBlock Margin="5,0,0,0" FontSize="22" Text="Help" Foreground="{StaticResource WhiteColor}"/>
+                    </StackPanel>
+                </Button>
             </StackPanel>
         </Border>
         <Border Grid.Row="1" Grid.Column="0" Padding="10" Background="{StaticResource ButtonLightBlueColor}" CornerRadius="0,0,10,0">

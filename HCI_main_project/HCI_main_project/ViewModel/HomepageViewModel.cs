@@ -276,7 +276,8 @@ namespace HCI_main_project.ViewModel
                     "Most popular",
                     "Price lowest",
                     "Price highest",
-                    "Most recent"
+                    "Date desc",
+                    "Date asc"
                 };
                 this.SelectedOption = this.SortOptions[0];
                 this.EntityType = "tour";
@@ -345,10 +346,11 @@ namespace HCI_main_project.ViewModel
                 this.ExpandFilters = false;
                 this.SortOptions = new ObservableCollection<string>
                 {
-                    "Date desc",
-                    "Date asc",
+                    "Most popular",
                     "Price lowest",
-                    "Price highest"
+                    "Price highest",
+                    "Date desc",
+                    "Date asc"
                 };
                 this.SelectedOption = this.SortOptions[0];
                 this.setStatistics();

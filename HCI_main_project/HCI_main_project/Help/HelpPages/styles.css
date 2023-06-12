@@ -4,6 +4,7 @@
 
 body {
     padding: 20px;
+    position: relative;
 }
 
 h1 {
@@ -30,19 +31,26 @@ p {
     font-size: 1.1em;
 }
 
+img {
+    border: 2px solid rgb(213, 213, 213);
+}
+
 .page-image {
-    height: 400px;
+    height: 500px;
     border-radius: 5px;
 }
 
 .element-image {
     /* nebitan ovaj hight ako treba drugaciji dodati novu klasu */
-    height: 300px;
     border-radius: 5px;
 }
 
 ul {
     color: #f49f20;
+}
+
+.p-ul {
+    color: #626262;
 }
 
 li {
@@ -66,4 +74,25 @@ a:hover {
     padding: 10px;
     font-size: 0.5em;
     margin-top: -5px;
+}
+
+.multiple-objects {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 1.2em;
+    color: white;
+    background: #f49f20;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#back-to-top:hover {
+    background: #b4710d;
 }

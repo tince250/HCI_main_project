@@ -127,7 +127,8 @@ namespace HCI_main_project
             {
                 if (frame.Content is Homepage home)
                 {
-                    HelpProvider.SetHelpKey((DependencyObject)focusedControl, "Indeks");   
+                    if (isAgent())
+                        HelpProvider.SetHelpKey((DependencyObject)focusedControl, "Homepage_Tours_Agent");   
                 }
 
                 string str = HelpProvider.GetHelpKey((DependencyObject)focusedControl);
@@ -135,6 +136,11 @@ namespace HCI_main_project
             }
 
             
+        }
+
+        private bool isAgent()
+        {
+            return ApplicationHelper.User.Role == UserRole.AGENT;
         }
     }
 }
