@@ -34,6 +34,7 @@ namespace HCI_main_project.View
             this.viewModel = new TripDetailsViewModel(App.serviceProvider.GetRequiredService<TripagoContext>());
             DataContext = viewModel;
             setPushPins();
+            this.map.ZoomLevel = 11.5;
         }
 
         private void setPushPins()
@@ -50,6 +51,7 @@ namespace HCI_main_project.View
                 Pushpin Pin = new Microsoft.Maps.MapControl.WPF.Pushpin();
                 Pin.Location = new Location(restaurant.Latitude, restaurant.Longitude);
                 Pin.Background = new SolidColorBrush(Color.FromRgb(24, 179, 21));
+                this.map.Center = Pin.Location;
                 this.map.Children.Add(Pin);
             }
         }
@@ -71,7 +73,6 @@ namespace HCI_main_project.View
                 routeLine.Locations.Add(Pin.Location);
             }
             this.map.Children.Add(routeLine);
-            this.map.ZoomLevel = 11.5;
         }
 
         private void setAccommodationsPushPins()
@@ -81,6 +82,7 @@ namespace HCI_main_project.View
                 Pushpin Pin = new Microsoft.Maps.MapControl.WPF.Pushpin();
                 Pin.Location = new Location(accommodation.Latitude, accommodation.Longitude);
                 Pin.Background = new SolidColorBrush(Color.FromRgb(232, 170, 42));
+                this.map.Center = Pin.Location;
                 this.map.Children.Add(Pin);
             }
         }

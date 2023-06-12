@@ -55,6 +55,20 @@ namespace HCI_main_project.ViewModel
             }
         }
 
+        private bool isHotel;
+        public bool IsHotel
+        {
+            get { return isHotel; }
+            set { isHotel = value; }
+        }
+
+        private bool isAccommodation;
+        public bool IsAccommodation
+        {
+            get { return isAccommodation; }
+            set { isAccommodation = value; }
+        }
+
         public ICommand openDeleteEntityDialogCommand { get; }
         public ICommand AddRestaurantButtonCommand { get; }
         public ICommand AddAttractionsButtonCommand { get; }
@@ -66,6 +80,12 @@ namespace HCI_main_project.ViewModel
             this.cardContent = simpleCardContent;
             this.entityType = type;
             this.LoggedUserRole = ApplicationHelper.HomePageVm.LoggedUserRole;
+            if (simpleCardContent.AccommodationType != null)
+            {
+                this.IsHotel = simpleCardContent.AccommodationType == Models.AccommodationType.HOTEL;
+                this.IsAccommodation = true;
+            }
+                
             EntityType = type;
             this.ImagePath = ApplicationHelper.ParseImagePath(cardContent.Image, entityType);
 

@@ -37,6 +37,18 @@ namespace HCI_main_project.UserControls
             service = new LocationService();
             map.Center = new Location(44.0165, 21.0059);
             map.ZoomLevel = 6.5;
+            //setForEdit();
+        }
+
+        private void setForEdit()
+        {
+            AddressFormViewModel viewModel = this.DataContext as AddressFormViewModel;
+            
+            Pushpin Pin = new Microsoft.Maps.MapControl.WPF.Pushpin();
+            Pin.Location = new Location(viewModel.Latitude, viewModel.Longitude);
+            this.map.Center = Pin.Location;
+            map.Children.Clear();
+            this.map.Children.Add(Pin);
         }
 
         async void PointerPressed(object sender, MouseButtonEventArgs e)

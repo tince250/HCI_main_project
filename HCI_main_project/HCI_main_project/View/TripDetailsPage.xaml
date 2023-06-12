@@ -35,7 +35,7 @@
                     materialDesign:ButtonAssist.CornerRadius="25"
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource MaterialDesignRaisedButton}"
-                    Background="{StaticResource ButtonLightBlueColor}"
+                    Background="{StaticResource BackButtonColor}"
                     Foreground="{StaticResource WhiteColor}">
 
                 <TextBlock Text="&lt;- Go back" />

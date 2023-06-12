@@ -96,15 +96,15 @@ namespace HCI_main_project.ViewModel
         }
 
 
-        private string selectedOption;
-        public string SelectedOption
+        private string? selectedOption;
+        public string? SelectedOption
         {
             get { return selectedOption; }
             set
             {
                 selectedOption = value;
                 OnPropertyChanged(nameof(SelectedOption));
-                if (value != null)
+                if (value != null && this.selectedType == "tours")
                     this.Sort(value);
             }
         }
@@ -440,8 +440,9 @@ namespace HCI_main_project.ViewModel
 
         public void Sort(string criteria)
         {
-            this.Objects = SortTours(criteria, this.Objects);
+           this.Objects = SortTours(criteria, this.Objects);
         }
+
 
         public ObservableCollection<object> SortTours(string criteria, ObservableCollection<object> objects)
         {

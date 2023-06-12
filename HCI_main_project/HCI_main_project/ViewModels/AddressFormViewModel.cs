@@ -1,4 +1,5 @@
 ﻿using HCI_main_project.Models;
+using Microsoft.Maps.MapControl.WPF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -101,20 +102,36 @@ namespace HCI_main_project.ViewModels
         public bool IsFormValid()
         {
             return !Validation.GetHasError(_streetTextBox) && Street != "" && Street != null
-                && !Validation.GetHasError(_streetNoTextBox) && StreetNo != "" && StreetNo != null 
+                && !Validation.GetHasError(_streetNoTextBox) && StreetNo != "" && StreetNo != null
                 && !Validation.GetHasError(_cityTextBox) && City != "" && City != null;
         }
 
         private object _objectForEdit;
+        public double Latitude {get;set;}
+        public double Longitude {get;set;}
+
+        private Location _location;
+        public Location Location
+        {
+            get { return _location; }
+            set
+            {
+                _location = value;
+                OnPropertyChanged(nameof(Location));
+            }
+        }
+
 
         public AddressFormViewModel(object objectForEdit, TextBox streetTextBox, TextBox streetNoTextBox, TextBox cityTextBox)
         {
             _objectForEdit = objectForEdit;
             _streetTextBox = streetTextBox;
-            _streetNoTextBox = streetNoTextBox; 
+            _streetNoTextBox = streetNoTextBox;
             _cityTextBox = cityTextBox;
             FillFieldsWithPreviousData();
         }
+
+        
 
         private void FillFieldsWithPreviousData()
         {
@@ -125,18 +142,26 @@ namespace HCI_main_project.ViewModels
                 City = ((Restaurant)_objectForEdit).Address.City;
                 StreetNo = ((Restaurant)_objectForEdit).Address.StreetNumber.ToString();
                 Street = ((Restaurant)_objectForEdit).Address.Street;
+                Latitude = ((Restaurant)_objectForEdit).Latitude;
+                Longitude = ((Restaurant)_objectForEdit).Longitude;
             } else if (_objectForEdit is Attraction)
             {
                 City = ((Attraction)_objectForEdit).Address.City;
                 StreetNo = ((Attraction)_objectForEdit).Address.StreetNumber.ToString();
                 Street = ((Attraction)_objectForEdit).Address.Street;
+                Latitude = ((Attraction)_objectForEdit).Latitude;
+                Longitude = ((Attraction)_objectForEdit).Longitude;
             } else
             {
                 City = ((Accommodation)_objectForEdit).Address.City;
                 StreetNo = ((Accommodation)_objectForEdit).Address.StreetNumber.ToString();
                 Street = ((Accommodation)_objectForEdit).Address.Street;
+                Latitude = ((Accommodation)_objectForEdit).Latitude;
+                Longitude = ((Accommodation)_objectForEdit).Longitude;
             }
-            
+
+            Location = new Location(Latitude, Longitude);
+
         }
     }
 }

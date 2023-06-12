@@ -139,24 +139,38 @@
                         </Button>
 
                     </StackPanel>
-                    
-                    <Border Grid.Column="0"
-        CornerRadius="12"
-        Padding="12,4"
-        VerticalAlignment="Top"
-        HorizontalAlignment="Right"
-        Margin="5"
-        BorderThickness="0"
-                        >
-                        <Border.Background>
-                            <SolidColorBrush Color="Orange"
-                         Opacity="0.2"/>
-                        </Border.Background>
-                        <TextBlock TextAlignment="Center"
-               FontSize="18"
-               Foreground="{StaticResource OrangeColor}"
-               FontWeight="Bold"
-               Text="history">
+
+                    <Border Grid.Column="1" Padding="10,5" CornerRadius="10" BorderThickness="2" Margin="0,0,7,0">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="BorderBrush" Value="{StaticResource OrangeColor}" />
+                                <Setter Property="Background" Value="{StaticResource LightestOrangeColor}"/>
+                                <Setter Property="Visibility" Value="Hidden" />
+
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsHotel}" Value="True">
+                                        <Setter Property="BorderBrush" Value="{StaticResource ButtonLightBlueColor}" />
+                                        <Setter Property="Background" Value="{StaticResource LightestBlueColor}"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsAccommodation}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <TextBlock FontSize="20">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Text" Value="apartment"/>
+                                    <Setter Property="Foreground" Value="{StaticResource OrangeColor}" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsHotel}" Value="True">
+                                            <Setter Property="Text" Value="hotel"/>
+                                            <Setter Property="Foreground" Value="{StaticResource ButtonLightBlueColor}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
                         </TextBlock>
                     </Border>
                 </Grid>

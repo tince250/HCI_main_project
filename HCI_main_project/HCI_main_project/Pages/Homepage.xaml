@@ -97,7 +97,7 @@
                           Style="{StaticResource MaterialDesignRaisedLightButton}"
                             Background="Transparent"
                             BorderBrush="Transparent"
-                          ToolTip="Open help window"
+                          ToolTip="Open help window (F1)"
                             Command="{Binding openDeleteTourDialogCommand}"
                             CommandParameter="{Binding Tour}"
                     Click="Button_Click">
@@ -226,6 +226,7 @@
                 </StackPanel>
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBox
+                        ToolTip="Search by name (Ctrl+S)"
                 x:Name="searchBox"
                 MaxLength="200"
                 materialDesign:TextBlockAssist.AutoToolTip="True"
@@ -289,10 +290,11 @@
                           Padding="0"
                           materialDesign:ButtonAssist.CornerRadius="5"
                           Command="{Binding toggleFilterPaneCommand}"
-                          CommandParameter="{Binding ElementName=filterOptions}">
-                        <ToggleButton.ToolTip>
+                          CommandParameter="{Binding ElementName=filterOptions}"
+                                  ToolTip="Expand filters (Ctrl+F)">
+                        <!--<ToggleButton.ToolTip>
                             <ToolTip Content="Expand filters" Style="{StaticResource BiggerToolTipStyle}" />
-                        </ToggleButton.ToolTip>
+                        </ToggleButton.ToolTip>-->
                         <materialDesign:PackIcon Width="40" Height="45" Kind="Filter" Margin="0"/>
                         <ToggleButton.Style>
                             <Style TargetType="ToggleButton" BasedOn="{StaticResource MaterialDesignRaisedButton}">

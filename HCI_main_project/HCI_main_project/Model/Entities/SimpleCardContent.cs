@@ -22,6 +22,7 @@ namespace HCI_main_project.Model.Entities
             this.Name = accommodation.Name;
             this.Image = accommodation.Image;
             this.Address = accommodation.Address;
+            this.AccommodationType = accommodation.Type;
         }
         public SimpleCardContent(Restaurant restaurant)
         {
@@ -34,6 +35,7 @@ namespace HCI_main_project.Model.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public string Image { get; set; }
+        public AccommodationType? AccommodationType { get; set; }
         public Address Address { get; set; }
     }
 }
