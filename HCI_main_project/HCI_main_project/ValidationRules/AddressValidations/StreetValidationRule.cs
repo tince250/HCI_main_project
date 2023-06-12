@@ -25,7 +25,7 @@ namespace HCI_main_project.ValidationRules
                 {
                     return new ValidationResult(false, "There should be no white spaces at the start or end!");
                 }
-                else if (!Regex.IsMatch(inputValue, "^[a-zA-Z0-9 ]+$"))
+                else if (!Regex.IsMatch(inputValue, "^[a-zA-Z0-9čČćĆšŠĐđžŽ ]+$"))
                 {
                     return new ValidationResult(false, "Invalid characters. Only letters and digits are allowed!");
                 }
