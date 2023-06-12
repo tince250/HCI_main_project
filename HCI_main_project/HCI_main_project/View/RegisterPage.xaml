@@ -17,8 +17,8 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="9*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <Image Grid.Row="0" Grid.Column="0" Margin="0, 60">
@@ -197,6 +197,7 @@
                             Background="{StaticResource ButtonLightBlueColor}"
                             BorderBrush="Transparent"
                           ToolTip="Open help window"
+            Click="Button_Click"
                            >
             <materialDesign:PackIcon Margin="0,0,0,0"
                             Width="40"

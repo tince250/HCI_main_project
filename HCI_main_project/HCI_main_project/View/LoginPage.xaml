@@ -135,6 +135,7 @@
                             Background="{StaticResource ButtonLightBlueColor}"
                             BorderBrush="Transparent"
                           ToolTip="Open help window"
+            Click="Button_Click"
                            >
             <materialDesign:PackIcon Margin="0,0,0,0"
                             Width="40"

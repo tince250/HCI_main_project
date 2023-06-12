@@ -103,5 +103,15 @@ namespace HCI_main_project.View
             mainGrid.Children.Add(new UsersInTourDialog());
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (ApplicationHelper.User.Role == UserRole.AGENT)
+                HelpProvider.SetHelpKey((DependencyObject)this, "DetailsHelpAgent");
+            else
+                HelpProvider.SetHelpKey((DependencyObject)this, "DetailsHelpTraveler");
+            string str = HelpProvider.GetHelpKey((DependencyObject)this);
+            MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
+            HelpProvider.ShowHelp(str, mainWindow);
+        }
     }
 }
