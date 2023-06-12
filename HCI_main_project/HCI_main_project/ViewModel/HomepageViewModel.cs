@@ -185,6 +185,17 @@ namespace HCI_main_project.ViewModel
             set { userRole = value; }
         }
 
+        private string entityType;
+
+        public string EntityType
+        {
+            get { return entityType; }
+            set { 
+                entityType = value;
+                OnPropertyChanged(nameof(EntityType));
+            }
+        }
+
 
         public TripagoContext dbContext;
 
@@ -220,7 +231,7 @@ namespace HCI_main_project.ViewModel
         {
             ApplicationHelper.User = new User();
             ApplicationHelper.User.Id = 211;
-            ApplicationHelper.User.Role = UserRole.TRAVELER;
+            ApplicationHelper.User.Role = UserRole.AGENT;
 
             this.LoggedUserRole = ApplicationHelper.User.Role == UserRole.AGENT ? "agent" : "traveler";
 
@@ -268,6 +279,7 @@ namespace HCI_main_project.ViewModel
                     "Most recent"
                 };
                 this.SelectedOption = this.SortOptions[0];
+                this.EntityType = "tour";
                 this.SelectedType = "tours";
                 this.ExpandFilters = false;
             }
@@ -281,6 +293,7 @@ namespace HCI_main_project.ViewModel
             if (this.SelectedType != "attractions")
             {
                 this.SelectedType = "attractions";
+                this.EntityType = "attraction";
                 this.ExpandFilters = false;
                 loadLocations();
             }
@@ -299,6 +312,7 @@ namespace HCI_main_project.ViewModel
                     "Appartments",
                     "Hotels"
                 };
+                this.EntityType = "accommodation";
                 this.SelectedType = "accommodation";
                 this.ExpandFilters = false;
                 loadLocations();
@@ -311,6 +325,7 @@ namespace HCI_main_project.ViewModel
             this.Objects = new ObservableCollection<object>(dbContext.Restaurants.ToList());
             if (this.SelectedType != "restaurants")
             {
+                this.EntityType = "restaurant";
                 this.SelectedType = "restaurants";
                 this.ExpandFilters = false;
                 loadLocations();

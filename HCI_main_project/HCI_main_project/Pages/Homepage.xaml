@@ -116,30 +116,72 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Grid.Column="0" FontWeight="Medium" FontSize="46" Margin="30,5,0,0" Foreground="{StaticResource DarkBlueColor}">
-                    <TextBlock.Style>
-                        <Style TargetType="TextBlock">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding ElementName=ToursNavItem, Path=IsChecked}" Value="True">
-                                    <Setter Property="Text" Value="Tours"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding ElementName=AttractionsNavItem, Path=IsChecked}" Value="True">
-                                    <Setter Property="Text" Value="Attractions"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding ElementName=AccommodationNavItem, Path=IsChecked}" Value="True">
-                                    <Setter Property="Text" Value="Accommodation"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding ElementName=RestaurantsNavItem, Path=IsChecked}" Value="True">
-                                    <Setter Property="Text" Value="Restaurants"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding ElementName=HistoryNavItem, Path=IsChecked}" Value="True">
-                                    <Setter Property="Text" Value="History"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                </TextBlock>
-                <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Margin="30,5,0,0">
+                    <TextBlock  FontWeight="Medium" FontSize="46"  Foreground="{StaticResource DarkBlueColor}">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=ToursNavItem, Path=IsChecked}" Value="True">
+                                        <Setter Property="Text" Value="Tours"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ElementName=AttractionsNavItem, Path=IsChecked}" Value="True">
+                                        <Setter Property="Text" Value="Attractions"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ElementName=AccommodationNavItem, Path=IsChecked}" Value="True">
+                                        <Setter Property="Text" Value="Accommodation"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ElementName=RestaurantsNavItem, Path=IsChecked}" Value="True">
+                                        <Setter Property="Text" Value="Restaurants"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ElementName=HistoryNavItem, Path=IsChecked}" Value="True">
+                                        <Setter Property="Text" Value="History"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <Button
+                    Grid.Column="1"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Width="45"
+                    Height="45"
+                    Padding="-2,-2,5,1"
+                    Margin="7,6,0,0"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Command="{Binding openDeleteTourDialogCommand}"
+                    CommandParameter="{Binding Tour}">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFloatingActionMiniButton}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding LoggedUserRole}" Value="agent">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding SelectedType}" Value="history">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.ToolTip>
+                            <ToolTip>
+                                <ToolTip.Content>
+                                    <TextBlock Text="{Binding EntityType, StringFormat='Add new {0}'}" />
+                                </ToolTip.Content>
+                            </ToolTip>
+                        </Button.ToolTip>
+                        <materialDesign:PackIcon
+                        Width="45"
+                        Height="45"
+                        Foreground="{StaticResource OrangeColor}"
+                        Kind="PlusCircle" />
+                    </Button>
+
+
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBox
                 x:Name="searchBox"
                 MaxLength="200"
@@ -198,15 +240,16 @@
                     </ComboBox>
 
                     <ToggleButton x:Name="toggleButton"
-                       
-                          ToolTip="Filters"
                           Height="62"
                           Width="60"
                           Margin="0,10,30,0"
                           Padding="0"
                           materialDesign:ButtonAssist.CornerRadius="5"
                           Command="{Binding toggleFilterPaneCommand}"
-                          CommandParameter="{Binding ElementName=filterOptions}">           
+                          CommandParameter="{Binding ElementName=filterOptions}">
+                        <ToggleButton.ToolTip>
+                            <ToolTip Content="Expand filters" Style="{StaticResource BiggerToolTipStyle}" />
+                        </ToggleButton.ToolTip>
                         <materialDesign:PackIcon Width="40" Height="45" Kind="Filter" Margin="0"/>
                         <ToggleButton.Style>
                             <Style TargetType="ToggleButton" BasedOn="{StaticResource MaterialDesignRaisedButton}">
