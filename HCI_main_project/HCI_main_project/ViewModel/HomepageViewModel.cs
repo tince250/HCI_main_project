@@ -232,6 +232,7 @@ namespace HCI_main_project.ViewModel
             //ApplicationHelper.User = new User();
             //ApplicationHelper.User.Id = 211;
             //ApplicationHelper.User.Role = UserRole.TRAVELER;
+            //ApplicationHelper.User.Role = UserRole.AGENT;
 
             this.LoggedUserRole = ApplicationHelper.User.Role == UserRole.AGENT ? "agent" : "traveler";
 

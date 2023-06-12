@@ -183,5 +183,28 @@
                 <Run Text="{Binding Path=ErrorMessage}"/>
             </TextBlock>
         </Border>
+
+        <Button 
+            Grid.Row="1"
+            Grid.Column="1"
+                    Height="60"
+                    materialDesign:ButtonAssist.CornerRadius="40"               
+                       Width="65"
+                        Margin="10, 0, 20, 0"
+                          HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                          Style="{StaticResource MaterialDesignRaisedLightButton}"
+                            Background="{StaticResource ButtonLightBlueColor}"
+                            BorderBrush="Transparent"
+                          ToolTip="Open help window"
+                           >
+            <materialDesign:PackIcon Margin="0,0,0,0"
+                            Width="40"
+                            Height="30"
+                            HorizontalAlignment="Center"          
+                            Foreground="{StaticResource WhiteColor}"
+                            Kind="QuestionMarkCircle" />
+        </Button>
+
     </Grid>
 </Page>
