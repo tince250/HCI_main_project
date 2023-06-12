@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:HCI_main_project.Components" xmlns:MaterialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="850" d:DesignWidth="1000">
-    <MaterialDesign:Card MinWidth="460" Height="100" BorderThickness="5" BorderBrush="Gray">
+    <MaterialDesign:Card MinWidth="480" Height="100" BorderThickness="5" BorderBrush="Gray">
         <Grid VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
