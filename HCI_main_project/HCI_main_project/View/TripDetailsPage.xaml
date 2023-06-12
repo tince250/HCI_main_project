@@ -35,8 +35,7 @@
                     materialDesign:ButtonAssist.CornerRadius="25"
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource MaterialDesignRaisedButton}"
-                    ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
-                    Background="{StaticResource BackButtonColor}"
+                    Background="{StaticResource ButtonLightBlueColor}"
                     Foreground="{StaticResource WhiteColor}">
 
                 <TextBlock Text="&lt;- Go back" />
@@ -59,11 +58,13 @@
                     FontWeight="SemiBold"
                     materialDesign:ButtonAssist.CornerRadius="25"
                     Style="{StaticResource MaterialDesignRaisedButton}"
-                    ToolTip="Cancel reservation button"
                     Background="{StaticResource OrangeColor}"
                     Foreground="White">
 
                     <TextBlock Text="Reservations" />
+                    <Button.ToolTip>
+                        <ToolTip Content="Open all reservations" Style="{StaticResource BiggerToolTipStyle}" />
+                    </Button.ToolTip>
 
                 </Button>
 
@@ -82,11 +83,13 @@
                     FontWeight="SemiBold"
                     materialDesign:ButtonAssist.CornerRadius="25"
                     Style="{StaticResource MaterialDesignRaisedButton}"
-                    ToolTip="Cancel reservation button"
                     Background="#757575"
                     Foreground="White">
 
                     <TextBlock Text="Cancel reservation" />
+                    <Button.ToolTip>
+                        <ToolTip Content="Cancel reservation button" Style="{StaticResource BiggerToolTipStyle}" />
+                    </Button.ToolTip>
 
                 </Button>
 
@@ -105,11 +108,13 @@
                     materialDesign:ButtonAssist.CornerRadius="25"
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource MaterialDesignRaisedButton}"
-                    ToolTip="Reserve tour button"
                     Background="{StaticResource OrangeColor}"
                     Foreground="{StaticResource WhiteColor}">
 
                     <TextBlock Text="Reserve" />
+                    <Button.ToolTip>
+                        <ToolTip Content="Cancel reservation button" Style="{StaticResource BiggerToolTipStyle}" />
+                    </Button.ToolTip>
 
                 </Button>
 
@@ -128,11 +133,13 @@
                     materialDesign:ButtonAssist.CornerRadius="25"               
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource MaterialDesignRaisedButton}"
-                    ToolTip="Book tour button"
                     Background="{StaticResource ButtonLightBlueColor}"
                     Foreground="{StaticResource WhiteColor}">
 
                     <TextBlock Text="Book now" />
+                    <Button.ToolTip>
+                        <ToolTip Content="Book reservation button" Style="{StaticResource BiggerToolTipStyle}" />
+                    </Button.ToolTip>
 
                 </Button>
 
@@ -146,7 +153,6 @@
                           Style="{StaticResource MaterialDesignRaisedLightButton}"
                             Background="{StaticResource ButtonLightBlueColor}"
                             BorderBrush="Transparent"
-                          ToolTip="Open help window"
                     Click="Button_Click"
                            >
                     <materialDesign:PackIcon Margin="0,0,0,0"
@@ -155,6 +161,10 @@
                             HorizontalAlignment="Center"          
                             Foreground="{StaticResource WhiteColor}"
                             Kind="QuestionMarkCircle" />
+
+                    <Button.ToolTip>
+                        <ToolTip Content="Open help window" Style="{StaticResource BiggerToolTipStyle}" />
+                    </Button.ToolTip>
                 </Button>
             </StackPanel>
 
@@ -421,8 +431,8 @@
                             </Grid>
                         </Grid>
                         <Grid Grid.Column="1" Margin="0, 55, 20, 20" Height="600">
-                            <m:Map x:Name="map" Padding="10, 49, 20, 160" Grid.Column="1" Mode="AerialWithLabels" Center="{Binding Location}" ZoomLevel="11.5" CredentialsProvider="Kj3TXYFWtOhdSJsEwaRg~MYtBweETdCEyT2r6ULdioA~AnDgeIBQnE12E3dWCqRoZDwCljaffq0SmrInOH5-FEHBGfLzqbwDBsLm0ewXkMHy">
-                                <m:Pushpin m:MapLayer.Position="{Binding Location}"/>
+                            <m:Map x:Name="map" Padding="10, 49, 20, 160" Grid.Column="1" Mode="AerialWithLabels" CredentialsProvider="Kj3TXYFWtOhdSJsEwaRg~MYtBweETdCEyT2r6ULdioA~AnDgeIBQnE12E3dWCqRoZDwCljaffq0SmrInOH5-FEHBGfLzqbwDBsLm0ewXkMHy">
+                                <!--<m:Pushpin m:MapLayer.Position="{Binding Location}"/>-->
                             </m:Map>
                         </Grid>
                     </Grid>
