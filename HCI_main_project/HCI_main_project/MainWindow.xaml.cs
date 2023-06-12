@@ -127,8 +127,10 @@ namespace HCI_main_project
             {
                 if (frame.Content is Homepage home)
                 {
-                    if (isAgent())
+                    if (isAgent()) 
                         HelpProvider.SetHelpKey((DependencyObject)focusedControl, "Homepage_Tours_Agent");   
+                    else
+                        HelpProvider.SetHelpKey((DependencyObject)focusedControl, "Homepage_Tours_Traveler");
                 }
 
                 string str = HelpProvider.GetHelpKey((DependencyObject)focusedControl);

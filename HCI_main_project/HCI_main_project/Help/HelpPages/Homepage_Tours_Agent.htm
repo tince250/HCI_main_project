@@ -20,13 +20,13 @@
 		<!-- SVE SLIKE SS IZ APLIKACIJE -->
 
 		<!-- slika cele stranice  -->
-		<img height="700" class="page-image" src="images/Homepage.png" /> 
+		<img height="700" class="page-image" src="images/HomepageT.png" /> 
 
 		<h3>Need help for a specific page part? Click to jump to specific help part:</h3>
 		<ul>
 			<li><a href="#navbar-div">Navbar</a></li>
             <li><a href="#cards-div">Cards display & actions</a></li>
-            <li><a href="#statistics">Tour Statistics</a></li>
+            <li><a href="#history-div">Tour History</a></li>
 			<li><a href="#search-div">Search</a></li>
 			<li><a href="#sort-div">Sort</a></li>
 			<li><a href="#filter-div">Filter</a></li>
@@ -49,19 +49,19 @@
             <br> Read more about different card displays <a href="#cards-div">here</a>.
             <br>
             <br>
-             Right below those four type-oriented options, there's an option for you to open "Tour Statistics".
+             Right below those four type-oriented options, there's an option for you to open "Tour History".
              <br>
-             This option will open up the statistics view on the right pane, showing total income, total reservations and total bookings, alongside stats for each of the individual tours.<br>More on that <a href="#">here</a>.
+             This option will open up the history view on the right pane, showing all the tours you reserved and/or booked.<br>More on that <a href="#history-div">here</a>.
             </p>
-            <p>"Help" navbar option will showcase the same behaviou as pressing "F1" key on your keyboard will - opening the Help broswer window, with documentation and explanation of the page in focus.</p>
+            <p>"Help" navbar option will showcase the same behaviour as pressing "F1" key on your keyboard will - opening the Help broswer window (just like this one), with documentation and explanation of the page in focus.</p>
 		</div>
 
         <div id="cards-div">
 			<h2>● Help - Cards display & options</h2>
 			<!-- slika elementa  -->
 			<div class="multiple-objects">
-                <img class="element-image" height="400" src="images/TourCard.png"  /> 
-			    <img class="element-image" height="400" src="images/SimpleCard.png"  /> 
+                <img class="element-image" height="400" src="images/TourCardT.png"  /> 
+			    <img class="element-image" height="400" src="images/SimpleCardT.png"  /> 
             </div>
 
 			<!-- pomoc tekst  -->
@@ -72,110 +72,79 @@
                 <li>Attractions - Simple Card</li>
                 <li>Restaurants - Simple Card</li>
             </ul>
-            <p>This section is quite extensive, feel free to jump to the part you are interested in by choosing one of the topics:</p>
+            <p>This section is somewhat extensive, feel free to jump to the part you are interested in by choosing one of the topics:</p>
             <ul>
                 <li><a href="#tour-div">Tour Card</a></li>
                 <li><a href="#information-div">Tour Card - Information Button</a></li>
                 <li><a href="#simple-div">Simple Card</a></li>
-                <li><a href="#add-div">Add a Card</a></li>
-                <li><a href="#delete-div">Delete a Card</a></li>
-                <li><a href="#edit-div">Edit a Card</a></li>
             </ul>
             <div id="tour-div">
                 <h3>Tour Card</h3>
-                <img class="element-image" height="400" src="images/TourCard.png"  /> 
+                <img class="element-image" height="400" src="images/TourCardT.png"  /> 
                 <p>Tour Card is designated for displaying tours. It shows tour image, price, name, dates => basic information about each tour.</p>
-                <p>The bottom row of the card holds action button:</p>
-                <ul class="p-ul">
-                    <li><i class="fa fa-trash"></i> - delete tour:</li>
-                    <li><i class="fa fa-pencil"></i> - edit tour</li>
-                    <li>Information - open tour information details</li>
-                </ul>
+                <p>Tours are the whole planned trips our agents prepared just for you. Each tour includes different restaurants, accommodation and attractions you'll get to enjoy during the tour.
+                    <br>
+                    To see the whole tour plan and description, and get a chance to book/reserve a tour, click on the "Information" button on the bottom left - more on that <a href="#information-div">(just like this one)</a></p>
+                </p>
+            
             </div>
             <div id="information-div">
                 <h3>Tour Card - Information</h3>
-                <img class="element-image" height="500" src="images/deleteCard.png"  /> 
-                <p>Disclaimer: Information applies for both card types (Tour and Simple card).</p>
+                <img class="element-image" height="400" src="images/TourCardT.png"  />
                 <p>Clicking on the "Information" button will open a window with detailed information about the tour. Besides the information on the card, tour description and tour attractions, accommodation and restaurant will show.
                     <br>
-                    Handy Map view of all information will also be displayed.
+                    Handy Map view of all information will also be displayed - including color-coordinated markers for each of the accommodation/attractions/restaurants included, and the path connecting all attractions you'll get to explore during the trip.
                     <br>
-                    <p>To read about tour information page, click "F1" or "?" button on the information page of your interest (while running the app).</p>
+                    <p>To read more about tour information page, click "F1" or "?" button on the information page of your interest (while running the app).</p>
                 </p>
             </div>
             <div id="simple-div">
                 <h3>Simple Card</h3>
                 <img class="element-image" height="400" src="images/SimpleCard.png"  /> 
-                <p>Tour Card is designated for displaying attractions, accommodation, and restaurants - one card for all of them because they hold the same families of informations. It shows image, name, and address information of each item.</p>
-                <p>The bottom row of the card holds action button:</p>
-                <ul class="p-ul">
-                    <li><i class="fa fa-trash"></i> - delete item</li>
-                    <li><i class="fa fa-pencil"></i> - edit item</li>
-                </ul>
-            </div>
-            <div id="add-div">
-                <h3>Add a Card</h3>
-                <img class="element-image" height="400" src="images/Homepage.png"  /> 
-                <p>Disclaimer: Information applies for both card types (Tour and Simple card).</p>
-                 <p>   
-                    To add a card (aka a new tour/attraction/accommodation/restaurant), simply click on the <i class="fa fa-plus-circle"></i> button.
-                    <br>
-                    The "add new" form for the appropriate type will appear.
-                </p>
-
-                <p>To read about detailed adding new item process, click "F1" or "?" button on the "add new" form of your interest (while running the app).</p>
-        
-            </div>
-            <div id="delete-div">
-                <h3>Delete a Card</h3>
-                <img class="element-image" height="500" src="images/deleteCard.png"  /> 
-                <p>Disclaimer: Information applies for both card types (Tour and Simple card).</p>
-                <p>To delete a card (aka the item associated with the card), simply click on the <i class="fa fa-trash"></i> button.
-                    Clicking on the <i class="fa fa-trash"></i> button will open up the "Are you sure you want to delete ____" window, so you don't have to worry - even if you accidently click the delete button or click the delete button of the wrong item, the window will show you the item selected for deletion and ask you if that is want you want to do.
-                    <br>
-                    From there just choose "Delete ___" button to confirm deletion, or "Cancel" to close the window and go back, no data lost.
-                    </p>
-                <p>CAUTION: Deleting is a permanent action, you won't be able to undo it once you confirm deletion.</p>
-            </div>
-            <div id="edit-div">
-                <h3>Edit a Card</h3>
-                <img class="element-image" height="500" src="images/deleteCard.png"  /> 
-                <p>Disclaimer: Information applies for both card types (Tour and Simple card).</p>
-                 <p>   
-                    To edit a card (aka the content the card displays), simply click on the <i class="fa fa-pencil"></i> button.
-                    <br>
-                    The edit form for the appropriate type will appear.
-                </p>
-
-                <p>To read about detailed editing process, click "F1" or "?" button on the edit form of your interest (while running the app).</p>
+                <p>Simple Card is designated for displaying attractions, accommodation, and restaurants - one card for all of them because they hold the same families of informations. It shows image, name, and address information of each item.</p>
+                <p>Unlike Tours, attractions, accommodation, and restaurants don't have much information about them - each of them has its address (Street, Street Number, Postal Code, City), and on top of that accommodation also has its type (hotel/apartment).</p>
             </div>
             
 		</div>
 
-        <div id="statistics-div">
-			<h2>● Help - Tour Statistics</h2>
+        <div id="history-div">
+			<h2>● Help - Tour History</h2>
 			<!-- slika elementa  -->
-			<img class="element-image" height="500" src="images/Statistics.png"  /> 
+			<img class="element-image" height="500" src="images/History.png"  /> 
 
 			<!-- pomoc tekst  -->
-			<p>Tour Statistics navbar button will open the overview of all Tours you are managing through the app.
+			<p>Tour History navbar button will open the overview of all Tours you booked and/or reserved through the app.
                 
 
             </p>
-            <p>It gives you three main calculations, righ below search & filter section:</p>
+            
+            <p>It also displays a elongated version of Tour cards, with all the same infomation as before (in a bit of a different layout).</p>
+            <img class="element-image" height="140" src="images/HistoryCard.png"  /> 
+            <p>Each tour history card has a label in the bottom right corner indicating the status of your purchase. It can be:</p>
             <ul class="p-ul">
-                <li>Total income - sum of prices of all reservation and bookings you sold</li>
-                <li>Total reservations - total number of reservation across all tours</li>
-                <li>Total bookings - total number of bookings across all tours</li>
+                <li>booked - you booked the tour</li>
+                <li>reserved - you reserved the tour</li>
             </ul>
-            <p>It also displays a elongated version of Tour cards, with all the same infomation as before (in a bit of a different layout), as well as the number of reservations and bookings for that specific tour.</p>
+            <p>*Reminder: "booking" a tour means paying and not beeing able to cancel the booking afterwards, while reservations don't require immediate purchase and can be later canceled.
+
+            </p>
+            <p>
+                If the tour status is "reserved" and the tour dates are in the future, you have the option to cancel the tour - a gray "Cancel reservation" button will be placed right before the status label.
+            </p>
+            <img class="element-image" height="500" src="images/cancel.png"  /> 
+            <p>
+                
+                To cancel a tour, simply click on the "Cancel reservation" button. Just to be sure, a "Are you sure you want to cancel" pop-up will appear, to prevent any accidents.
+                <br>
+                If you are sure, click on the blue "Cancel reservation" button, otherwise choose to "Cancel" and close the pop-up.
+            </p>
             <p>You can also click on any of the cards' "Information" button to see tour details from here as well, same bahviour as mentioned before.</p>
         </div>
 
         <div id="search-div">
 			<h2>● Help - Search</h2>
 			<!-- slika elementa  -->
-			<img class="element-image" height="500" src="images/Homepage.png"  /> 
+			<img class="element-image" height="500" src="images/HomepageT.png"  /> 
 
 			<!-- pomoc tekst  -->
 			<p>
@@ -183,7 +152,7 @@
             </p>
             <p>By typing text into the search bar, the cards displayed will change to include only the items with the name that contains the text typed in the search bar.
             </p>
-            <img class="element-image" height="500" src="images/Searched.png"  /> 
+            <img class="element-image" height="500" src="images/SearchedT.png"  /> 
             <p>
                 No need to click any buttons, just type and the list of items will filter with each written letter.
             </p>
@@ -192,13 +161,12 @@
         <div id="sort-div">
 			<h2>● Help - Sort</h2>
 			<!-- slika elementa  -->
-			<img class="element-image" height="500" src="images/Homepage.png"  /> 
 
 			<!-- pomoc tekst  -->
 			<p>
                 Sort drop down menu is located to the right of the Search bar. Sorting is only available for tours (both in the "Tours" and "Tour Statistics" view).
             </p>
-            <img class="element-image" height="500" src="images/sort.png"  /> 
+            <img class="element-image" height="500" src="images/sortT.png"  /> 
             <p>There are five sorting criteria:</p>
             <ul class="p-ul">
                 <li>Most popular - cards will be sorted by the number of reservations and bookings (in sum) so that the first tour shown is the "most popular"</li>
@@ -207,14 +175,16 @@
                 <li>Date desc - cards will be sorted by the the "from" date, so that the first tour shown starts the latest</li>
                 <li>Date asc - cards will be sorted by the the "from" date, so that the first tour shown starts the soonest</li>
             </ul>
-
             <p>Default sorting option is "Most popular".</p>
+
+            <p>Sort is automatically applied after choosing one of the sorting criteria option from the dropdown, no need to click any extra buttons:</p>
+            <img class="element-image" height="500" src="images/sortedT.png"  />
         </div>
 		
         <div id="filter-div">
 			<h2>● Help - Filter</h2>
 			<!-- slika elementa  -->
-			<img class="element-image" height="500" src="images/Homepage.png"  /> 
+			<img class="element-image" height="500" src="images/HomepageT.png"  /> 
 
 			<!-- pomoc tekst  -->
 			<p>
@@ -224,7 +194,7 @@
                 When you first open the app, the filters are hidden. To make them visible simply click on the filter button => filter options outlined with gray border container will appear:
                 
             </p>
-			<img class="element-image" height="500" src="images/filterTours.png"  /> 
+			<img class="element-image" height="500" src="images/filterToursT.png"  /> 
             <p>Now you can choose to filter the items shown by different criteria, based on the item type:</p>
             <ul class="p-ul">
                 <li>Tours - filter by min and max price, as well as date range</li>
@@ -232,8 +202,10 @@
                 <li>Accommodation - filter by accommodation location (choose city option from the drop down menu), as well as accommodation type (choose type option from drom down menu)</li>
             </ul>
             <p>When you're happy with the choices for filters you inputed, click on the "Apply filters" button to filter the card selection - only the cards who's content matches the filter inputs will remain.
+                <br>
+                Keep in mind: "Apply filters" button will be disabled (you won't be able to click it) unless the inputs you provided are valid - just follow error messages and make sure to correct the explained mistakes, and the button will enable after everything is corrected.
             </p>
-            <img class="element-image" height="500" src="images/applied filters.png"  /> 
+            <img class="element-image" height="500" src="images/applied filtersT.png"  /> 
             <p>
                 Filtering takes into consideration the search and sort values (if provided) so the final selection will contain cards that match all three criteria (given by search, sort and filters).
             </p>
