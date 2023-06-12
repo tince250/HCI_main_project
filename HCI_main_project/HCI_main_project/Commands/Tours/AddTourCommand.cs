@@ -1,6 +1,7 @@
 ﻿using HCI_main_project.Model.DTOs;
 using HCI_main_project.Model.Services;
 using HCI_main_project.Models;
+using HCI_main_project.Pages;
 using HCI_main_project.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -46,16 +47,29 @@ namespace HCI_main_project.Commands.Tours
                 tour.Price = (double)_addTourPageViewModel.TripDetailsControlViewModel.Price;
                 tour.Longitude = 22;
                 tour.Latitude = 22;
-                tour.TravelAgent = _tourService.GetTravelAgent();
+                try
+                {
+                    tour.TravelAgent = ApplicationHelper.User;
+                } catch (Exception e)
+                {
+                    tour.TravelAgent = _tourService.GetTravelAgent();
+                }
 
                 attractions.ForEach(a => tour.AddAttraction(a));
                 accommodations.ForEach(a => tour.AddAccommodation(a));
                 restaurants.ForEach(r => tour.AddRestaurant(r));
 
                 _tourService.Add(tour);
+
+                Homepage homePage = new Homepage();
+                ApplicationHelper.NavigationService.Navigate(homePage);
+
+                var vm = homePage.DataContext as HomepageViewModel;
+                vm.ShowSnackBar("You have successfully created tour!");
             }
             catch (Exception ex)
             {
+                _addTourPageViewModel.ShowNegativeSnackBar("Server error. Try again later");
             }
         }
 

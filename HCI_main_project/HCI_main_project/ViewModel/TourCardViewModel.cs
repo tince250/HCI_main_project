@@ -1,4 +1,5 @@
 ﻿using HCI_main_project.Commands;
+using HCI_main_project.Commands.Homepages;
 using HCI_main_project.Models;
 using HCI_main_project.User_Controls;
 using HCI_main_project.View;
@@ -24,15 +25,29 @@ namespace HCI_main_project.ViewModel
             set { tour = value; }
         }
 
+        private string imagePath;
+        public string ImagePath
+        {
+            get { return imagePath; }
+            set
+            {
+                imagePath = value;
+                OnPropertyChanged(nameof(ImagePath));
+            }
+        }
+
         public ICommand openTourDetailsCommand { get; }
         public ICommand openDeleteTourDialogCommand { get; }
+        public ICommand AddTourButtonCommand { get; }
 
 
         public TourCardViewModel(HomepageViewModel homepageViewModel, Tour tour)
         {
             this.homepageViewModel = homepageViewModel;
             this.Tour = tour;
+            this.ImagePath = ApplicationHelper.ParseImagePath(tour.Image, "tour");
             this.openTourDetailsCommand = new OpenTourDetailsCommand(homepageViewModel, Tour.Id);
+            AddTourButtonCommand = new AddTourButtonCommand(tour);
             this.openDeleteTourDialogCommand = new OpenDeleteTourDialogCommand(Tour.Id);
         }
 

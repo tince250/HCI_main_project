@@ -12,7 +12,8 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-
+using HCI_main_project.Pages;
+using HCI_main_project.ViewModel;
 
 namespace HCI_main_project.Commands.Attractions
 {
@@ -45,9 +46,16 @@ namespace HCI_main_project.Commands.Attractions
                     _addAttractionPageViewModel.AddressFormControl.Latitude,
                     _addAttractionPageViewModel.AddressFormControl.Longitude);
                 _attractionService.Add(attraction);
+
+                Homepage homePage = new Homepage();
+                ApplicationHelper.NavigationService.Navigate(homePage);
+
+                var vm = homePage.DataContext as HomepageViewModel;
+                vm.ShowSnackBar("You have successfully created attraction!");
             }
             catch (Exception ex)
             {
+                _addAttractionPageViewModel.ShowNegativeSnackBar("Server error. Try again later");
             }
         }
 

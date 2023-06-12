@@ -31,7 +31,7 @@ namespace HCI_main_project.Pages
         {
 
             InitializeComponent();
-            DataContext = new HomepageViewModel(mainGrid, priceFromBox, priceToBox, dateFrom, dateTo);
+            DataContext = new HomepageViewModel(mainGrid, priceFromBox, priceToBox, dateFrom, dateTo, snackBar);
             Loaded += (sender, e) =>
             {
                 Focus();

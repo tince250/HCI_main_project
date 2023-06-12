@@ -182,9 +182,7 @@
                     Padding="-2,-2,5,1"
                     Margin="7,6,0,0"
                     Background="Transparent"
-                    BorderBrush="Transparent"
-                    Command="{Binding openDeleteTourDialogCommand}"
-                    CommandParameter="{Binding Tour}">
+                    BorderBrush="Transparent">
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFloatingActionMiniButton}">
                                 <Setter Property="Visibility" Value="Collapsed" />
@@ -194,6 +192,18 @@
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding SelectedType}" Value="history">
                                         <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding SelectedType}" Value="restaurants">
+                                        <Setter Property="Command" Value="{Binding AddRestaurantButtonCommand}" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding SelectedType}" Value="attractions">
+                                        <Setter Property="Command" Value="{Binding AddAttractionsButtonCommand}" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding SelectedType}" Value="accommodation">
+                                        <Setter Property="Command" Value="{Binding AddAccommodationButtonCommand}" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding SelectedType}" Value="tours">
+                                        <Setter Property="Command" Value="{Binding AddTourButtonCommand}" />
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
@@ -635,6 +645,8 @@
                 </TextBlock.Text>
             </TextBlock>
         </Grid>
-        
+        <materialDesign:Snackbar x:Name="snackBar" MessageQueue="{materialDesign:MessageQueue}" Style="{StaticResource PositiveSnackBar}">
+
+        </materialDesign:Snackbar>
     </Grid>
 </Page>

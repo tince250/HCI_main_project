@@ -115,7 +115,8 @@ namespace HCI_main_project.ViewModels
             return !Validation.GetHasError(_priceTextBox) && Price != 0 && Price != null
                 && !Validation.GetHasError(_dateFrom) && DateFrom != null
                 && !Validation.GetHasError(_dateTo) && DateTo != null 
-                && !Validation.GetHasError(_descriptionTextArea) && Description != null;
+                && !Validation.GetHasError(_descriptionTextArea) && Description != null && 
+                (DateFrom != null & DateTo != null && DateFrom < DateTo);
         }
 
         public TripDetailsControlViewModel(TextBox priceTextBox, DatePicker dateFrom, DatePicker dateTo, TextBox descriptionTextArea, Tour selectedTour = null)

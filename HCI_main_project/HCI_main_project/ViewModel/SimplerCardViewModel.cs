@@ -1,4 +1,5 @@
 ﻿using HCI_main_project.Commands;
+using HCI_main_project.Commands.Homepages;
 using HCI_main_project.Model.Entities;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,15 @@ namespace HCI_main_project.ViewModel
         private SimpleCardContent cardContent;
         private HomepageViewModel homePageVm;
         private string entityType;
+        public string EntityType
+        {
+            get { return entityType; }
+            set
+            {
+                entityType = value;
+                OnPropertyChanged(nameof(EntityType));
+            }
+        }
 
         public SimpleCardContent CardContent
         {
@@ -37,14 +47,21 @@ namespace HCI_main_project.ViewModel
         }
 
         public ICommand openDeleteEntityDialogCommand { get; }
+        public ICommand AddRestaurantButtonCommand { get; }
+        public ICommand AddAttractionsButtonCommand { get; }
+        public ICommand AddAccommodationButtonCommand { get; }
 
         public SimplerCardViewModel(HomepageViewModel homePageVm, SimpleCardContent simpleCardContent, string type)
         {
             this.homePageVm = homePageVm;
             this.cardContent = simpleCardContent;
             this.entityType = type;
+            EntityType = type;
             this.ImagePath = ApplicationHelper.ParseImagePath(cardContent.Image, entityType);
 
+            AddRestaurantButtonCommand = new AddRestaurantButtonCommand(cardContent.Id);
+            AddAttractionsButtonCommand = new AddAttractionsButtonCommand(cardContent.Id);
+            AddAccommodationButtonCommand = new AddAccommodationButtonCommand(cardContent.Id);
             this.openDeleteEntityDialogCommand = new OpenDeleteSimplerDialogCommand(this.CardContent.Id, this.entityType);
         }
 

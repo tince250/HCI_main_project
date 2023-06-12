@@ -152,11 +152,7 @@
                         <!--<m:Map x:Name="map" Margin="0, 0, 20, 0" Grid.Column="1" Mode="AerialWithLabels" Center="{Binding Location}" ZoomLevel="11.5" CredentialsProvider="Kj3TXYFWtOhdSJsEwaRg~MYtBweETdCEyT2r6ULdioA~AnDgeIBQnE12E3dWCqRoZDwCljaffq0SmrInOH5-FEHBGfLzqbwDBsLm0ewXkMHy">
                             <m:Pushpin m:MapLayer.Position="{Binding Location}"/>
                         </m:Map>-->
-                        <Image Margin="0, 0, 20, 0" Grid.Column="1"  Width="Auto">
-                            <Image.Source>
-                                <BitmapImage UriSource="../Images/Tours/hram.jpg" />
-                            </Image.Source>
-                        </Image>
+                        <Image Margin="0, 0, 20, 0" Grid.Column="1"  Width="Auto" Source="{Binding ImagePath}"/>
 
                         <Grid>
                             <Grid.RowDefinitions>

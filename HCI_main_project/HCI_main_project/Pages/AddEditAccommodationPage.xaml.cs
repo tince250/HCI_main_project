@@ -27,11 +27,11 @@ namespace HCI_main_project.Pages
     /// </summary>
     public partial class AddEditAccommodationPage : Page
     {
-        public AddEditAccommodationPage()
+        public AddEditAccommodationPage(Accommodation accommodation = null)
         {
             InitializeComponent();
-            Accommodation tour = App.serviceProvider.GetService<TripagoContext>().Accommodations.FirstOrDefault(t => t.Id == 1);
-            DataContext = new AddAccommodationPageViewModel(accommodationTypeControl, nameAndPhotoFormControl, addressFormControl, tour);
+            //Accommodation tour = App.serviceProvider.GetService<TripagoContext>().Accommodations.FirstOrDefault(t => t.Id == 1);
+            DataContext = new AddAccommodationPageViewModel(accommodationTypeControl, nameAndPhotoFormControl, addressFormControl, snackBarPositive, snackBarNegative, accommodation);
         }
 
         private void openGoBackDialog(object sender, RoutedEventArgs e)

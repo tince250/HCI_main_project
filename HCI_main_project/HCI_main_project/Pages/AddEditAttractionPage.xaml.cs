@@ -27,11 +27,11 @@ namespace HCI_main_project.Pages
     /// </summary>
     public partial class AddEditAttractionPage : Page
     {
-        public AddEditAttractionPage()
+        public AddEditAttractionPage(Attraction attraction = null)
         {
             InitializeComponent();
-            Attraction tour = App.serviceProvider.GetService<TripagoContext>().Attractions.FirstOrDefault(t => t.Id == 1);
-            DataContext = new AddAttractionPageViewModel(nameAndPhotoFormControl, addressFormControl, tour);
+            //Attraction tour = App.serviceProvider.GetService<TripagoContext>().Attractions.FirstOrDefault(t => t.Id == 1);
+            DataContext = new AddAttractionPageViewModel(nameAndPhotoFormControl, addressFormControl, snackBarPositive, snackBarNegative, attraction);
         }
 
         private void openGoBackDialog(object sender, RoutedEventArgs e)

@@ -1,6 +1,8 @@
 ﻿using HCI_main_project.Model.DTOs;
 using HCI_main_project.Model.Services;
 using HCI_main_project.Models;
+using HCI_main_project.Pages;
+using HCI_main_project.ViewModel;
 using HCI_main_project.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -37,7 +39,7 @@ namespace HCI_main_project.Commands.Tours
                 List<Restaurant> restaurants = _addTourPageViewModel.RestaurantsDragAndDropControl.Restaurants2.ToList();
                 User travelAgent = null;
                 string filename = ImageHelper.Save(_addTourPageViewModel.NameAndPhotoFormViewModel.ImageRectangle.Fill as ImageBrush,
-                    "Tours", _addTourPageViewModel.NameAndPhotoFormViewModel.File);
+                    "Tours", _addTourPageViewModel.NameAndPhotoFormViewModel.File, true);
                 Tour tour = _addTourPageViewModel.SelectedTour;
                 tour.Name = _addTourPageViewModel.NameAndPhotoFormViewModel.Name;
                 tour.Image = filename;
@@ -57,9 +59,15 @@ namespace HCI_main_project.Commands.Tours
                 restaurants.ForEach(r => tour.AddRestaurant(r));
 
                 _tourService.Edit(tour);
+                Homepage homePage = new Homepage();
+                ApplicationHelper.NavigationService.Navigate(homePage);
+
+                var vm = homePage.DataContext as HomepageViewModel;
+                vm.ShowSnackBar("You have successfully edited tour!");
             }
             catch (Exception ex)
             {
+                _addTourPageViewModel.ShowNegativeSnackBar("Server error. Try again later");
             }
         }
 

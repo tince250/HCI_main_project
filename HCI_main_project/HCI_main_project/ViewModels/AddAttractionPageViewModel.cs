@@ -68,6 +68,19 @@ namespace HCI_main_project.ViewModels
                 OnPropertyChanged(nameof(IsPageForEdit));
             }
         }
+        private Snackbar _snackBarPositive;
+        private Snackbar _snackBarNegative;
+        public void ShowPositiveSnackBar(string message)
+        {
+            _snackBarPositive.FontSize = 24;
+            _snackBarPositive.MessageQueue.Enqueue(message);
+        }
+
+        public void ShowNegativeSnackBar(string message)
+        {
+            _snackBarPositive.FontSize = 24;
+            _snackBarNegative.MessageQueue.Enqueue(message);
+        }
 
         public ICommand BackButtonAttractionCommand { get; }
         public ICommand FillAddressButtonAttractionCommand { get; }
@@ -75,7 +88,7 @@ namespace HCI_main_project.ViewModels
 
         public ICommand AddAttractionCommand { get; }
         public ICommand EditAttractionCommand { get; }
-        public AddAttractionPageViewModel(NameAndPhotoFormControl nameAndPhotoFormControl, AddressFormControl addressFormControl, Attraction selectedAttraction = null)
+        public AddAttractionPageViewModel(NameAndPhotoFormControl nameAndPhotoFormControl, AddressFormControl addressFormControl, Snackbar snackBarPositive, Snackbar snackBarNegative, Attraction selectedAttraction = null)
         {
             _nameAndPhotoFormControl = nameAndPhotoFormControl;
             _addressFormControl = addressFormControl;
@@ -84,6 +97,9 @@ namespace HCI_main_project.ViewModels
             BackCommand = new BackToHomeCommand(null);
 
             IsPageForEdit = selectedAttraction == null ? false : true;
+
+            _snackBarPositive = snackBarPositive;
+            _snackBarNegative = snackBarNegative;
 
             NameAndPhotoFormViewModel = new NameAndPhotoFormViewModel(nameAndPhotoFormControl.imageRectangle, nameAndPhotoFormControl.nameTextBox, selectedAttraction);
             NameAndPhotoFormViewModel.SetLabelContents("Attraction");

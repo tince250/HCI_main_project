@@ -10,8 +10,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
+using HCI_main_project.Pages;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using HCI_main_project.ViewModel;
 
 namespace HCI_main_project.Commands
 {
@@ -44,11 +46,15 @@ namespace HCI_main_project.Commands
                     _addRestaurantPageViewModel.AddressFormControl.Latitude,
                     _addRestaurantPageViewModel.AddressFormControl.Longitude);
                 _restaurantService.Add(restaurant);
-                _addRestaurantPageViewModel.ShowPositiveSnackBar();
+                Homepage homePage = new Homepage();
+                ApplicationHelper.NavigationService.Navigate(homePage);
+
+                var vm = homePage.DataContext as HomepageViewModel;
+                vm.ShowSnackBar("You have successfully created restaurant!");
             }
             catch (Exception ex)
             {
-                _addRestaurantPageViewModel.ShowNegativeSnackBar(ex.Message);
+                _addRestaurantPageViewModel.ShowNegativeSnackBar("Server error. Try again later");
             }
         }
 

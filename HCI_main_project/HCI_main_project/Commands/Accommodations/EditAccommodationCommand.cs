@@ -10,8 +10,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
+using HCI_main_project.Pages;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using HCI_main_project.ViewModel;
 
 namespace HCI_main_project.Commands.Accommodations
 {
@@ -35,10 +37,10 @@ namespace HCI_main_project.Commands.Accommodations
                     _addAccommodationPageViewModel.AddressFormViewModel.StreetNo
                     );
 
-                ImageHelper.RemoveOld("Accommodations", _addAccommodationPageViewModel.SelectedAccommodation.Image);
+                //ImageHelper.RemoveOld("Accommodations", _addAccommodationPageViewModel.SelectedAccommodation.Image);
 
                 string filename = ImageHelper.Save(_addAccommodationPageViewModel.NameAndPhotoFormViewModel.ImageRectangle.Fill as ImageBrush,
-                    "Accommodations", _addAccommodationPageViewModel.NameAndPhotoFormViewModel.File);
+                    "Accommodations", _addAccommodationPageViewModel.NameAndPhotoFormViewModel.File, true);
 
                 AccommodationType type = _addAccommodationPageViewModel.AccommodationTypeViewModel.IsHotelSelected ? AccommodationType.HOTEL : AccommodationType.APARTMENT;
 
@@ -47,9 +49,16 @@ namespace HCI_main_project.Commands.Accommodations
                     _addAccommodationPageViewModel.AddressFormControl.Latitude,
                     _addAccommodationPageViewModel.AddressFormControl.Longitude);
                 _accommodationService.Edit(_addAccommodationPageViewModel.SelectedAccommodation.Id, accommodation);
+
+                Homepage homePage = new Homepage();
+                ApplicationHelper.NavigationService.Navigate(homePage);
+
+                var vm = homePage.DataContext as HomepageViewModel;
+                vm.ShowSnackBar("You have successfully edited accommodation!");
             }
             catch (Exception ex)
             {
+                _addAccommodationPageViewModel.ShowNegativeSnackBar("Server error. Try again later");
             }
         }
 

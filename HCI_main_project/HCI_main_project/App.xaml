@@ -11,7 +11,9 @@
             <Style x:Key="snackBarModified" BasedOn="{StaticResource {x:Type materialDesign:SnackbarMessage}}" TargetType="{x:Type materialDesign:SnackbarMessage}">
                 <Setter Property="FontSize" Value="24" />
             </Style>
-            
+
+            <converters:ImageConverter x:Key="ImageConverter" />
+
             <Style x:Key="BiggerToolTipStyle" TargetType="ToolTip">
                 <Setter Property="Template">
                     <Setter.Value>

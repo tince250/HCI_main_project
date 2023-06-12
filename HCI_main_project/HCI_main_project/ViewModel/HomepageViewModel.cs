@@ -15,6 +15,8 @@ using System.ComponentModel;
 using System.Collections;
 using System.Windows.Data;
 using System.Windows.Controls;
+using HCI_main_project.Commands.Homepages;
+using MaterialDesignThemes.Wpf;
 
 namespace HCI_main_project.ViewModel
 {
@@ -204,6 +206,11 @@ namespace HCI_main_project.ViewModel
         public ICommand logoutCommand { get; }
         public ICommand applyFiltersCommand { get; }
 
+        public ICommand AddRestaurantButtonCommand { get; }
+        public ICommand AddAttractionsButtonCommand { get; }
+        public ICommand AddAccommodationButtonCommand { get; }
+        public ICommand AddTourButtonCommand { get; }
+
         public ICommand setSearchToFocus { get; }
 
         private TextBox minPriceTextBox;
@@ -227,11 +234,20 @@ namespace HCI_main_project.ViewModel
 
         public ICommand clearFiltersCommand { get; }
 
-        public HomepageViewModel(Grid mainGrid, TextBox minPriceTextBox, TextBox maxPriceTextBox, DatePicker dateFromPicker, DatePicker dateToPicker)
+        private Snackbar snackBar;
+        public void ShowSnackBar(string message)
+        {
+            snackBar.FontSize = 24;
+            snackBar.MessageQueue.Enqueue(message);
+        }
+
+        public HomepageViewModel(Grid mainGrid, TextBox minPriceTextBox, TextBox maxPriceTextBox, DatePicker dateFromPicker, DatePicker dateToPicker, Snackbar snackBar)
         {
             ApplicationHelper.User = new User();
             ApplicationHelper.User.Id = 211;
             ApplicationHelper.User.Role = UserRole.AGENT;
+
+            this.snackBar = snackBar;
 
             this.LoggedUserRole = ApplicationHelper.User.Role == UserRole.AGENT ? "agent" : "traveler";
 
@@ -239,6 +255,11 @@ namespace HCI_main_project.ViewModel
             this.maxPriceTextBox = maxPriceTextBox;
             this.dateFromPicker = dateFromPicker;
             this.dateToPicker = dateToPicker;
+
+            AddRestaurantButtonCommand = new AddRestaurantButtonCommand();
+            AddAttractionsButtonCommand = new AddAttractionsButtonCommand();
+            AddAccommodationButtonCommand = new AddAccommodationButtonCommand();
+            AddTourButtonCommand = new AddTourButtonCommand();
 
             this.mainGrid = mainGrid;
 

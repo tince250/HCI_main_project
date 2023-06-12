@@ -28,7 +28,7 @@ namespace HCI_main_project.Model.Services
 
         public void Edit(int id, RestaurantDTO restaurantDTO)
         {
-            Restaurant restaurant = _context.Restaurants.Include(r => r.Address).FirstOrDefault(r => r.Id == 11);
+            Restaurant restaurant = _context.Restaurants.Include(r => r.Address).FirstOrDefault(r => r.Id == id);
             restaurant.Address.City = restaurantDTO.Address.City;
             restaurant.Address.Street = restaurantDTO.Address.Street;
             restaurant.Address.PostalCode = restaurantDTO.Address.PostalCode;

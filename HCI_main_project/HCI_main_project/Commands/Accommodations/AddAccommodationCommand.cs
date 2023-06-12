@@ -12,6 +12,8 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using HCI_main_project.Pages;
+using HCI_main_project.ViewModel;
 
 namespace HCI_main_project.Commands.Accommodations
 {
@@ -45,9 +47,16 @@ namespace HCI_main_project.Commands.Accommodations
                     _addAccommodationPageViewModel.AddressFormControl.Latitude,
                     _addAccommodationPageViewModel.AddressFormControl.Longitude);
                 _accommodationService.Add(accommodation);
+
+                Homepage homePage = new Homepage();
+                ApplicationHelper.NavigationService.Navigate(homePage);
+
+                var vm = homePage.DataContext as HomepageViewModel;
+                vm.ShowSnackBar("You have successfully created accommodation!");
             }
             catch (Exception ex)
             {
+                _addAccommodationPageViewModel.ShowNegativeSnackBar("Server error. Try again later");
             }
         }
 

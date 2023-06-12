@@ -105,6 +105,17 @@ namespace HCI_main_project.ViewModel
             }
         }
 
+        private string imagePath;
+        public string ImagePath
+        {
+            get { return imagePath; }
+            set
+            {
+                imagePath = value;
+                SetProperty(ref imagePath, value);
+            }
+        }
+
         private TripagoContext _dbContext;
         public ICommand backCommand { get; }
 
@@ -124,6 +135,7 @@ namespace HCI_main_project.ViewModel
         {
             this.Tour = _dbContext.Tours.First(c => c.Id == tourId);
             this.Location = new Location(this.Tour.Latitude, this.Tour.Longitude);
+            this.ImagePath = this.Tour.Image;
         }
 
         private void SetAttractions()

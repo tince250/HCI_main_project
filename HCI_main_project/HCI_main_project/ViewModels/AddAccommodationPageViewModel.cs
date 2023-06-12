@@ -103,6 +103,19 @@ namespace HCI_main_project.ViewModels
                 OnPropertyChanged(nameof(IsPageForEdit));
             }
         }
+        private Snackbar _snackBarPositive;
+        private Snackbar _snackBarNegative;
+        public void ShowPositiveSnackBar(string message)
+        {
+            _snackBarPositive.FontSize = 24;
+            _snackBarPositive.MessageQueue.Enqueue(message);
+        }
+
+        public void ShowNegativeSnackBar(string message)
+        {
+            _snackBarPositive.FontSize = 24;
+            _snackBarNegative.MessageQueue.Enqueue(message);
+        }
 
         public ICommand BackButtonAccommodationCommand { get; }
         public ICommand FillAddressButtonAccommodationCommand { get; }
@@ -113,7 +126,7 @@ namespace HCI_main_project.ViewModels
 
         public ICommand AddAccommodationCommand { get; }
         public ICommand EditAccommodationCommand { get; }
-        public AddAccommodationPageViewModel(AccommodationTypeControl accommodationTypeControl,NameAndPhotoFormControl nameAndPhotoFormControl, AddressFormControl addressFormControl, Accommodation selectedAccommodation = null)
+        public AddAccommodationPageViewModel(AccommodationTypeControl accommodationTypeControl,NameAndPhotoFormControl nameAndPhotoFormControl, AddressFormControl addressFormControl, Snackbar snackBarPositive, Snackbar snackBarNegative, Accommodation selectedAccommodation = null)
         {
             _nameAndPhotoFormControl = nameAndPhotoFormControl;
             _addressFormControl = addressFormControl;
@@ -130,6 +143,9 @@ namespace HCI_main_project.ViewModels
             AddressFormViewModel.SetLabelContents("Accommodation");
 
             AccommodationTypeViewModel = new AccommodationTypeViewModel(selectedAccommodation);
+
+            _snackBarPositive = snackBarPositive;
+            _snackBarNegative = snackBarNegative;
 
             FillGeneralInfoButtonAccommodationCommand = new FillGeneralInfoButtonAccommodationCommand(this);
             FillAddressButtonAccommodationCommand = new FillAddressButtonAccommodationCommand(this);

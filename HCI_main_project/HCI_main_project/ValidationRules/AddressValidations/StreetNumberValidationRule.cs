@@ -24,7 +24,7 @@ namespace HCI_main_project.ValidationRules
 
                 if (streetNumber.Length < 1 || streetNumber.Length > 10)
                 {
-
+                    return new ValidationResult(false, "Street number field can have between 1 and 10 chars!");
                 }
 
                 if (!Regex.IsMatch(streetNumber, @"^[0-9,/-a-zA-Z]+$"))

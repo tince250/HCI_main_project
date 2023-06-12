@@ -25,7 +25,7 @@
                 </Grid.RowDefinitions>
                 <Image
               Height="220"
-              Source="../Images/Tours/petrovaradin.jpg"
+              Source="{Binding ImagePath}"
               Stretch="UniformToFill" />
                 <StackPanel
               Grid.Row="1"
@@ -99,7 +99,8 @@
                           Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                           ToolTip="Edit this trip"
                           Background="Transparent"
-                          BorderBrush="Transparent">
+                          BorderBrush="Transparent"
+                            Command="{Binding AddTourButtonCommand}">
                             <materialDesign:PackIcon
                             Width="35"
                             Height="40"

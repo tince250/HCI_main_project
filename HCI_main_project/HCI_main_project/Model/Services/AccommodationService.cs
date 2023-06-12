@@ -27,7 +27,7 @@ namespace HCI_main_project.Model.Services
 
         public void Edit(int id, AccommodationDTO accommodationDTO)
         {
-            Accommodation accommodation = _context.Accommodations.Include(r => r.Address).FirstOrDefault(r => r.Id == 1);
+            Accommodation accommodation = _context.Accommodations.Include(r => r.Address).FirstOrDefault(r => r.Id == id);
             accommodation.Address.City = accommodationDTO.Address.City;
             accommodation.Address.Street = accommodationDTO.Address.Street;
             accommodation.Address.PostalCode = accommodationDTO.Address.PostalCode;

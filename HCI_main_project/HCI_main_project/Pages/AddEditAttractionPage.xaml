@@ -269,6 +269,12 @@
                 </Button>
             </StackPanel>
         </Grid>
-    </Grid>
+            <materialDesign:Snackbar x:Name="snackBarPositive" MessageQueue="{materialDesign:MessageQueue}" Style="{StaticResource PositiveSnackBar}">
+
+            </materialDesign:Snackbar>
+            <materialDesign:Snackbar x:Name="snackBarNegative" MessageQueue="{materialDesign:MessageQueue}" Style="{StaticResource PositiveSnackBar}" >
+
+            </materialDesign:Snackbar>
+        </Grid>
     </Grid>
 </Page>

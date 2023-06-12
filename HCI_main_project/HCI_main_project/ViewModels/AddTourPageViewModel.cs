@@ -161,6 +161,19 @@ namespace HCI_main_project.ViewModels
                 OnPropertyChanged(nameof(IsPageForEdit));
             }
         }
+        private Snackbar _snackBarPositive;
+        private Snackbar _snackBarNegative;
+        public void ShowPositiveSnackBar(string message)
+        {
+            _snackBarPositive.FontSize = 24;
+            _snackBarPositive.MessageQueue.Enqueue(message);
+        }
+
+        public void ShowNegativeSnackBar(string message)
+        {
+            _snackBarPositive.FontSize = 24;
+            _snackBarNegative.MessageQueue.Enqueue(message);
+        }
 
         public ICommand BackToGeneralInfoButtonTourCommand { get; }
         /*public ICommand BackToDetailsButtonTourCommand { get; }
@@ -178,6 +191,7 @@ namespace HCI_main_project.ViewModels
             AttractionsDragAndDropControl attractionsDragAndDropControl,
             AccommodationsDragAndDropControl accommodationsDragAndDropControl,
             RestaurantsDragAndDropControl  restaurantsDragAndDropControl,
+            Snackbar snackBarPositive, Snackbar snackBarNegative,
             Tour selectedTour=null)
         {
             NameAndPhotoFormControl = nameAndPhotoFormControl;
@@ -187,6 +201,9 @@ namespace HCI_main_project.ViewModels
             RestaurantsDragAndDropControl = restaurantsDragAndDropControl;
             IsPageForEdit = selectedTour == null ? false : true;
             SelectedTour = selectedTour;
+
+            _snackBarPositive = snackBarPositive;
+            _snackBarNegative = snackBarNegative;
 
             FillFieldsWithPreviousData(selectedTour);
 

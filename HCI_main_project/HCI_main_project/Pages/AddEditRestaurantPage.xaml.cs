@@ -27,12 +27,12 @@ namespace HCI_main_project
     /// </summary>
     public partial class AddEditRestaurantPage : Page
     {
-        public AddEditRestaurantPage()
+        public AddEditRestaurantPage(Restaurant restaurant=null)
         {
             
             InitializeComponent();
-            Restaurant tour = App.serviceProvider.GetService<TripagoContext>().Restaurants.FirstOrDefault(t => t.Id == 13);
-            DataContext = new AddRestaurantPageViewModel(nameAndPhotoFormControl, addressFormControl, snackBarPositive, snackBarNegative, tour);
+            //Restaurant tour = App.serviceProvider.GetService<TripagoContext>().Restaurants.FirstOrDefault(t => t.Id == 13);
+            DataContext = new AddRestaurantPageViewModel(nameAndPhotoFormControl, addressFormControl, snackBarPositive, snackBarNegative, restaurant);
         }
 
         private void openGoBackDialog(object sender, RoutedEventArgs e)

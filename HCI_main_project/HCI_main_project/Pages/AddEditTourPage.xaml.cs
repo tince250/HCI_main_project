@@ -27,12 +27,12 @@ namespace HCI_main_project.Pages
     /// </summary>
     public partial class AddEditTourPage : Page
     {
-        public AddEditTourPage()
+        public AddEditTourPage(Tour tour = null)
         {
             InitializeComponent();
-            Tour tour = App.serviceProvider.GetService<TripagoContext>().Tours.FirstOrDefault(t => t.Id==2);
+            //Tour tour = App.serviceProvider.GetService<TripagoContext>().Tours.FirstOrDefault(t => t.Id==2);
             DataContext = new AddTourPageViewModel(nameAndPhotoFormControl, tripDetailsControl, 
-                attractionsDragAndDropControl, accommodationsDragAndDropControl, restaurantsDragAndDropControl, tour);
+                attractionsDragAndDropControl, accommodationsDragAndDropControl, restaurantsDragAndDropControl, snackBarPositive, snackBarNegative, tour);
         }
 
         private void openGoBackDialog(object sender, RoutedEventArgs e)

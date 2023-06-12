@@ -10,7 +10,7 @@
         <Grid VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
 
             <Grid VerticalAlignment="Center">
@@ -24,10 +24,7 @@
 
             </Grid>
 
-            <Image Grid.Row="0" Grid.Column="1">
-                <Image.Source>
-                    <BitmapImage UriSource="..\Resources\register.jpg" />
-                </Image.Source>
+            <Image Grid.Row="0" Grid.Column="1" Source="{Binding  Path=DetailsContent.ImagePath}">
             </Image>
         </Grid>
     </MaterialDesign:Card>

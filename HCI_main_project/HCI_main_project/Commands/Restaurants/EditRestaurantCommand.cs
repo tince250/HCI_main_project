@@ -1,6 +1,8 @@
 ﻿using HCI_main_project.Model.DTOs;
 using HCI_main_project.Model.Services;
 using HCI_main_project.Models;
+using HCI_main_project.Pages;
+using HCI_main_project.ViewModel;
 using HCI_main_project.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -33,19 +35,26 @@ namespace HCI_main_project.Commands
                     _addRestaurantPageViewModel.AddressFormViewModel.Street,
                     _addRestaurantPageViewModel.AddressFormViewModel.StreetNo
                     );
-                ImageHelper.RemoveOld("Restaurants",_addRestaurantPageViewModel.SelectedRestaurant.Image);
+                //ImageHelper.RemoveOld("Restaurants",_addRestaurantPageViewModel.SelectedRestaurant.Image);
                 string filename = ImageHelper.Save(_addRestaurantPageViewModel.NameAndPhotoFormViewModel.ImageRectangle.Fill as ImageBrush,
-                    "Restaurants", _addRestaurantPageViewModel.NameAndPhotoFormViewModel.File, false);
+                    "Restaurants", _addRestaurantPageViewModel.NameAndPhotoFormViewModel.File, true);
 
                 RestaurantDTO restaurant = new RestaurantDTO(_addRestaurantPageViewModel.NameAndPhotoFormViewModel.Name,
                     filename, address,
                     _addRestaurantPageViewModel.AddressFormControl.Latitude,
                     _addRestaurantPageViewModel.AddressFormControl.Longitude);
                 _restaurantService.Edit(_addRestaurantPageViewModel.SelectedRestaurant.Id, restaurant);
+
+                _addRestaurantPageViewModel.ShowPositiveSnackBar("You have successfully edited restaurant!");
+                Homepage homePage = new Homepage();
+                ApplicationHelper.NavigationService.Navigate(homePage);
+
+                var vm = homePage.DataContext as HomepageViewModel;
+                vm.ShowSnackBar("You have successfully edited restaurant!");
             }
             catch (Exception ex)
             {
-                ex.GetType();
+                _addRestaurantPageViewModel.ShowNegativeSnackBar("Server error. Try again later");
             }
         }
 

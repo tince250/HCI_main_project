@@ -2,6 +2,7 @@
 using HCI_main_project.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -90,7 +91,12 @@ namespace HCI_main_project
             {
                 dir = "Tours";
             }
-            return System.IO.Path.Combine("..","Resources", dir, filename);
+            if (dir == "Restaurants")
+            {
+                var kk = System.IO.Path.Combine("..", "Resources", dir, filename);
+            }
+            var ss = System.IO.Path.Combine("..","Resources", dir, filename);
+            return ss;
         }
     }
 }

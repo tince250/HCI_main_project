@@ -12,6 +12,8 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using HCI_main_project.Pages;
+using HCI_main_project.ViewModel;
 
 namespace HCI_main_project.Commands.Attractions
 {
@@ -34,19 +36,25 @@ namespace HCI_main_project.Commands.Attractions
                     _addAttractionPageViewModel.AddressFormViewModel.Street,
                     _addAttractionPageViewModel.AddressFormViewModel.StreetNo
                     );
-                ImageHelper.RemoveOld("Attractions", _addAttractionPageViewModel.SelectedAttraction.Image);
+                //ImageHelper.RemoveOld("Attractions", _addAttractionPageViewModel.SelectedAttraction.Image);
                 string filename = ImageHelper.Save(_addAttractionPageViewModel.NameAndPhotoFormViewModel.ImageRectangle.Fill as ImageBrush,
-                    "Attractions", _addAttractionPageViewModel.NameAndPhotoFormViewModel.File, false);
+                    "Attractions", _addAttractionPageViewModel.NameAndPhotoFormViewModel.File, true);
 
                 AttractionDTO Attraction = new AttractionDTO(_addAttractionPageViewModel.NameAndPhotoFormViewModel.Name,
                     filename, address,
                     _addAttractionPageViewModel.AddressFormControl.Latitude,
                     _addAttractionPageViewModel.AddressFormControl.Longitude);
                 _attractionService.Edit(_addAttractionPageViewModel.SelectedAttraction.Id, Attraction);
+
+                Homepage homePage = new Homepage();
+                ApplicationHelper.NavigationService.Navigate(homePage);
+
+                var vm = homePage.DataContext as HomepageViewModel;
+                vm.ShowSnackBar("You have successfully edited attraction!");
             }
             catch (Exception ex)
             {
-                ex.GetType();
+                _addAttractionPageViewModel.ShowNegativeSnackBar("Server error. Try again later");
             }
         }
 
