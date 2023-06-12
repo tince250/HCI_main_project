@@ -162,18 +162,6 @@
                 </Setter>
             </Style>
 
-            <Style x:Key="BiggerToolTipStyle" TargetType="ToolTip">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="ToolTip">
-                            <Border Background="#D5D5D5" BorderBrush="Black" BorderThickness="1" Padding="5">
-                                <TextBlock Text="{TemplateBinding Content}" FontSize="20" Foreground="#000000" />
-                            </Border>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
 
 
             <Style x:Key="PositiveSnackBar" TargetType="{x:Type materialDesign:Snackbar}">

@@ -26,7 +26,7 @@
                 </Grid.RowDefinitions>
                 <Image
               Height="220"
-              Source="../Images/Attractions/cele.jfif"
+              Source="../Resources/Restaurants/tince.png"
               Stretch="UniformToFill" />
                 <StackPanel
               Grid.Row="1"

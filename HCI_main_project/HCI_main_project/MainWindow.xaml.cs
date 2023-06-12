@@ -50,21 +50,21 @@ namespace HCI_main_project
 
         private void OnKeyDownHandler(object sender, KeyEventArgs e)
         {
-            //var page = frame.Content as Homepage;
-            //if (page != null)
-            //{
-            //    if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.S)
-            //    {
-            //        page.searchBox.Focus();
-            //    }
-            //    else if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.F)
-            //    {
-            //        if (page.DataContext is HomepageViewModel vm)
-            //        {
-            //            vm.ExpandFilters = !vm.ExpandFilters;
-            //        }
-            //    }
-            //}
+            var page = Frame.Content as Homepage;
+            if (page != null)
+            {
+                if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.S)
+                {
+                    page.searchBox.Focus();
+                }
+                else if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.F)
+                {
+                    if (page.DataContext is HomepageViewModel vm)
+                    {
+                        vm.ExpandFilters = !vm.ExpandFilters;
+                    }
+                }
+            }
             var addEditRestaurantPage = Frame.Content as AddEditRestaurantPage;
             if (addEditRestaurantPage != null)
             {
@@ -239,24 +239,6 @@ namespace HCI_main_project
 
 
 
-        private void OnKeyDownHandler(object sender, KeyEventArgs e)
-        {
-            var page = frame.Content as Homepage;
-            if (page != null)
-            {
-                if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.S)
-                {
-                    page.searchBox.Focus();
-                }
-                else if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.F)
-                {
-                    if (page.DataContext is HomepageViewModel vm)
-                    {
-                        vm.ExpandFilters = !vm.ExpandFilters;
-                    }
-                }
-            }  
-        }
 
         private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
@@ -269,7 +251,7 @@ namespace HCI_main_project
 
             if (focusedControl != null)
             {
-                if (frame.Content is Homepage home)
+                if (Frame.Content is Homepage home)
                 {
                     if (isAgent())
                         HelpProvider.SetHelpKey((DependencyObject)focusedControl, "Homepage_Tours_Agent");   

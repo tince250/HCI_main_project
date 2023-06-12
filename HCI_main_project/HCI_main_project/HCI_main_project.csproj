@@ -13,8 +13,11 @@
     <None Remove="Images\cele.jfif" />
     <None Remove="Images\hram.jpg" />
     <None Remove="Images\Tours\petrovaradin.jpg" />
+    <None Remove="Resources\Accommodations\20230610164441624_err1.png" />
+    <None Remove="Resources\Attractions\20230610050115599_err1.png" />
     <None Remove="Resources\login.jpg" />
     <None Remove="Resources\register.jpg" />
+    <None Remove="Resources\Restaurants\tince.png" />
     <None Remove="Resources\x-icon.jpg" />
   </ItemGroup>
 
@@ -53,10 +56,19 @@
     <Resource Include="Images\Tours\petrovaradin.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\Accommodations\20230610164441624_err1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Attractions\20230610050115599_err1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\login.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\register.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Restaurants\tince.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\x-icon.jpg">
@@ -65,8 +77,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\Attractions\" />
-    <Folder Include="Resources\Accommodations\" />
     <Folder Include="Resources\Tours\" />
   </ItemGroup>
 

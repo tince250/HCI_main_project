@@ -36,7 +36,7 @@ namespace HCI_main_project.Pages
 
         private void openGoBackDialog(object sender, RoutedEventArgs e)
         {
-            this.mainGrid.Children.Add(new ConfirmDialog(DialogType.GO_BACK_CRUD));
+            this.mainGrid.Children.Add(new ConfirmDialog(DialogType.GO_BACK_CRUD,null));
         }
     }
 }

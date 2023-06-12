@@ -72,5 +72,25 @@ namespace HCI_main_project
             }
 
         }
+
+        public static string ParseImagePath(string filename, string type)
+        {
+            string dir = "";
+            if (type == "attraction")
+            {
+                dir = "Attractions";
+            } else if (type == "restaurant")
+            {
+                dir = "Restaurants";
+            } else if (type == "accommodation")
+            {
+                dir = "Accommodations";
+            }
+            else
+            {
+                dir = "Tours";
+            }
+            return System.IO.Path.Combine("..","Resources", dir, filename);
+        }
     }
 }
