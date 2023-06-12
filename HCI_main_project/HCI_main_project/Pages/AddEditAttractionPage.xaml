@@ -1,0 +1,280 @@
+﻿<Page x:Class="HCI_main_project.Pages.AddEditAttractionPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:converters="http://materialdesigninxaml.net/winfx/xaml/themes/converters"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:controls="clr-namespace:HCI_main_project.UserControls"
+      xmlns:viewModels="clr-namespace:HCI_main_project.ViewModels">
+
+    <Grid x:Name="mainGrid">
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Button Height="50"
+            MinWidth="170"
+            MaxWidth="250"
+            FontWeight="SemiBold"
+            FontSize="24"
+            materialDesign:ButtonAssist.CornerRadius="25"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+            Style="{StaticResource MaterialDesignRaisedButton}"
+            Background="{StaticResource BackButtonColor}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="top"
+            Margin="15,5,0,0"
+            Foreground="{StaticResource WhiteColor}"
+                    Click="openGoBackDialog">
+                <Button.ToolTip>
+                    <ToolTip Content="Go back to home page" Style="{StaticResource BiggerToolTipStyle}" />
+                </Button.ToolTip>
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon  Kind="ArrowLeft" Width="30" Height="30" Style="{DynamicResource StepperNumberIcon}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="-10,0,0,0" />
+                    <TextBlock  Text="Go back" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,4"/>
+                </StackPanel>
+            </Button>
+                <TextBlock HorizontalAlignment="Center" Margin="0,25,0,0" VerticalAlignment="Bottom">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource Title}">
+                            <Setter Property="Text" Value="Create attraction" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsPageForEdit}" Value="True">
+                                    <Setter Property="Text" Value="Edit attraction" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+
+        </Grid>
+
+        <Grid Grid.Row="1" VerticalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Margin="20,20,20,0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="Auto" Width="500">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel HorizontalAlignment="Left" Grid.Column="0" Width="auto" Height="auto">
+                        <Button Command="{Binding BackButtonAttractionCommand}">
+                            <materialDesign:PackIcon Kind="Numeric1" Style="{DynamicResource StepperNumberIcon}" />
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                                    <Setter Property="Background" Value="{DynamicResource ButtonLightBlueColor}"/>
+                                    <Setter Property="IsEnabled" Value="False"/>
+                                    <Setter Property="Height" Value="50"/>
+                                    <Setter Property="Width" Value="50"/>
+                                    <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="5"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsEnabled" Value="False">
+                                            <Setter Property="Opacity" Value="0.8" />
+                                        </Trigger>
+                                        <DataTrigger Binding="{Binding Path=IsFillAddressButtonClicked}" Value="True">
+                                            <Setter Property="Background" Value="{DynamicResource OrangeColor}" />
+                                            <Setter Property="BorderBrush" Value="{DynamicResource OrangeColor}"/>
+                                            <Setter Property="IsEnabled" Value="True"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding IsPageForEdit}" Value="True">
+                                            <Setter Property="Background" Value="{DynamicResource OrangeColor}" />
+                                            <Setter Property="BorderBrush" Value="{DynamicResource OrangeColor}"/>
+                                            <Setter Property="IsEnabled" Value="True"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <TextBlock HorizontalAlignment="Center" Text="General info" FontSize="24">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="{DynamicResource ButtonLightBlueColor}"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=IsFillAddressButtonClicked}" Value="True">
+                                            <Setter Property="Foreground" Value="{DynamicResource OrangeColor}" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=IsPageForEdit}" Value="True">
+                                            <Setter Property="Foreground" Value="{DynamicResource OrangeColor}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </StackPanel>
+                    <materialDesign:PackIcon HorizontalAlignment="Center" Grid.Column="1">
+                        <materialDesign:PackIcon.Style>
+                            <Style TargetType="materialDesign:PackIcon" BasedOn="{StaticResource StepperArrowIcon}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=IsFillAddressButtonClicked}" Value="True">
+                                        <Setter Property="Foreground" Value="{DynamicResource OrangeColor}" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsPageForEdit}" Value="True">
+                                        <Setter Property="Foreground" Value="{DynamicResource OrangeColor}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </materialDesign:PackIcon.Style>
+                    </materialDesign:PackIcon>
+                    <StackPanel Width="auto" Height="auto" HorizontalAlignment="Right" Grid.Column="2">
+                        <Button Command="{Binding FillAddressButtonAttractionCommand}">
+                            <materialDesign:PackIcon Kind="Numeric2" Style="{DynamicResource StepperNumberIcon}" />
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                                    <Setter Property="Background" Value="{DynamicResource DarkerGrayColor}"/>
+                                    <Setter Property="IsEnabled" Value="False"/>
+                                    <Setter Property="Height" Value="50"/>
+                                    <Setter Property="Width" Value="50"/>
+                                    <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="5"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsEnabled" Value="False">
+                                            <Setter Property="Opacity" Value="1" />
+                                            <Setter Property="BorderBrush" Value="{DynamicResource GrayColor}"/>
+                                        </Trigger>
+                                        <DataTrigger Binding="{Binding Path=IsFillAddressButtonClicked}" Value="True">
+                                            <Setter Property="Background" Value="{DynamicResource ButtonLightBlueColor}" />
+                                            <Setter Property="BorderBrush" Value="{DynamicResource ButtonLightBlueColor}"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding IsPageForEdit}" Value="True">
+                                            <Setter Property="Background" Value="{DynamicResource OrangeColor}" />
+                                            <Setter Property="BorderBrush" Value="{DynamicResource OrangeColor}"/>
+                                            <Setter Property="IsEnabled" Value="True"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <TextBlock HorizontalAlignment="Center" Text="Address info" FontSize="24">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="{DynamicResource DarkerGrayColor}"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=IsFillAddressButtonClicked}" Value="True">
+                                            <Setter Property="Foreground" Value="{DynamicResource ButtonLightBlueColor}" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding IsPageForEdit}" Value="True">
+                                            <Setter Property="Foreground" Value="{DynamicResource OrangeColor}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="1" x:Name="controls" VerticalAlignment="Center" Margin="0,10,0,0">
+                <controls:NameAndPhotoFormControl DataContext="{Binding NameAndPhotoFormViewModel}" x:Name="nameAndPhotoFormControl" Width="500">
+                    <controls:NameAndPhotoFormControl.Style>
+                        <Style TargetType="controls:NameAndPhotoFormControl">
+                            <Setter Property="Visibility" Value="Visible" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding DataContext.IsFillAddressButtonClicked, RelativeSource={RelativeSource AncestorType={x:Type viewModels:AddAttractionPageViewModel}}}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </controls:NameAndPhotoFormControl.Style>
+                </controls:NameAndPhotoFormControl>
+                <Grid HorizontalAlignment="Stretch" Margin="0,0,0,0">
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsFillAddressButtonClicked}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+                    <controls:AddressFormControl DataContext="{Binding AddressFormViewModel}" x:Name="addressFormControl" Grid.Column="0" Margin="15,0,15,0"/>
+                </Grid>
+            </Grid>
+
+
+
+            <StackPanel Grid.Row="2" Margin="0,-10,0,20" Orientation="Horizontal" HorizontalAlignment="Center">
+
+                <Button Height="50"
+            MinWidth="170"
+            MaxWidth="250"
+            FontWeight="SemiBold"
+            FontSize="24"
+            materialDesign:ButtonAssist.CornerRadius="25"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+            Background="{StaticResource ButtonLightBlueColor}"
+            HorizontalAlignment="Left"
+            Margin="15,15,5,10"
+            Foreground="{StaticResource WhiteColor}" Command="{Binding BackButtonAttractionCommand}">
+                    <Button.Style>
+
+                        <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedLightButton}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsFillAddressButtonClicked}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <TextBlock  Text="Back to general info" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,4"/>
+                </Button>
+
+                <Button Height="50"
+            MinWidth="170"
+            MaxWidth="250"
+            FontWeight="SemiBold"
+            FontSize="24"
+            materialDesign:ButtonAssist.CornerRadius="25"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+            Background="{StaticResource OrangeColor}"
+            Margin="15,15,5,10"
+            Foreground="{StaticResource WhiteColor}">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedLightButton}">
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource OrangeColor}"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsFillAddressButtonClicked}" Value="True">
+                                    <Setter Property="HorizontalAlignment" Value="Right" />
+                                </DataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding IsFillAddressButtonClicked}" Value="True" />
+                                        <Condition Binding="{Binding SelectedAttraction, Converter={StaticResource NullToBooleanConverter}}" Value="False" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="Command" Value="{Binding EditAttractionCommand}" />
+                                </MultiDataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding IsFillAddressButtonClicked}" Value="True" />
+                                        <Condition Binding="{Binding SelectedAttraction, Converter={StaticResource NullToBooleanConverter}}" Value="True" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="Command" Value="{Binding AddAttractionCommand}" />
+                                </MultiDataTrigger>
+                                <DataTrigger Binding="{Binding IsFillAddressButtonClicked}" Value="False">
+                                    <Setter Property="Command" Value="{Binding FillAddressButtonAttractionCommand}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <TextBlock  Text="{Binding Path=NextButtonText}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,4"/>
+                </Button>
+            </StackPanel>
+        </Grid>
+            <materialDesign:Snackbar x:Name="snackBarPositive" MessageQueue="{materialDesign:MessageQueue}" Style="{StaticResource PositiveSnackBar}">
+
+            </materialDesign:Snackbar>
+            <materialDesign:Snackbar x:Name="snackBarNegative" MessageQueue="{materialDesign:MessageQueue}" Style="{StaticResource PositiveSnackBar}" >
+
+            </materialDesign:Snackbar>
+        </Grid>
+    </Grid>
+</Page>

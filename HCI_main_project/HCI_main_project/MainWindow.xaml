@@ -5,10 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HCI_main_project"
         mc:Ignorable="d"
-        Title="MainWindow" Height="768" Width="1024"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+        Title="Tripago" Height="768" Width="1024"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        WindowState="Maximized"
+        PreviewKeyDown="OnKeyDownHandler"
+        >
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
+    
     <Grid>
-        <TextBlock Style="{StaticResource Title}" HorizontalAlignment="Center">
+
+        <Frame x:Name="frame" Source="/View/LoginPage.xaml" NavigationUIVisibility="Hidden"/>
+
+        <!--<TextBlock Style="{StaticResource Title}" HorizontalAlignment="Center">
             Registration
         </TextBlock>
         <Button
@@ -26,6 +36,6 @@
             
             <TextBlock Text="Add accomodation" />
           
-        </Button>
+        </Button>-->
     </Grid>
 </Window>

@@ -2,26 +2,103 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:HCI_main_project"
-             StartupUri="MainWindow.xaml"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+             xmlns:controls="clr-namespace:HCI_main_project.UserControls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:converters="clr-namespace:HCI_main_project.Converters">
     <Application.Resources>
-
         <ResourceDictionary>
-            <Style TargetType="{x:Type Window}">
+
+            <Style x:Key="snackBarModified" BasedOn="{StaticResource {x:Type materialDesign:SnackbarMessage}}" TargetType="{x:Type materialDesign:SnackbarMessage}">
+                <Setter Property="FontSize" Value="24" />
+            </Style>
+
+            <converters:ImageConverter x:Key="ImageConverter" />
+
+            <Style x:Key="BiggerToolTipStyle" TargetType="ToolTip">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ToolTip">
+                            <Border Background="#D5D5D5" BorderBrush="Black" BorderThickness="1" Padding="5">
+                                <TextBlock Text="{TemplateBinding Content}" FontSize="20" Foreground="#000000" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
+            <converters:NullToBooleanConverter x:Key="NullToBooleanConverter" />
+            <converters:TourToDetailsCardConverter x:Key="TourToDetailsCardConverter"/>
+            <Style TargetType="{x:Type Page}">
                 <Setter Property="FontFamily" Value="./Fonts/#Poppins" />
             </Style>
 
             <Style x:Key="Title" TargetType="TextBlock">
-                <Setter Property="FontSize" Value="40"/>
+                <Setter Property="FontSize" Value="48"/>
                 <Setter Property="FontWeight" Value="Bold"/>
                 <Setter Property="Margin" Value="5"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+
+            <Style x:Key="FieldLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="FontWeight" Value="Regular"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+
+            <Style x:Key="ChangeableColorFieldLabel" TargetType="Label" BasedOn="{StaticResource FieldLabel}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(controls:OnFocusLabelColorChange.IsEnabled)}"
+                             Value="True">
+                        <Setter Property="Foreground" Value="#3e92cc"></Setter>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="ErrorFieldTextBlock" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="22"/>
+                <Setter Property="FontWeight" Value="Regular"/>
+                <Setter Property="Foreground" Value="#A8201A"/>
+            </Style>
+            <Style x:Key="GeneralFieldLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="30"/>
+                <Setter Property="FontWeight" Value="Regular"/>
+                <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+                <Setter Property="Foreground" Value="#257FBD"/>
+            </Style>
+
+
+            <Style x:Key="StepperNumberIcon" TargetType="materialDesign:PackIcon">
+                <Setter Property="Width" Value="40"/>
+                <Setter Property="Height" Value="40"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="Foreground" Value="{DynamicResource WhiteColor}"/>
+            </Style>
+
+            <Style x:Key="StepperArrowIcon" TargetType="materialDesign:PackIcon">
+                <Setter Property="Kind" Value="ChevronRight"/>
+                <Setter Property="Width" Value="40"/>
+                <Setter Property="Height" Value="40"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Foreground" Value="{DynamicResource ButtonLightBlueColor}"/>
+                <Setter Property="Margin" Value="10,0,10,10"/>
             </Style>
 
             <SolidColorBrush x:Key="ButtonLightBlueColor" Color="#257FBD" />
             <SolidColorBrush x:Key="OrangeColor" Color="#F5AA39"></SolidColorBrush>
             <SolidColorBrush x:Key="MediumBlueColor" Color="#6750A4"/>
+            <SolidColorBrush x:Key="DarkBlueColor" Color="#0A2463"/>
             <SolidColorBrush x:Key="BlackColor" Color="#000000"/>
+            <SolidColorBrush x:Key="GrayColor" Color="#585858"/>
+            <SolidColorBrush x:Key="LightGrayColor" Color="#BBBBBB"/>
             <SolidColorBrush x:Key="WhiteColor" Color="#FFFFFF"/>
+            <SolidColorBrush x:Key="DarkerGrayColor" Color="#D5D5D5"/>
+            <SolidColorBrush x:Key="BackButtonColor" Color="#3e92cc"/>
+
+            <SolidColorBrush x:Key="IconColor_suitcase" Color="#257FBD" />
+            <SolidColorBrush x:Key="IconColor_accom" Color="#FFFFFF" />
+            <SolidColorBrush x:Key="IconColor_attrac" Color="#FFFFFF" />
+            <SolidColorBrush x:Key="IconColor_resta" Color="#FFFFFF" />
 
             <Style x:Key="CRUDButton" TargetType="Button">
                 <Setter Property="Height" Value="40"/>
@@ -30,10 +107,95 @@
                 <Setter Property="IsEnabled" Value="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
             </Style>
 
+            <Style x:Key="CustomMaterialDesignFloatingHintTextBox" TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
+                <Setter Property="Validation.ErrorTemplate">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <StackPanel>
+                                <AdornedElementPlaceholder x:Name="textBox"/>
+                                <Grid Width="490" Margin="0,0,10,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition SharedSizeGroup="textBox"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border BorderBrush="#A8201A" BorderThickness="0,0,0,0">
+                                        <Rectangle  Fill="#FFFFFF" />
+                                    </Border>
+                                    <TextBlock Text="{Binding [0].ErrorContent}"
+                                               TextWrapping="Wrap"
+                                           Foreground="#A8201A"
+                                           FontSize="19"
+                                               FontWeight="Medium"
+                                           Margin="5,2,0,0"
+                                           Height="Auto"/>
+                                </Grid>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="CustomRadioButtonStyle" TargetType="RadioButton">
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="RadioButton">
+                            <BulletDecorator Background="Transparent">
+                                <BulletDecorator.Bullet>
+                                    <Grid Width="20" Height="20" VerticalAlignment="Center">
+                                        <Ellipse x:Name="Circle" Fill="white" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="1"/>
+                                        <Ellipse x:Name="InnerCircle" Fill="{TemplateBinding Background}" Width="10" Height="10" Margin="3"/>
+                                    </Grid>
+                                </BulletDecorator.Bullet>
+                                <ContentPresenter HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" RecognizesAccessKey="True"/>
+                            </BulletDecorator>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter TargetName="InnerCircle" Property="Fill" Value="#F5AA39"/>
+                                    <!-- Set the desired color here -->
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="Circle" Property="Stroke" Value="#3e92cc"/>
+                                    <!-- Set the desired color here -->
+                                </Trigger>
+                                <!-- Add more triggers as needed -->
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+
+
+            <Style x:Key="PositiveSnackBar" TargetType="{x:Type materialDesign:Snackbar}">
+                <Setter Property="Background" Value="#F5AA39" />
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="BorderBrush" Value="#F5AA39" />
+                <Setter Property="FontSize" Value="34" />
+            </Style>
+
             <ResourceDictionary.MergedDictionaries>
-                
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignExtensions;component/Themes/Generic.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignExtensions;component/Themes/MaterialDesignLightTheme.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="DeepPurple" SecondaryColor="Lime" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="Themes/Generic.xaml" />
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="DeepPurple" SecondaryColor="Lime" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary>
+                    <!-- primary -->
+                    <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="#3e92cc"/>
+                    <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="#FFFFFF"/>
+                    <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#3e92cc"/>
+                    <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="#FFFFFF"/>
+                    <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="#3e92cc"/>
+                    <SolidColorBrush x:Key="LightestBlueColor" Color="#E1F3FF"/>
+                    <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="#FFFFFF"/>
+                    <!-- accent -->
+                    <SolidColorBrush x:Key="SecondaryHueMidBrush" Color="#F5AA39"/>
+                    <SolidColorBrush x:Key="LightestOrangeColor" Color="#FFF9F0"/>
+                    <SolidColorBrush x:Key="SecondaryHueMidForegroundBrush" Color="#FFFFFF"/>
+                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
