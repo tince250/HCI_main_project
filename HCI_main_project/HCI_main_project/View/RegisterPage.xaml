@@ -117,11 +117,13 @@
                     materialDesign:ButtonAssist.CornerRadius="25"                                    
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource MaterialDesignRaisedButton}"
-                    ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
                     Background="{StaticResource ButtonLightBlueColor}"
                     Foreground="{StaticResource WhiteColor}">
 
                     <TextBlock Text="Register" />
+                    <Button.ToolTip>
+                        <ToolTip Content="Press return" Style="{StaticResource BiggerToolTipStyle}" />
+                    </Button.ToolTip>
 
                 </Button>
 
@@ -201,7 +203,6 @@
                           Style="{StaticResource MaterialDesignRaisedLightButton}"
                             Background="{StaticResource ButtonLightBlueColor}"
                             BorderBrush="Transparent"
-                          ToolTip="Open help window"
             Click="Button_Click"
                            >
             <materialDesign:PackIcon Margin="0,0,0,0"
@@ -210,6 +211,10 @@
                             HorizontalAlignment="Center"          
                             Foreground="{StaticResource WhiteColor}"
                             Kind="QuestionMarkCircle" />
+
+            <Button.ToolTip>
+                <ToolTip Content="Open help window" Style="{StaticResource BiggerToolTipStyle}" />
+            </Button.ToolTip>
         </Button>
 
     </Grid>

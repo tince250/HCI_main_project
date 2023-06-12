@@ -67,9 +67,11 @@ namespace HCI_main_project.View
                 Pin.Location = new Location(attraction.Latitude, attraction.Longitude);
                 Pin.Background = new SolidColorBrush(Color.FromRgb(39, 117, 185));
                 this.map.Children.Add(Pin);
+                this.map.Center = Pin.Location;
                 routeLine.Locations.Add(Pin.Location);
             }
             this.map.Children.Add(routeLine);
+            this.map.ZoomLevel = 11.5;
         }
 
         private void setAccommodationsPushPins()
