@@ -1,4 +1,5 @@
 ﻿using HCI_main_project.Components;
+using HCI_main_project.Help;
 using HCI_main_project.Models;
 using HCI_main_project.ViewModel;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -100,6 +101,17 @@ namespace HCI_main_project.View
         private void openReservationsDialog(object sender, RoutedEventArgs e)
         {
             mainGrid.Children.Add(new UsersInTourDialog());
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (ApplicationHelper.User.Role == UserRole.AGENT)
+                HelpProvider.SetHelpKey((DependencyObject)this, "DetailsHelpAgent");
+            else
+                HelpProvider.SetHelpKey((DependencyObject)this, "DetailsHelpTraveler");
+            string str = HelpProvider.GetHelpKey((DependencyObject)this);
+            MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
+            HelpProvider.ShowHelp(str, mainWindow);
         }
     }
 }

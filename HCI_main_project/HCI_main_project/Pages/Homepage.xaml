@@ -11,11 +11,13 @@
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       xmlns:custom="clr-namespace:HCI_main_project.User_Controls"
       xmlns:rules="clr-namespace:HCI_main_project.ValidationRules"
+      xmlns:help="clr-namespace:HCI_main_project.Help"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="800"
       Title="Homepage"
-      Background="White">
+      Background="White"
+      help:HelpProvider.HelpKey="Indeks">
 
     <!--<Page.Resources>
         <DataTemplate DataType="{x:Type model:Tour}">
@@ -77,6 +79,37 @@
                         </Style>
                     </root:NavbarItem.Style>
                 </root:NavbarItem>
+                <Separator
+                    Height="10"
+                     Margin="15,17,15,0"
+                     Style="{StaticResource MaterialDesignDarkSeparator}">
+                    <Separator.Template>
+                        <ControlTemplate TargetType="Separator">
+                            <Border BorderBrush="{StaticResource DarkBlueColor}"
+                                BorderThickness="0,3,0,0"/>
+                        </ControlTemplate>
+                    </Separator.Template>
+                </Separator>
+                <Button 
+                    Height="60"
+                          HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                          Style="{StaticResource MaterialDesignRaisedLightButton}"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                          ToolTip="Open help window (F1)"
+                            Command="{Binding openDeleteTourDialogCommand}"
+                            CommandParameter="{Binding Tour}"
+                    Click="Button_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Margin="0,0,0,0"
+                            Width="40"
+                            Height="30"
+                            Foreground="{StaticResource WhiteColor}"
+                            Kind="QuestionMarkCircle" />
+                        <TextBlock Margin="5,0,0,0" FontSize="22" Text="Help" Foreground="{StaticResource WhiteColor}"/>
+                    </StackPanel>
+                </Button>
             </StackPanel>
         </Border>
         <Border Grid.Row="1" Grid.Column="0" Padding="10" Background="{StaticResource ButtonLightBlueColor}" CornerRadius="0,0,10,0">
@@ -183,6 +216,7 @@
                 </StackPanel>
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBox
+                        ToolTip="Search by name (Ctrl+S)"
                 x:Name="searchBox"
                 MaxLength="200"
                 materialDesign:TextBlockAssist.AutoToolTip="True"
@@ -246,10 +280,11 @@
                           Padding="0"
                           materialDesign:ButtonAssist.CornerRadius="5"
                           Command="{Binding toggleFilterPaneCommand}"
-                          CommandParameter="{Binding ElementName=filterOptions}">
-                        <ToggleButton.ToolTip>
+                          CommandParameter="{Binding ElementName=filterOptions}"
+                                  ToolTip="Expand filters (Ctrl+F)">
+                        <!--<ToggleButton.ToolTip>
                             <ToolTip Content="Expand filters" Style="{StaticResource BiggerToolTipStyle}" />
-                        </ToggleButton.ToolTip>
+                        </ToggleButton.ToolTip>-->
                         <materialDesign:PackIcon Width="40" Height="45" Kind="Filter" Margin="0"/>
                         <ToggleButton.Style>
                             <Style TargetType="ToggleButton" BasedOn="{StaticResource MaterialDesignRaisedButton}">

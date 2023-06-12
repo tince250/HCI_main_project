@@ -94,15 +94,15 @@ namespace HCI_main_project.ViewModel
         }
 
 
-        private string selectedOption;
-        public string SelectedOption
+        private string? selectedOption;
+        public string? SelectedOption
         {
             get { return selectedOption; }
             set
             {
                 selectedOption = value;
                 OnPropertyChanged(nameof(SelectedOption));
-                if (value != null)
+                if (value != null && this.selectedType == "tours")
                     this.Sort(value);
             }
         }
@@ -229,9 +229,9 @@ namespace HCI_main_project.ViewModel
 
         public HomepageViewModel(Grid mainGrid, TextBox minPriceTextBox, TextBox maxPriceTextBox, DatePicker dateFromPicker, DatePicker dateToPicker)
         {
-            ApplicationHelper.User = new User();
-            ApplicationHelper.User.Id = 211;
-            ApplicationHelper.User.Role = UserRole.AGENT;
+            //ApplicationHelper.User = new User();
+            //ApplicationHelper.User.Id = 211;
+            //ApplicationHelper.User.Role = UserRole.TRAVELER;
 
             this.LoggedUserRole = ApplicationHelper.User.Role == UserRole.AGENT ? "agent" : "traveler";
 
@@ -276,7 +276,8 @@ namespace HCI_main_project.ViewModel
                     "Most popular",
                     "Price lowest",
                     "Price highest",
-                    "Most recent"
+                    "Date desc",
+                    "Date asc"
                 };
                 this.SelectedOption = this.SortOptions[0];
                 this.EntityType = "tour";
@@ -345,10 +346,11 @@ namespace HCI_main_project.ViewModel
                 this.ExpandFilters = false;
                 this.SortOptions = new ObservableCollection<string>
                 {
-                    "Date desc",
-                    "Date asc",
+                    "Most popular",
                     "Price lowest",
-                    "Price highest"
+                    "Price highest",
+                    "Date desc",
+                    "Date asc"
                 };
                 this.SelectedOption = this.SortOptions[0];
                 this.setStatistics();
@@ -417,8 +419,9 @@ namespace HCI_main_project.ViewModel
 
         public void Sort(string criteria)
         {
-            this.Objects = SortTours(criteria, this.Objects);
+           this.Objects = SortTours(criteria, this.Objects);
         }
+
 
         public ObservableCollection<object> SortTours(string criteria, ObservableCollection<object> objects)
         {

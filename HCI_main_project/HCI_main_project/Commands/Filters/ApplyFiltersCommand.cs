@@ -22,7 +22,7 @@ namespace HCI_main_project.Commands
         }
 
         public override void Execute(object? parameter)
-        { 
+        {
 
             if (this.homepageViewModel.SelectedType.Equals("tours"))
                 applyTourFilters();
@@ -35,18 +35,19 @@ namespace HCI_main_project.Commands
         {
             string chosenCity = this.homepageViewModel.SelectedLocation;
 
-            if (chosenCity == null)
+            if (chosenCity == null && !this.homepageViewModel.SelectedType.Equals("accommodation"))
             {
                 return;
             }
 
             ObservableCollection<object> Objects = this.homepageViewModel.Objects;
 
-            if (chosenCity.Contains("All"))
+            if ((chosenCity != null && chosenCity.Contains("All")) && this.homepageViewModel.SelectedType != "accommodation")
             {
                 selectAll();
                 return;
             }
+
 
             if (this.homepageViewModel.SelectedType.Equals("attractions"))
             {
@@ -54,7 +55,22 @@ namespace HCI_main_project.Commands
             }
             else if (this.homepageViewModel.SelectedType.Equals("accommodation"))
             {
-                this.homepageViewModel.Objects = new ObservableCollection<object>(this.homepageViewModel.Objects.OfType<Accommodation>().Where(a => a.Address.City.Equals(chosenCity)).ToList());
+                var objects  = new ObservableCollection<object>(this.homepageViewModel.dbContext.Accommodations.ToList());
+
+                if ((chosenCity != null) && !chosenCity.Contains("All"))
+                    objects = new ObservableCollection<object>(objects.OfType<Accommodation>().Where(a => a.Address.City.Equals(chosenCity)).ToList());
+
+                if (this.homepageViewModel.SelectedOption!= null && !this.homepageViewModel.SelectedOption.Contains("all", StringComparison.OrdinalIgnoreCase))
+                {
+                    if (this.homepageViewModel.SelectedOption == "Hotels")
+                        objects = new ObservableCollection<object>(objects.OfType<Accommodation>().Where(a => a.Type == AccommodationType.HOTEL).ToList());
+                    else
+                        objects = new ObservableCollection<object>(objects.OfType<Accommodation>().Where(a => a.Type == AccommodationType.APARTMENT).ToList());
+
+                }
+
+
+                this.homepageViewModel.Objects = objects;
             }
             else if (this.homepageViewModel.SelectedType.Equals("restaurants"))
             {

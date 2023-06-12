@@ -81,6 +81,8 @@ namespace HCI_main_project.ViewModel
                 if (validate("Email") == null && validate("Password") == null)
                 {
                     ApplicationHelper.User = this.service.Login(Email, Password);
+                    if (ApplicationHelper.TourId != null && ApplicationHelper.TourId != 0)
+                        App.serviceProvider.GetRequiredService<TripDetailsViewModel>().SetButtons();
                     Homepage homePage = new Homepage();
                     ApplicationHelper.NavigationService.Navigate(homePage);
                 }

@@ -18,6 +18,7 @@ using System.Windows.Shapes;
 using System.Windows.Navigation;
 using HCI_main_project.Pages;
 using HCI_main_project.ViewModel;
+using HCI_main_project.Help;
 
 namespace HCI_main_project
 {
@@ -111,6 +112,53 @@ namespace HCI_main_project
                     }
                 }
             }  
+        }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            IInputElement focusedControl = FocusManager.GetFocusedElement(Application.Current.Windows[0]);
+            //if (focusedControl is DependencyObject)
+            //{
+            //    string str = HelpProvider.GetHelpKey((DependencyObject)focusedControl);
+            //    HelpProvider.ShowHelp(str, this);
+            //}
+
+            if (focusedControl != null)
+            {
+                if (frame.Content is Homepage home)
+                {
+                    if (isAgent()) 
+                        HelpProvider.SetHelpKey((DependencyObject)focusedControl, "Homepage_Tours_Agent");   
+                    else
+                        HelpProvider.SetHelpKey((DependencyObject)focusedControl, "Homepage_Tours_Traveler");
+                }
+                else if (frame.Content is TripDetailsPage detailsT && ApplicationHelper.User.Role == UserRole.TRAVELER)
+                {
+                    HelpProvider.SetHelpKey((DependencyObject)focusedControl, "DetailsHelpTraveler");
+                }
+                else if (frame.Content is TripDetailsPage detailsA && ApplicationHelper.User.Role == UserRole.AGENT)
+                {
+                    HelpProvider.SetHelpKey((DependencyObject)focusedControl, "DetailsHelpAgent");
+                }
+                else if (frame.Content is LoginPage login)
+                {
+                    HelpProvider.SetHelpKey((DependencyObject)focusedControl, "LoginHelp");
+                }
+                else if (frame.Content is RegisterPage register)
+                {
+                    HelpProvider.SetHelpKey((DependencyObject)focusedControl, "RegisterHelp");
+                }
+
+                string str = HelpProvider.GetHelpKey((DependencyObject)focusedControl);
+                HelpProvider.ShowHelp(str, this);
+            }
+
+            
+        }
+
+        private bool isAgent()
+        {
+            return ApplicationHelper.User.Role == UserRole.AGENT;
         }
     }
 }

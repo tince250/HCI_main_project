@@ -38,6 +38,7 @@ namespace HCI_main_project.Commands
             {
                 this.homepageViewModel.Objects = new ObservableCollection<object>(this.homepageViewModel.dbContext.Accommodations.ToList());
                 this.homepageViewModel.SelectedLocation = null;
+                this.homepageViewModel.SelectedOption = null;
             }
             else if (this.homepageViewModel.SelectedType.Equals("restaurants"))
             {
