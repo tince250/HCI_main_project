@@ -11,11 +11,13 @@
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       xmlns:custom="clr-namespace:HCI_main_project.User_Controls"
       xmlns:rules="clr-namespace:HCI_main_project.ValidationRules"
+      xmlns:help="clr-namespace:HCI_main_project.Help"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="800"
       Title="Homepage"
-      Background="White">
+      Background="White"
+      help:HelpProvider.HelpKey="Indeks">
 
     <!--<Page.Resources>
         <DataTemplate DataType="{x:Type model:Tour}">

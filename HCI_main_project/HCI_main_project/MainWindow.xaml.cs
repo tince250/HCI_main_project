@@ -18,6 +18,7 @@ using System.Windows.Shapes;
 using System.Windows.Navigation;
 using HCI_main_project.Pages;
 using HCI_main_project.ViewModel;
+using HCI_main_project.Help;
 
 namespace HCI_main_project
 {
@@ -111,6 +112,29 @@ namespace HCI_main_project
                     }
                 }
             }  
+        }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            IInputElement focusedControl = FocusManager.GetFocusedElement(Application.Current.Windows[0]);
+            //if (focusedControl is DependencyObject)
+            //{
+            //    string str = HelpProvider.GetHelpKey((DependencyObject)focusedControl);
+            //    HelpProvider.ShowHelp(str, this);
+            //}
+
+            if (focusedControl != null)
+            {
+                if (frame.Content is Homepage home)
+                {
+                    HelpProvider.SetHelpKey((DependencyObject)focusedControl, "Indeks");   
+                }
+
+                string str = HelpProvider.GetHelpKey((DependencyObject)focusedControl);
+                HelpProvider.ShowHelp(str, this);
+            }
+
+            
         }
     }
 }
