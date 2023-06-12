@@ -229,9 +229,9 @@ namespace HCI_main_project.ViewModel
 
         public HomepageViewModel(Grid mainGrid, TextBox minPriceTextBox, TextBox maxPriceTextBox, DatePicker dateFromPicker, DatePicker dateToPicker)
         {
-            ApplicationHelper.User = new User();
-            ApplicationHelper.User.Id = 211;
-            ApplicationHelper.User.Role = UserRole.AGENT;
+            //ApplicationHelper.User = new User();
+            //ApplicationHelper.User.Id = 211;
+            //ApplicationHelper.User.Role = UserRole.AGENT;
 
             this.LoggedUserRole = ApplicationHelper.User.Role == UserRole.AGENT ? "agent" : "traveler";
 
