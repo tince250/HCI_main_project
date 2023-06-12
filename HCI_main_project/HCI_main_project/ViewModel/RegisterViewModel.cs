@@ -174,21 +174,21 @@ namespace HCI_main_project.ViewModel
             if (columnName == "Name")
             {
                 if (string.IsNullOrEmpty(Name))
-                    result = "Please enter a name";
+                    result = "Name field can not be empty!";
                 if (!string.IsNullOrEmpty(Name) && Name.Any(char.IsDigit))
-                    result = "Invalid name format";
+                    result = "Invalid characters. Digits are not allowed!";
             }
             if (columnName == "LastName")
             {
                 if (string.IsNullOrEmpty(LastName))
-                    result = "Please enter a last name";
+                    result = "Last name field can not be empty!";
                 if (!string.IsNullOrEmpty(LastName) && LastName.Any(char.IsDigit))
-                    result = "Invalid last name format";
+                    result = "Invalid characters. Only letters are allowed!";
             }
             if (columnName == "Email")
             {
                 if (string.IsNullOrEmpty(Email))
-                    result = "Please enter a email";
+                    result = "Email field can not be empty!";
                 try
                 {
                     MailAddress m;
@@ -197,22 +197,22 @@ namespace HCI_main_project.ViewModel
                 }
                 catch (Exception)
                 {
-                    result = "Invalid email format";
+                    result = "Invalid email format. Email should include '@'!";
                 }
             }
             if (columnName == "Password")
             {
                 if (string.IsNullOrEmpty(Password))
-                    result = "Please enter a password";
+                    result = "Password field can not be empty!";
                 if (!string.IsNullOrEmpty(Password) && Password.Length < 8)
-                    result = "8 characters or longer";
+                    result = "Password field should have 8 characters or more!";
             }
             if (columnName == "ConfirmPassword")
             {
                 if (string.IsNullOrEmpty(ConfirmPassword))
                     result = "Please confirm a password";
                 if (!string.IsNullOrEmpty(ConfirmPassword) && !string.Equals(ConfirmPassword, Password))
-                    result = "Passwords don't match";
+                    result = "Passwords don't match!";
             }
             return result;
             

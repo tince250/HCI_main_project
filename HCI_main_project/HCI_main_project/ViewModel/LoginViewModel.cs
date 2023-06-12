@@ -94,7 +94,7 @@ namespace HCI_main_project.ViewModel
             }
             catch (Exception ex)
             {
-                if (ex.Message == "Bad credentials.Please try again.")
+                if (ex.Message == "Bad credentials. Please try again.")
                     ErrorMessage = ex.Message;
                 else
                     ErrorMessage = "Check your inputs and try again.";
@@ -123,7 +123,7 @@ namespace HCI_main_project.ViewModel
             if (columnName == "Email")
             {
                 if (string.IsNullOrEmpty(Email))
-                    result = "Please enter a email";
+                    result = "Email field can not be empty!";
 
                 try
                 {
@@ -133,15 +133,15 @@ namespace HCI_main_project.ViewModel
                 }
                 catch (Exception)
                 {
-                    result = "Invalid email format";
+                    result = "Invalid email format. Email should include '@'!";
                 }
             }
             if (columnName == "Password")
             {
                 if (string.IsNullOrEmpty(Password))
-                    result = "Please enter a password";
+                    result = "Password field can not be empty!";
                 if (!string.IsNullOrEmpty(Password) && Password.Length < 8)
-                    result = "8 characters or longer";
+                    result = "Password field should have 8 characters or more!";
             }
             return result;
         }

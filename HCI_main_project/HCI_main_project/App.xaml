@@ -134,6 +134,33 @@
                 </Setter>
             </Style>
 
+            <Style x:Key="CustomMaterialDesignFloatingHintTextBoxLR" TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
+                <Setter Property="Validation.ErrorTemplate">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <StackPanel>
+                                <AdornedElementPlaceholder x:Name="textBox"/>
+                                <Grid Margin="0,0,10,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition SharedSizeGroup="textBox"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border BorderBrush="#A8201A" BorderThickness="0,0,0,0">
+                                        <Rectangle  Fill="#FFFFFF" />
+                                    </Border>
+                                    <TextBlock Text="{Binding [0].ErrorContent}"
+                                               TextWrapping="Wrap"
+                                           Foreground="#A8201A"
+                                           FontSize="19"
+                                               FontWeight="Medium"
+                                           Margin="5,2,0,0"
+                                           Height="Auto"/>
+                                </Grid>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
             <Style x:Key="CustomRadioButtonStyle" TargetType="RadioButton">
                 <Setter Property="FontSize" Value="24"/>
                 <Setter Property="Template">

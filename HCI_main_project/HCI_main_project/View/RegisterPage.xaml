@@ -31,17 +31,17 @@
         <ScrollViewer Grid.Column="1">
             <Grid VerticalAlignment="Center" Margin="50, 0" ScrollViewer.VerticalScrollBarVisibility="Visible">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="55"/>
+                    <RowDefinition Height="90"/>
                     <RowDefinition Height="20"/>
-                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="62"/>
                     <RowDefinition Height="65"/>
-                    <RowDefinition Height="55"/>
+                    <RowDefinition Height="62"/>
                     <RowDefinition Height="65"/>
-                    <RowDefinition Height="55"/>
+                    <RowDefinition Height="62"/>
                     <RowDefinition Height="65"/>
-                    <RowDefinition Height="55"/>
+                    <RowDefinition Height="62"/>
                     <RowDefinition Height="65"/>
-                    <RowDefinition Height="55"/>
+                    <RowDefinition Height="62"/>
                     <RowDefinition Height="65"/>
                     <RowDefinition MinHeight="20" MaxHeight="40"/>
                     <RowDefinition />
@@ -53,34 +53,37 @@
                 </TextBlock>
                 <Separator Grid.Row="0" VerticalAlignment="Bottom" Margin="50,0" Background="{StaticResource OrangeColor}" BorderBrush="{StaticResource OrangeColor}"/>
 
-                <Label Grid.Row="2" Content="Name:" VerticalContentAlignment="Bottom" FontSize="20" ctr:OnFocusLabelColorChange.IsEnabled="{Binding ElementName=name, Path=IsFocused}"/>
-
+                <Label Grid.Row="2" VerticalAlignment="Bottom" Content="Name" VerticalContentAlignment="Bottom" FontSize="22" Style="{DynamicResource ChangeableColorFieldLabel}"
+                       ctr:OnFocusLabelColorChange.IsEnabled="{Binding ElementName=name, Path=IsFocused}"/>
                 <TextBox
                     x:Name="name"
                         Grid.Row="3"
                         VerticalAlignment="Top"
                         MaxLength="20"
                     KeyDown="OnKeyDownHandler"
-                    FontSize="22"
-                    Style="{StaticResource CustomMaterialDesignFloatingHintTextBox}"
+                    FontSize="24"
+                    Style="{StaticResource CustomMaterialDesignFloatingHintTextBoxLR}"
                         Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=Name, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"
                         LostFocus="TextBox_LostFocus">
                 </TextBox>
 
-                <Label Grid.Row="4" Content="Last name:" VerticalContentAlignment="Bottom" FontSize="20" ctr:OnFocusLabelColorChange.IsEnabled="{Binding ElementName=surname, Path=IsFocused}"/>
+                <Label Grid.Row="4" Content="Last name" VerticalContentAlignment="Bottom" FontSize="22" 
+                       VerticalAlignment="Bottom" Style="{DynamicResource ChangeableColorFieldLabel}"
+                       ctr:OnFocusLabelColorChange.IsEnabled="{Binding ElementName=surname, Path=IsFocused}"/>
                 <TextBox
                     x:Name="surname"
                         Grid.Row="5"
                         VerticalAlignment="Top"
                         MaxLength="20"                        
-                        FontSize="22"
+                        FontSize="24"
                         KeyDown="OnKeyDownHandler"
-                        Style="{StaticResource CustomMaterialDesignFloatingHintTextBox}"                
+                        Style="{StaticResource CustomMaterialDesignFloatingHintTextBoxLR}"                
                     Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=LastName, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"
                      LostFocus="TextBox_LostFocus">
                 </TextBox>
 
-                <Label Grid.Row="6" Content="Email:" VerticalContentAlignment="Bottom" FontSize="20" ctr:OnFocusLabelColorChange.IsEnabled="{Binding ElementName=email, Path=IsFocused}"/>
+                <Label Grid.Row="6" Content="Email" VerticalAlignment="Bottom" VerticalContentAlignment="Bottom" FontSize="22" Style="{DynamicResource ChangeableColorFieldLabel}"
+                       ctr:OnFocusLabelColorChange.IsEnabled="{Binding ElementName=email, Path=IsFocused}"/>
                 <TextBox
                     x:Name="email"
                         Grid.Row="7"
@@ -88,20 +91,24 @@
                         MaxLength="20"                    
                          FontSize="22"
                         KeyDown="OnKeyDownHandler"
-                    Style="{StaticResource CustomMaterialDesignFloatingHintTextBox}"
+                    Style="{StaticResource CustomMaterialDesignFloatingHintTextBoxLR}"
                      LostFocus="TextBox_LostFocus"
                     Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=Email, ValidatesOnDataErrors=true, NotifyOnValidationError=true}">
                 </TextBox>
 
 
-                <Label Grid.Row="8" Content="Password:" VerticalContentAlignment="Bottom" FontSize="20"/>
-                <components:BindablePasswordBox x:Name="pass" Grid.Row="9" KeyDown="OnKeyDownHandler"
+                <Label Grid.Row="8" Content="Password" VerticalContentAlignment="Bottom" Style="{DynamicResource ChangeableColorFieldLabel}"
+                       VerticalAlignment="Bottom"
+                       ctr:OnFocusLabelColorChange.IsEnabled="{Binding ElementName=passr, Path=IsFocused}" FontSize="22"/>
+                <components:BindablePasswordBox x:Name="passr" Grid.Row="9" KeyDown="OnKeyDownHandler"
                         Password="{Binding Path=Password, Mode=TwoWay, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"
                                                  LostFocus="PasswordBox_Changed"/>
 
 
-                <Label Grid.Row="10" Content="Confirm password:" VerticalContentAlignment="Bottom" FontSize="20"/>
-                <components:BindablePasswordBox Grid.Row="11" x:Name="confpass" KeyDown="OnKeyDownHandler"
+                <Label Grid.Row="10" Content="Confirm password" VerticalContentAlignment="Bottom" 
+                       VerticalAlignment="Bottom" Style="{DynamicResource ChangeableColorFieldLabel}"
+                       ctr:OnFocusLabelColorChange.IsEnabled="{Binding ElementName=confpassr, Path=IsFocused}" FontSize="22"/>
+                <components:BindablePasswordBox Grid.Row="11" x:Name="confpassr" KeyDown="OnKeyDownHandler"
                         Password="{Binding Path=ConfirmPassword, Mode=TwoWay, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" 
                                                 LostFocus="PasswordBox_Changed"/>
 
@@ -109,10 +116,10 @@
                 <Button
                     Command="{Binding Path=RegisterClickCommand}"
                     Grid.Row="13"
-                    Height="60"
+                    Height="55"
                     MinWidth="140"
                     MaxWidth="200"
-                    FontSize="20"
+                    FontSize="24"
                     FontWeight="Bold"
                     materialDesign:ButtonAssist.CornerRadius="25"                                    
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
@@ -126,9 +133,9 @@
                 </Button>
 
                 <StackPanel Grid.Row="14" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Label FontWeight="Bold" Content="Already have an account? " VerticalContentAlignment="Center" FontSize="17"></Label>
-                    <Label FontWeight="Bold" VerticalContentAlignment="Center" FontSize="17" Foreground="{StaticResource OrangeColor}">
-                        <Hyperlink NavigateUri="LoginPage.xaml" FontWeight="Bold" FontSize="17" Foreground="{StaticResource OrangeColor}">
+                    <Label FontWeight="SemiBold" Content="Already have an account? " VerticalContentAlignment="Center" FontSize="22"></Label>
+                    <Label FontWeight="Bold" VerticalContentAlignment="Center" FontSize="24" Foreground="{StaticResource OrangeColor}">
+                        <Hyperlink NavigateUri="LoginPage.xaml" FontWeight="Bold" FontSize="24" Foreground="{StaticResource OrangeColor}">
                             Login
                         </Hyperlink>
                     </Label>
