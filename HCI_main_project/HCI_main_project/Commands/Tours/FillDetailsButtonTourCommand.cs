@@ -15,7 +15,7 @@ namespace HCI_main_project.Commands.Tours
         public FillDetailsButtonTourCommand(AddTourPageViewModel addTourPageViewModel)
         {
             _addTourPageViewModel = addTourPageViewModel;
-            _addTourPageViewModel.TripDetailsControlViewModel.PropertyChanged += ViewModel_PropertyChanged;
+            _addTourPageViewModel.NameAndPhotoFormViewModel.PropertyChanged += ViewModel_PropertyChanged;
         }
 
         public override void Execute(object? parameter)
@@ -27,6 +27,7 @@ namespace HCI_main_project.Commands.Tours
                 _addTourPageViewModel.IsFillDetailsButtonClicked = true;
                 _addTourPageViewModel.IsFillRestaurantsButtonClicked = false;
                 _addTourPageViewModel.IsFillGeneralInfoButtonClicked = false;
+                _addTourPageViewModel.TripDetailsControl.Visibility = Visibility.Visible;
                 _addTourPageViewModel.NameAndPhotoFormControl.Visibility = Visibility.Collapsed;
                 _addTourPageViewModel.NextButtonText = "Select attractions";
                 _addTourPageViewModel.BackButtonText = "Back to general info";
@@ -43,14 +44,14 @@ namespace HCI_main_project.Commands.Tours
                 || e.PropertyName == nameof(_addTourPageViewModel.NameAndPhotoFormViewModel.IsImageValid)
                 || e.PropertyName == nameof(_addTourPageViewModel.NameAndPhotoFormViewModel.File))
             {
-                //OnCanExecuteChanged();
+                OnCanExecuteChanged();
             }
         }
 
         public override bool CanExecute(object? parameter)
         {
-            return true;
-            //return _addTourPageViewModel.NameAndPhotoFormViewModel.IsFormValid();
+            //return true;
+            return _addTourPageViewModel.NameAndPhotoFormViewModel.IsFormValid();
         }
 
 

@@ -29,12 +29,15 @@
             VerticalAlignment="top"
             Margin="15,5,0,0"
             Foreground="{StaticResource WhiteColor}">
+                <Button.ToolTip>
+                    <ToolTip Content="Go back to home page" Style="{StaticResource BiggerToolTipStyle}" />
+                </Button.ToolTip>
                 <StackPanel Orientation="Horizontal">
                     <materialDesign:PackIcon  Kind="ArrowLeft" Width="30" Height="30" Style="{DynamicResource StepperNumberIcon}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="-10,0,0,0" />
                     <TextBlock  Text="Go back" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,4"/>
                 </StackPanel>
             </Button>
-            <TextBlock Style="{StaticResource Title}" HorizontalAlignment="Center" Margin="0,25,0,0" VerticalAlignment="Bottom">Create trip</TextBlock>
+            <TextBlock Style="{StaticResource Title}" HorizontalAlignment="Center" Margin="0,25,0,0" VerticalAlignment="Bottom">Create tour</TextBlock>
 
         </Grid>
 
@@ -378,7 +381,7 @@
                                 </Style>
                             </Button.Style>
                         </Button>
-                        <TextBlock HorizontalAlignment="Center" Text="Tours" FontSize="24">
+                        <TextBlock HorizontalAlignment="Center" Text="Accommodations" FontSize="24">
                             <TextBlock.Style>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Foreground" Value="{DynamicResource DarkerGrayColor}"/>
@@ -536,13 +539,39 @@
                         <Style TargetType="Grid">
                             <Setter Property="Visibility" Value="Collapsed" />
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding IsFillAddressButtonClicked}" Value="True">
+                                <DataTrigger Binding="{Binding IsFillAttractionsButtonClicked}" Value="True">
                                     <Setter Property="Visibility" Value="Visible" />
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
                     </Grid.Style>
-                    <controls:AddressFormControl DataContext="{Binding AddressFormViewModel}" x:Name="addressFormControl" Grid.Column="0" Margin="15,0,15,0"/>
+                    <controls:AttractionsDragAndDropControl x:Name="attractionsDragAndDropControl" Grid.Column="0" Margin="15,0,15,0"/>
+                </Grid>
+                <Grid HorizontalAlignment="Stretch" Margin="0,0,0,0">
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsFillAccommodationsButtonClicked}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+                    <controls:AccommodationsDragAndDropControl x:Name="accommodationsDragAndDropControl" Grid.Column="0" Margin="15,0,15,0"/>
+                </Grid>
+                <Grid HorizontalAlignment="Stretch" Margin="0,0,0,0">
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsFillRestaurantsButtonClicked}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+                    <controls:RestaurantsDragAndDropControl x:Name="restaurantsDragAndDropControl" Grid.Column="0" Margin="15,0,15,0"/>
                 </Grid>
             </Grid>
 
@@ -552,7 +581,7 @@
 
                 <Button Height="50"
             MinWidth="170"
-            MaxWidth="250"
+            MaxWidth="300"
             FontWeight="SemiBold"
             FontSize="24"
             materialDesign:ButtonAssist.CornerRadius="25"
@@ -616,14 +645,14 @@
                                 </DataTrigger>
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding IsRestaurantsButtonClicked}" Value="True" />
+                                        <Condition Binding="{Binding IsFillRestaurantsButtonClicked}" Value="True" />
                                         <Condition Binding="{Binding SelectedTour, Converter={StaticResource NullToBooleanConverter}}" Value="False" />
                                     </MultiDataTrigger.Conditions>
                                     <Setter Property="Command" Value="{Binding EditTourCommand}" />
                                 </MultiDataTrigger>
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding IsRestaurantsButtonClicked}" Value="True" />
+                                        <Condition Binding="{Binding IsFillRestaurantsButtonClicked}" Value="True" />
                                         <Condition Binding="{Binding SelectedTour, Converter={StaticResource NullToBooleanConverter}}" Value="True" />
                                     </MultiDataTrigger.Conditions>
                                     <Setter Property="Command" Value="{Binding AddTourCommand}" />

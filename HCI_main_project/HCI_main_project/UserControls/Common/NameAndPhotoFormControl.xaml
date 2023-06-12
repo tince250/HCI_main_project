@@ -40,8 +40,10 @@
                         FontSize="24"
                         Style="{StaticResource CustomMaterialDesignFloatingHintTextBox}"
                         materialDesign:HintAssist.FloatingScale="0.72"
-                        materialDesign:HintAssist.HelperTextFontSize="18">
-                        
+                        materialDesign:HintAssist.HelperTextFontSize="18" ToolTipService.Placement="Mouse">
+                        <!--<TextBox.ToolTip>
+                            <ToolTip Content="Enter name" Style="{StaticResource BiggerToolTipStyle}" />
+                        </TextBox.ToolTip>-->
                         <TextBox.Text>
                         <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
@@ -54,7 +56,7 @@
                        Style="{DynamicResource ChangeableColorFieldLabel}"
                       ></Label>
                 <Grid Grid.Row="4">
-                    <Rectangle 
+                    <Rectangle  ToolTipService.Placement="Mouse"
                            AllowDrop="True" 
                            commands:DropBehavior.DropCommand="{Binding ImageDropCommand}"
                            x:Name="imageRectangle"
@@ -64,6 +66,9 @@
                            StrokeThickness="1"
                            StrokeDashCap="Round"
                            Margin="0,0,0,10">
+                            <Rectangle.ToolTip>
+                                <ToolTip Content="Drop the image" Style="{StaticResource BiggerToolTipStyle}" />
+                            </Rectangle.ToolTip>
                             <Rectangle.Style>
                                 <Style TargetType="Rectangle">
                                     <Setter Property="Fill" Value="WhiteSmoke" />

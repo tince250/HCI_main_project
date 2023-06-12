@@ -5,6 +5,7 @@ using HCI_main_project.UserControls;
 using MaterialDesignThemes.Wpf;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Linq;
 
 namespace HCI_main_project.ViewModels
 {
@@ -12,7 +13,6 @@ namespace HCI_main_project.ViewModels
     {
         public NameAndPhotoFormViewModel NameAndPhotoFormViewModel { get; set; }
         public AddressFormViewModel AddressFormViewModel { get; set; }
-
         public TripDetailsControlViewModel TripDetailsControlViewModel { get; set; }
 
         public Tour SelectedTour { get; }
@@ -36,6 +36,39 @@ namespace HCI_main_project.ViewModels
             {
                 _tripDetailsControl = value;
                 OnPropertyChanged(nameof(TripDetailsControl));
+            }
+        }
+
+        private AttractionsDragAndDropControl _attractionsDragAndDropControl;
+        public AttractionsDragAndDropControl AttractionsDragAndDropControl
+        {
+            get { return _attractionsDragAndDropControl; }
+            set
+            {
+                _attractionsDragAndDropControl = value;
+                OnPropertyChanged(nameof(AttractionsDragAndDropControl));
+            }
+        }
+
+        private AccommodationsDragAndDropControl _accommodationsDragAndDropControl;
+        public AccommodationsDragAndDropControl AccommodationsDragAndDropControl
+        {
+            get { return _accommodationsDragAndDropControl; }
+            set
+            {
+                _accommodationsDragAndDropControl = value;
+                OnPropertyChanged(nameof(AccommodationsDragAndDropControl));
+            }
+        }
+
+        private RestaurantsDragAndDropControl _restaurantsDragAndDropControl;
+        public RestaurantsDragAndDropControl RestaurantsDragAndDropControl
+        {
+            get { return _restaurantsDragAndDropControl; }
+            set
+            {
+                _restaurantsDragAndDropControl = value;
+                OnPropertyChanged(nameof(RestaurantsDragAndDropControl));
             }
         }
 
@@ -142,44 +175,52 @@ namespace HCI_main_project.ViewModels
         public ICommand AddTourCommand { get; }
         public ICommand EditTourCommand { get; }
         public AddTourPageViewModel(NameAndPhotoFormControl nameAndPhotoFormControl, TripDetailsControl tripDetailsControl,
+            AttractionsDragAndDropControl attractionsDragAndDropControl,
+            AccommodationsDragAndDropControl accommodationsDragAndDropControl,
+            RestaurantsDragAndDropControl  restaurantsDragAndDropControl,
             Tour selectedTour=null)
         {
             NameAndPhotoFormControl = nameAndPhotoFormControl;
             TripDetailsControl = tripDetailsControl;
-            /*_nameAndPhotoFormControl = nameAndPhotoFormControl;
-            _addressFormControl = addressFormControl;
-            NextButtonText = "Fill general info";
+            AccommodationsDragAndDropControl = accommodationsDragAndDropControl;
+            AttractionsDragAndDropControl = attractionsDragAndDropControl;
+            RestaurantsDragAndDropControl = restaurantsDragAndDropControl;
+            IsPageForEdit = selectedTour == null ? false : true;
             SelectedTour = selectedTour;
 
-            IsPageForEdit = selectedTour == null ? false : true;
+            FillFieldsWithPreviousData(selectedTour);
 
             NameAndPhotoFormViewModel = new NameAndPhotoFormViewModel(nameAndPhotoFormControl.imageRectangle, nameAndPhotoFormControl.nameTextBox, selectedTour);
             NameAndPhotoFormViewModel.SetLabelContents("Tour");
-
-            AddressFormViewModel = new AddressFormViewModel(selectedTour, addressFormControl.streetTextBox, addressFormControl.streetNoTextBox, addressFormControl.cityTextBox);
-            AddressFormViewModel.SetLabelContents("Tour");
-*/
-
-            NameAndPhotoFormViewModel = new NameAndPhotoFormViewModel(nameAndPhotoFormControl.imageRectangle, nameAndPhotoFormControl.nameTextBox, selectedTour);
-            NameAndPhotoFormViewModel.SetLabelContents("Tour");
-            TripDetailsControlViewModel = new TripDetailsControlViewModel(tripDetailsControl.priceTextBox, tripDetailsControl.dateFrom, tripDetailsControl.dateTo, selectedTour);
+            TripDetailsControlViewModel = new TripDetailsControlViewModel(tripDetailsControl.priceTextBox, tripDetailsControl.dateFrom, tripDetailsControl.dateTo, tripDetailsControl.descriptionTextArea, selectedTour);
             BackToGeneralInfoButtonTourCommand = new BackToGeneralInfoButtonTourCommand(this);
             FillDetailsButtonTourCommand = new FillDetailsButtonTourCommand(this);
+            AddTourCommand = new AddTourCommand(this);
+            EditTourCommand = new EditTourCommand(this);
             NextButtonText = "Fill details info";
             FillAttractionsButtonTourCommand = new FillAttractionsButtonTourCommand(this);
             FillAccommodationsButtonTourCommand = new FillAccommodationsButtonTourCommand(this);
             FillRestaurantsButtonTourCommand = new FillRestaurantsButtonTourCommand(this);
             IsFillGeneralInfoButtonClicked = true;
-            /*FillGeneralInfoButtonTourCommand = new FillGeneralInfoButtonTourCommand(this);
-            FillAddressButtonTourCommand = new FillAddressButtonTourCommand(this);
-            BackToGeneralInfoButtonTourCommand = new BackToGeneralInfoButtonTourCommand(this);
-            BackToTourTypeButtonTourCommand = new BackToTourTypeButtonTourCommand(this);*/
-            //BackButtonTourCommand = new BackButtonTourCommand(this);
-            //FillAddressButtonTourCommand = new FillAddressButtonTourCommand(this);
-            /* AddTourCommand = new AddTourCommand(this);
-             EditTourCommand = new EditTourCommand(this);*/
         }
 
-       
+        private void FillFieldsWithPreviousData(Tour selectedTour)
+        {
+            if (selectedTour == null)
+            {
+                AccommodationsDragAndDropControl.loadFromDb();
+                AttractionsDragAndDropControl.loadFromDb();
+                RestaurantsDragAndDropControl.loadFromDb();
+            }
+            else
+            {
+                AccommodationsDragAndDropControl.loadForEdit(selectedTour.TourAccommodations.Select(ta => ta.Accommodation).ToList());
+                AttractionsDragAndDropControl.loadForEdit(selectedTour.TourAttractions.Select(ta => ta.Attraction).ToList());
+                RestaurantsDragAndDropControl.loadForEdit(selectedTour.TourRestaurants.Select(ta => ta.Restaurant).ToList());
+            }
+        }
+
+
+
     }
 }

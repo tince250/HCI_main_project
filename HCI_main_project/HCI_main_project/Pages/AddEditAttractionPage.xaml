@@ -27,6 +27,9 @@
             VerticalAlignment="top"
             Margin="15,5,0,0"
             Foreground="{StaticResource WhiteColor}">
+                <Button.ToolTip>
+                    <ToolTip Content="Go back to home page" Style="{StaticResource BiggerToolTipStyle}" />
+                </Button.ToolTip>
                 <StackPanel Orientation="Horizontal">
                     <materialDesign:PackIcon  Kind="ArrowLeft" Width="30" Height="30" Style="{DynamicResource StepperNumberIcon}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="-10,0,0,0" />
                     <TextBlock  Text="Go back" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,4"/>

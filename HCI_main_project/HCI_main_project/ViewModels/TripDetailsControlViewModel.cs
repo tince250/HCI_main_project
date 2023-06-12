@@ -95,21 +95,35 @@ namespace HCI_main_project.ViewModels
             }
         }
 
-        private TextBox _priceTextBox;
+        private string _description;
+        public string Description
+        {
+            get { return _description; }
+            set
+            {
+                _description = value;
+                OnPropertyChanged(nameof(Description));
+            }
+        }
+
+
+        private TextBox _priceTextBox, _descriptionTextArea;
         private DatePicker _dateFrom, _dateTo;
 
         public bool IsFormValid()
         {
             return !Validation.GetHasError(_priceTextBox) && Price != 0 && Price != null
                 && !Validation.GetHasError(_dateFrom) && DateFrom != null
-                && !Validation.GetHasError(_dateTo) && DateTo != null;
+                && !Validation.GetHasError(_dateTo) && DateTo != null 
+                && !Validation.GetHasError(_descriptionTextArea) && Description != null;
         }
 
-        public TripDetailsControlViewModel(TextBox priceTextBox, DatePicker dateFrom, DatePicker dateTo, Tour selectedTour = null)
+        public TripDetailsControlViewModel(TextBox priceTextBox, DatePicker dateFrom, DatePicker dateTo, TextBox descriptionTextArea, Tour selectedTour = null)
         {
             _priceTextBox = priceTextBox;
             _dateFrom = dateFrom;
             _dateTo = dateTo;
+            _descriptionTextArea = descriptionTextArea;
             FillFieldsWithPreviousData(selectedTour);
         }
 
@@ -120,6 +134,7 @@ namespace HCI_main_project.ViewModels
             Price = selectedTour.Price;
             DateFrom = selectedTour.From;
             DateTo = selectedTour.To;
+            Description = selectedTour.Description;
         }
 
         private Dictionary<string, List<string>> errors = new Dictionary<string, List<string>>();

@@ -1,4 +1,6 @@
-﻿using HCI_main_project.ViewModels;
+﻿using HCI_main_project.Models;
+using HCI_main_project.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +26,9 @@ namespace HCI_main_project.Pages
         public AddEditTourPage()
         {
             InitializeComponent();
-            DataContext = new AddTourPageViewModel(nameAndPhotoFormControl, tripDetailsControl, null);
+            Tour tour = App.serviceProvider.GetService<TripagoContext>().Tours.FirstOrDefault(t => t.Id==2);
+            DataContext = new AddTourPageViewModel(nameAndPhotoFormControl, tripDetailsControl, 
+                attractionsDragAndDropControl, accommodationsDragAndDropControl, restaurantsDragAndDropControl, tour);
         }
     }
 }

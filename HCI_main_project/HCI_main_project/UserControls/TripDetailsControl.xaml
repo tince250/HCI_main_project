@@ -26,6 +26,9 @@
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="40"/>
                         <RowDefinition Height="65"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="150"/>
                     </Grid.RowDefinitions>
 
 
@@ -139,6 +142,25 @@
                             </Validation.ErrorTemplate>
                         </DatePicker>
                     </Grid>
+
+                    <Label Grid.Row="6" Content="Trip description"
+                       Style="{DynamicResource ChangeableColorFieldLabel}"
+                       local:OnFocusLabelColorChange.IsEnabled="{Binding ElementName=descriptionTextArea, Path=IsFocused}"/>
+
+                    <TextBox Grid.Row="7"
+                             x:Name="descriptionTextArea"
+                    Height="150"
+                    VerticalAlignment="Top"
+                    MaxLength="100"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    TextWrapping="Wrap"
+                    VerticalScrollBarVisibility="Auto" FontSize="24">
+                        <Binding Path="Description" UpdateSourceTrigger="PropertyChanged"  TargetNullValue=''>
+                            <Binding.ValidationRules>
+                                <rules:NotEmptyValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox>
 
 
                 </Grid>

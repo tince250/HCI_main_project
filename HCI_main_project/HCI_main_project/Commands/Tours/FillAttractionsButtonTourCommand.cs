@@ -26,6 +26,8 @@ namespace HCI_main_project.Commands.Tours
                 _addTourPageViewModel.IsFillDetailsButtonClicked = false;
                 _addTourPageViewModel.IsFillRestaurantsButtonClicked = false;
                 _addTourPageViewModel.IsFillGeneralInfoButtonClicked = false;
+                _addTourPageViewModel.TripDetailsControl.Visibility = Visibility.Collapsed;
+                _addTourPageViewModel.NameAndPhotoFormControl.Visibility = Visibility.Collapsed;
                 //_addTourPageViewModel.NameAndPhotoFormControl.Visibility = Visibility.Visible;
                 _addTourPageViewModel.NextButtonText = "Select accomodations";
                 _addTourPageViewModel.BackButtonText = "Back to details";
@@ -40,7 +42,8 @@ namespace HCI_main_project.Commands.Tours
         {
             if (e.PropertyName == nameof(_addTourPageViewModel.TripDetailsControlViewModel.Price)
                 || e.PropertyName == nameof(_addTourPageViewModel.TripDetailsControlViewModel.DateTo)
-                || e.PropertyName == nameof(_addTourPageViewModel.TripDetailsControlViewModel.DateFrom))
+                || e.PropertyName == nameof(_addTourPageViewModel.TripDetailsControlViewModel.DateFrom)
+                || e.PropertyName == nameof(_addTourPageViewModel.TripDetailsControlViewModel.Description))
             {
                 OnCanExecuteChanged();
             }
@@ -50,5 +53,7 @@ namespace HCI_main_project.Commands.Tours
         {
             return _addTourPageViewModel.TripDetailsControlViewModel.IsFormValid();
         }
+
+
     }
 }

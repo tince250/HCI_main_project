@@ -50,6 +50,9 @@
                     Style="{StaticResource CustomMaterialDesignFloatingHintTextBox}"
                     materialDesign:HintAssist.FloatingScale="0.72"
                     materialDesign:HintAssist.HelperTextFontSize="18">
+                        <!--<TextBox.ToolTip>
+                            <ToolTip Content="Enter addresses street" Style="{StaticResource BiggerToolTipStyle}" />
+                        </TextBox.ToolTip>-->
                         <TextBox.Text>
                             <Binding Path="Street" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
@@ -73,6 +76,9 @@
                     Style="{StaticResource CustomMaterialDesignFloatingHintTextBox}"
                     materialDesign:HintAssist.FloatingScale="0.72"
                     materialDesign:HintAssist.HelperTextFontSize="18">
+                    <!--<TextBox.ToolTip>
+                        <ToolTip Content="Enter addresses street number" Style="{StaticResource BiggerToolTipStyle}" />
+                    </TextBox.ToolTip>-->
                     <TextBox.Text>
                         <Binding Path="StreetNo" UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
@@ -93,6 +99,9 @@
                             Style="{StaticResource CustomMaterialDesignFloatingHintTextBox}"
                             materialDesign:HintAssist.FloatingScale="0.72"
                             materialDesign:HintAssist.HelperTextFontSize="18">
+                    <!--<TextBox.ToolTip>
+                        <ToolTip Content="Enter addresses city" Style="{StaticResource BiggerToolTipStyle}" />
+                    </TextBox.ToolTip>-->
                     <TextBox.Text>
                         <Binding Path="City" UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
@@ -120,7 +129,8 @@
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Content="pin the address on map." VerticalAlignment="Top" Style="{StaticResource GeneralFieldLabel}">
+                <Label Grid.Row="0" Content="pin the address on map." 
+                       VerticalAlignment="Top" Style="{StaticResource GeneralFieldLabel}">
                 </Label>
                 <Image Source="../../Resources/err1.png" />
             </Grid>

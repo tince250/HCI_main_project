@@ -5,6 +5,7 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>ikonica.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="ikonica.ico" />
     <Content Include="Fonts\poppinsr.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -62,6 +64,7 @@
   <ItemGroup>
     <Folder Include="Resources\Attractions\" />
     <Folder Include="Resources\Accommodations\" />
+    <Folder Include="Resources\Tours\" />
     <Folder Include="Resources\Restaurants\" />
   </ItemGroup>
 

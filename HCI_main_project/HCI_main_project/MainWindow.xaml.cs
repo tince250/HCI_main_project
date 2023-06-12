@@ -46,82 +46,84 @@ namespace HCI_main_project
             //Frame.Content = addEditAttractionPage;
         }
 
-            // Console.WriteLine("Adding some authors into database...");
-            //Console.WriteLine("Adding some authors into database...");
-            //User user = new User
+        private void OnKeyDownHandler(object sender, KeyEventArgs e)
+        {
+            //var page = frame.Content as Homepage;
+            //if (page != null)
             //{
-            //    Email = "user@gmail.com",
-            //    FirstName = "tina",
-            //    LastName = "miha",
-            //    Password = "123",
-            //    Role = UserRole.AGENT
-            //};
-            //this.dbContext.Users.Add(user);
-            //this.dbContext.SaveChanges();
-
-            //this.dbContext.Tours.Add(new Tour
-            //{
-            //    Name = "Krstarenje Dunavom sa posetom Petrovaradinu",
-            //    Description = "",
-            //    From = new DateTime(2023, 6, 1),
-            //    To = new DateTime(2023, 6, 5),
-            //    Image = "petrovaradin.jpg",
-            //    Price = 20,
-            //    TravelAgentId = 1
-            //});
-
-            //this.dbContext.Tours.Add(new Tour
-            //{
-            //    Name = "Obilazak Hrama Svetog Save",
-            //    Description = "",
-            //    From = new DateTime(2023, 7, 1),
-            //    To = new DateTime(2023, 7, 5),
-            //    Image = "hram.jpg",
-            //    Price = 25,
-            //    TravelAgentId = 1
-            //});
-
-            //this.dbContext.Attractions.Add(new Attraction
-            //{
-            //    Name = "Cele Kula, Muzej Nis",
-            //    Image = new byte[0],
-            //    Address = new Address
+            //    if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.S)
             //    {
-            //        Street = "Bozidarska",
-            //        StreetNumber = 4,
-            //        City = "Nis",
-            //        PostalCode = 18000
+            //        page.searchBox.Focus();
             //    }
-            //});
-            //this.dbContext.SaveChanges();
-            //    Role = UserRole.TRAVELER
-            //};
-            //this.dbContext.Users.Add(user);
-            //this.dbContext.SaveChanges();
-
-            //foreach (User user1 in this.dbContext.Users)
-            //{
-            //    Trace.WriteLine(user1.FirstName);
+            //    else if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.F)
+            //    {
+            //        if (page.DataContext is HomepageViewModel vm)
+            //        {
+            //            vm.ExpandFilters = !vm.ExpandFilters;
+            //        }
+            //    }
             //}
         }
 
-        private void OnKeyDownHandler(object sender, KeyEventArgs e)
-        {
-            var page = frame.Content as Homepage;
-            if (page != null)
-            {
-                if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.S)
-                {
-                    page.searchBox.Focus();
-                }
-                else if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.F)
-                {
-                    if (page.DataContext is HomepageViewModel vm)
-                    {
-                        vm.ExpandFilters = !vm.ExpandFilters;
-                    }
-                }
-            }  
-        }
+        // Console.WriteLine("Adding some authors into database...");
+        //Console.WriteLine("Adding some authors into database...");
+        //User user = new User
+        //{
+        //    Email = "user@gmail.com",
+        //    FirstName = "tina",
+        //    LastName = "miha",
+        //    Password = "123",
+        //    Role = UserRole.AGENT
+        //};
+        //this.dbContext.Users.Add(user);
+        //this.dbContext.SaveChanges();
+
+        //this.dbContext.Tours.Add(new Tour
+        //{
+        //    Name = "Krstarenje Dunavom sa posetom Petrovaradinu",
+        //    Description = "",
+        //    From = new DateTime(2023, 6, 1),
+        //    To = new DateTime(2023, 6, 5),
+        //    Image = "petrovaradin.jpg",
+        //    Price = 20,
+        //    TravelAgentId = 1
+        //});
+
+        //this.dbContext.Tours.Add(new Tour
+        //{
+        //    Name = "Obilazak Hrama Svetog Save",
+        //    Description = "",
+        //    From = new DateTime(2023, 7, 1),
+        //    To = new DateTime(2023, 7, 5),
+        //    Image = "hram.jpg",
+        //    Price = 25,
+        //    TravelAgentId = 1
+        //});
+
+        //this.dbContext.Attractions.Add(new Attraction
+        //{
+        //    Name = "Cele Kula, Muzej Nis",
+        //    Image = new byte[0],
+        //    Address = new Address
+        //    {
+        //        Street = "Bozidarska",
+        //        StreetNumber = 4,
+        //        City = "Nis",
+        //        PostalCode = 18000
+        //    }
+        //});
+        //this.dbContext.SaveChanges();
+        //    Role = UserRole.TRAVELER
+        //};
+        //this.dbContext.Users.Add(user);
+        //this.dbContext.SaveChanges();
+
+        //foreach (User user1 in this.dbContext.Users)
+        //{
+        //    Trace.WriteLine(user1.FirstName);
+        //}
+
+
+
     }
 }

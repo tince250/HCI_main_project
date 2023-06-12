@@ -31,5 +31,49 @@ namespace HCI_main_project.Models
         public virtual List<TourRestaurant> TourRestaurants { get; set; }
         public virtual List<TourTraveler> TourTravelers { get; set; }
 
+        public Tour() { }
+
+        public void AddAttraction(Attraction attraction)
+        {
+            if (TourAttractions == null)
+                TourAttractions = new List<TourAttraction>();
+
+            TourAttraction tourAttraction = new TourAttraction
+            {
+                Tour = this,
+                Attraction = attraction
+            };
+
+            TourAttractions.Add(tourAttraction);
+        }
+
+        public void AddAccommodation(Accommodation accommodation)
+        {
+            if (TourAccommodations == null)
+                TourAccommodations = new List<TourAccommodation>();
+
+            TourAccommodation tourAccommodation = new TourAccommodation
+            {
+                Tour = this,
+                Accommodation = accommodation
+            };
+
+            TourAccommodations.Add(tourAccommodation);
+        }
+
+        public void AddRestaurant(Restaurant restaurant)
+        {
+            if (TourRestaurants == null)
+                TourRestaurants = new List<TourRestaurant>();
+
+            TourRestaurant tourRestaurant = new TourRestaurant
+            {
+                Tour = this,
+                Restaurant = restaurant
+            };
+
+            TourRestaurants.Add(tourRestaurant);
+        }
+
     }
 }

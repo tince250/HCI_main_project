@@ -50,6 +50,7 @@ namespace HCI_main_project
             });
 
             services.AddSingleton<MainWindow>();
+            services.AddSingleton<ITourService, TourService>();
             services.AddSingleton<IRestaurantService, RestaurantService>();
             services.AddSingleton<IAttractionService, AttractionService>();
             services.AddSingleton<IAccommodationService, AccommodationService>();
