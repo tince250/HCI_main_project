@@ -35,7 +35,7 @@ namespace HCI_main_project.Converters
                 if (attraction != null)
                 {
                     var simplerCard = new SimplerCard();
-                    simplerCard.CardContent = new SimpleCardContent(attraction);
+                    simplerCard.DataContext = new SimplerCardViewModel(ApplicationHelper.HomePageVm, new SimpleCardContent(attraction), "attraction");
 
                     return simplerCard;
                 }
@@ -46,7 +46,7 @@ namespace HCI_main_project.Converters
                 if (accommodation != null)
                 {
                     var simplerCard = new SimplerCard();
-                    simplerCard.CardContent = new SimpleCardContent(accommodation);
+                    simplerCard.DataContext = new SimplerCardViewModel(ApplicationHelper.HomePageVm, new SimpleCardContent(accommodation), "accommodation");
 
                     return simplerCard;
                 }
@@ -57,7 +57,7 @@ namespace HCI_main_project.Converters
                 if (restaurant != null)
                 {
                     var simplerCard = new SimplerCard();
-                    simplerCard.CardContent = new SimpleCardContent(restaurant);
+                    simplerCard.DataContext = new SimplerCardViewModel(ApplicationHelper.HomePageVm, new SimpleCardContent(restaurant), "restaurant");
 
                     return simplerCard;
                 }
@@ -68,7 +68,6 @@ namespace HCI_main_project.Converters
                 if (tourHistory != null)
                 {
                     var historyCard = new HistoryCard();
-                    historyCard.DataContext = new HistoryCardViewModel(tourHistory);
 
                     return historyCard;
                 }

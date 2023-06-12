@@ -70,6 +70,7 @@ namespace HCI_main_project.ViewModel
         
 
         public ICommand openTourDetailsCommand { get; }
+        public ICommand cancelReservationCommand { get; }
 
         public HistoryCardViewModel(Tour tour)
         {

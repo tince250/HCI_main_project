@@ -20,25 +20,9 @@ namespace HCI_main_project.User_Controls
 {
     public partial class SimplerCard : UserControl
     {
-
-
-        public SimpleCardContent CardContent
-        {
-            get { return (SimpleCardContent)GetValue(CardContentProperty); }
-            set {
-                SetValue(CardContentProperty, value);
-            }
-        }
-
-        public static readonly DependencyProperty CardContentProperty =
-            DependencyProperty.Register("CardContentProperty", typeof(SimpleCardContent), typeof(SimplerCard), new PropertyMetadata(null));
-
-
-
         public SimplerCard()
         {
             InitializeComponent();
-            DataContext = this;
         }
     }
 }
