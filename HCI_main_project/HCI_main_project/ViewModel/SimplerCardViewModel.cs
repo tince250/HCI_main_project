@@ -16,6 +16,15 @@ namespace HCI_main_project.ViewModel
         private HomepageViewModel homePageVm;
         private string entityType;
 
+        private string loggedUserRole;
+
+        public string LoggedUserRole
+        {
+            get { return loggedUserRole; }
+            set { loggedUserRole = value; }
+        }
+
+
         public SimpleCardContent CardContent
         {
             get { return cardContent; }
@@ -32,6 +41,7 @@ namespace HCI_main_project.ViewModel
             this.homePageVm = homePageVm;
             this.cardContent = simpleCardContent;
             this.entityType = type;
+            this.LoggedUserRole = ApplicationHelper.HomePageVm.LoggedUserRole;
 
             this.openDeleteEntityDialogCommand = new OpenDeleteSimplerDialogCommand(this.CardContent.Id, this.entityType);
         }

@@ -24,6 +24,15 @@ namespace HCI_main_project.ViewModel
             set { tour = value; }
         }
 
+        private string loggedUserRole;
+
+        public string LoggedUserRole
+        {
+            get { return loggedUserRole; }
+            set { loggedUserRole = value; }
+        }
+
+
         public ICommand openTourDetailsCommand { get; }
         public ICommand openDeleteTourDialogCommand { get; }
 
@@ -32,6 +41,8 @@ namespace HCI_main_project.ViewModel
         {
             this.homepageViewModel = homepageViewModel;
             this.Tour = tour;
+            this.LoggedUserRole = ApplicationHelper.HomePageVm.LoggedUserRole;
+
             this.openTourDetailsCommand = new OpenTourDetailsCommand(homepageViewModel, Tour.Id);
             this.openDeleteTourDialogCommand = new OpenDeleteTourDialogCommand(Tour.Id);
         }

@@ -84,6 +84,16 @@
                     Orientation="Horizontal"
                     Margin="8,0,0,4"
                     VerticalAlignment="Center">
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding LoggedUserRole}" Value="agent">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
                         <Button 
                           HorizontalAlignment="Left"
                             VerticalAlignment="Center"
