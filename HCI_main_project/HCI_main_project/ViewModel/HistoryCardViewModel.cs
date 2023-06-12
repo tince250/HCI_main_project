@@ -70,7 +70,7 @@ namespace HCI_main_project.ViewModel
         
 
         public ICommand openTourDetailsCommand { get; }
-        public ICommand cancelReservationCommand { get; }
+        public ICommand openCancelReservationDialogCommand { get; }
 
         public HistoryCardViewModel(Tour tour)
         {
@@ -95,8 +95,7 @@ namespace HCI_main_project.ViewModel
                 setStatistics();
             }
 
-            
-            
+            this.openCancelReservationDialogCommand = new OpenCancelReservationDialogCommand(this.Tour.Id);
             this.openTourDetailsCommand = new OpenTourDetailsCommand(ApplicationHelper.HomePageVm, this.Tour.Id);
         }
 

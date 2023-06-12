@@ -68,7 +68,7 @@ namespace HCI_main_project.Converters
                 if (tourHistory != null)
                 {
                     var historyCard = new HistoryCard();
-
+                    historyCard.DataContext = new HistoryCardViewModel(tourHistory);
                     return historyCard;
                 }
             }

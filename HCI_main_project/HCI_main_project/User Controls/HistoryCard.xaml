@@ -102,7 +102,7 @@
                             Background="{StaticResource LightGrayColor}"
                             Foreground="{StaticResource WhiteColor}"
                             BorderBrush="Transparent"
-                            Command="{Binding clearFiltersCommand}">
+                            Command="{Binding openCancelReservationDialogCommand}">
                             <Button.Style>
                                 <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedLightButton}">
                                     <Style.Triggers>
