@@ -20,7 +20,7 @@ namespace HCI_main_project.Commands
 
         public override void Execute(object? parameter)
         {
-            ApplicationHelper.User = null;
+            //ApplicationHelper.User = null;
             Homepage homePage = new Homepage();
             ApplicationHelper.NavigationService.Navigate(homePage);
         }

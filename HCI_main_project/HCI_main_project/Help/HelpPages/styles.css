@@ -96,3 +96,6 @@ a:hover {
 #back-to-top:hover {
     background: #b4710d;
 }
+img {
+    border: 2px solid rgb(213, 213, 213);
+}

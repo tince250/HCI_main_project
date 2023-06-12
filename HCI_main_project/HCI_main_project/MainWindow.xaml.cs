@@ -132,6 +132,22 @@ namespace HCI_main_project
                     else
                         HelpProvider.SetHelpKey((DependencyObject)focusedControl, "Homepage_Tours_Traveler");
                 }
+                else if (frame.Content is TripDetailsPage detailsT && ApplicationHelper.User.Role == UserRole.TRAVELER)
+                {
+                    HelpProvider.SetHelpKey((DependencyObject)focusedControl, "DetailsHelpTraveler");
+                }
+                else if (frame.Content is TripDetailsPage detailsA && ApplicationHelper.User.Role == UserRole.AGENT)
+                {
+                    HelpProvider.SetHelpKey((DependencyObject)focusedControl, "DetailsHelpAgent");
+                }
+                else if (frame.Content is LoginPage login)
+                {
+                    HelpProvider.SetHelpKey((DependencyObject)focusedControl, "LoginHelp");
+                }
+                else if (frame.Content is RegisterPage register)
+                {
+                    HelpProvider.SetHelpKey((DependencyObject)focusedControl, "RegisterHelp");
+                }
 
                 string str = HelpProvider.GetHelpKey((DependencyObject)focusedControl);
                 HelpProvider.ShowHelp(str, this);

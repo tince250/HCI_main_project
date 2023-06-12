@@ -1,4 +1,5 @@
 ﻿using HCI_main_project.Components;
+using HCI_main_project.Help;
 using HCI_main_project.Models;
 using HCI_main_project.ViewModel;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -101,5 +102,6 @@ namespace HCI_main_project.View
         {
             mainGrid.Children.Add(new UsersInTourDialog());
         }
+
     }
 }
