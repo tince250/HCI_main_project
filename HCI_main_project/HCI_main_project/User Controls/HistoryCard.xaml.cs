@@ -1,8 +1,7 @@
-﻿using HCI_main_project.Model.Entities;
-using HCI_main_project.Models;
+﻿using HCI_main_project.Models;
+using HCI_main_project.ViewModel;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,9 +17,12 @@ using System.Windows.Shapes;
 
 namespace HCI_main_project.User_Controls
 {
-    public partial class SimplerCard : UserControl
+    /// <summary>
+    /// Interaction logic for HistoryCard.xaml
+    /// </summary>
+    public partial class HistoryCard : UserControl
     {
-        public SimplerCard()
+        public HistoryCard()
         {
             InitializeComponent();
         }

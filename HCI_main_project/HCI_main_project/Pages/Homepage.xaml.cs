@@ -1,5 +1,6 @@
 ﻿using HCI_main_project.Commands;
 using HCI_main_project.Components;
+using HCI_main_project.Help;
 using HCI_main_project.Models;
 using HCI_main_project.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
@@ -72,7 +73,18 @@ namespace HCI_main_project.Pages
 
         private void openDeleteDialog(object sender, RoutedEventArgs e)
         {
-            mainGrid.Children.Add(new ConfirmDialog(DialogType.DELETE_TOUR));
+            mainGrid.Children.Add(new ConfirmDialog(DialogType.DELETE_TOUR, null));
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (ApplicationHelper.User.Role == UserRole.AGENT)
+                HelpProvider.SetHelpKey((DependencyObject)this, "Homepage_Tours_Agent");
+            else
+                HelpProvider.SetHelpKey((DependencyObject)this, "Homepage_Tours_Traveler");
+            string str = HelpProvider.GetHelpKey((DependencyObject)this);
+            MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
+            HelpProvider.ShowHelp(str, mainWindow);
         }
     }
 }

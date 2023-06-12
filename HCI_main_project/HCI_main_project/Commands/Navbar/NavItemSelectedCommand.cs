@@ -44,6 +44,10 @@ namespace HCI_main_project.Commands
                     Trace.WriteLine("RestaurantsNavItem is checked");
                     homepageViewModel.SetRestaurants();
                 }
+                else if (radioButtonName == "HistoryNavItem")
+                {
+                    homepageViewModel.SetHistory();
+                }
             }
         }
     }

@@ -21,6 +21,7 @@ using System.Windows.Shapes;
 using System.Windows.Navigation;
 using HCI_main_project.Pages;
 using HCI_main_project.ViewModel;
+using HCI_main_project.Help;
 using HCI_main_project.ViewModels;
 
 namespace HCI_main_project
@@ -238,5 +239,52 @@ namespace HCI_main_project
 
 
 
+        private void OnKeyDownHandler(object sender, KeyEventArgs e)
+        {
+            var page = frame.Content as Homepage;
+            if (page != null)
+            {
+                if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.S)
+                {
+                    page.searchBox.Focus();
+                }
+                else if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.F)
+                {
+                    if (page.DataContext is HomepageViewModel vm)
+                    {
+                        vm.ExpandFilters = !vm.ExpandFilters;
+                    }
+                }
+            }  
+        }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            IInputElement focusedControl = FocusManager.GetFocusedElement(Application.Current.Windows[0]);
+            //if (focusedControl is DependencyObject)
+            //{
+            //    string str = HelpProvider.GetHelpKey((DependencyObject)focusedControl);
+            //    HelpProvider.ShowHelp(str, this);
+            //}
+
+            if (focusedControl != null)
+            {
+                if (frame.Content is Homepage home)
+                {
+                    if (isAgent())
+                        HelpProvider.SetHelpKey((DependencyObject)focusedControl, "Homepage_Tours_Agent");   
+                }
+
+                string str = HelpProvider.GetHelpKey((DependencyObject)focusedControl);
+                HelpProvider.ShowHelp(str, this);
+            }
+
+            
+        }
+
+        private bool isAgent()
+        {
+            return ApplicationHelper.User.Role == UserRole.AGENT;
+        }
     }
 }

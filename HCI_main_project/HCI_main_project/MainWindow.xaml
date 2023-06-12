@@ -5,15 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HCI_main_project"
         mc:Ignorable="d"
-        
-        Title="MainWindow" Height="768" Width="1024"
+        Title="" Height="768" Width="1024"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         WindowState="Maximized"
         PreviewKeyDown="OnKeyDownHandler"
         >
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
     
     <Grid>
 
-        <!--<Frame Source="/Pages/Homepage.xaml" NavigationUIVisibility="Hidden"/>-->
+        <Frame x:Name="frame" Source="/Pages/Homepage.xaml" NavigationUIVisibility="Hidden"/>
 
         <!--<TextBlock Style="{StaticResource Title}" HorizontalAlignment="Center">
             Registration
@@ -34,10 +37,5 @@
             <TextBlock Text="Add accomodation" />
           
         </Button>-->
-        <Frame
-            x:Name="Frame"
-            Margin="0,15,0,0"
-            NavigationUIVisibility="Hidden"
-            Source="/Pages/AddEditTourPage.xaml" />
     </Grid>
 </Window>

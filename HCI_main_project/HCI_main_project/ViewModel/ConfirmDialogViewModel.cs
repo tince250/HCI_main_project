@@ -1,4 +1,5 @@
 ﻿using HCI_main_project.Commands;
+using HCI_main_project.Commands.ConfirmDialog;
 using HCI_main_project.Models;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -16,6 +17,8 @@ namespace HCI_main_project.ViewModel
     {
         RESERVE_TOUR,
         BOOK_TOUR,
+        DELETE_RESERVATION,
+        DELETE_RESERVATION_HISTORY,
         DELETE_TOUR,
         DELETE_ACCOMMODATION,
         DELETE_ATTRACTION,
@@ -129,7 +132,9 @@ namespace HCI_main_project.ViewModel
         public object confirmCommandParameter { get; }
         public string SuccessMessage { get;  }
 
-        public ConfirmDialogViewModel(DialogType type)
+        public TripDetailsViewModel viewModel;
+
+        public ConfirmDialogViewModel(DialogType type, TripDetailsViewModel viewModel)
         {
             this.IsDone = false;
             this.dbContex = App.serviceProvider.GetService<TripagoContext>();
@@ -138,7 +143,8 @@ namespace HCI_main_project.ViewModel
                 case DialogType.BOOK_TOUR:
                     this.Item = this.dbContex.Tours.First(c => c.Id == ApplicationHelper.TourId);
                     this.Cards = new ObservableCollection<object>() { this.Item };
-                    this.confirmCommand = new BookTourCommand(this, dbContex);
+                    this.viewModel = viewModel;
+                    this.confirmCommand = new BookTourCommand(this, dbContex, viewModel);
                     this.TitleText = "book";
                     this.TitleStartText = " You are about to ";
                     this.TitleMiddleText = " your spot for ";
@@ -150,7 +156,8 @@ namespace HCI_main_project.ViewModel
                 case DialogType.RESERVE_TOUR:
                     this.Item = this.dbContex.Tours.First(c => c.Id == ApplicationHelper.TourId);
                     this.Cards = new ObservableCollection<object>() { this.Item };
-                    this.confirmCommand = new ReserveTourCommand(this, dbContex);
+                    this.viewModel = viewModel;
+                    this.confirmCommand = new ReserveTourCommand(this, dbContex, viewModel);
                     this.ButtonText = "Confirm reservation";
                     this.TitleText = "reserve";
                     this.TitleStartText = "You are about to ";
@@ -210,6 +217,34 @@ namespace HCI_main_project.ViewModel
                     this.confirmCommand = new DeleteEntityCommand(this, dbContex);
                     this.confirmCommandParameter = this.Item;
                     this.SuccessMessage = "Restaurant deleted successfully!";
+                    break;
+                case DialogType.DELETE_RESERVATION:
+                    this.Item = this.dbContex.Tours.First(c => c.Id == ApplicationHelper.TourId);
+                    this.Cards = new ObservableCollection<object>() { this.Item };
+                    this.viewModel = viewModel;
+                    this.TitleText = "cancel";
+                    this.TitleStartText = "Are you sure you want to ";
+                    this.TitleMiddleText = "";
+                    this.ButtonText = "Cancel reservation";
+                    this.TypeText = "reservation?";
+                    this.DescriptionText = "Canceling is not a permanent action, you will be able to make new reservation again.";
+                    this.confirmCommand = new DeleteReservationCommand(this, dbContex, viewModel);
+                    this.confirmCommandParameter = this.Item;
+                    this.SuccessMessage = "Reservation canceled successfully!";
+                    break;
+                case DialogType.DELETE_RESERVATION_HISTORY:
+                    this.Item = this.dbContex.Tours.First(c => c.Id == ApplicationHelper.TourId);
+                    this.Cards = new ObservableCollection<object>() { this.Item };
+                    this.viewModel = viewModel;
+                    this.TitleText = "cancel";
+                    this.TitleStartText = "Are you sure you want to ";
+                    this.TitleMiddleText = "";
+                    this.ButtonText = "Cancel reservation";
+                    this.TypeText = "reservation?";
+                    this.DescriptionText = "Canceling is not a permanent action, you will be able to make new reservation again.";
+                    this.confirmCommand = new DeleteReservationCommandHistory(this, dbContex, ApplicationHelper.HomePageVm);
+                    this.confirmCommandParameter = this.Item;
+                    this.SuccessMessage = "Reservation canceled successfully!";
                     break;
                 case DialogType.GO_BACK_CRUD:
                     //this.Item = this.dbContex.Restaurants.First(c => c.Id == ApplicationHelper.ToDeleteId);

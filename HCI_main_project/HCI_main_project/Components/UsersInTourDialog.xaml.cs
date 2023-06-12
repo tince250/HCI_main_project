@@ -17,15 +17,15 @@ using System.Windows.Shapes;
 namespace HCI_main_project.Components
 {
     /// <summary>
-    /// Interaction logic for ReserveDialog.xaml
+    /// Interaction logic for UsersInTourDialog.xaml
     /// </summary>
-    public partial class ConfirmDialog : UserControl
+    public partial class UsersInTourDialog : UserControl
     {
-        private ConfirmDialogViewModel viewModel;
-        public ConfirmDialog(DialogType type, TripDetailsViewModel tripDetailsViewModel)
+        private UsersInTourViewModel viewModel;
+        public UsersInTourDialog()
         {
             InitializeComponent();
-            this.viewModel = new ConfirmDialogViewModel(type, tripDetailsViewModel);
+            this.viewModel = new UsersInTourViewModel();
             DataContext = this.viewModel;
         }
 

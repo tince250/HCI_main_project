@@ -9,20 +9,20 @@ using System.Windows.Controls;
 
 namespace HCI_main_project.Commands
 {
-    public class OpenDeleteTourDialogCommand : CommandBase
+    public class OpenCancelReservationDialogCommand : CommandBase
     {
         private int tourId;
 
-        public OpenDeleteTourDialogCommand(int tourId)
+        public OpenCancelReservationDialogCommand(int tourId)
         {
             this.tourId = tourId;
         }
 
         public override void Execute(object? parameter)
         {
-            ApplicationHelper.ToDeleteId = tourId;
+            ApplicationHelper.TourId = tourId;
 
-            var dialog = new HCI_main_project.Components.ConfirmDialog(DialogType.DELETE_TOUR, null);
+            var dialog = new HCI_main_project.Components.ConfirmDialog(DialogType.DELETE_RESERVATION_HISTORY, null);
 
             // Set the row and column span to cover the entire grid
             dialog.SetValue(Grid.RowSpanProperty, ApplicationHelper.HomePageVm.mainGrid.RowDefinitions.Count);

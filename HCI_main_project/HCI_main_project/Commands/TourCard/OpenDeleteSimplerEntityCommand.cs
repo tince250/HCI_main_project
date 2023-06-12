@@ -9,20 +9,30 @@ using System.Windows.Controls;
 
 namespace HCI_main_project.Commands
 {
-    public class OpenDeleteTourDialogCommand : CommandBase
+    public class OpenDeleteSimplerDialogCommand : CommandBase
     {
-        private int tourId;
+        private int entityId;
+        private string entityType;
 
-        public OpenDeleteTourDialogCommand(int tourId)
+        public OpenDeleteSimplerDialogCommand(int entityId, string entityType)
         {
-            this.tourId = tourId;
+            this.entityId = entityId;
+            this.entityType = entityType;
         }
 
         public override void Execute(object? parameter)
         {
-            ApplicationHelper.ToDeleteId = tourId;
+            ApplicationHelper.ToDeleteId = entityId;
 
-            var dialog = new HCI_main_project.Components.ConfirmDialog(DialogType.DELETE_TOUR, null);
+            var dialogType = DialogType.DELETE_ATTRACTION;
+
+            if (entityType == "accommodation")
+                dialogType = DialogType.DELETE_ACCOMMODATION;
+            else if (entityType == "restaurant")
+                dialogType = DialogType.DELETE_RESTAURANT;
+
+
+            var dialog = new HCI_main_project.Components.ConfirmDialog(dialogType, null);
 
             // Set the row and column span to cover the entire grid
             dialog.SetValue(Grid.RowSpanProperty, ApplicationHelper.HomePageVm.mainGrid.RowDefinitions.Count);

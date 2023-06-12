@@ -1,0 +1,98 @@
+﻿* {
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    padding: 20px;
+    position: relative;
+}
+
+h1 {
+    color: #0A2463;
+    font-weight: 700;
+    font-size: 2em;
+}
+
+h2 {
+    color: #0A2463;
+    font-weight: 700;
+    font-size: 1.6em;
+}
+
+h3 {
+    color: #2e6f9d;
+    font-weight: 700;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+
+p {
+    color: #626262;
+    font-size: 1.1em;
+}
+
+img {
+    border: 2px solid rgb(213, 213, 213);
+}
+
+.page-image {
+    height: 500px;
+    border-radius: 5px;
+}
+
+.element-image {
+    /* nebitan ovaj hight ako treba drugaciji dodati novu klasu */
+    border-radius: 5px;
+}
+
+ul {
+    color: #f49f20;
+}
+
+.p-ul {
+    color: #626262;
+}
+
+li {
+    font-size: 1.2em;
+}
+
+a { 
+    color: #f49f20;
+    text-decoration: none;
+}
+
+a:hover { 
+    color: #b4710d;
+    text-decoration: none;
+}
+
+.tripago-logo {
+    background-color: #2e6f9d;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 0.5em;
+    margin-top: -5px;
+}
+
+.multiple-objects {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 1.2em;
+    color: white;
+    background: #f49f20;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#back-to-top:hover {
+    background: #b4710d;
+}
