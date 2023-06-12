@@ -16,7 +16,7 @@
     
     <Grid>
 
-        <Frame x:Name="Frame" Source="/Pages/Homepage.xaml" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="frame" Source="/View/LoginPage.xaml" NavigationUIVisibility="Hidden"/>
 
         <!--<TextBlock Style="{StaticResource Title}" HorizontalAlignment="Center">
             Registration

@@ -43,7 +43,7 @@
 
             </Button>
 
-            <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+            <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right"  >
 
                 <Button
                     Grid.Row="0"
@@ -51,7 +51,7 @@
                     Visibility="{Binding ReservationsBtnVisbility}"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
-                    Margin="10, 10, 20, 10"                    
+                    Margin="10, 10, 10, 10"                    
                     Height="60"
                     MinWidth="140"
                     MaxWidth="200"
@@ -119,7 +119,7 @@
                     Grid.Row="0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
-                    Margin="10, 10, 20, 10"
+                    Margin="10, 10, 10, 10"
                     Height="60"
                     MinWidth="140"
                     MaxWidth="200"
@@ -135,38 +135,103 @@
                     <TextBlock Text="Book now" />
 
                 </Button>
+
+                <Button 
+                    Height="60"
+                    materialDesign:ButtonAssist.CornerRadius="40"               
+                       Width="65"
+                        Margin="10, 0, 20, 0"
+                          HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                          Style="{StaticResource MaterialDesignRaisedLightButton}"
+                            Background="{StaticResource ButtonLightBlueColor}"
+                            BorderBrush="Transparent"
+                          ToolTip="Open help window"
+                    Click="Button_Click"
+                           >
+                    <materialDesign:PackIcon Margin="0,0,0,0"
+                            Width="40"
+                            Height="30"
+                            HorizontalAlignment="Center"          
+                            Foreground="{StaticResource WhiteColor}"
+                            Kind="QuestionMarkCircle" />
+                </Button>
             </StackPanel>
 
-            <ScrollViewer Grid.Row="1">
+            <ScrollViewer Grid.Row="1"  Margin="20,10,0,0">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="4*"/>
                         <RowDefinition Height="4*"/>
                     </Grid.RowDefinitions>
-                    <Grid Grid.Row="0" Height="400">
+                    <Grid Grid.Row="0" Height="500">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="45*"/>
+                            <ColumnDefinition Width="55*"/>
                         </Grid.ColumnDefinitions>
 
                         <!--<m:Map x:Name="map" Margin="0, 0, 20, 0" Grid.Column="1" Mode="AerialWithLabels" Center="{Binding Location}" ZoomLevel="11.5" CredentialsProvider="Kj3TXYFWtOhdSJsEwaRg~MYtBweETdCEyT2r6ULdioA~AnDgeIBQnE12E3dWCqRoZDwCljaffq0SmrInOH5-FEHBGfLzqbwDBsLm0ewXkMHy">
                             <m:Pushpin m:MapLayer.Position="{Binding Location}"/>
                         </m:Map>-->
-                        <Image Margin="0, 0, 20, 0" Grid.Column="1"  Width="Auto" Source="{Binding ImagePath}"/>
+                        <Border BorderBrush="White" BorderThickness="5" CornerRadius="10" Margin="0, 10, 20, 0" Grid.Column="1">
+                            <!--<Image MinHeight="500" Stretch="UniformToFill" Width="Auto">
+                                <Image.Source>
+                                    <BitmapImage UriSource="../Images/Tours/hram.jpg" />
+                                </Image.Source>
+                            </Image>-->
+                            <Border.Background>
+                                <ImageBrush Stretch="UniformToFill" ImageSource="../Images/Tours/hram.jpg"/>
+                            </Border.Background>
+                        </Border>
 
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="1.5*"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="5*"/>
                             </Grid.RowDefinitions>
                             <StackPanel Grid.Row="0" Orientation="Vertical">
-                                <TextBlock Grid.Row="0" Text="{Binding Path=Tour.Name}" TextWrapping="WrapWithOverflow" Height="Auto" VerticalAlignment="Stretch" FontSize="40" TextAlignment="Center"/>
-                                <Separator Grid.Row="0" Margin="50,0" Background="{StaticResource OrangeColor}" BorderBrush="{StaticResource OrangeColor}"/>
+                                <TextBlock Margin="0,10,0,0" FontWeight="Medium" Grid.Row="0" Text="{Binding Path=Tour.Name}" TextWrapping="WrapWithOverflow" Height="Auto" VerticalAlignment="Stretch" FontSize="40" TextAlignment="Center"/>
+                                <Separator  Height="3" BorderThickness="50" Grid.Row="0" Margin="10,5,20,0" >
+                                    <Separator.Template>
+                                        <ControlTemplate TargetType="Separator">
+                                            <Border BorderBrush="{StaticResource LightGrayColor}"
+                                                BorderThickness="0,3,0,0"/>
+                                        </ControlTemplate>
+                                    </Separator.Template>
+                                </Separator>
                             </StackPanel>
-                            <Label Grid.Row="1" VerticalAlignment="Center" Content="Trip description:" FontSize="24" Margin="20, 0, 20, 0" FontWeight="Bold"/>
-                            <ScrollViewer Margin="20, 0" Grid.Row="2">
-                                <TextBlock FontSize="18" Text="{Binding Path=Tour.Description}" TextWrapping="WrapWithOverflow" Height="Auto" VerticalAlignment="Stretch"></TextBlock>
+                            <Grid Margin="10, 9, 20, 0" VerticalAlignment="Center" Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label  Grid.Column="0" Content="Tour price:" FontSize="24" FontWeight="Medium" VerticalAlignment="Center"/>
+                                <Border Grid.Column="1" CornerRadius="12" Padding="12,4" VerticalAlignment="Top" Margin="7,0" BorderThickness="0" HorizontalAlignment="Left">
+                                    <Border.Background>
+                                        <SolidColorBrush Color="LightSkyBlue" Opacity="0.2"/>
+                                    </Border.Background>
+                                    <TextBlock TextAlignment="Center" FontSize="26" Foreground="{StaticResource DarkBlueColor}" FontWeight="Bold" Text="{Binding Tour.Price, StringFormat={}{0}e}"/>
+                                </Border>
+                            </Grid>
+
+                            <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="10, 9, 20, 0">
+                                <Label Grid.Row="3" VerticalAlignment="Center" Content="Tour dates:" FontSize="24"  FontWeight="Medium"/>
+                                <TextBlock FontWeight="Medium" FontSize="24" Margin="7,3,0,-18"  Foreground="{StaticResource GrayColor}">
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}from {0:dd.MM.yyyy}. to {1:dd.MM.yyyy}.">
+                                            <Binding Path="Tour.From" />
+                                            <Binding Path="Tour.To" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+
+                            <Label Grid.Row="3" VerticalAlignment="Center" Content="Tour description:" FontSize="24" Margin="10, 9, 20, 0" FontWeight="Medium"/>
+                            <ScrollViewer Margin="20, 0" Grid.Row="4">
+                                <TextBlock Foreground="{StaticResource GrayColor}" FontSize="20" Text="{Binding Path=Tour.Description}" TextWrapping="WrapWithOverflow" Height="Auto" VerticalAlignment="Stretch"></TextBlock>
                             </ScrollViewer>
                         </Grid>
 
@@ -174,8 +239,8 @@
 
                     <Grid Grid.Row="1" Height="Auto">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="1.7*"/>
+                            <ColumnDefinition Width="45*"/>
+                            <ColumnDefinition Width="55*"/>
                         </Grid.ColumnDefinitions>
                         <Grid>
                             <Grid.RowDefinitions>
@@ -191,7 +256,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel Grid.Row="0" Orientation="Horizontal">
-                                    <Label Content="Attractions:" FontWeight="Bold" VerticalAlignment="Center" FontSize="18" Margin="10 0"/>
+                                    <Label Content="Attractions:" FontWeight="Medium" VerticalAlignment="Center" FontSize="24" Margin="10 0"/>
                                     <Ellipse VerticalAlignment="Center" Width="20" Height="20" Stroke="#257FBD">
                                         <Ellipse.Fill>
                                             <RadialGradientBrush>
@@ -202,7 +267,7 @@
                                 </StackPanel>
 
 
-                                <Border Grid.Row="1" Margin="10, 0, 10, 10" BorderBrush="#717171" BorderThickness="1">
+                                <Border Grid.Row="1" Margin="10, 0, 20, 10" BorderBrush="#717171" BorderThickness="1">
 
                                     <Border.Background>
 
@@ -249,7 +314,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel Grid.Row="0" Orientation="Horizontal">
-                                    <Label Content="Accommodations:" FontWeight="Bold" VerticalAlignment="Center" FontSize="18" Margin="10 0"/>
+                                    <Label Content="Accommodations:" FontWeight="Medium" VerticalAlignment="Center" FontSize="24" Margin="10 0"/>
                                     <Ellipse VerticalAlignment="Center" Width="20" Height="20" Stroke="#F5AA39">
                                         <Ellipse.Fill>
                                             <RadialGradientBrush>
@@ -259,7 +324,7 @@
                                     </Ellipse>
                                 </StackPanel>
 
-                                <Border Grid.Row="1" Margin="10, 0, 10, 10" BorderBrush="#717171" BorderThickness="1">
+                                <Border Grid.Row="1" Margin="10, 0, 20, 10" BorderBrush="#717171" BorderThickness="1">
 
                                     <Border.Background>
 
@@ -306,7 +371,7 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel Grid.Row="0" Orientation="Horizontal">
-                                    <Label Content="Restaurants:" FontWeight="Bold" VerticalAlignment="Center" FontSize="18" Margin="10 0"/>
+                                    <Label Content="Restaurants:" FontWeight="Medium" VerticalAlignment="Center" FontSize="24" Margin="10 0"/>
                                     <Ellipse VerticalAlignment="Center" Width="20" Height="20" Stroke="#18B315">
                                         <Ellipse.Fill>
                                             <RadialGradientBrush>
@@ -316,7 +381,7 @@
                                     </Ellipse>
                                 </StackPanel>
 
-                                <Border Grid.Row="1" Margin="10, 0, 10, 10" BorderBrush="#717171" BorderThickness="1">
+                                <Border Grid.Row="1" Margin="10, 0, 20, 10" BorderBrush="#717171" BorderThickness="1">
 
                                     <Border.Background>
 
@@ -355,7 +420,7 @@
 
                             </Grid>
                         </Grid>
-                        <Grid Grid.Column="1" Margin="10, 49, 20, 10" Height="600">
+                        <Grid Grid.Column="1" Margin="0, 55, 20, 20" Height="600">
                             <m:Map x:Name="map" Padding="10, 49, 20, 160" Grid.Column="1" Mode="AerialWithLabels" Center="{Binding Location}" ZoomLevel="11.5" CredentialsProvider="Kj3TXYFWtOhdSJsEwaRg~MYtBweETdCEyT2r6ULdioA~AnDgeIBQnE12E3dWCqRoZDwCljaffq0SmrInOH5-FEHBGfLzqbwDBsLm0ewXkMHy">
                                 <m:Pushpin m:MapLayer.Position="{Binding Location}"/>
                             </m:Map>

@@ -243,9 +243,9 @@ namespace HCI_main_project.ViewModel
 
         public HomepageViewModel(Grid mainGrid, TextBox minPriceTextBox, TextBox maxPriceTextBox, DatePicker dateFromPicker, DatePicker dateToPicker, Snackbar snackBar)
         {
-            ApplicationHelper.User = new User();
-            ApplicationHelper.User.Id = 211;
-            ApplicationHelper.User.Role = UserRole.AGENT;
+            //ApplicationHelper.User = new User();
+            //ApplicationHelper.User.Id = 211;
+            //ApplicationHelper.User.Role = UserRole.TRAVELER;
 
             this.snackBar = snackBar;
 

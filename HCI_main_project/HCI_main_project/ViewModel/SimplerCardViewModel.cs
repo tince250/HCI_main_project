@@ -26,6 +26,15 @@ namespace HCI_main_project.ViewModel
             }
         }
 
+        private string loggedUserRole;
+
+        public string LoggedUserRole
+        {
+            get { return loggedUserRole; }
+            set { loggedUserRole = value; }
+        }
+
+
         public SimpleCardContent CardContent
         {
             get { return cardContent; }
@@ -56,6 +65,7 @@ namespace HCI_main_project.ViewModel
             this.homePageVm = homePageVm;
             this.cardContent = simpleCardContent;
             this.entityType = type;
+            this.LoggedUserRole = ApplicationHelper.HomePageVm.LoggedUserRole;
             EntityType = type;
             this.ImagePath = ApplicationHelper.ParseImagePath(cardContent.Image, entityType);
 

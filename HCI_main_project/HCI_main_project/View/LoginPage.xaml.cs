@@ -1,4 +1,5 @@
 ﻿using HCI_main_project.Components;
+using HCI_main_project.Help;
 using HCI_main_project.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -57,6 +58,14 @@ namespace HCI_main_project.View
                 if (viewModel.LoginClickCommand.CanExecute(null))
                     viewModel.LoginClickCommand.Execute(null);
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            HelpProvider.SetHelpKey((DependencyObject)this, "LoginHelp");
+            string str = HelpProvider.GetHelpKey((DependencyObject)this);
+            MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
+            HelpProvider.ShowHelp(str, mainWindow);
         }
     }
 }

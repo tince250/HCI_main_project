@@ -1,4 +1,5 @@
 ﻿using HCI_main_project.Components;
+using HCI_main_project.Help;
 using HCI_main_project.ViewModel;
 using MaterialDesignThemes.Wpf;
 using Microsoft.Extensions.DependencyInjection;
@@ -61,5 +62,12 @@ namespace HCI_main_project.View
             }
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            HelpProvider.SetHelpKey((DependencyObject)this, "RegisterHelp");
+            string str = HelpProvider.GetHelpKey((DependencyObject)this);
+            MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
+            HelpProvider.ShowHelp(str, mainWindow);
+        }
     }
 }

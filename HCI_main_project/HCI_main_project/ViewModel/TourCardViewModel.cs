@@ -36,6 +36,15 @@ namespace HCI_main_project.ViewModel
             }
         }
 
+        private string loggedUserRole;
+
+        public string LoggedUserRole
+        {
+            get { return loggedUserRole; }
+            set { loggedUserRole = value; }
+        }
+
+
         public ICommand openTourDetailsCommand { get; }
         public ICommand openDeleteTourDialogCommand { get; }
         public ICommand AddTourButtonCommand { get; }
@@ -45,7 +54,8 @@ namespace HCI_main_project.ViewModel
         {
             this.homepageViewModel = homepageViewModel;
             this.Tour = tour;
-            this.ImagePath = ApplicationHelper.ParseImagePath(tour.Image, "tour");
+            this.LoggedUserRole = ApplicationHelper.HomePageVm.LoggedUserRole;
+
             this.openTourDetailsCommand = new OpenTourDetailsCommand(homepageViewModel, Tour.Id);
             AddTourButtonCommand = new AddTourButtonCommand(tour);
             this.openDeleteTourDialogCommand = new OpenDeleteTourDialogCommand(Tour.Id);
