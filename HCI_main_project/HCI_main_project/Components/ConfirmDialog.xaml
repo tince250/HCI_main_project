@@ -21,7 +21,7 @@
     <Grid>
         <Rectangle Fill="Gray" Opacity=".5" MouseDown="closeDialog"/>
 
-        <Border Background="White" Height="Auto" Width="660" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="10" Padding="10">
+        <Border Background="White" Height="Auto" Width="750" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="10" Padding="10">
             <Grid Margin="5" Height="Auto">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>

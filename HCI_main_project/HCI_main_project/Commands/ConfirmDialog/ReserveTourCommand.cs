@@ -41,9 +41,9 @@ namespace HCI_main_project.Commands
                 dbContext.SaveChanges();
             }
             this.confirmDialogViewModel.IsDone = true;
-            this.tripDetailsViewModel.SetButtons();
-            Thread.Sleep(3000);
-            this.confirmDialogViewModel.Visibility = System.Windows.Visibility.Collapsed;
+            //this.tripDetailsViewModel.SetButtons();
+            //Thread.Sleep(3000);
+            //this.confirmDialogViewModel.Visibility = System.Windows.Visibility.Collapsed;
         }
     }
 }

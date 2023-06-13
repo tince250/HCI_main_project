@@ -23,13 +23,13 @@ namespace HCI_main_project.Commands
 
             string baseDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
             string destinationFolder = Path.Combine(baseDirectory, "Resources\\"+type);
-            if (edit)
-            {
-                filename = filename.Split("_")[1];
-                filename = DateTime.Now.ToString("yyyyMMddHHmmssfff") + "_" + filename;
-            }
-            else
-                filename = DateTime.Now.ToString("yyyyMMddHHmmssfff") + "_" + filename;
+            //if (edit)
+            //{
+            //    filename = filename.Split("_")[1];
+            //    filename = DateTime.Now.ToString("yyyyMMddHHmmssfff") + "_" + filename;
+            //}
+            //else
+            filename = DateTime.Now.ToString("yyyyMMddHHmmssfff") + "_" + filename;
             string destinationPath = Path.Combine(destinationFolder, filename);
             File.Copy(file, destinationPath, overwrite: true);
 

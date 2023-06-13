@@ -18,6 +18,7 @@
     <None Remove="Resources\Accommodations\moscow.jpg" />
     <None Remove="Resources\Attractions\20230610050115599_err1.png" />
     <None Remove="Resources\Attractions\20230612214852114_err1.png" />
+    <None Remove="Resources\Attractions\fortress.jpg" />
     <None Remove="Resources\Attractions\zoo.jpg" />
     <None Remove="Resources\login.jpg" />
     <None Remove="Resources\register.jpg" />
@@ -78,6 +79,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Attractions\20230612214852114_err1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Attractions\fortress.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Attractions\zoo.jpg">

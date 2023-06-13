@@ -32,9 +32,9 @@ namespace HCI_main_project.Commands.ConfirmDialog
                 dbContext.SaveChanges();
             }
             this.confirmDialogViewModel.IsDone = true;
-            tripDetailsViewModel.SetButtons();
-            Thread.Sleep(3000);
-            this.confirmDialogViewModel.Visibility = System.Windows.Visibility.Collapsed;
+            //tripDetailsViewModel.SetButtons();
+            //Thread.Sleep(3000);
+            //this.confirmDialogViewModel.Visibility = System.Windows.Visibility.Collapsed;
         }
     }
 
