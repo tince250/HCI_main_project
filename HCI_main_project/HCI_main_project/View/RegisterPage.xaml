@@ -41,9 +41,11 @@
                     <RowDefinition Height="65"/>
                     <RowDefinition Height="62"/>
                     <RowDefinition Height="65"/>
+                    <RowDefinition Height="20"/>
                     <RowDefinition Height="62"/>
                     <RowDefinition Height="65"/>
-                    <RowDefinition MinHeight="20" MaxHeight="40"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition MinHeight="20" MaxHeight="60"/>
                     <RowDefinition />
                     <RowDefinition/>
                 </Grid.RowDefinitions>
@@ -88,7 +90,7 @@
                     x:Name="email"
                         Grid.Row="7"
                         VerticalAlignment="Top"
-                        MaxLength="20"                    
+                        MaxLength="25"                    
                          FontSize="22"
                         KeyDown="OnKeyDownHandler"
                     Style="{StaticResource CustomMaterialDesignFloatingHintTextBoxLR}"
@@ -98,24 +100,60 @@
 
 
                 <Label Grid.Row="8" Content="Password" VerticalContentAlignment="Bottom" Style="{DynamicResource ChangeableColorFieldLabel}"
-                       VerticalAlignment="Bottom"
-                       ctr:OnFocusLabelColorChange.IsEnabled="{Binding ElementName=passr, Path=IsFocused}" FontSize="22"/>
+                       VerticalAlignment="Bottom" FontSize="22"/>
                 <components:BindablePasswordBox x:Name="passr" Grid.Row="9" KeyDown="OnKeyDownHandler"
                         Password="{Binding Path=Password, Mode=TwoWay, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"
                                                  LostFocus="PasswordBox_Changed"/>
+                <TextBlock Grid.Row="10"
+                                               TextWrapping="Wrap"
+                                           Foreground="#A8201A"
+                                           FontSize="21"
+                                               FontWeight="Medium"
+                                           Margin="5,0,0,0"
+                       VerticalAlignment="Top">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsHappenedP}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                    <Setter Property="Text" Value="Password field can not be empty or have less than 8 characters!"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
 
-
-                <Label Grid.Row="10" Content="Confirm password" VerticalContentAlignment="Bottom" 
+                <Label Grid.Row="11" Content="Confirm password" VerticalContentAlignment="Bottom" 
                        VerticalAlignment="Bottom" Style="{DynamicResource ChangeableColorFieldLabel}"
                        ctr:OnFocusLabelColorChange.IsEnabled="{Binding ElementName=confpassr, Path=IsFocused}" FontSize="22"/>
-                <components:BindablePasswordBox Grid.Row="11" x:Name="confpassr" KeyDown="OnKeyDownHandler"
+                <components:BindablePasswordBox Grid.Row="12" x:Name="confpassr" KeyDown="OnKeyDownHandler"
                         Password="{Binding Path=ConfirmPassword, Mode=TwoWay, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" 
                                                 LostFocus="PasswordBox_Changed"/>
 
+                <TextBlock Grid.Row="13"
+                                               TextWrapping="Wrap"
+                                           Foreground="#A8201A"
+                                           FontSize="21"
+                                               FontWeight="Medium"
+                                           Margin="5,0,0,0"
+                       VerticalAlignment="Top">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsHappenedCP}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                    <Setter Property="Text" Value="Passwords are not matching!"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
 
                 <Button
                     Command="{Binding Path=RegisterClickCommand}"
-                    Grid.Row="13"
+                    Grid.Row="14"
                     Height="55"
                     MinWidth="140"
                     MaxWidth="200"
@@ -129,12 +167,12 @@
 
                     <TextBlock Text="Register" />
                     <Button.ToolTip>
-                        <ToolTip Content="Press return" Style="{StaticResource BiggerToolTipStyle}" />
+                        <ToolTip Content="Press return" />
                     </Button.ToolTip>
 
                 </Button>
 
-                <StackPanel Grid.Row="14" Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel Grid.Row="15" Orientation="Horizontal" HorizontalAlignment="Center">
                     <Label FontWeight="SemiBold" Content="Already have an account? " VerticalContentAlignment="Center" FontSize="22"></Label>
                     <Label FontWeight="Bold" VerticalContentAlignment="Center" FontSize="24" Foreground="{StaticResource OrangeColor}">
                         <Hyperlink NavigateUri="LoginPage.xaml" FontWeight="Bold" FontSize="24" Foreground="{StaticResource OrangeColor}">
@@ -220,7 +258,7 @@
                             Kind="QuestionMarkCircle" />
 
             <Button.ToolTip>
-                <ToolTip Content="Open help window" Style="{StaticResource BiggerToolTipStyle}" />
+                <ToolTip Content="Open help window" />
             </Button.ToolTip>
         </Button>
 

@@ -73,6 +73,26 @@ namespace HCI_main_project.ViewModel
             _loginClickCommand = new DelegateCommand(OnLoginClick);
         }
 
+        public string _passError;
+        public string PassError
+        {
+            get => _passError;
+            set
+            {
+                SetProperty(ref _passError, value);
+            }
+        }
+
+        public bool isHappened;
+        public bool IsHappened
+        {
+            get => isHappened;
+            set
+            {
+                SetProperty(ref isHappened, value);
+            }
+        }
+
         private void OnLoginClick(object commandParameter)
         {
             try
@@ -139,9 +159,17 @@ namespace HCI_main_project.ViewModel
             if (columnName == "Password")
             {
                 if (string.IsNullOrEmpty(Password))
+                {
                     result = "Password field can not be empty!";
-                if (!string.IsNullOrEmpty(Password) && Password.Length < 8)
+                    IsHappened = true;
+                }
+                else if (!string.IsNullOrEmpty(Password) && Password.Length < 8)
+                {
                     result = "Password field should have 8 characters or more!";
+                    IsHappened = true;
+                }
+                else
+                    IsHappened = false;
             }
             return result;
         }

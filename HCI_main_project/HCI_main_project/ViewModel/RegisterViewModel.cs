@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -167,6 +168,26 @@ namespace HCI_main_project.ViewModel
             }
         }
 
+        public bool isHappenedC;
+        public bool IsHappenedP
+        {
+            get => isHappenedC;
+            set
+            {
+                SetProperty(ref isHappenedC, value);
+            }
+        }
+
+        public bool isHappenedCP;
+        public bool IsHappenedCP
+        {
+            get => isHappenedCP;
+            set
+            {
+                SetProperty(ref isHappenedCP, value);
+            }
+        }
+
         private string validate(string columnName)
         {
             string result = null;
@@ -175,14 +196,14 @@ namespace HCI_main_project.ViewModel
             {
                 if (string.IsNullOrEmpty(Name))
                     result = "Name field can not be empty!";
-                if (!string.IsNullOrEmpty(Name) && Name.Any(char.IsDigit))
-                    result = "Invalid characters. Digits are not allowed!";
+                if (!string.IsNullOrEmpty(Name) && !Regex.IsMatch(Name, "^[a-zA-Z ]+$"))
+                    result = "Invalid characters. Only letters are allowed!";
             }
             if (columnName == "LastName")
             {
                 if (string.IsNullOrEmpty(LastName))
                     result = "Last name field can not be empty!";
-                if (!string.IsNullOrEmpty(LastName) && LastName.Any(char.IsDigit))
+                if (!string.IsNullOrEmpty(LastName) && !Regex.IsMatch(LastName, "^[a-zA-Z ]+$"))
                     result = "Invalid characters. Only letters are allowed!";
             }
             if (columnName == "Email")
@@ -203,16 +224,32 @@ namespace HCI_main_project.ViewModel
             if (columnName == "Password")
             {
                 if (string.IsNullOrEmpty(Password))
+                {
                     result = "Password field can not be empty!";
-                if (!string.IsNullOrEmpty(Password) && Password.Length < 8)
-                    result = "Password field should have 8 characters or more!";
+                    IsHappenedP = true;
+                }
+                else if (!string.IsNullOrEmpty(Password) && Password.Length < 8)
+                {
+                    result = "Password field should have 8 or more characters!";
+                    IsHappenedP = true;
+                }
+                else
+                    IsHappenedP = false;
             }
             if (columnName == "ConfirmPassword")
             {
                 if (string.IsNullOrEmpty(ConfirmPassword))
+                {
                     result = "Please confirm a password";
-                if (!string.IsNullOrEmpty(ConfirmPassword) && !string.Equals(ConfirmPassword, Password))
+                    IsHappenedCP = true;
+                }
+                else if (!string.IsNullOrEmpty(ConfirmPassword) && !string.Equals(ConfirmPassword, Password))
+                {
                     result = "Passwords don't match!";
+                    IsHappenedCP = true;
+                }
+                else
+                    IsHappenedCP = false;
             }
             return result;
             
