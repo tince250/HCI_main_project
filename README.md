@@ -23,6 +23,7 @@ The ``focus`` of the project is building an app with excellent ``UI and UX``, fo
 - MVVM
 - SQLite database
 - Material Design
+- HTML + CSS - for online Help documentation
 
 ## Team members
 - Tina Mihajlovic
