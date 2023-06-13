@@ -48,9 +48,23 @@ namespace HCI_main_project.View
             BindablePasswordBox passwordBox = (BindablePasswordBox)sender;
             BindingExpression bindingExpr = passwordBox.GetBindingExpression(BindablePasswordBox.PasswordProperty);
             bindingExpr.UpdateSource();
+            // Your validation logic here
 
+            //if (!string.IsNullOrEmpty("sss"))
+            //{
+            //    Validation.ClearInvalid(bindingExpr);
+
+            //    // Create a new validation error
+            //    ValidationError validationError = new ValidationError(new DataErrorValidationRule(), bindingExpr)
+            //    {
+            //        ErrorContent = "ss"
+            //    };
+
+            //    // Set the validation error on the PasswordBox
+            //    Validation.MarkInvalid(bindingExpr, validationError);
+
+            //}
         }
-
         private void OnKeyDownHandler(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return)

@@ -14,13 +14,20 @@
     <None Remove="Images\hram.jpg" />
     <None Remove="Images\Tours\petrovaradin.jpg" />
     <None Remove="Resources\Accommodations\20230610164441624_err1.png" />
+    <None Remove="Resources\Accommodations\hayat.jpg" />
+    <None Remove="Resources\Accommodations\moscow.jpg" />
     <None Remove="Resources\Attractions\20230610050115599_err1.png" />
     <None Remove="Resources\Attractions\20230612214852114_err1.png" />
+    <None Remove="Resources\Attractions\fortress.jpg" />
+    <None Remove="Resources\Attractions\zoo.jpg" />
     <None Remove="Resources\login.jpg" />
     <None Remove="Resources\register.jpg" />
     <None Remove="Resources\Restaurants\20230610004619485_tince.png" />
+    <None Remove="Resources\Restaurants\sushi.jpg" />
     <None Remove="Resources\Restaurants\tince.png" />
     <None Remove="Resources\Tours\20230612220320911_err1.png" />
+    <None Remove="Resources\Tours\belgrade.jpg" />
+    <None Remove="Resources\Tours\church.jpg" />
     <None Remove="Resources\x-icon.jpg" />
   </ItemGroup>
 
@@ -62,10 +69,22 @@
     <Resource Include="Resources\Accommodations\20230610164441624_err1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\Accommodations\hayat.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Accommodations\moscow.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Attractions\20230610050115599_err1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Attractions\20230612214852114_err1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Attractions\fortress.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Attractions\zoo.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\login.jpg">
@@ -77,10 +96,19 @@
     <Resource Include="Resources\Restaurants\20230610004619485_tince.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\Restaurants\sushi.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Restaurants\tince.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Tours\20230612220320911_err1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Tours\belgrade.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Tours\church.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\x-icon.jpg">

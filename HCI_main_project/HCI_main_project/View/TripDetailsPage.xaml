@@ -31,6 +31,7 @@
                     MinWidth="170"
                     MaxWidth="250"
                     FontSize="24"
+                ToolTip="Go back (Ctrl+E)"
                     FontWeight="SemiBold"
                     materialDesign:ButtonAssist.CornerRadius="25"
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
@@ -63,7 +64,7 @@
 
                     <TextBlock Text="Reservations" />
                     <Button.ToolTip>
-                        <ToolTip Content="Open all reservations" Style="{StaticResource BiggerToolTipStyle}" />
+                        <ToolTip Content="Open all reservations (Ctrl+R)" />
                     </Button.ToolTip>
 
                 </Button>
@@ -88,7 +89,7 @@
 
                     <TextBlock Text="Cancel reservation" />
                     <Button.ToolTip>
-                        <ToolTip Content="Cancel reservation button" Style="{StaticResource BiggerToolTipStyle}" />
+                        <ToolTip Content="Cancel reservation button (Ctrl+C)"  />
                     </Button.ToolTip>
 
                 </Button>
@@ -113,7 +114,7 @@
 
                     <TextBlock Text="Reserve" />
                     <Button.ToolTip>
-                        <ToolTip Content="Cancel reservation button" Style="{StaticResource BiggerToolTipStyle}" />
+                        <ToolTip Content="Make reservation button (Ctrl+R)" />
                     </Button.ToolTip>
 
                 </Button>
@@ -124,12 +125,12 @@
                     Grid.Row="0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
-                    Margin="10, 10, 10, 10"
-                    Height="60"
-                    MinWidth="140"
-                    MaxWidth="200"
-                    FontSize="16"
-                    FontWeight="Bold"
+                    Margin="10"
+                    Height="50"
+                    MinWidth="170"
+                    MaxWidth="250"
+                    FontSize="24"
+                    FontWeight="SemiBold"
                     materialDesign:ButtonAssist.CornerRadius="25"               
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource MaterialDesignRaisedButton}"
@@ -138,7 +139,7 @@
 
                     <TextBlock Text="Book now" />
                     <Button.ToolTip>
-                        <ToolTip Content="Book reservation button" Style="{StaticResource BiggerToolTipStyle}" />
+                        <ToolTip Content="Book reservation button (Ctrl+B)" />
                     </Button.ToolTip>
 
                 </Button>
@@ -163,7 +164,7 @@
                             Kind="QuestionMarkCircle" />
 
                     <Button.ToolTip>
-                        <ToolTip Content="Open help window" Style="{StaticResource BiggerToolTipStyle}" />
+                        <ToolTip Content="Open help window" />
                     </Button.ToolTip>
                 </Button>
             </StackPanel>

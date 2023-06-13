@@ -50,6 +50,59 @@ namespace HCI_main_project
 
         private void OnKeyDownHandler(object sender, KeyEventArgs e)
         {
+            var tripDetailsPage = frame.Content as TripDetailsPage;
+            if (tripDetailsPage != null)
+            {
+                if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.E)
+                {
+                    var vm = tripDetailsPage.viewModel;
+                    if (vm.backCommand.CanExecute(null))
+                        vm.backCommand.Execute(null);
+                }
+                else if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.R && ApplicationHelper.User.Role==UserRole.AGENT)
+                {
+                    try
+                    {
+                        tripDetailsPage.openReservationsDialogShortcut();
+                    } catch (Exception ex)
+                    {
+                        ex.GetType();
+                    }
+                }
+                else if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.R && ApplicationHelper.User.Role == UserRole.TRAVELER)
+                {
+                    try
+                    {
+                        tripDetailsPage.openReservationDialogShortcut();
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.GetType();
+                    }
+                }
+                else if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.B && ApplicationHelper.User.Role == UserRole.TRAVELER)
+                {
+                    try
+                    {
+                        tripDetailsPage.openBookingDialogShortcut();
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.GetType();
+                    }
+                }
+                else if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.C && ApplicationHelper.User.Role == UserRole.TRAVELER)
+                {
+                    try
+                    {
+                        tripDetailsPage.openCancelDialogShortcut();
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.GetType();
+                    }
+                }
+            }
             var page = frame.Content as Homepage;
             if (page != null)
             {

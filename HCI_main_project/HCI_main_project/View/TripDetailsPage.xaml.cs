@@ -27,7 +27,7 @@ namespace HCI_main_project.View
     /// </summary>
     public partial class TripDetailsPage : Page
     {
-        private TripDetailsViewModel viewModel;
+        public TripDetailsViewModel viewModel { get; set; }
         public TripDetailsPage()
         {
             InitializeComponent();
@@ -103,6 +103,26 @@ namespace HCI_main_project.View
         }
 
         private void openReservationsDialog(object sender, RoutedEventArgs e)
+        {
+            mainGrid.Children.Add(new UsersInTourDialog());
+        }
+
+        public void openReservationDialogShortcut()
+        {
+            mainGrid.Children.Add(new ConfirmDialog(DialogType.RESERVE_TOUR, viewModel));
+        }
+
+        public void openCancelDialogShortcut()
+        {
+            mainGrid.Children.Add(new ConfirmDialog(DialogType.DELETE_RESERVATION, viewModel));
+        }
+
+        public void openBookingDialogShortcut()
+        {
+            mainGrid.Children.Add(new ConfirmDialog(DialogType.BOOK_TOUR, viewModel));
+        }
+
+        public void openReservationsDialogShortcut()
         {
             mainGrid.Children.Add(new UsersInTourDialog());
         }

@@ -31,7 +31,8 @@
 
         <Grid Grid.Column="1" VerticalAlignment="Center" Margin="50, 0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="120"/>
+
+                <RowDefinition Height="80"/>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="25"/>
                 <RowDefinition Height="40"/>
@@ -39,12 +40,14 @@
                 <RowDefinition Height="62"/>
                 <RowDefinition Height="65"/>
                 <RowDefinition Height="40"/>
+                <RowDefinition Height="20"/>
                 <RowDefinition Height="65"/>
                 <RowDefinition Height="0"/>
                 <RowDefinition MinHeight="20" MaxHeight="60"/>
                 <RowDefinition Height="60"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
+            
 
             <TextBlock Grid.Row="1" Style="{StaticResource Title}" HorizontalAlignment="Center" VerticalAlignment="Bottom">
                     Welcome
@@ -74,9 +77,30 @@
                     Password="{Binding Path=Password, Mode=TwoWay, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"
                                             LostFocus="PasswordBox_Changed"/>
 
+
+            <TextBlock Grid.Row="8"
+                                               TextWrapping="Wrap"
+                                           Foreground="#A8201A"
+                                           FontSize="21"
+                                               FontWeight="Medium"
+                                           Margin="5,-35,0,0"
+                       VerticalAlignment="Top">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsHappened}" Value="True">
+                                <Setter Property="Visibility" Value="Visible" />
+                                <Setter Property="Text" Value="Password field can not be empty or have less than 8 characters!"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
             <Button
                 Command="{Binding Path=LoginClickCommand}"
-                Grid.Row="8"
+                Grid.Row="9"
                 Height="55"
                 MinWidth="170"
                 FontSize="24"
@@ -90,12 +114,14 @@
 
                 <TextBlock Text="Login" />
                 <Button.ToolTip>
-                    <ToolTip Content="Press return" Style="{StaticResource BiggerToolTipStyle}" />
+                    <ToolTip Content="Press return" />
                 </Button.ToolTip>
 
             </Button>
 
-            <StackPanel Grid.Row="10" Margin="0,15,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
+            
+
+            <StackPanel Grid.Row="11" Margin="0,15,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Label FontWeight="SemiBold" Content="Don't have an account? " VerticalContentAlignment="Center" FontSize="22"></Label>
          
                 <Label FontWeight="Bold" VerticalContentAlignment="Center" FontSize="2" Foreground="{StaticResource OrangeColor}">
@@ -156,7 +182,7 @@
                             Foreground="{StaticResource WhiteColor}"
                             Kind="QuestionMarkCircle" />
             <Button.ToolTip>
-                <ToolTip Content="Open help window" Style="{StaticResource BiggerToolTipStyle}" />
+                <ToolTip Content="Open help window" />
             </Button.ToolTip>
         </Button>
 
